@@ -1,0 +1,30 @@
+.header {
+  width: 95%;
+  margin: auto;
+  padding: 0.5rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* styles for light theme logo*/
+
+.logo__container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.logo__container .logo {
+  width: 45px;
+  transform: translateY(10%);
+}
+
+.logo__container .logo img {
+  width: 100%;
+}
+
+.logo__container h1 {
+  font-size: 1.5rem;
+  color: #fff;
+}
