@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Header } from "../../components";
+import { Button, Header, Title } from "../../components";
 import { AboutImg } from "../../constants/Images";
 
 import "./About.css";
@@ -8,6 +8,7 @@ const About = () => {
   const handleSignUp = () => {};
   return (
     <div id="about">
+      <Title title="About" />
       <Header>
         <Button label="Sign Up" onClick={handleSignUp} />
       </Header>
