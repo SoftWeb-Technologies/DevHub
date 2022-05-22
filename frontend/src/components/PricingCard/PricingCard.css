@@ -1,0 +1,92 @@
+.pricing__card {
+  min-width: 280px;
+  width: 300px;
+  height: auto;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.16);
+  position: relative;
+  padding-bottom: 2rem;
+  overflow: hidden;
+  border-radius: var(--rounded-md);
+}
+
+.pricing__card .popular__tag {
+  background-color: var(--primary-clr);
+  padding: 2px 5px;
+  position: absolute;
+  width: 100px;
+  height: 20px;
+  top: 5%;
+  transform: translateX(-25%) translateY(-35%) rotate(-45deg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 2px 10px rgba(36, 36, 36, 0.35);
+}
+
+.popular__tag p {
+  color: #fff;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+}
+
+.pricing__card h1 {
+  text-align: center;
+  margin-top: 2.5rem;
+  font-weight: 500;
+  line-height: 0;
+  color: var(--light-text-clr);
+}
+
+.pricing__card h1.popular {
+  color: #000;
+}
+
+.pricing__card .pricing {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  line-height: 0;
+}
+
+.pricing h2 {
+  font-size: 1.8rem;
+  color: var(--primary-clr);
+}
+
+.pricing p {
+  font-size: 0.8rem;
+  padding-bottom: 7px;
+  color: var(--primary-clr);
+}
+
+.pricing__card .desc {
+  padding: 0 1.8rem;
+  text-align: center;
+  color: var(--light-text-clr);
+}
+
+.pricing__card .plan__details {
+  padding: 0rem 2rem 1.5rem 2rem;
+  height: 120px;
+}
+
+.plan__details div {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+}
+
+.plan__details > div > svg {
+  font-size: 20px;
+  color: var(--primary-clr);
+}
+
+.plan__details > div > p {
+  line-height: 0;
+}
+
+.choose__btn__container .btn {
+  display: block;
+  margin: auto;
+}

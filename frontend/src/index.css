@@ -1,4 +1,12 @@
 :root {
+  /* border-radius */
+  --rounded-md: 10px;
+
+  /* colors */
+  --btn-primary-clr: #008bb7;
+  --btn-secondary-clr: #ffffff;
+  --light-text-clr: rgb(134, 133, 133);
+
   --bg-linear-gradient: linear-gradient(
     141.96deg,
     #008bb7 31.03%,
