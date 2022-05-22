@@ -1,0 +1,50 @@
+#pricing {
+  background: rgb(255, 255, 255);
+}
+
+.pricing__header h1,
+.pricing__header p {
+  text-align: center;
+  line-height: 0;
+}
+
+.pricing__header p {
+  color: var(--light-text-clr);
+  width: var(--mobileView-width);
+  margin: 2rem auto;
+  line-height: 1.3;
+}
+
+.plan__cards {
+  width: var(--mobileView-width);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  padding-bottom: 2rem;
+}
+
+/* sm */
+@media (min-width: 640px) {
+}
+
+/* md */
+@media (min-width: 700px) {
+  .pricing__header p {
+    width: 60%;
+  }
+}
+
+/* lg */
+@media (min-width: 1024px) {
+  .pricing__header p {
+    width: 40%;
+  }
+}
+
+/* xl */
+@media (min-width: 1280px) {
+}

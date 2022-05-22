@@ -26,5 +26,12 @@
 
 .logo__container h1 {
   font-size: 1.5rem;
+}
+
+.logo__container h1.dark {
+  color: var(--primary-clr);
+}
+
+.logo__container h1.light {
   color: #fff;
 }
