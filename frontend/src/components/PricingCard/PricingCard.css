@@ -1,22 +1,31 @@
+:root {
+  --card-text-primary: #000;
+  --card-text-secondary: rgba(0, 0, 0, 0.7);
+}
+
 .pricing__card {
   min-width: 280px;
   width: 300px;
-  height: auto;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.16);
+  height: 420px;
+  box-shadow: 0px 6px 20px -10px rgba(0, 0, 0, 0.3);
   position: relative;
-  padding-bottom: 2rem;
+  padding-bottom: 0.5rem;
   overflow: hidden;
   border-radius: var(--rounded-md);
 }
 
+.pricing__card.primary {
+  background-color: #f6f6f6;
+}
+
 .pricing__card .popular__tag {
   background-color: var(--primary-clr);
-  padding: 2px 5px;
+  padding: 2px;
   position: absolute;
   width: 100px;
-  height: 20px;
-  top: 5%;
-  transform: translateX(-25%) translateY(-35%) rotate(-45deg);
+  height: 35px;
+  top: 0;
+  right: 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -25,44 +34,52 @@
 
 .popular__tag p {
   color: #fff;
-  font-size: 0.7rem;
+  font-size: 0.8rem;
   text-transform: uppercase;
 }
 
 .pricing__card h1 {
-  text-align: center;
   margin-top: 2.5rem;
+  padding-left: 1.2rem;
   font-weight: 500;
   line-height: 0;
+  letter-spacing: 0.05rem;
+  font-size: 1.7rem;
   color: var(--light-text-clr);
 }
 
 .pricing__card h1.popular {
-  color: #000;
+  color: var(--light-text-clr);
 }
 
 .pricing__card .pricing {
   display: flex;
-  justify-content: center;
   align-items: flex-end;
   line-height: 0;
+  margin: 0 2rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid rgba(162, 161, 161, 0.406);
 }
 
 .pricing h2 {
-  font-size: 1.8rem;
-  color: var(--primary-clr);
+  margin-top: 2.5rem;
+  font-size: 1.5rem;
+  font-weight: 500;
 }
 
 .pricing p {
   font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.058rem;
+  padding-left: 0.5rem;
   padding-bottom: 7px;
-  color: var(--primary-clr);
+  color: var(--card-text-secondary);
 }
 
 .pricing__card .desc {
-  padding: 0 1.8rem;
-  text-align: center;
-  color: var(--light-text-clr);
+  padding: 0 2rem;
+  font-weight: 500;
+  color: var(--card-text-secondary);
 }
 
 .pricing__card .plan__details {
@@ -79,14 +96,25 @@
 
 .plan__details > div > svg {
   font-size: 20px;
-  color: var(--primary-clr);
+  background-color: var(--primary-clr);
+  color: #fff;
+  border-radius: 5px;
 }
 
 .plan__details > div > p {
   line-height: 0;
+  color: var(--card-text-secondary);
+  font-weight: 500;
+}
+
+.choose__btn__container {
+  padding-left: 2rem;
+  margin: 1.5rem 0;
 }
 
 .choose__btn__container .btn {
-  display: block;
-  margin: auto;
+  padding: 0.1rem 2rem;
+  width: 110px;
+  font-size: 0.95rem;
+  border-radius: 7px;
 }

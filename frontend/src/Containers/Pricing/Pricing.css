@@ -8,6 +8,11 @@
   line-height: 0;
 }
 
+.pricing__header h1 {
+  letter-spacing: 1.5px;
+  font-weight: 500;
+}
+
 .pricing__header p {
   color: var(--light-text-clr);
   width: var(--mobileView-width);
@@ -33,6 +38,11 @@
 
 /* md */
 @media (min-width: 700px) {
+  .pricing__header h1 {
+    letter-spacing: 2px;
+    font-weight: 500;
+  }
+
   .pricing__header p {
     width: 60%;
   }
