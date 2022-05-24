@@ -45,7 +45,7 @@ const Pricing = () => {
         <Button primary={true} label="Sign Up" />
       </Header>
 
-      <div class="pricing__header">
+      <div className="pricing__header">
         <h1>Our Pricing Plan</h1>
         <p>
           We're providing best in class features in this product with honest,
