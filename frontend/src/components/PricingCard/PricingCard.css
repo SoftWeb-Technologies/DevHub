@@ -6,7 +6,7 @@
 .pricing__card {
   min-width: 280px;
   width: 300px;
-  height: 420px;
+  height: 440px;
   box-shadow: 0px 6px 20px -10px rgba(0, 0, 0, 0.3);
   position: relative;
   padding-bottom: 0.5rem;
@@ -42,7 +42,6 @@
   margin-top: 2.5rem;
   padding-left: 1.2rem;
   font-weight: 500;
-  line-height: 0;
   letter-spacing: 0.05rem;
   font-size: 1.7rem;
   color: var(--light-text-clr);
@@ -56,39 +55,38 @@
 
 .pricing__card .pricing {
   display: flex;
-  justify-content: center;
   align-items: flex-end;
-  line-height: 0;
 
   margin: 0 2rem;
-  padding-bottom: 0.5rem;
+  padding-bottom: 1rem;
   border-bottom: 2px solid rgba(162, 161, 161, 0.406);
 }
 
 .pricing h2 {
-  font-size: 1.8rem;
-  color: var(--primary-clr);
-  margin-top: 2.5rem;
+  font-size: 1.4rem;
+  font-weight: 500;
+  margin-top: 2.2rem;
 }
 
 .pricing p {
   font-size: 0.8rem;
   padding-bottom: 7px;
-  color: var(--primary-clr);
+  color: var(--card-text-secondary);
+  margin-left: 0.5rem;
 
   font-weight: 600;
   letter-spacing: 0.058rem;
-  padding-bottom: 7px;
 }
 
 .pricing__card .desc {
   padding: 0 2rem;
   font-weight: 500;
+  margin-top: 1rem;
   color: var(--card-text-secondary);
 }
 
 .pricing__card .plan__details {
-  padding: 0rem 2rem 1.5rem 2rem;
+  padding: 0 2rem;
   height: 120px;
 }
 
@@ -97,17 +95,20 @@
   justify-content: flex-start;
   align-items: center;
   gap: 10px;
+  padding: 0.25rem 0;
 }
 
-.plan__details > div > svg {
+.plan__details > div > img {
   font-size: 20px;
   background-color: var(--primary-clr);
   color: #fff;
   border-radius: 5px;
+  width: 20px;
+  height: 20px;
+  padding: 0.2rem;
 }
 
 .plan__details > div > p {
-  line-height: 0;
   color: var(--card-text-secondary);
   font-weight: 500;
 }
@@ -118,8 +119,15 @@
 }
 
 .choose__btn__container .btn {
-  padding: 0.1rem 2rem;
+  padding: 0.2rem 2.5rem;
   width: 110px;
   font-size: 0.95rem;
   border-radius: 7px;
+}
+
+@media screen and (min-width: 1200px) {
+  .pricing__card.primary {
+    background-color: #f6f6f6;
+    transform: scale(1.09);
+  }
 }

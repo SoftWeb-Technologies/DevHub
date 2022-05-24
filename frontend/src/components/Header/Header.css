@@ -7,6 +7,12 @@
   align-items: center;
 }
 
+.header div:last-child {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
 /* styles for light theme logo*/
 
 .logo__container {

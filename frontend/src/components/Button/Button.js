@@ -9,12 +9,15 @@ const Button = ({
   renderIconRight,
   renderIconLeft,
   iconSrc,
+  customClassName,
 }) => {
   return (
     <button
       style={customStyle}
       onClick={onClick}
-      className={`btn ${primary ? "btn-primary" : "btn-secondary"}`}
+      className={`btn ${
+        primary ? "btn-primary" : "btn-secondary"
+      } ${customClassName}`}
     >
       {renderIconLeft && (
         <>

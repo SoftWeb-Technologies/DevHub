@@ -21,7 +21,10 @@ const About = () => {
             </p>
             <p>Developer's need is all we care for.</p>
 
-            <Button customStyle={{ width: "300px" }} label="Get Started" />
+            <Button
+              customStyle={{ width: "300px", paddingLeft: "6rem" }}
+              label="Get Started"
+            />
           </div>
           <div className="about__img">
             <img src={AboutImg} alt="aboutImg" />

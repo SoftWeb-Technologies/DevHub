@@ -1,6 +1,6 @@
 import React from "react";
+import { checkMark } from "../../constants/Icons";
 import Button from "../Button/Button";
-import { BiCheck } from "react-icons/bi";
 
 import "./PricingCard.css";
 
@@ -17,7 +17,7 @@ const PricingCard = ({ isPopular, plans }) => {
       <h1 className={`${isPopular && "popular"}`}>{plans.planName}</h1>
       <div className="pricing">
         <h2>&#8377;{plans.planPrice}</h2>
-        <p>/mo</p>
+        <p> month</p>
       </div>
 
       <p className="desc">{plans.planDescription}</p>
@@ -30,7 +30,7 @@ const PricingCard = ({ isPopular, plans }) => {
         {plans.plansProvided.map((plan, index) => {
           return (
             <div key={index}>
-              <BiCheck />
+              <img src={checkMark} alt="check-mark" />
               <p>{plan}</p>
             </div>
           );

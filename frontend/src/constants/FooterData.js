@@ -3,15 +3,15 @@ import { instagram, linkdin, twitter } from "./Icons";
 export const socialMedias = [
   {
     iconSrc: linkdin,
-    link: "#",
+    link: "https://www.linkedin.com/company/softweb-technolagies",
   },
   {
     iconSrc: twitter,
-    link: "#",
+    link: "https://twitter.com/SoftWebtec",
   },
   {
     iconSrc: instagram,
-    link: "#",
+    link: "https://www.instagram.com/softwebtech/",
   },
 ];
 
