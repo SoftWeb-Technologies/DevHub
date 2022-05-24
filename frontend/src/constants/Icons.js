@@ -4,5 +4,14 @@ import twitter from "../assets/icons/twitter.svg";
 import instagram from "../assets/icons/instagram.svg";
 import linkdin from "../assets/icons/linkdin.svg";
 import paperAirPlaneDark from "../assets/icons/paperAirPlaneDark.svg";
+import checkMark from "../assets/icons/checkMark.svg";
 
-export { paperAirPlane, email, twitter, linkdin, instagram, paperAirPlaneDark };
+export {
+  paperAirPlane,
+  email,
+  twitter,
+  linkdin,
+  instagram,
+  paperAirPlaneDark,
+  checkMark,
+};

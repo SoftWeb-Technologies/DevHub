@@ -11,7 +11,7 @@
 
 .about__main {
   width: var(--mobileView-width);
-  margin: 0.2rem auto;
+  margin: 1.5rem auto;
   padding: 0 0 2rem 0;
 }
 
@@ -50,11 +50,13 @@
 .about__desc h1 {
   color: var(--primary-clr);
   font-size: 1.6rem;
+  margin: 1rem 0;
 }
 
 .about__desc p {
   font-size: 1.1rem;
   color: rgb(112, 111, 111);
+  line-height: 1.5rem;
 }
 
 /* sm */
