@@ -20,12 +20,12 @@
 
 .pricing__card .popular__tag {
   background-color: var(--primary-clr);
-  padding: 2px;
+  padding: 2px 5px;
   position: absolute;
   width: 100px;
-  height: 35px;
-  top: 0;
-  right: 0;
+  height: 20px;
+  top: 5%;
+  transform: translateX(-25%) translateY(-35%) rotate(-45deg);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -34,7 +34,7 @@
 
 .popular__tag p {
   color: #fff;
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   text-transform: uppercase;
 }
 
@@ -46,34 +46,39 @@
   letter-spacing: 0.05rem;
   font-size: 1.7rem;
   color: var(--light-text-clr);
+
+  text-align: center;
 }
 
 .pricing__card h1.popular {
-  color: var(--light-text-clr);
+  color: #000;
 }
 
 .pricing__card .pricing {
   display: flex;
+  justify-content: center;
   align-items: flex-end;
   line-height: 0;
+
   margin: 0 2rem;
   padding-bottom: 0.5rem;
   border-bottom: 2px solid rgba(162, 161, 161, 0.406);
 }
 
 .pricing h2 {
+  font-size: 1.8rem;
+  color: var(--primary-clr);
   margin-top: 2.5rem;
-  font-size: 1.5rem;
-  font-weight: 500;
 }
 
 .pricing p {
   font-size: 0.8rem;
+  padding-bottom: 7px;
+  color: var(--primary-clr);
+
   font-weight: 600;
   letter-spacing: 0.058rem;
-  padding-left: 0.5rem;
   padding-bottom: 7px;
-  color: var(--card-text-secondary);
 }
 
 .pricing__card .desc {

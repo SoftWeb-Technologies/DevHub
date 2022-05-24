@@ -17,7 +17,7 @@ const PricingCard = ({ isPopular, plans }) => {
       <h1 className={`${isPopular && "popular"}`}>{plans.planName}</h1>
       <div className="pricing">
         <h2>&#8377;{plans.planPrice}</h2>
-        <p>month</p>
+        <p>/mo</p>
       </div>
 
       <p className="desc">{plans.planDescription}</p>
