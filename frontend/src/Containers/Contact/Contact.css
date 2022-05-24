@@ -39,15 +39,34 @@
 .contact__form__left__container {
   background: linear-gradient(
     152.97deg,
-    rgb(4, 86, 168) 0%,
-    rgba(38, 204, 255, 0.98) 100%
+    rgba(10, 102, 194, 0.5) 0%,
+    rgba(38, 203, 255, 0.5) 100%
   );
-  backdrop-filter: blur(42px);
+  backdrop-filter: blur(23px);
   padding: 1rem;
   border-radius: var(--rounded-md);
 
   height: 300px;
   width: 100%;
+  position: relative;
+}
+
+.glass__effect {
+  position: relative;
+}
+
+.glass__effect .circle {
+  position: absolute;
+  bottom: 0%;
+  right: 0%;
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
+  background: radial-gradient(
+    81.25% 81.25% at 67.32% 18.75%,
+    #17b3a9 0%,
+    #0945df 100%
+  );
 }
 
 .contact__form__left__container h2,
@@ -124,10 +143,16 @@ svg {
     /* flex-wrap: wrap; */
   }
 
+  .glass__effect .circle {
+    position: absolute;
+    bottom: 0%;
+    right: 0%;
+    width: 100px;
+  }
+
   .contact__form__left__container {
     width: 100%;
     height: 360px;
-    background-color: red;
   }
 
   .contact__form__right__container {

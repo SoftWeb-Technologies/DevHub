@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import "./CustomIcon.css";
 
 const CustomIcon = ({ iconSrc, link }) => {

@@ -32,24 +32,27 @@ const Contact = () => {
       </div>
 
       <div className="contact__form__container">
-        <div className="contact__form__left__container">
-          <div>
-            <h2>Contact Info</h2>
-            <p>
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s,
-            </p>
-          </div>
-          <div>
-            {companyEmailAddress.map((emailAddress, index) => {
-              return (
-                <div key={index}>
-                  <img src={email} alt="email" />
-                  <p>{emailAddress}</p>
-                </div>
-              );
-            })}
+        <div className="glass__effect">
+          <div className="circle" />
+          <div className="contact__form__left__container">
+            <div>
+              <h2>Contact Info</h2>
+              <p>
+                Lorem Ipsum is simply dummy text of the printing and typesetting
+                industry. Lorem Ipsum has been the industry's standard dummy
+                text ever since the 1500s,
+              </p>
+            </div>
+            <div>
+              {companyEmailAddress.map((emailAddress, index) => {
+                return (
+                  <div key={index}>
+                    <img src={email} alt="email" />
+                    <p>{emailAddress}</p>
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </div>
         <div className="contact__form__right__container">
