@@ -89,6 +89,7 @@ a {
   background-color: transparent;
   outline: none;
   border: none;
+  padding-right: 20px;
   margin-left: 0.6rem;
   color: #fff;
   font-family: inherit;
@@ -174,14 +175,11 @@ a {
   }
 }
 
-@media screen and (min-width: 900px) {
+/* lg */
+@media (min-width: 1024px) {
   .footer__container {
     flex-direction: row;
   }
-}
-
-/* lg */
-@media (min-width: 1024px) {
 }
 
 /* xl */

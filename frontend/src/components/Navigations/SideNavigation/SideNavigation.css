@@ -1,0 +1,128 @@
+/* styles for light theme logo*/
+
+.side__navbar {
+  display: none;
+}
+
+.side__navbar .logo__container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem 0;
+  gap: 0.5rem;
+}
+
+.side__navbar .logo__container .logo {
+  width: 45px;
+  transform: translateY(10%);
+}
+
+.side__navbar .logo__container .logo img {
+  width: 100%;
+}
+
+.side__navbar .logo__container h1 {
+  font-size: 1.5rem;
+}
+
+.side__navbar .logo__container h1.dark {
+  color: var(--primary-clr);
+}
+
+.side__navbar .logo__container h1.light {
+  color: #fff;
+}
+
+.side__navbar .menu__container {
+  margin-top: 4rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.navbar__link {
+  padding: 0.7rem 2rem;
+  margin-bottom: 1rem;
+  width: 100%;
+  position: relative;
+  cursor: pointer;
+  color: rgba(0, 0, 0, 0.5);
+
+  font-size: 1.2rem;
+  font-weight: 500;
+
+  display: flex;
+  align-items: center;
+}
+
+.navbar__link::after {
+  content: " ";
+  position: absolute;
+  width: 0.25rem;
+  height: 100%;
+  background-color: transparent;
+  left: 0;
+  top: 0;
+
+  transition: all 0.5s ease-in-out;
+}
+
+.navbar__link:hover::after {
+  background-color: var(--primary-clr);
+}
+
+.navbar__link svg {
+  margin-right: 0.8rem;
+  width: 18px;
+  height: 18px;
+}
+
+.navbar__link:hover {
+  color: var(--primary-clr);
+}
+
+.navbar__link:hover svg path {
+  fill: var(--primary-clr);
+  fill-opacity: 1;
+}
+
+.navbar__link.active svg path {
+  fill: var(--primary-clr);
+  fill-opacity: 1;
+}
+
+.navbar__link.active {
+  color: var(--primary-clr) !important;
+}
+
+.navbar__link.active .menu__container ul li::after {
+  background-color: var(--primary-clr);
+}
+
+.navbar__link.active::after {
+  background-color: var(--primary-clr);
+}
+
+/* sm */
+@media (min-width: 640px) {
+}
+
+/* md */
+@media (min-width: 850px) {
+  .side__navbar {
+    min-width: 190px;
+    height: 100vh;
+    background-color: #f2f2f2;
+    display: flex;
+    flex-direction: column;
+    border-right: 2px solid rgba(128, 128, 128, 0.211);
+  }
+}
+
+/* lg */
+@media (min-width: 1024px) {
+}
+
+/* xl */
+@media (min-width: 1280px) {
+}

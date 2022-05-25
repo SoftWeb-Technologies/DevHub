@@ -1,6 +1,12 @@
 #contact {
   background: var(--primary-clr);
   height: 50vh;
+
+  display: flex;
+}
+
+.contact__main__container {
+  width: 100%;
 }
 
 .contact__header h1,
@@ -136,13 +142,6 @@ svg {
     width: 60%;
   }
 
-  .contact__form__container {
-    flex-direction: row;
-    width: var(--desktopView-width);
-
-    /* flex-wrap: wrap; */
-  }
-
   .glass__effect .circle {
     position: absolute;
     bottom: 0%;
@@ -152,7 +151,7 @@ svg {
 
   .contact__form__left__container {
     width: 100%;
-    height: 360px;
+    height: 400px;
   }
 
   .contact__form__right__container {
@@ -164,6 +163,18 @@ svg {
     width: 100%;
     display: flex;
     justify-content: flex-end;
+  }
+
+  .sendMessage__btn .btn {
+    font-size: 0.86rem;
+    padding: 0.68rem 0.5rem;
+  }
+}
+
+@media screen and (min-width: 850px) {
+  .contact__form__container {
+    flex-direction: row;
+    width: var(--desktopView-width);
   }
 }
 
