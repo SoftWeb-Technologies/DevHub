@@ -1,5 +1,11 @@
 import React from "react";
-import { Button, Header, Title } from "../../components";
+import {
+  Button,
+  Header,
+  Navbar,
+  SideNavigation,
+  Title,
+} from "../../components";
 import { AboutImg } from "../../constants/Images";
 
 import "./About.css";
@@ -9,38 +15,40 @@ const About = () => {
   return (
     <div id="about">
       <Title title="About" />
-      <Header>
-        <Button label="Sign Up" onClick={handleSignUp} />
-      </Header>
+      <SideNavigation theme={"dark"} />
 
-      <div className="about__main">
-        <div className="about__header">
-          <div className="about__content">
+      <main className="about__main__container">
+        <Navbar theme={"light"}>
+          <Button label="Sign Up" onClick={handleSignUp} />
+        </Navbar>
+        <div className="about__main">
+          <div className="about__header">
+            <div className="about__content">
+              <p>
+                We are a team of <br></br> <span>Creators & Innovators</span>
+              </p>
+              <p>Developer's need is all we care for.</p>
+
+              <Button
+                customStyle={{ width: "300px", paddingLeft: "6rem" }}
+                label="Get Started"
+              />
+            </div>
+            <div className="about__img">
+              <img src={AboutImg} alt="aboutImg" />
+            </div>
+          </div>
+          <div className="about__desc">
+            <h1>Lorem Ipsum</h1>
             <p>
-              We are a team of <br></br> <span>Creators & Innovators</span>
+              Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry. Lorem Ipsum has been the industry's standard dummy text
+              ever since the 1500s, when an unknown printer took a galley of
+              type and scrambled it to make a type specimen book.
             </p>
-            <p>Developer's need is all we care for.</p>
-
-            <Button
-              customStyle={{ width: "300px", paddingLeft: "6rem" }}
-              label="Get Started"
-            />
-          </div>
-          <div className="about__img">
-            <img src={AboutImg} alt="aboutImg" />
           </div>
         </div>
-
-        <div className="about__desc">
-          <h1>Lorem Ipsum</h1>
-          <p>
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s, when an unknown printer took a galley of type
-            and scrambled it to make a type specimen book.
-          </p>
-        </div>
-      </div>
+      </main>
     </div>
   );
 };

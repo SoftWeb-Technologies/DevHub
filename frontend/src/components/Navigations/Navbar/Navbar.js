@@ -1,12 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { DevHubLogo, DevHubLogoLight } from "../../constants/Images";
-import "./Header.css";
+import { DevHubLogo, DevHubLogoLight } from "../../../constants/Images";
+import "./Navbar.css";
 
-const Header = ({ children, theme }) => {
+const Navbar = ({ theme, children }) => {
   return (
-    <>
-      <div className="header">
+    <div className="header">
+      <div className="header__navbar">
         <Link to={"/"}>
           <div className="logo__container">
             <div className="logo">
@@ -19,10 +19,11 @@ const Header = ({ children, theme }) => {
             <h1 className={`${theme === "dark" ? "dark" : "light"}`}>DevHub</h1>
           </div>
         </Link>
-        <div>{children}</div>
+
+        <div className="header__children">{children}</div>
       </div>
-    </>
+    </div>
   );
 };
 
-export default Header;
+export default Navbar;

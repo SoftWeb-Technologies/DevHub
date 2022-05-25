@@ -7,6 +7,12 @@
   width: 100%;
   background: var(--bg-linear-gradient);
   height: 60vh;
+
+  display: flex;
+}
+
+.about__main__container {
+  width: 100%;
 }
 
 .about__main {
@@ -68,6 +74,7 @@
   .about__main {
     padding-bottom: 0rem;
   }
+
   .about__header {
     flex-direction: row;
     justify-content: space-between;
@@ -82,7 +89,6 @@
   }
 
   .about__desc {
-    transform: translateY(-40%);
     height: auto;
   }
 
@@ -120,4 +126,7 @@
 
 /* xl */
 @media (min-width: 1280px) {
+  .about__desc {
+    transform: translateY(-40%);
+  }
 }

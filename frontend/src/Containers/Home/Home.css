@@ -5,9 +5,14 @@
 
 #home {
   width: 100%;
-
   height: 100vh;
   position: relative;
+
+  display: flex;
+}
+
+.home__main__container {
+  width: 100%;
 }
 
 #home::before {
@@ -100,17 +105,17 @@ p {
   }
 
   .home__img img {
-    width: 100%;
+    min-width: 250px;
   }
 
   .home__desc {
     transform: translateY(-40%);
     height: auto;
   }
-
-  .home__desc h1 {
-    font-size: 1.8rem;
+  .home__content h1 {
+    width: 100%;
   }
+
   .home__desc p {
     font-size: 1rem;
     width: 60%;
@@ -125,7 +130,8 @@ p {
 /* lg */
 @media (min-width: 1024px) {
   .home__img {
-    margin-top: 0rem;
+    margin-top: -2rem;
+    min-width: 400px;
   }
 
   .home__content p:first-child {
@@ -142,8 +148,17 @@ p {
     font-size: 1.2rem;
     margin-bottom: 1.2rem;
   }
+
+  .home__content h1 {
+    font-size: 2.6rem;
+    width: 100%;
+  }
 }
 
 /* xl */
 @media (min-width: 1280px) {
+  .home__img {
+    margin-top: -2rem;
+    min-width: 500px;
+  }
 }
