@@ -133,6 +133,14 @@ svg {
 
 /* md */
 @media (min-width: 700px) {
+  .contact__main__container {
+    margin-left: 0px;
+  }
+
+  .contact__main__container.active {
+    animation: slide-effect-contact 0.5s 1 ease forwards;
+  }
+
   .contact__header h1 {
     letter-spacing: 2px;
     font-weight: 500;

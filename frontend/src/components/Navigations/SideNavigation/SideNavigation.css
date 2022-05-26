@@ -140,6 +140,7 @@ h1.logo__name {
     position: fixed;
     width: 50px;
     height: 100vh;
+    z-index: 99;
     background-color: #eee;
 
     border-right: 2px solid rgba(194, 193, 193, 0.537);
@@ -160,7 +161,8 @@ h1.logo__name {
   }
 
   .side__navbar.active {
-    position: relative;
+    position: fixed;
+    z-index: 99;
     transition: width 0.5s ease-in-out;
     animation: expand-nav 0.5s ease 1 forwards;
   }
@@ -211,7 +213,7 @@ h1.logo__name {
     position: absolute;
     border-radius: var(--rounded-md);
     color: #fff;
-    z-index: 99;
+    z-index: 999;
     text-align: center;
     padding: 0.5rem 1rem;
     font-size: 0.65rem;

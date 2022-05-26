@@ -136,6 +136,7 @@ a {
 @media (min-width: 700px) {
   .footer {
     height: auto;
+    width: 100%;
   }
   .footer__container {
     width: var(--desktopView-width);

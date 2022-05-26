@@ -90,8 +90,8 @@ p {
 @media (min-width: 850px) {
   #home {
     width: 100%;
-
     height: 70vh;
+
     position: relative;
   }
 
@@ -99,6 +99,10 @@ p {
     width: 80%;
     margin: 1.5 auto;
     padding-bottom: 0rem;
+  }
+
+  .home__main.active {
+    animation: slide-effect 0.5s 1 ease forwards;
   }
 
   .home__header {

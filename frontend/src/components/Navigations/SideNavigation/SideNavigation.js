@@ -12,7 +12,7 @@ import {
 } from "../../../DevHubIcons";
 import "./SideNavigation.css";
 
-const SideNavigation = ({ customStyle }) => {
+const SideNavigation = ({ customStyle, ...props }) => {
   const [toggle, setToggle] = useState(false);
   const [hoverActive, setHoverActive] = useState(false);
 
@@ -35,7 +35,12 @@ const SideNavigation = ({ customStyle }) => {
                 >
                   {hoverActive ? (
                     <>
-                      <OpenNavIcon onClick={() => setToggle(true)} />
+                      <OpenNavIcon
+                        onClick={() => {
+                          setToggle(true);
+                          props.setIsNavActive(true);
+                        }}
+                      />
                       <span className="open__nav">Open navigation</span>
                     </>
                   ) : (
@@ -49,7 +54,13 @@ const SideNavigation = ({ customStyle }) => {
 
           <div className="toggle__btn__container">
             {toggle && !hoverActive && (
-              <div className="close__nav" onClick={() => setToggle(false)}>
+              <div
+                className="close__nav"
+                onClick={() => {
+                  setToggle(false);
+                  props.setIsNavActive(false);
+                }}
+              >
                 <CloseNavIcon />
                 <span className="show__title">hide navigation</span>
               </div>

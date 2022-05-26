@@ -1,5 +1,4 @@
-import React from "react";
-import useWindowSize from "../../hooks/useWindowSize";
+import React, { useState } from "react";
 import {
   Button,
   Footer,
@@ -16,18 +15,17 @@ import { email, paperAirPlane } from "../../constants/Icons";
 const companyEmailAddress = ["contact@softweb.com", "contact@softweb.com"];
 
 const Contact = () => {
-  const size = useWindowSize();
-
-  console.log(size);
-
+  const [isNavActive, setIsNavActive] = useState(false);
   const onChangeHandler = () => {};
   return (
     <div id="contact">
       <Title title="contact" />
 
-      <SideNavigation />
+      <SideNavigation setIsNavActive={setIsNavActive} />
 
-      <main className="contact__main__container">
+      <main
+        className={`contact__main__container ${isNavActive ? "active" : ""}`}
+      >
         <Navbar>
           <Button label={"Sign Up"} />
         </Navbar>
