@@ -83,6 +83,11 @@
     width: 80%;
   }
 
+  .about__main.active {
+    margin-left: 220px;
+    animation: slide-effect 0.5s 1 ease forwards;
+  }
+
   .about__header {
     flex-direction: row;
     justify-content: space-between;

@@ -44,6 +44,14 @@
 
 /* md */
 @media (min-width: 700px) {
+  .pricing__main__container {
+    margin-left: 0px;
+  }
+
+  .pricing__main__container.active {
+    animation: slide-effect 0.5s 1 ease forwards;
+  }
+
   .pricing__header h1 {
     letter-spacing: 2px;
     font-weight: 500;

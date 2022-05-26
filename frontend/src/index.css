@@ -35,3 +35,22 @@ body {
 code {
   font-family: "Poppins", sans-serif;
 }
+
+/* page slide when side navbar is active */
+@keyframes slide-effect {
+  0% {
+    margin-left: 120px;
+  }
+  100% {
+    margin-left: 220px;
+  }
+}
+
+@keyframes slide-effect-contact {
+  0% {
+    margin-left: 120px;
+  }
+  100% {
+    margin-left: 200px;
+  }
+}

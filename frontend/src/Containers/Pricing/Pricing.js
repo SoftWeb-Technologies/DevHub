@@ -1,7 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Button,
-  Header,
   Navbar,
   PricingCard,
   SideNavigation,
@@ -44,13 +43,16 @@ const premiumPlans = {
 };
 
 const Pricing = () => {
+  const [isNavActive, setIsNavActive] = useState(false);
   return (
     <div id="pricing">
       <Title title="Pricing" />
 
-      <SideNavigation customStyle={{ height: "130vh" }} theme={"dark"} />
+      <SideNavigation setIsNavActive={setIsNavActive} />
 
-      <main className="pricing__main__container">
+      <main
+        className={`pricing__main__container  ${isNavActive ? "active" : ""}`}
+      >
         <Navbar theme={"dark"}>
           <Button label={"Sign Up"} primary={true} />
         </Navbar>
