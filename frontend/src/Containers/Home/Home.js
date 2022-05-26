@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  Button,
-  Header,
-  Navbar,
-  SideNavigation,
-  Title,
-} from "../../components";
+import { Button, Navbar, SideNavigation, Title } from "../../components";
 
 import { HomeImg } from "../../constants/Images";
 

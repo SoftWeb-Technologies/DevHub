@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  Button,
-  Header,
-  Navbar,
-  SideNavigation,
-  Title,
-} from "../../components";
+import { Button, Navbar, SideNavigation, Title } from "../../components";
 import { AboutImg } from "../../constants/Images";
 
 import "./About.css";
@@ -15,7 +9,7 @@ const About = () => {
   return (
     <div id="about">
       <Title title="About" />
-      <SideNavigation theme={"dark"} />
+      <SideNavigation />
 
       <main className="about__main__container">
         <Navbar theme={"light"}>

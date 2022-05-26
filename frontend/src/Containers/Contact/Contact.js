@@ -25,12 +25,7 @@ const Contact = () => {
     <div id="contact">
       <Title title="contact" />
 
-      <SideNavigation
-        customStyle={{
-          height: size.width >= 1021 ? "185vh" : "200vh",
-        }}
-        theme={"dark"}
-      />
+      <SideNavigation />
 
       <main className="contact__main__container">
         <Navbar>

@@ -13,6 +13,7 @@
 
 .home__main__container {
   width: 100%;
+  height: auto;
 }
 
 #home::before {
@@ -93,8 +94,11 @@ p {
   }
 
   .home__main {
+    width: 80%;
+    margin: 1.5 auto;
     padding-bottom: 0rem;
   }
+
   .home__header {
     flex-direction: row;
     justify-content: space-between;
@@ -102,10 +106,11 @@ p {
 
   .home__img {
     width: 50%;
+    transform: translateY(15%);
   }
 
   .home__img img {
-    min-width: 250px;
+    min-width: 300px;
   }
 
   .home__desc {
@@ -130,8 +135,8 @@ p {
 /* lg */
 @media (min-width: 1024px) {
   .home__img {
-    margin-top: -2rem;
     min-width: 400px;
+    transform: translateY(-5%);
   }
 
   .home__content p:first-child {
@@ -158,7 +163,6 @@ p {
 /* xl */
 @media (min-width: 1280px) {
   .home__img {
-    margin-top: -2rem;
     min-width: 500px;
   }
 }
