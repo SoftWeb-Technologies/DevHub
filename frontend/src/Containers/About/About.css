@@ -11,6 +11,13 @@
   display: flex;
 }
 
+#about .down__arrow__container {
+  width: 25px;
+  position: absolute;
+  bottom: 2%;
+  right: 2%;
+}
+
 .about__main__container {
   width: 100%;
 }

@@ -2,6 +2,7 @@ import React from "react";
 import { Button, Navbar, SideNavigation, Title } from "../../components";
 
 import { HomeImg } from "../../constants/Images";
+import { DownArrowIcon } from "../../DevHubIcons";
 
 import "./Home.css";
 
@@ -37,6 +38,9 @@ const Home = () => {
           </div>
         </div>
       </main>
+      <div className="down__arrow__container">
+        <DownArrowIcon />
+      </div>
     </div>
   );
 };

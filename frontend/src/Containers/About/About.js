@@ -1,6 +1,7 @@
 import React from "react";
 import { Button, Navbar, SideNavigation, Title } from "../../components";
 import { AboutImg } from "../../constants/Images";
+import { DownArrowIcon } from "../../DevHubIcons";
 
 import "./About.css";
 
@@ -43,6 +44,10 @@ const About = () => {
           </div>
         </div>
       </main>
+
+      <div className="down__arrow__container">
+        <DownArrowIcon />
+      </div>
     </div>
   );
 };

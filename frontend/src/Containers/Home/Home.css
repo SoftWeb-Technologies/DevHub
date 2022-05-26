@@ -11,9 +11,11 @@
   display: flex;
 }
 
-.home__main__container {
-  width: 100%;
-  height: auto;
+#home .down__arrow__container {
+  width: 25px;
+  position: absolute;
+  bottom: -40%;
+  right: 2%;
 }
 
 #home::before {
