@@ -5,6 +5,7 @@ import ContactIcon from "./ContactIcon";
 import DevHubLogo from "./DevHubLogo";
 import OpenNavIcon from "./OpenNavIcon";
 import CloseNavIcon from "./CloseNavIcon";
+import DownArrowIcon from "./DownArrowIcon";
 
 export {
   HomeIcon,
@@ -14,4 +15,5 @@ export {
   DevHubLogo,
   OpenNavIcon,
   CloseNavIcon,
+  DownArrowIcon,
 };
