@@ -73,6 +73,7 @@
 @media (min-width: 850px) {
   .about__main {
     padding-bottom: 0rem;
+    width: 80%;
   }
 
   .about__header {
@@ -90,6 +91,8 @@
 
   .about__desc {
     height: auto;
+    padding-bottom: 2rem;
+    transform: translateY(-20%);
   }
 
   .about__desc h1 {

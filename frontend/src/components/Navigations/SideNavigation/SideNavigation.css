@@ -1,38 +1,67 @@
-/* styles for light theme logo*/
-
 .side__navbar {
   display: none;
 }
 
-.side__navbar .logo__container {
+.side__navbar .nav__header {
+  display: flex;
+}
+
+h1.logo__name {
+  display: none;
+}
+
+.main__logo__container {
   display: flex;
   align-items: center;
+}
+
+.main__logo__container .devHub__logo {
+  width: 35px;
+  height: 35px;
+  margin: 0.7rem 0.5rem;
+  display: flex;
   justify-content: center;
-  margin: 1rem 0;
-  gap: 0.5rem;
+  align-items: center;
+  cursor: pointer;
 }
 
-.side__navbar .logo__container .logo {
-  width: 45px;
-  transform: translateY(10%);
+.devHub__logo svg {
+  min-width: 25px;
+  height: 25px;
+  transition: transform 0.5s ease-in-out;
 }
 
-.side__navbar .logo__container .logo img {
-  width: 100%;
+.devHub__logo svg:hover {
+  transform: scale(1.05);
 }
 
-.side__navbar .logo__container h1 {
-  font-size: 1.5rem;
+.devHub__logo svg:active {
+  transform: scale(0.8);
+  position: relative;
 }
 
-.side__navbar .logo__container h1.dark {
-  color: var(--primary-clr);
-}
-
-.side__navbar .logo__container h1.light {
+.devHub__logo > .open__nav {
+  background-color: #000;
+  min-width: 120px;
+  position: absolute;
+  border-radius: var(--rounded-md);
   color: #fff;
+  z-index: 99;
+  text-align: center;
+  padding: 0.5rem 1rem;
+  font-size: 0.65rem;
+  opacity: 0;
+  pointer-events: none;
+
+  transform: translateX(65%);
+  transition: opacity 0.3s ease-in-out;
 }
 
+.devHub__logo svg:hover ~ .open__nav {
+  opacity: 1;
+}
+
+/* side menu styles */
 .side__navbar .menu__container {
   margin-top: 4rem;
   height: 100%;
@@ -41,7 +70,9 @@
 }
 
 .navbar__link {
-  padding: 0.7rem 2rem;
+  padding-top: 0.7rem;
+  padding-bottom: 0.7rem;
+  padding-left: 1rem;
   margin-bottom: 1rem;
   width: 100%;
   position: relative;
@@ -103,26 +134,101 @@
   background-color: var(--primary-clr);
 }
 
-/* sm */
-@media (min-width: 640px) {
-}
-
-/* md */
-@media (min-width: 850px) {
+@media screen and (min-width: 850px) {
   .side__navbar {
-    min-width: 190px;
+    display: block;
+    position: fixed;
+    width: 50px;
     height: 100vh;
-    background-color: #f2f2f2;
-    display: flex;
-    flex-direction: column;
-    border-right: 2px solid rgba(128, 128, 128, 0.211);
+    background-color: #eee;
+
+    border-right: 2px solid rgba(194, 193, 193, 0.537);
   }
-}
 
-/* lg */
-@media (min-width: 1024px) {
-}
+  .side__navbar.deactive {
+    animation: close-nav 0.5s ease 1 backwards;
+    /* overflow: hidden; */
+  }
 
-/* xl */
-@media (min-width: 1280px) {
+  @keyframes close-nav {
+    0% {
+      width: 0px;
+    }
+    100% {
+      width: 50px;
+    }
+  }
+
+  .side__navbar.active {
+    position: relative;
+    transition: width 0.5s ease-in-out;
+    animation: expand-nav 0.5s ease 1 forwards;
+  }
+
+  @keyframes expand-nav {
+    0% {
+      width: 50px;
+    }
+    100% {
+      width: 200px;
+    }
+  }
+
+  .side__navbar.active .toggle__btn__container {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    right: 5%;
+    top: 1.5%;
+  }
+
+  .side__navbar.active .toggle__btn__container svg {
+    cursor: pointer;
+    transition: all 0.5s ease-in-out;
+    position: relative;
+    opacity: 0;
+  }
+
+  .side__navbar.active:hover .toggle__btn__container svg {
+    opacity: 1;
+  }
+
+  .side__navbar.active .toggle__btn__container svg:hover {
+    transform: scale(1.05);
+  }
+
+  .side__navbar.active .toggle__btn__container svg:active {
+    transform: scale(0.8);
+  }
+
+  .side__navbar.active .toggle__btn__container > div {
+    position: relative;
+  }
+
+  .toggle__btn__container div > span {
+    background-color: #000;
+    min-width: 120px;
+    position: absolute;
+    border-radius: var(--rounded-md);
+    color: #fff;
+    z-index: 99;
+    text-align: center;
+    padding: 0.5rem 1rem;
+    font-size: 0.65rem;
+    opacity: 0;
+    pointer-events: none;
+
+    transform: translateX(5%) translateY(-10%);
+    transition: opacity 0.3s ease-in-out;
+  }
+
+  .toggle__btn__container svg:hover ~ span {
+    opacity: 1;
+  }
+
+  .side__navbar.active h1.logo__name {
+    display: block;
+    font-size: 1.2rem;
+    color: var(--primary-clr);
+  }
 }

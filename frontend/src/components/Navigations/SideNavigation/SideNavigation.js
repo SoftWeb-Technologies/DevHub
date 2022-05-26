@@ -1,76 +1,88 @@
-import React, { useEffect, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
-import { DevHubLogo, DevHubLogoLight } from "../../../constants/Images";
+import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
+
 import {
   HomeIcon,
   AboutIcon,
   PricingIcon,
   ContactIcon,
+  DevHubLogo,
+  CloseNavIcon,
+  OpenNavIcon,
 } from "../../../DevHubIcons";
 import "./SideNavigation.css";
 
-const SideNavigation = ({ theme, customStyle }) => {
-  const [activeMenu, setActiveMenu] = useState("Home");
+const SideNavigation = ({ customStyle }) => {
+  const [toggle, setToggle] = useState(false);
+  const [hoverActive, setHoverActive] = useState(false);
 
   return (
     <>
-      <div>
-        {/* Side nav */}
-        <div className="side__navbar" style={customStyle && customStyle}>
-          <div>
-            <Link to={"/"}>
-              <div className="logo__container">
-                <div className="logo">
-                  <img
-                    src={theme === "dark" ? DevHubLogo : DevHubLogoLight}
-                    alt="devHub-logo"
-                  />
+      <div
+        className={`side__navbar ${toggle ? "active" : "deactive"}`}
+        style={customStyle && customStyle}
+      >
+        <div className="nav__header">
+          <div className="logo__container">
+            <div>
+              <div className="main__logo__container">
+                <div
+                  className="devHub__logo"
+                  onMouseOver={() => {
+                    !toggle && setHoverActive(true);
+                  }}
+                  onMouseLeave={() => setHoverActive(false)}
+                >
+                  {hoverActive ? (
+                    <>
+                      <OpenNavIcon onClick={() => setToggle(true)} />
+                      <span className="open__nav">Open navigation</span>
+                    </>
+                  ) : (
+                    <DevHubLogo fillColor={"#008bb7"} />
+                  )}
                 </div>
-
-                <h1 className={`${theme === "dark" ? "dark" : "light"}`}>
-                  DevHub
-                </h1>
+                <h1 className="logo__name">DevHub</h1>
               </div>
-            </Link>
+            </div>
           </div>
-          <div className="menu__container">
-            <NavMenu
-              path={"/"}
-              menuName="Home"
-              Icon={HomeIcon}
-              activeMenu={activeMenu}
-              setActiveMenu={setActiveMenu}
-            />
-            <NavMenu
-              path={"/about"}
-              menuName="About"
-              Icon={AboutIcon}
-              activeMenu={activeMenu}
-              setActiveMenu={setActiveMenu}
-            />
-            <NavMenu
-              path={"/pricing"}
-              menuName="Pricing"
-              Icon={PricingIcon}
-              activeMenu={activeMenu}
-              setActiveMenu={setActiveMenu}
-            />
-            <NavMenu
-              path={"/contact"}
-              menuName="Contact"
-              Icon={ContactIcon}
-              activeMenu={activeMenu}
-              setActiveMenu={setActiveMenu}
-            />
+
+          <div className="toggle__btn__container">
+            {toggle && !hoverActive && (
+              <div className="close__nav" onClick={() => setToggle(false)}>
+                <CloseNavIcon />
+                <span className="show__title">hide navigation</span>
+              </div>
+            )}
           </div>
+        </div>
+        <div className="menu__container">
+          <NavMenu toggle={toggle} path={"/"} menuName="Home" Icon={HomeIcon} />
+          <NavMenu
+            toggle={toggle}
+            path={"/about"}
+            menuName="About"
+            Icon={AboutIcon}
+          />
+          <NavMenu
+            toggle={toggle}
+            path={"/pricing"}
+            menuName="Pricing"
+            Icon={PricingIcon}
+          />
+          <NavMenu
+            toggle={toggle}
+            path={"/contact"}
+            menuName="Contact"
+            Icon={ContactIcon}
+          />
         </div>
       </div>
     </>
   );
 };
 
-const NavMenu = ({ path, Icon, menuName, activeMenu, setActiveMenu }) => {
-  console.log("=>> " + activeMenu);
+const NavMenu = ({ path, Icon, menuName, toggle }) => {
   return (
     <NavLink
       activeClassName="navbar__link active"
@@ -78,7 +90,7 @@ const NavMenu = ({ path, Icon, menuName, activeMenu, setActiveMenu }) => {
       to={path}
     >
       <Icon />
-      {menuName}
+      {toggle && menuName}
     </NavLink>
   );
 };
