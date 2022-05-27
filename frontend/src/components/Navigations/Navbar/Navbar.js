@@ -3,12 +3,12 @@ import { Link } from "react-router-dom";
 import { DevHubLogo, DevHubLogoLight } from "../../../constants/Images";
 import "./Navbar.css";
 
-const Navbar = ({ theme, children }) => {
+const Navbar = ({ theme, children, show }) => {
   return (
     <div className="header">
       <div className="header__navbar">
         <Link to={"/"}>
-          <div className="logo__container">
+          <div className={"logo__container " + show}>
             <div className="logo">
               <img
                 src={theme === "dark" ? DevHubLogo : DevHubLogoLight}

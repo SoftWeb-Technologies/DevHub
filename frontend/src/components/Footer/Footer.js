@@ -1,12 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { company, socialMedias, supports } from "../../constants/FooterData";
-import { email, paperAirPlaneDark } from "../../constants/Icons";
+import { email } from "../../constants/Icons";
 import { DevHubLogoLight } from "../../constants/Images";
 import CustomIcon from "../CustomIcon/CustomIcon";
 import Button from "../Button/Button";
 
 import "./Footer.css";
+import { PaperAirPlane } from "../../DevHubIcons";
 
 const Footer = () => {
   const handleOnSend = () => {};
@@ -71,7 +72,7 @@ const Footer = () => {
                 customStyle={{ padding: "0.55rem   1rem" }}
                 label={"Send"}
                 renderIconRight={true}
-                iconSrc={paperAirPlaneDark}
+                Icon={PaperAirPlane}
                 onClick={handleOnSend}
               />
             </div>

@@ -1,4 +1,5 @@
 import React from "react";
+import { GoogleIcon } from "../../DevHubIcons";
 import "./Button.css";
 
 const Button = ({
@@ -8,7 +9,7 @@ const Button = ({
   customStyle,
   renderIconRight,
   renderIconLeft,
-  iconSrc,
+  Icon,
   customClassName,
 }) => {
   return (
@@ -21,14 +22,14 @@ const Button = ({
     >
       {renderIconLeft && (
         <>
-          <img src={iconSrc} alt={iconSrc.split(".")[0]} />
+          <Icon />
         </>
       )}
       {label}
 
       {renderIconRight && (
         <>
-          <img src={iconSrc} alt={iconSrc.split(".")[0]} />
+          <Icon />
         </>
       )}
     </button>

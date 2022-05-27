@@ -127,6 +127,11 @@ svg {
   margin: auto;
 }
 
+.sendMessage__btn .btn svg {
+  width: 15px;
+  height: 15px;
+}
+
 /* sm */
 @media (min-width: 640px) {
 }
