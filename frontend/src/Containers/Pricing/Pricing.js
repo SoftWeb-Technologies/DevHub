@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Button,
   Navbar,
@@ -44,6 +45,8 @@ const premiumPlans = {
 
 const Pricing = () => {
   const [isNavActive, setIsNavActive] = useState(false);
+  const navigate = useNavigate();
+
   return (
     <div id="pricing">
       <Title title="Pricing" />
@@ -54,7 +57,11 @@ const Pricing = () => {
         className={`pricing__main__container  ${isNavActive ? "active" : ""}`}
       >
         <Navbar theme={"dark"}>
-          <Button label={"Sign Up"} primary={true} />
+          <Button
+            label={"Sign Up"}
+            primary={true}
+            onClick={() => navigate("/auth")}
+          />
         </Navbar>
 
         <div className="pricing__content">

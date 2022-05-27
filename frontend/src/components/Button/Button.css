@@ -20,6 +20,10 @@
   box-shadow: 0px 19px 30px -13px rgba(0, 0, 0, 0.5);
 }
 
+.btn svg {
+  min-width: 25px;
+}
+
 .btn.btn-lg {
   width: 100%;
   padding: 0.8rem 0;

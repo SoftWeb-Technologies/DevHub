@@ -30,8 +30,12 @@
   color: #fff;
 }
 
-.footer__container h3,
 a {
+  text-decoration: none;
+}
+
+.footer__container h3,
+.footer__container a {
   color: #fff;
   text-decoration: none;
 }
@@ -108,6 +112,15 @@ a {
   position: absolute;
   right: -3%;
   top: -8%;
+}
+
+.newsletter__form .btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+.newsletter__form .btn svg path {
+  fill: var(--primary-clr) !important;
 }
 
 .newsletter__form .emailIcon {

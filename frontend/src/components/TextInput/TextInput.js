@@ -1,7 +1,7 @@
 import React from "react";
 import "./TextInput.css";
 
-const TextInput = ({ inputFor, placeholder, inputType, value, onChange }) => {
+const TextInput = ({ name, placeholder, inputType, value, onChange }) => {
   return (
     <div className="text__input__container">
       <input
@@ -9,13 +9,13 @@ const TextInput = ({ inputFor, placeholder, inputType, value, onChange }) => {
         type={inputType}
         placeholder=" "
         value={value}
-        name={inputFor}
+        name={name}
         onChange={onChange}
         autoComplete="off"
         required
       />
 
-      <label className="form__label" htmlFor={inputFor}>
+      <label className="form__label" htmlFor={name}>
         {placeholder}
       </label>
     </div>

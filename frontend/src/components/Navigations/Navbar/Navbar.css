@@ -23,7 +23,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 1rem 0;
+  margin: 0.5rem 0;
   gap: 0.5rem;
 }
 
@@ -60,6 +60,10 @@
 
   .header__navbar .logo__container {
     display: none !important;
+  }
+
+  .header__navbar .logo__container.active {
+    display: flex !important;
   }
 
   .header .header__children {
