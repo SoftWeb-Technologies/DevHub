@@ -1,11 +1,5 @@
 import { motion } from "framer-motion";
 
-export const AccordionButton = ({ children, ...rest }) => (
-  <div sx={styles.buttonToggle} {...rest}>
-    {children}
-  </div>
-);
-
 const styles = {
   buttonToggle: {
     display: "flex",
@@ -54,6 +48,12 @@ const styles = {
   },
 };
 
+export const AccordionButton = ({ children, ...rest }) => (
+  <div style={styles.buttonToggle} {...rest}>
+    {children}
+  </div>
+);
+
 const variants = {
   open: {
     height: "auto",
@@ -67,7 +67,7 @@ export function AccordionContents({ isOpen, ...props }) {
       initial="closed"
       animate={isOpen ? "open" : "closed"}
       variants={variants}
-      sx={{
+      style={{
         overflowY: "hidden",
         fontSize: [1, null, 2],
         lineHeight: [1.85, null, null, 1.9, 2],
@@ -83,7 +83,7 @@ export function AccordionContents({ isOpen, ...props }) {
 }
 export const AccordionItem = ({ isOpen, children, ...rest }) => (
   <div
-    css={{
+    style={{
       overflow: "hidden",
       padding: "17px 0",
       borderBottom: "1px solid #E5ECF4",

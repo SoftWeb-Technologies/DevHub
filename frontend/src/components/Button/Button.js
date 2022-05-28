@@ -1,5 +1,4 @@
 import React from "react";
-import { GoogleIcon } from "../../DevHubIcons";
 import "./Button.css";
 
 const Button = ({

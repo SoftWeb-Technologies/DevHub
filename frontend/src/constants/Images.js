@@ -8,6 +8,9 @@ import AuthBackgroundImg from "../assets/images/authImgs/background.png";
 import SignUpImg from "../assets/images/authImgs/signUpImg.svg";
 import LoginImg from "../assets/images/authImgs/loginImg.svg";
 
+// faq images
+import FaqImg from "../assets/images/faqImgs/faqImg.svg";
+
 export {
   AboutImg,
   DevHubLogoLight,
@@ -16,4 +19,5 @@ export {
   AuthBackgroundImg,
   SignUpImg,
   LoginImg,
+  FaqImg,
 };

@@ -24,9 +24,15 @@ export default function Accordion({ items, ...props }) {
             >
               <AccordionButton onClick={() => handleItemClick(index)}>
                 <span
+                  style={{
+                    fontSize: "1rem",
+                    color: "#0099FF",
+                    cursor: "pointer",
+                  }}
                   className={openIndexes.includes(index) ? "open" : "closed"}
-                ></span>
-                {item.title}
+                >
+                  {item.title}
+                </span>
               </AccordionButton>
               <AccordionContents isOpen={openIndexes.includes(index)}>
                 {item.contents}
