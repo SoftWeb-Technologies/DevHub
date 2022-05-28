@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-import { Accordion, Button, Navbar } from "../../components";
+import { Accordion, Button, Navbar, Title } from "../../components";
 import { FaqImg } from "../../constants/Images";
 import "./Faq.css";
 
@@ -42,6 +42,7 @@ const Faq = () => {
   const navigate = useNavigate();
   return (
     <div className="faq__main__container">
+      <Title title={"Faq"} />
       <div className="faq__header">
         <Navbar show={"active"} theme="dark">
           <Button
