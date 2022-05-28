@@ -1,5 +1,12 @@
 import "./App.css";
-import { About, Contact, Home, Pricing, SignInAndSignUp, Faq } from "./Containers";
+import {
+  About,
+  Contact,
+  Home,
+  Pricing,
+  SignInAndSignUp,
+  Faq,
+} from "./Containers";
 import { Routes, Route } from "react-router-dom";
 
 function App() {
@@ -12,7 +19,7 @@ function App() {
         <Route path="/pricing" element={<Pricing />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/auth" element={<SignInAndSignUp />} />
-        <Route path="/faq" element={<faq />} />
+        <Route path="/faq" element={<Faq />} />
 
         <Route
           path="/*"
