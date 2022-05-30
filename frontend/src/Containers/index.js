@@ -5,5 +5,6 @@ import Contact from "./Contact/Contact";
 
 import SignInAndSignUp from "./Auth/SignInAndSignUp";
 import Faq from "./Faq/Faq";
+import Services from "./Services/Services";
 
-export { About, Pricing, Home, Contact, SignInAndSignUp, Faq };
+export { About, Pricing, Home, Contact, SignInAndSignUp, Faq, Services };

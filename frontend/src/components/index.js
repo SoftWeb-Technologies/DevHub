@@ -9,7 +9,7 @@ import SideNavigation from "./Navigations/SideNavigation/SideNavigation";
 import Navbar from "./Navigations/Navbar/Navbar";
 import TextInputField from "./TextInputField/TextInputField";
 import SizeBox from "./SizeBox/SizeBox";
-import Accordion from "./Accordion/Accordion";
+import Accordion from "./Accordion/accordion";
 
 export {
   Button,
