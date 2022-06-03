@@ -8,6 +8,7 @@ import {
   Faq,
   Services,
   Support,
+  Licenses,
 } from "./Containers";
 import { Routes, Route } from "react-router-dom";
 
@@ -24,6 +25,7 @@ function App() {
         <Route path="/faq" element={<Faq />} />
         <Route path="/services" element={<Services />} />
         <Route path="/support" element={<Support />} />
+        <Route path="/licenses" element={<Licenses />} />
 
         <Route
           path="/*"

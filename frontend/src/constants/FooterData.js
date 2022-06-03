@@ -25,8 +25,8 @@ export const supports = [
     link: "/pricing",
   },
   {
-    name: "License",
-    link: "/license",
+    name: "Licenses",
+    link: "/licenses",
   },
 ];
 

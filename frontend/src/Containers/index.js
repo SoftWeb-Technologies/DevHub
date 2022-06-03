@@ -7,6 +7,7 @@ import SignInAndSignUp from "./Auth/SignInAndSignUp";
 import Faq from "./Faq/Faq";
 import Services from "./Services/Services";
 import Support from "./Support/Support";
+import Licenses from "./Licenses/Licenses";
 
 export {
   About,
@@ -17,4 +18,5 @@ export {
   Faq,
   Services,
   Support,
+  Licenses,
 };
