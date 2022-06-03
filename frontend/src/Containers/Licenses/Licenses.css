@@ -1,0 +1,57 @@
+.licenses__main__container {
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  position: relative;
+}
+
+.licenses__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 95%;
+  margin: auto;
+}
+
+.licenses__content__container {
+  width: 90%;
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+.licenses__btn__container {
+  display: flex;
+
+  gap: 20px;
+  padding: 2rem 0;
+}
+
+@media screen and (min-width: 650px) {
+  .licenses__main__container {
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .licenses__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 95%;
+    margin: auto;
+  }
+
+  .licenses__content__container {
+    width: 70%;
+    margin: 0 auto;
+    padding: 3rem 0;
+  }
+
+  .licenses__btn__container {
+    display: flex;
+
+    gap: 20px;
+    padding: 2rem 0;
+  }
+}
