@@ -7,6 +7,7 @@ import {
   SignInAndSignUp,
   Faq,
   Services,
+  Support,
 } from "./Containers";
 import { Routes, Route } from "react-router-dom";
 
@@ -22,6 +23,7 @@ function App() {
         <Route path="/auth" element={<SignInAndSignUp />} />
         <Route path="/faq" element={<Faq />} />
         <Route path="/services" element={<Services />} />
+        <Route path="/support" element={<Support />} />
 
         <Route
           path="/*"

@@ -13,6 +13,7 @@ import TwitterIcon from "./TwitterIcon";
 import PersonIcon from "./PersonIcon";
 import HideEyeIcon from "./HideEyeIcon";
 import GoogleIcon from "./GoogleIcon";
+import PatreonLogo from "./PatreonLogo";
 
 export {
   HomeIcon,
@@ -29,4 +30,5 @@ export {
   PersonIcon,
   HideEyeIcon,
   GoogleIcon,
+  PatreonLogo,
 };
