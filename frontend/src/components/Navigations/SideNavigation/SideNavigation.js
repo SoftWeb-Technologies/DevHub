@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { NavLink, useLocation } from "react-router-dom";
 
 import {
   HomeIcon,
@@ -13,8 +13,16 @@ import {
 import "./SideNavigation.css";
 
 const SideNavigation = ({ customStyle, ...props }) => {
+  const location = useLocation();
+
   const [toggle, setToggle] = useState(false);
   const [hoverActive, setHoverActive] = useState(false);
+
+  const [activeLocation, setActiveLocation] = useState("/");
+
+  useEffect(() => {
+    setActiveLocation(location.pathname);
+  }, [location]);
 
   return (
     <>
@@ -68,24 +76,37 @@ const SideNavigation = ({ customStyle, ...props }) => {
           </div>
         </div>
         <div className="menu__container">
-          <NavMenu toggle={toggle} path={"/"} menuName="Home" Icon={HomeIcon} />
+          <NavMenu
+            toggle={toggle}
+            path={"/"}
+            menuName="Home"
+            Icon={HomeIcon}
+            location={activeLocation}
+            setLocation={setActiveLocation}
+          />
           <NavMenu
             toggle={toggle}
             path={"/about"}
             menuName="About"
             Icon={AboutIcon}
+            location={activeLocation}
+            setLocation={setActiveLocation}
           />
           <NavMenu
             toggle={toggle}
             path={"/pricing"}
             menuName="Pricing"
             Icon={PricingIcon}
+            location={activeLocation}
+            setLocation={setActiveLocation}
           />
           <NavMenu
             toggle={toggle}
             path={"/contact"}
             menuName="Contact"
             Icon={ContactIcon}
+            location={activeLocation}
+            setLocation={setActiveLocation}
           />
         </div>
       </div>
@@ -93,12 +114,16 @@ const SideNavigation = ({ customStyle, ...props }) => {
   );
 };
 
-const NavMenu = ({ path, Icon, menuName, toggle }) => {
+const NavMenu = ({ path, Icon, menuName, toggle, location, setLocation }) => {
   return (
     <NavLink
-      activeClassName="navbar__link active"
-      className="navbar__link"
+      className={
+        location.pathname === path ? "navbar__link active" : "navbar__link"
+      }
       to={path}
+      onClick={() => {
+        setLocation(path);
+      }}
     >
       <Icon />
       {toggle && menuName}
