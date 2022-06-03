@@ -10,7 +10,7 @@ const CloseNavIcon = () => {
         height="218"
         rx="25"
         stroke="black"
-        stroke-width="10"
+        strokeWidth="10"
       />
       <line
         x1="87"
@@ -18,16 +18,16 @@ const CloseNavIcon = () => {
         x2="87"
         y2="225"
         stroke="black"
-        stroke-width="10"
+        strokeWidth="10"
       />
-      <path d="M125 116L170.581 70.4645" stroke="black" stroke-width="10" />
+      <path d="M125 116L170.581 70.4645" stroke="black" strokeWidth="10" />
       <line
         y1="-5"
         x2="59.5616"
         y2="-5"
         transform="matrix(0.707107 0.707107 0.707107 -0.707107 134 111)"
         stroke="black"
-        stroke-width="10"
+        strokeWidth="10"
       />
     </svg>
   );

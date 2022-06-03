@@ -15,7 +15,7 @@ const OpenNavIcon = ({ onClick }) => {
         height="218"
         rx="25"
         stroke="black"
-        stroke-width="10"
+        strokeWidth="10"
       />
       <line
         x1="87"
@@ -23,16 +23,16 @@ const OpenNavIcon = ({ onClick }) => {
         x2="87"
         y2="225"
         stroke="black"
-        stroke-width="10"
+        strokeWidth="10"
       />
-      <path d="M183 116.083L140.884 73.9668" stroke="black" stroke-width="10" />
+      <path d="M183 116.083L140.884 73.9668" stroke="black" strokeWidth="10" />
       <line
         x1="177.652"
         y1="114.536"
         x2="135.536"
         y2="156.652"
         stroke="black"
-        stroke-width="10"
+        strokeWidth="10"
       />
     </svg>
   );
