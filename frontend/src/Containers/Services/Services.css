@@ -1,21 +1,5 @@
-.p {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: #fff;
-    text-transform: uppercase;
-    margin-bottom: 1rem;
-}
-
-.h1 {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: #fff;
-    text-transform: uppercase;
-    margin-bottom: 1rem;
-}
-
 .services__main__container {
-    width: 100%;
+  width: 100%;
   height: auto;
   overflow: hidden;
   position: relative;
@@ -30,21 +14,44 @@
 }
 
 .services__content__container {
+  width: 90%;
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+.services__btn__container {
+  display: flex;
+
+  gap: 20px;
+  padding: 2rem 0;
+}
+
+@media screen and (min-width: 650px) {
+  .services__main__container {
     width: 100%;
+    height: auto;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .services__header {
     display: flex;
-    flex-direction: column;
-    width: 90%;
+    justify-content: space-between;
+    align-items: center;
+    width: 95%;
     margin: auto;
-}
+  }
 
-.services__left__container {
-  width: 100%;
-  position: relative;
-  z-index: 5;
-}
+  .services__content__container {
+    width: 70%;
+    margin: 0 auto;
+    padding: 4rem 0;
+  }
 
-.services__Right__container {
-  width: 100%;
-  height: 80vh;
-  margin-top: 2rem;
+  .services__btn__container {
+    display: flex;
+
+    gap: 20px;
+    padding: 2rem 0;
+  }
 }

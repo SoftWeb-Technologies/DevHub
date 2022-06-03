@@ -6,6 +6,7 @@ import {
   Pricing,
   SignInAndSignUp,
   Faq,
+  Services,
 } from "./Containers";
 import { Routes, Route } from "react-router-dom";
 
@@ -20,6 +21,7 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/auth" element={<SignInAndSignUp />} />
         <Route path="/faq" element={<Faq />} />
+        <Route path="/services" element={<Services />} />
 
         <Route
           path="/*"
