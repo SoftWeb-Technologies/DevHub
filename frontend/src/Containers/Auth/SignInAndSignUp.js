@@ -7,6 +7,7 @@ import {
   Navbar,
 } from "../../components";
 import "./SignInAndSignUp.css";
+import { signInWithGoogle } from "../../firebase";
 
 import {
   GoogleIcon,
@@ -23,9 +24,6 @@ const SignInAndSignUp = () => {
 
   const [toggleFormInMobileView, setToggleFormInMobileView] = useState(false);
 
-  // const handleGoogleLogin = () => {};
-  // const handleTwitterLogin = () => {};
-
   return (
     <div className="auth" id="auth__container">
       <Title title={"Login and Sign Up"} />
@@ -37,6 +35,7 @@ const SignInAndSignUp = () => {
       >
         {/* Sign Up */}
         <SignUpForm
+          handleGoogleLogin={signInWithGoogle}
           showPassword={showPassword}
           setShowPassword={setShowPassword}
           toggleFormInMobileView={toggleFormInMobileView}
@@ -45,6 +44,7 @@ const SignInAndSignUp = () => {
 
         {/* sign In  */}
         <SignInForm
+          handleGoogleLogin={signInWithGoogle}
           showPassword={showPassword}
           setShowPassword={setShowPassword}
           toggleFormInMobileView={toggleFormInMobileView}
