@@ -48,7 +48,7 @@ const Contact = () => {
       <main
         className={`contact__main__container ${isNavActive ? "active" : ""}`}
       >
-        <Navbar>
+        <Navbar theme={"light"}>
           <Button label={"Sign Up"} onClick={() => navigate("/auth")} />
         </Navbar>
         <div className="contact__header">
