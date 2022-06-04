@@ -7,7 +7,7 @@ import {
   Navbar,
 } from "../../components";
 import "./SignInAndSignUp.css";
-import { signInWithGoogle } from "../../firebase";
+import { signInWithGoogle, signInWithTwitter } from "../../firebase";
 
 import {
   GoogleIcon,
@@ -45,6 +45,7 @@ const SignInAndSignUp = () => {
         {/* sign In  */}
         <SignInForm
           handleGoogleLogin={signInWithGoogle}
+          handleTwitterLogin={signInWithTwitter}
           showPassword={showPassword}
           setShowPassword={setShowPassword}
           toggleFormInMobileView={toggleFormInMobileView}

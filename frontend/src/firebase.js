@@ -1,6 +1,11 @@
 import { initializeApp } from "firebase/app";
 
-import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
+import {
+  GoogleAuthProvider,
+  getAuth,
+  signInWithPopup,
+  TwitterAuthProvider,
+} from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCfjR4L_uDLTJJD3gumeQICZtUrsn2l7Cc",
@@ -16,7 +21,7 @@ const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 
 const provider = new GoogleAuthProvider();
-// const twitterProvider = new TwitterAuthProvider();
+const twitterProvider = new TwitterAuthProvider();
 
 export const signInWithGoogle = (e) => {
   e.preventDefault();
@@ -30,14 +35,14 @@ export const signInWithGoogle = (e) => {
     });
 };
 
-// export const signInWithTwitter = (e) => {
-//   e.preventDefault();
+export const signInWithTwitter = (e) => {
+  e.preventDefault();
 
-//   signInWithPopup(auth, twitterProvider)
-//     .then((result) => {
-//       console.log(result);
-//     })
-//     .catch((err) => {
-//       console.log(err);
-//     });
-// };
+  signInWithPopup(auth, twitterProvider)
+    .then((result) => {
+      console.log(result);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
