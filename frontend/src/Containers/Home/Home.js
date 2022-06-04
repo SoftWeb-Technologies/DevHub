@@ -35,10 +35,11 @@ const Home = () => {
             </div>
           </div>
         </div>
+
+        <div className="down__arrow__container">
+          <DownArrowIcon />
+        </div>
       </main>
-      <div className="down__arrow__container">
-        <DownArrowIcon />
-      </div>
     </div>
   );
 };
