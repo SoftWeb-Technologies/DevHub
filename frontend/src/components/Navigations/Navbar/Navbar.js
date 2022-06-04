@@ -20,14 +20,14 @@ const Navbar = ({ theme, children, show }) => {
           </div>
         </Link>
 
-        <NavbarSlider />
+        <NavbarSlider theme={theme} />
         <div className="header__children">{children}</div>
       </div>
     </div>
   );
 };
 
-const NavbarSlider = () => {
+const NavbarSlider = ({ theme }) => {
   const [open, setOpen] = useState(false);
   return (
     <div className="slider__main__container">
@@ -36,13 +36,13 @@ const NavbarSlider = () => {
           style={{
             transform: open ? "translateY(7px) rotate(45deg) " : "rotate(0deg)",
           }}
-          className="line"
+          className={theme === "light" ? "line light" : "line"}
         />
         <div
           style={{
             opacity: open ? "0" : "1",
           }}
-          className="line"
+          className={theme === "light" ? "line light" : "line"}
         />
         <div
           style={{
@@ -50,7 +50,7 @@ const NavbarSlider = () => {
               ? " translateY(-7px) rotate(-45deg)"
               : "rotate(0deg)",
           }}
-          className="line"
+          className={theme === "light" ? "line light" : "line"}
         />
       </div>
 

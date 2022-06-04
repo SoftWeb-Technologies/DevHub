@@ -21,12 +21,6 @@ const Home = () => {
       <main className="home__main__container">
         <Navbar theme={"light"}>
           <Button label="Sign Up" onClick={() => navigate("/auth")} />
-
-          <Button
-            customClassName={"hideInMobileView"}
-            label="Sign In"
-            onClick={() => navigate("/auth")}
-          />
         </Navbar>
         <div className={`home__main ${isNavActive ? "active" : ""}`}>
           <div className="home__header">
