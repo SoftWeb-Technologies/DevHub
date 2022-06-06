@@ -1,10 +1,17 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Button, Navbar, Title } from "../../components";
+import toast, { Toaster } from "react-hot-toast";
 import "./Licenses.css";
 
 const Licenses = () => {
   const navigate = useNavigate();
+  const notify = () => {
+    toast.success("Thanks for accepting our EULA!")
+  }
+  const disagree = () => {
+    toast.error("You have to agree our EULA!")
+  }
 
   return (
     <div className="licenses__main__container">
@@ -95,8 +102,10 @@ const Licenses = () => {
           }}
         >
           <div className="licenses__btn__container">
-            <Button label={"Not right now"} />
-            <Button label={"I agree"} primary={true} />
+            <Button onClick={disagree}>Not right now</Button>
+            <Button onClick={notify}>I agree
+            </Button>
+            <Toaster />
           </div>
         </div>
       </div>

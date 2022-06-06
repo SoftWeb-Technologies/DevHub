@@ -50,7 +50,6 @@
 
   .services__btn__container {
     display: flex;
-
     gap: 20px;
     padding: 2rem 0;
   }
