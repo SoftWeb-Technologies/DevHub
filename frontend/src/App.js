@@ -11,6 +11,7 @@ import {
   Licenses,
 } from "./Containers";
 import { Routes, Route } from "react-router-dom";
+import { Dashboard } from "./MainContainers";
 
 function App() {
   return (
@@ -26,6 +27,9 @@ function App() {
         <Route path="/services" element={<Services />} />
         <Route path="/support" element={<Support />} />
         <Route path="/licenses" element={<Licenses />} />
+
+        {/* protected routes */}
+        <Route path="/dashboard" element={<Dashboard />} />
 
         <Route
           path="/*"

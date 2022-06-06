@@ -1,0 +1,13 @@
+.feature__card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+
+  min-width: 300px;
+  width: 100%;
+  padding: 1rem;
+  background-color: #f6f6f6;
+
+  margin: 1rem 0;
+}

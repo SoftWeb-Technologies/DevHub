@@ -1,0 +1,20 @@
+.dashboard__header__container__search {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 50px;
+  padding: 0.5rem 1rem;
+  margin-right: 1rem;
+
+  max-width: 250px;
+  width: 100%;
+}
+
+.dashboard__header__container__search input {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  width: 100%;
+  padding-right: 0.8rem;
+  font-family: inherit;
+}
