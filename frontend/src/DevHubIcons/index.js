@@ -15,6 +15,16 @@ import HideEyeIcon from "./HideEyeIcon";
 import GoogleIcon from "./GoogleIcon";
 import PatreonLogo from "./PatreonLogo";
 
+import MenuIcon from "./MenuIcon";
+import SearchIcon from "./SearchIcon";
+import TaskIcon from "./TaskIcon";
+import RightArrowIcon from "./RightArrowIcon";
+import CarbonBlogIcon from "./CarbonBlogIcon";
+import TrophyIcon from "./TrophyIcon";
+import NewsIcon from "./NewsIcon";
+import TaskListIcon from "./TaskListIcon";
+import TechHuntIcon from "./TechHuntIcon";
+
 export {
   HomeIcon,
   AboutIcon,
@@ -31,4 +41,13 @@ export {
   HideEyeIcon,
   GoogleIcon,
   PatreonLogo,
+  MenuIcon,
+  SearchIcon,
+  TaskIcon,
+  RightArrowIcon,
+  CarbonBlogIcon,
+  TrophyIcon,
+  NewsIcon,
+  TaskListIcon,
+  TechHuntIcon,
 };
