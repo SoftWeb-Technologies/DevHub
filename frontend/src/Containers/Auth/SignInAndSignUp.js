@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   TextInputField,
   SizeBox,
@@ -7,7 +7,12 @@ import {
   Navbar,
 } from "../../components";
 import "./SignInAndSignUp.css";
-import { signInWithGoogle, signInWithTwitter } from "../../firebase";
+import {
+  googleSignInInitiate,
+  loginInitiate,
+  registerInitiate,
+  twitterSignInInitiate,
+} from "../../redux/actions/actions";
 
 import {
   GoogleIcon,
@@ -17,12 +22,39 @@ import {
   TwitterIcon,
 } from "../../DevHubIcons";
 import { LoginImg, SignUpImg } from "../../constants/Images";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const SignInAndSignUp = () => {
+  const navigate = useNavigate();
+
   const [toggle, setToggle] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
   const [toggleFormInMobileView, setToggleFormInMobileView] = useState(false);
+
+  const { currentUser } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (currentUser) {
+      navigate("/dashboard", { replace: true });
+    }
+  }, [currentUser, navigate]);
+
+  // Google Login
+  const signInWithGoogle = (e) => {
+    e.preventDefault();
+
+    dispatch(googleSignInInitiate());
+  };
+
+  // Twitter Login
+  const signInWithTwitter = (e) => {
+    e.preventDefault();
+
+    dispatch(twitterSignInInitiate());
+  };
 
   return (
     <div className="auth" id="auth__container">
@@ -35,7 +67,9 @@ const SignInAndSignUp = () => {
       >
         {/* Sign Up */}
         <SignUpForm
+          dispatch={dispatch}
           handleGoogleLogin={signInWithGoogle}
+          handleTwitterLogin={signInWithTwitter}
           showPassword={showPassword}
           setShowPassword={setShowPassword}
           toggleFormInMobileView={toggleFormInMobileView}
@@ -44,6 +78,7 @@ const SignInAndSignUp = () => {
 
         {/* sign In  */}
         <SignInForm
+          dispatch={dispatch}
           handleGoogleLogin={signInWithGoogle}
           handleTwitterLogin={signInWithTwitter}
           showPassword={showPassword}
@@ -108,13 +143,19 @@ const SignInForm = ({
   setShowPassword,
   setToggleFormInMobileView,
   toggleFormInMobileView,
+  dispatch,
 }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   const handleLogin = (e) => {
     e.preventDefault();
-    console.log(username + " " + password);
+
+    if (!username || !password) {
+      return;
+    }
+
+    dispatch(loginInitiate(username, password));
   };
 
   return (
@@ -219,12 +260,24 @@ const SignUpForm = ({
   handleTwitterLogin,
   toggleFormInMobileView,
   setToggleFormInMobileView,
+  dispatch,
 }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
 
-  const handleCreateAccount = () => {};
+  const handleCreateAccount = (e) => {
+    e.preventDefault();
+
+    if (!username || !password || !email) {
+      return;
+    }
+
+    dispatch(registerInitiate(email, password, username));
+    setUsername("");
+    setEmail("");
+    setPassword("");
+  };
 
   return (
     <div
@@ -240,6 +293,7 @@ const SignUpForm = ({
           type="text"
           placeholder="Username"
           Icon={PersonIcon}
+          name="username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
@@ -250,6 +304,7 @@ const SignUpForm = ({
           type="email"
           placeholder="Email"
           Icon={PersonIcon}
+          name="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
@@ -260,6 +315,7 @@ const SignUpForm = ({
           type={showPassword ? "text" : "password"}
           placeholder="Password"
           value={password}
+          name="password"
           onChange={(e) => setPassword(e.target.value)}
           Icon={LockIcon}
           RightIcon={HideEyeIcon}

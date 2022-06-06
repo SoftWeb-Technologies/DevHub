@@ -6,9 +6,9 @@
 .dashboard__header {
   background-color: #f2f2f2;
   width: 100%;
-  height: 25vh;
+  height: auto;
 
-  padding: 2.5rem 5rem;
+  padding: 2.5rem 1rem;
 }
 
 .dashboard__header.active {
@@ -45,6 +45,7 @@
 .dashboard__main__container {
   display: flex;
   justify-content: space-between;
+  flex-direction: column;
 
   width: 87%;
   margin: 2rem auto;
@@ -55,8 +56,8 @@
 }
 
 .latestNewsAndBlogs__container {
-  max-width: 350px;
-  width: 350px;
+  max-width: 100%;
+  width: 100%;
   padding: 1rem;
   background-color: #f2fcff;
   box-shadow: 0px 4px 5px rgba(23, 179, 169, 0.5);
@@ -68,4 +69,97 @@
   color: var(--primary-clr);
   text-decoration: underline;
   margin-bottom: 0.5rem;
+}
+
+.dashboard__right__container {
+  margin-top: 1.5rem;
+}
+
+@media screen and (min-width: 640px) {
+  .dashboard__header {
+    background-color: #f2f2f2;
+    width: 100%;
+    height: 25vh;
+
+    padding: 2.5rem 1rem;
+  }
+}
+
+@media screen and (min-width: 850px) {
+  .dashboard {
+    width: 100%;
+    height: auto;
+  }
+
+  .dashboard__header {
+    background-color: #f2f2f2;
+    width: 100%;
+    height: 25vh;
+
+    padding: 2.5rem 5rem;
+  }
+
+  .dashboard__header.active {
+    animation: slide-effect 0.5s 1 ease forwards;
+  }
+
+  .dashboard__header__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .dashboard__header__container__search {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 50px;
+    padding: 0.5rem 1rem;
+    margin-right: 1rem;
+
+    max-width: 300px;
+    width: 100%;
+  }
+
+  .dashboard__header__container__search input {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    width: 100%;
+    padding-right: 0.8rem;
+    font-family: inherit;
+  }
+
+  .dashboard__main__container {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+
+    width: 87%;
+    margin: 2rem auto;
+  }
+
+  .dashboard__main__container.active {
+    animation: slide-effect 0.5s 1 ease forwards;
+  }
+
+  .latestNewsAndBlogs__container {
+    max-width: 350px;
+    width: 350px;
+    padding: 1rem;
+    background-color: #f2fcff;
+    box-shadow: 0px 4px 5px rgba(23, 179, 169, 0.5);
+
+    margin: 1rem 0;
+  }
+
+  .latestNewsAndBlogs__container p {
+    color: var(--primary-clr);
+    text-decoration: underline;
+    margin-bottom: 0.5rem;
+  }
+
+  .dashboard__right__container {
+    margin-top: 0rem;
+  }
 }

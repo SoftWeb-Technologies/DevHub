@@ -13,11 +13,13 @@ import "./Contact.css";
 import { email } from "../../constants/Icons";
 import { PaperAirPlane } from "../../DevHubIcons";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const companyEmailAddress = ["contact@softweb.com", "contact@softweb.com"];
 
 const Contact = () => {
   const [isNavActive, setIsNavActive] = useState(false);
+  const { currentUser } = useSelector((state) => state.user);
   const [contactFormData, setContactFormData] = useState({
     username: "",
     email: "",
@@ -49,7 +51,11 @@ const Contact = () => {
         className={`contact__main__container ${isNavActive ? "active" : ""}`}
       >
         <Navbar theme={"light"}>
-          <Button label={"Sign Up"} onClick={() => navigate("/auth")} />
+          {currentUser ? (
+            <Button label="Dashboard" onClick={() => navigate("/dashboard")} />
+          ) : (
+            <Button label="Sign Up" onClick={() => navigate("/auth")} />
+          )}
         </Navbar>
         <div className="contact__header">
           <h1>Get in touch</h1>

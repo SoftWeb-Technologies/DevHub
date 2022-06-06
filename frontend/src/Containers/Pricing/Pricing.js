@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import {
   Button,
@@ -46,6 +47,7 @@ const premiumPlans = {
 const Pricing = () => {
   const [isNavActive, setIsNavActive] = useState(false);
   const navigate = useNavigate();
+  const { currentUser } = useSelector((state) => state.user);
 
   return (
     <div id="pricing">
@@ -57,11 +59,19 @@ const Pricing = () => {
         className={`pricing__main__container  ${isNavActive ? "active" : ""}`}
       >
         <Navbar theme={"dark"}>
-          <Button
-            label={"Sign Up"}
-            primary={true}
-            onClick={() => navigate("/auth")}
-          />
+          {currentUser ? (
+            <Button
+              label="Dashboard"
+              primary={true}
+              onClick={() => navigate("/dashboard")}
+            />
+          ) : (
+            <Button
+              label="Sign Up"
+              primary={true}
+              onClick={() => navigate("/auth")}
+            />
+          )}
         </Navbar>
 
         <div className="pricing__content">

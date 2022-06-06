@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Title } from "../../components";
 import {
@@ -14,15 +15,25 @@ import "./Dashboard.css";
 
 const Dashboard = () => {
   const navigate = useNavigate();
+  const { isAuthenticated, currentUser } = useSelector((state) => state.user);
 
   const [isNavActive, setIsNavActive] = useState(false);
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      navigate("/auth", { replace: true });
+    }
+  });
 
   return (
     <div className={`dashboard ${isNavActive ? "active" : ""}`}>
       <Title title="Dashboard" />
 
       <DashboardSideNavigation setIsNavActive={setIsNavActive} />
-      <DashboardHeader isNavActive={isNavActive} />
+      <DashboardHeader
+        isNavActive={isNavActive}
+        displayName={currentUser?.displayName || "User"}
+      />
 
       <div
         className={`dashboard__main__container  ${isNavActive ? "active" : ""}`}
@@ -80,11 +91,11 @@ const Dashboard = () => {
   );
 };
 
-export const DashboardHeader = ({ isNavActive }) => {
+export const DashboardHeader = ({ isNavActive, displayName }) => {
   return (
     <div className={`dashboard__header ${isNavActive}  ? "active" : ""`}>
       <div className="dashboard__header__container">
-        <Header />
+        <Header displayName={displayName} />
       </div>
       <div
         style={{
@@ -112,7 +123,7 @@ export const DashboardHeader = ({ isNavActive }) => {
               color: "#008bb7",
             }}
           >
-            User
+            {displayName}
           </span>
         </h2>
       </div>
