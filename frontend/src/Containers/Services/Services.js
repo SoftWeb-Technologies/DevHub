@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Button, Navbar, Title } from "../../components";
+import toast, { Toaster } from 'react-hot-toast';
 import "./Services.css";
 
 const Topics = () => [
@@ -15,6 +16,22 @@ const Topics = () => [
 
 const Services = () => {
   const navigate = useNavigate();
+  const notify = () => {
+    toast.success("Thanks for accepting our Terms!", {
+      style: {
+        background: '#333',
+        color: '#fff',
+      }
+    });
+  }
+  const disagree = () => {
+    toast.error("You have to agree our Terms!", {
+      style: {
+        background: '#333',
+        color: '#fff',
+      }
+    });
+  }
   return (
     <div className="services__main__container">
       <Title title={"Services"} />
@@ -114,8 +131,12 @@ const Services = () => {
           </p>
 
           <div className="services__btn__container">
-            <Button label={"Not right now"} />
-            <Button label={"I agree"} primary={true} />
+            <Button onClick={disagree}label="Not right now"></Button>
+            <Button onClick={notify}label="I agree" primary="true"> </Button>
+            <Toaster
+            position="top-center"
+            reverseOrder={false}
+            />
           </div>
         </div>
       </div>

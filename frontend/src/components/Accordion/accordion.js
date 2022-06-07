@@ -7,7 +7,7 @@ import {
   single,
   preventClose,
   combineReducers,
-} from "./Shared";
+} from "./shared";
 
 export default function Accordion({ items, ...props }) {
   return (
