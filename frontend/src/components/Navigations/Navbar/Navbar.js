@@ -58,14 +58,13 @@ const NavbarSlider = ({ theme }) => {
         <ul onClick={() => setOpen(false)} className="slider__list">
           <li className="nav__logo__container">
             <Link to="/">
-              <a
+              <div
                 className="logo"
                 style={{
                   display: "flex",
                   alignItems: "center",
                   gap: "10px",
                 }}
-                href="/"
               >
                 <div>
                   <img
@@ -84,7 +83,7 @@ const NavbarSlider = ({ theme }) => {
                 >
                   DevHub
                 </h3>
-              </a>
+              </div>
             </Link>
           </li>
           <div

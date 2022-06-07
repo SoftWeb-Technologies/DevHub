@@ -4,15 +4,20 @@ import {
   CarbonBlogIcon,
   CloseNavIcon,
   DevHubLogo,
+  LogoutIcon,
   OpenNavIcon,
   TaskListIcon,
   TechHuntIcon,
 } from "../../../../DevHubIcons";
+import { useDispatch, useSelector } from "react-redux";
 
 import "./DashboardSideNavigation.css";
+import { logoutInitiate } from "../../../../redux/actions/actions";
 
 const DashboardSideNavigation = ({ customStyle, ...props }) => {
   const location = useLocation();
+  const dispatch = useDispatch();
+  const { currentUser } = useSelector((state) => state.user);
 
   const [toggle, setToggle] = useState(false);
   const [hoverActive, setHoverActive] = useState(false);
@@ -23,6 +28,11 @@ const DashboardSideNavigation = ({ customStyle, ...props }) => {
     setActiveLocation(location.pathname);
   }, [location]);
 
+  const handleLogout = () => {
+    if (currentUser) {
+      dispatch(logoutInitiate());
+    }
+  };
   return (
     <>
       <div
@@ -107,6 +117,32 @@ const DashboardSideNavigation = ({ customStyle, ...props }) => {
             location={activeLocation}
             setLocation={setActiveLocation}
           />
+
+          <div
+            style={{
+              width: "100%",
+              height: "100%",
+              display: "flex",
+              alignItems: "center",
+              visibility: toggle ? "visible" : "hidden",
+            }}
+          >
+            <div
+              onClick={handleLogout}
+              style={{
+                width: "100%",
+                backgroundColor: "#008bb7",
+                padding: "1.2rem 1rem",
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                cursor: "pointer",
+              }}
+            >
+              <p>Logout</p>
+              <LogoutIcon />
+            </div>
+          </div>
         </div>
       </div>
     </>

@@ -3,7 +3,6 @@ import { initializeApp } from "firebase/app";
 import {
   GoogleAuthProvider,
   getAuth,
-  signInWithPopup,
   TwitterAuthProvider,
 } from "firebase/auth";
 
@@ -20,29 +19,5 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 
-const provider = new GoogleAuthProvider();
-const twitterProvider = new TwitterAuthProvider();
-
-export const signInWithGoogle = (e) => {
-  e.preventDefault();
-
-  signInWithPopup(auth, provider)
-    .then((result) => {
-      console.log(result);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-};
-
-export const signInWithTwitter = (e) => {
-  e.preventDefault();
-
-  signInWithPopup(auth, twitterProvider)
-    .then((result) => {
-      console.log(result);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-};
+export const googleAuthProvider = new GoogleAuthProvider();
+export const twitterAuthProvider = new TwitterAuthProvider();

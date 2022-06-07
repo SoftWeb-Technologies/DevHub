@@ -4,11 +4,13 @@ import { Button, Navbar, SideNavigation, Title } from "../../components";
 
 import { HomeImg } from "../../constants/Images";
 import { DownArrowIcon } from "../../DevHubIcons";
+import { useSelector } from "react-redux";
 
 import "./Home.css";
 
 const Home = () => {
   const navigate = useNavigate();
+  const { currentUser } = useSelector((state) => state.user);
 
   const [isNavActive, setIsNavActive] = useState(false);
 
@@ -20,7 +22,11 @@ const Home = () => {
 
       <main className="home__main__container">
         <Navbar theme={"light"}>
-          <Button label="Sign Up" onClick={() => navigate("/auth")} />
+          {currentUser ? (
+            <Button label="Dashboard" onClick={() => navigate("/dashboard")} />
+          ) : (
+            <Button label="Sign Up" onClick={() => navigate("/auth")} />
+          )}
         </Navbar>
         <div className={`home__main ${isNavActive ? "active" : ""}`}>
           <div className="home__header">

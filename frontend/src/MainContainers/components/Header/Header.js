@@ -2,7 +2,8 @@ import React from "react";
 import { MenuIcon, SearchIcon } from "../../../DevHubIcons";
 import "./Header.css";
 
-const Header = () => {
+const Header = ({ displayName }) => {
+  const firstLetter = displayName.charAt(0);
   return (
     <>
       <div
@@ -60,7 +61,7 @@ const Header = () => {
             fontWeight: "bold",
           }}
         >
-          P
+          {firstLetter}
         </p>
       </div>
     </>

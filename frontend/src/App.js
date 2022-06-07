@@ -12,8 +12,25 @@ import {
 } from "./Containers";
 import { Routes, Route } from "react-router-dom";
 import { Dashboard } from "./MainContainers";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { auth } from "./firebase";
+import { setUser } from "./redux/actions/actions";
+import ProtectedRoute from "./routes/ProtectedRoute";
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    auth.onAuthStateChanged((authUser) => {
+      if (authUser) {
+        dispatch(setUser(authUser));
+      } else {
+        dispatch(setUser(null));
+      }
+    });
+  }, [dispatch]);
+
   return (
     <>
       {/* All Routes */}
@@ -29,7 +46,9 @@ function App() {
         <Route path="/licenses" element={<Licenses />} />
 
         {/* protected routes */}
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route exact path="/" element={<ProtectedRoute />}>
+          <Route exact path="/dashboard" element={<Dashboard />} />
+        </Route>
 
         <Route
           path="/*"
