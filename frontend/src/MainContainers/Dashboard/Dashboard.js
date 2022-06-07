@@ -54,9 +54,13 @@ const Dashboard = () => {
               Trending Blogs
             </h2>
             <div className="latestNewsAndBlogs__container">
-              <p>CSS tricks by John Doe</p>
-              <p>Design use cases by John Doe</p>
-              <p>Intro to JS by John Doe</p>
+              <p><b>CSS tricks by John Doe</b></p>
+              <span>lorem ipsum dolor sit amet is the dummy text</span>
+              <p>Continue Reading</p>
+              <hr></hr>
+              <p><b>Intro to JS by John Doe</b></p>
+              <span>lorem ipsum dolor sit amet is the dummy text</span>
+              <p>Continue Reading</p>
             </div>
           </div>
 
