@@ -23,7 +23,7 @@ const Dashboard = () => {
     if (!isAuthenticated) {
       navigate("/auth", { replace: true });
     }
-  });
+  }, [isAuthenticated, navigate]);
 
   return (
     <div className={`dashboard ${isNavActive ? "active" : ""}`}>
