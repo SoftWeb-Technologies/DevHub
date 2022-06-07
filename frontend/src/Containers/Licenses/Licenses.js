@@ -7,11 +7,11 @@ import "./Licenses.css";
 const Licenses = () => {
   const navigate = useNavigate();
   const notify = () => {
-    toast.success("Thanks for accepting our EULA!")
-  }
+    toast.success("Thanks for accepting our EULA!");
+  };
   const disagree = () => {
-    toast.error("You have to agree our EULA!")
-  }
+    toast.error("You have to agree our EULA!");
+  };
 
   return (
     <div className="licenses__main__container">
@@ -102,9 +102,8 @@ const Licenses = () => {
           }}
         >
           <div className="licenses__btn__container">
-            <Button onClick={disagree}>Not right now</Button>
-            <Button onClick={notify}>I agree
-            </Button>
+            <Button onClick={disagree} label="Not right now" />
+            <Button onClick={notify} label="I agree" primary={true} />
             <Toaster />
           </div>
         </div>
