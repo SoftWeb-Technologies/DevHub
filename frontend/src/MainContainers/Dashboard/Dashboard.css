@@ -71,6 +71,10 @@
   margin-bottom: 0.5rem;
 }
 
+.latestNewsAndBlogs__container p a {
+  color: var(--primary-clr);
+}
+
 .dashboard__right__container {
   margin-top: 1.5rem;
 }
