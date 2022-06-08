@@ -1,10 +1,16 @@
 import { combineReducers } from "redux";
-import { apiReducer } from "./apiReducer";
+import {
+  apiNewsAppleReducer,
+  apiNewsKeywordReducer,
+  apiNewsTeslaReducer,
+} from "./apiReducer";
 import { userReducer } from "./reducer";
 
 const rootReducer = combineReducers({
   user: userReducer,
-  apiData: apiReducer,
+  newsAppleApi: apiNewsAppleReducer,
+  newsTeslaApi: apiNewsTeslaReducer,
+  newsKeywordApi: apiNewsKeywordReducer,
 });
 
 export default rootReducer;

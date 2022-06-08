@@ -12,18 +12,28 @@ import { Header } from "../components";
 import FeatureCard from "../components/FeatureCard/FeatureCard";
 import DashboardSideNavigation from "../components/Navigation/DashboardSideNavigation/DashboardSideNavigation";
 import "./Dashboard.css";
+import { useDispatch } from "react-redux";
+import { fetchNewsAppleData } from "../../redux/actions/apiActions";
 
 const Dashboard = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { isAuthenticated, currentUser } = useSelector((state) => state.user);
-
   const [isNavActive, setIsNavActive] = useState(false);
+
+  const { newsAppleData } = useSelector((state) => state.newsAppleApi);
 
   useEffect(() => {
     if (!isAuthenticated) {
       navigate("/auth", { replace: true });
     }
   }, [isAuthenticated, navigate]);
+
+  useEffect(() => {
+    dispatch(fetchNewsAppleData());
+  }, [dispatch]);
+
+  const sliceData = newsAppleData.slice(0, 3);
 
   return (
     <div className={`dashboard ${isNavActive ? "active" : ""}`}>
@@ -65,11 +75,15 @@ const Dashboard = () => {
               Trending Blogs
             </h2>
             <div className="latestNewsAndBlogs__container">
-              <p><b>CSS tricks by John Doe</b></p>
+              <p>
+                <b>CSS tricks by John Doe</b>
+              </p>
               <span>lorem ipsum dolor sit amet is the dummy text</span>
               <p>Continue Reading</p>
               <hr></hr>
-              <p><b>Intro to JS by John Doe</b></p>
+              <p>
+                <b>Intro to JS by John Doe</b>
+              </p>
               <span>lorem ipsum dolor sit amet is the dummy text</span>
               <p>Continue Reading</p>
             </div>
@@ -84,9 +98,13 @@ const Dashboard = () => {
               Latest News
             </h2>
             <div className="latestNewsAndBlogs__container">
-              <p>CSS tricks by John Doe</p>
-              <p>Design use cases by John Doe</p>
-              <p>Intro to JS by John Doe</p>
+              {sliceData.map((item, index) => (
+                <p key={index}>
+                  <a href={item.url} target="_blank" rel="noreferrer">
+                    {item.title}
+                  </a>
+                </p>
+              ))}
             </div>
           </div>
         </div>

@@ -2,30 +2,105 @@ import {
   API_FETCH_NEWS_APPLE_FAIL,
   API_FETCH_NEWS_APPLE_START,
   API_FETCH_NEWS_APPLE_SUCCESS,
+  API_FETCH_NEWS_KEYWORD_FAIL,
+  API_FETCH_NEWS_KEYWORD_START,
+  API_FETCH_NEWS_KEYWORD_SUCCESS,
+  API_FETCH_NEWS_TESLA_FAIL,
+  API_FETCH_NEWS_TESLA_START,
+  API_FETCH_NEWS_TESLA_SUCCESS,
 } from "../contacts/apiActionTypes";
 
-const APIinitialState = {
+const newsAppleInitialState = {
   loading: false,
   error: null,
-  data: [],
+  newsAppleData: [],
 };
 
-export const apiReducer = (state = APIinitialState, action) => {
+export const apiNewsAppleReducer = (state = newsAppleInitialState, action) => {
   switch (action.type) {
     case API_FETCH_NEWS_APPLE_START:
       return {
         loading: true,
-        data: [],
+        newsAppleData: [],
       };
 
     case API_FETCH_NEWS_APPLE_SUCCESS:
       return {
         ...state,
         loading: false,
-        data: action.payload,
+        newsAppleData: action.payload,
       };
 
     case API_FETCH_NEWS_APPLE_FAIL:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+
+    default:
+      return state;
+  }
+};
+
+const newsTeslaInitialState = {
+  loading: false,
+  error: null,
+  newsTeslaData: [],
+};
+
+export const apiNewsTeslaReducer = (state = newsTeslaInitialState, action) => {
+  switch (action.type) {
+    case API_FETCH_NEWS_TESLA_START:
+      return {
+        loading: true,
+        newsTeslaData: [],
+      };
+
+    case API_FETCH_NEWS_TESLA_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        newsTeslaData: action.payload,
+      };
+
+    case API_FETCH_NEWS_TESLA_FAIL:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+
+    default:
+      return state;
+  }
+};
+
+const newsKeywordInitialState = {
+  loading: false,
+  error: null,
+  newsKeywordData: [],
+};
+
+export const apiNewsKeywordReducer = (
+  state = newsKeywordInitialState,
+  action
+) => {
+  switch (action.type) {
+    case API_FETCH_NEWS_KEYWORD_START:
+      return {
+        loading: true,
+        newsKeywordData: [],
+      };
+
+    case API_FETCH_NEWS_KEYWORD_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        newsKeywordData: action.payload,
+      };
+
+    case API_FETCH_NEWS_KEYWORD_FAIL:
       return {
         ...state,
         loading: false,
