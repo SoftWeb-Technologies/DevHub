@@ -10,16 +10,19 @@ import {
   Support,
   Licenses,
 } from "./Containers";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import { Dashboard } from "./MainContainers";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { auth } from "./firebase";
 import { setUser } from "./redux/actions/actions";
 import ProtectedRoute from "./routes/ProtectedRoute";
+import { ErrorImg } from "./constants/Images";
+import { Button } from "./components";
 
 function App() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     auth.onAuthStateChanged((authUser) => {
@@ -53,8 +56,29 @@ function App() {
         <Route
           path="/*"
           element={
-            <div>
-              <h1>Page Not Found</h1>
+            <div
+              style={{
+                height: "100vh",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                flexDirection: "column",
+              }}
+            >
+              <div
+                style={{
+                  maxWidth: "450px",
+                  width: "100%",
+                }}
+              >
+                <img src={ErrorImg} alt="404-error" />
+              </div>
+
+              <Button
+                label={"Back to home"}
+                primary={true}
+                onClick={() => navigate("/", { replace: true })}
+              />
             </div>
           }
         />

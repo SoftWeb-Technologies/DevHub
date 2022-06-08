@@ -11,6 +11,9 @@ import LoginImg from "../assets/images/authImgs/loginImg.svg";
 // faq images
 import FaqImg from "../assets/images/faqImgs/faqImg.svg";
 
+// error page images
+import ErrorImg from "../assets/images/404-error.svg";
+
 export {
   AboutImg,
   DevHubLogoLight,
@@ -20,4 +23,5 @@ export {
   SignUpImg,
   LoginImg,
   FaqImg,
+  ErrorImg,
 };
