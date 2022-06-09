@@ -11,3 +11,7 @@
 
   margin: 1rem 0;
 }
+
+.feature__card div > svg path {
+  fill: #008bb7 !important;
+}

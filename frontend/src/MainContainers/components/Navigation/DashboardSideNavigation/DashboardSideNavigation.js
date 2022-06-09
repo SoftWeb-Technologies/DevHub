@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import {
   CarbonBlogIcon,
   CloseNavIcon,
@@ -16,6 +16,7 @@ import { logoutInitiate } from "../../../../redux/actions/actions";
 
 const DashboardSideNavigation = ({ customStyle, ...props }) => {
   const location = useLocation();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { currentUser } = useSelector((state) => state.user);
 
@@ -64,7 +65,13 @@ const DashboardSideNavigation = ({ customStyle, ...props }) => {
                     <DevHubLogo fillColor={"#008bb7"} />
                   )}
                 </div>
-                <h1 className="logo__name">DevHub</h1>
+                <h1
+                  onClick={() => navigate("/dashboard")}
+                  style={{ cursor: "pointer" }}
+                  className="logo__name"
+                >
+                  DevHub
+                </h1>
               </div>
             </div>
           </div>
