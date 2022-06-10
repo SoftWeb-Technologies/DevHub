@@ -1,5 +1,6 @@
 #blogSpace {
   width: 100%;
+  overflow: hidden;
 }
 
 .blogSpace.active {
@@ -19,6 +20,7 @@
 
   display: flex;
   align-items: center;
+
   gap: 20px;
 }
 
@@ -30,6 +32,7 @@
 .blogSpace__main__container > div {
   width: 100%;
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
   gap: 20px;
 }
@@ -41,4 +44,57 @@
   background: #e8f5fa;
   border-radius: 10px;
   padding: 1.5rem;
+}
+
+@media screen and (min-width: 850px) {
+  #blogSpace {
+    width: 100%;
+  }
+
+  .blogSpace.active {
+    animation: slide-effect 0.5s 1 ease forwards;
+  }
+
+  .blogSpace__header {
+    padding: 2rem 5rem;
+    background-color: #f5f5f5;
+  }
+
+  .blogSpace__filter__header {
+    width: 100%;
+    background-color: #f5f5f5;
+    padding: 0rem 5rem;
+    padding-bottom: 2rem;
+
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .blogSpace__main__container {
+    width: 100%;
+    padding: 2rem 5rem;
+  }
+
+  .blogSpace__main__container.active {
+    padding-left: 2rem;
+    animation: slide-effect 0.5s 1 ease forwards;
+  }
+
+  .blogSpace__main__container > div {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .blogSpace__card {
+    min-width: 300px;
+    width: 300px;
+
+    background: #e8f5fa;
+    border-radius: 10px;
+    padding: 1.5rem;
+  }
 }
