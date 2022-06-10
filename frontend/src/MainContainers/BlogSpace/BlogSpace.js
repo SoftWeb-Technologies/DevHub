@@ -30,18 +30,20 @@ const BlogSpace = () => {
       <Title title="Blog Space" />
 
       <DashboardSideNavigation setIsNavActive={setIsNavActive} />
-      <div
-        id="blogSpace"
-        className={`blogSpace ${isNavActive}  ? "active" : ""`}
-      >
+      <div id="blogSpace">
         <UserHeader displayName={currentUser.displayName} />
         <FilterHeader />
 
-        <div className="blogSpace__main__container">
+        <div
+          className={`blogSpace__main__container  ${
+            isNavActive ? "active" : ""
+          }`}
+        >
           <div>
-            {devToArticlesData.map((item, index) => {
+            {devToArticlesData.slice(0, 5).map((item, index) => {
               return (
                 <BlogCard
+                  key={index}
                   title={item?.title}
                   description={item?.description}
                   date={item?.published_at}
@@ -49,9 +51,13 @@ const BlogSpace = () => {
               );
             })}
 
-            {githubRepoData.slice(0, 6).map((item, index) => {
+            {githubRepoData.slice(0, 4).map((item, index) => {
               return (
-                <BlogCard title={item?.name} description={item?.description} />
+                <BlogCard
+                  key={index}
+                  title={item?.name}
+                  description={item?.description}
+                />
               );
             })}
           </div>
