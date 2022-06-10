@@ -13,7 +13,12 @@ import FeatureCard from "../components/FeatureCard/FeatureCard";
 import DashboardSideNavigation from "../components/Navigation/DashboardSideNavigation/DashboardSideNavigation";
 import "./Dashboard.css";
 import { useDispatch } from "react-redux";
-import { fetchNewsAppleData } from "../../redux/actions/apiActions";
+import {
+  fetchDevToArticlesData,
+  fetchGithubReposData,
+  fetchNewsAppleData,
+  fetchNewsTeslaData,
+} from "../../redux/actions/apiActions";
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -22,6 +27,13 @@ const Dashboard = () => {
   const [isNavActive, setIsNavActive] = useState(false);
 
   const { newsAppleData } = useSelector((state) => state.newsAppleApi);
+  const { githubRepoData } = useSelector((state) => state.blogGithubReposApi);
+  const { devToArticlesData } = useSelector(
+    (state) => state.blogDevToArticlesApi
+  );
+  const { newsTeslaData } = useSelector((state) => state.newsTeslaApi);
+
+  const [randomNumber, setRandomNumber] = useState(0);
 
   useEffect(() => {
     if (!isAuthenticated) {
@@ -31,9 +43,12 @@ const Dashboard = () => {
 
   useEffect(() => {
     dispatch(fetchNewsAppleData());
-  }, [dispatch]);
+    dispatch(fetchGithubReposData());
+    dispatch(fetchNewsTeslaData());
+    dispatch(fetchDevToArticlesData());
 
-  const sliceData = newsAppleData.slice(0, 3);
+    setRandomNumber(Math.floor(Math.random() * 5));
+  }, [dispatch]);
 
   return (
     <div className={`dashboard ${isNavActive ? "active" : ""}`}>
@@ -75,17 +90,22 @@ const Dashboard = () => {
               Trending Blogs
             </h2>
             <div className="latestNewsAndBlogs__container">
-              <p>
-                <b>CSS tricks by John Doe</b>
-              </p>
-              <span>lorem ipsum dolor sit amet is the dummy text</span>
-              <p>Continue Reading</p>
-              <hr></hr>
-              <p>
-                <b>Intro to JS by John Doe</b>
-              </p>
-              <span>lorem ipsum dolor sit amet is the dummy text</span>
-              <p>Continue Reading</p>
+              <CardData
+                title={githubRepoData[randomNumber]?.name}
+                description={githubRepoData[randomNumber]?.description}
+                url={githubRepoData[randomNumber]?.url}
+              />
+              <hr
+                style={{
+                  margin: "10px 0",
+                  opacity: 0.7,
+                }}
+              ></hr>
+              <CardData
+                title={devToArticlesData[randomNumber]?.title}
+                description={devToArticlesData[randomNumber]?.description}
+                url={devToArticlesData[randomNumber]?.url}
+              />
             </div>
           </div>
 
@@ -98,13 +118,22 @@ const Dashboard = () => {
               Latest News
             </h2>
             <div className="latestNewsAndBlogs__container">
-              {sliceData.map((item, index) => (
-                <p key={index}>
-                  <a href={item.url} target="_blank" rel="noreferrer">
-                    {item.title}
-                  </a>
-                </p>
-              ))}
+              <CardData
+                title={newsAppleData[randomNumber]?.title}
+                description={newsAppleData[randomNumber]?.description}
+                url={newsAppleData[randomNumber]?.url}
+              />
+              <hr
+                style={{
+                  margin: "10px 0",
+                  opacity: 0.7,
+                }}
+              ></hr>
+              <CardData
+                title={newsTeslaData[randomNumber]?.title}
+                description={newsTeslaData[randomNumber]?.description}
+                url={newsTeslaData[randomNumber]?.url}
+              />
             </div>
           </div>
         </div>
@@ -149,6 +178,39 @@ export const DashboardHeader = ({ isNavActive, displayName }) => {
           </span>
         </h2>
       </div>
+    </div>
+  );
+};
+
+const CardData = ({ title, description, url }) => {
+  return (
+    <div>
+      <p
+        style={{
+          textDecoration: "none",
+          textTransform: "Capitalize",
+        }}
+      >
+        <b>{title}</b>
+      </p>
+      <span
+        style={{
+          color: "#000",
+          opacity: 0.7,
+        }}
+      >
+        {description?.slice(0, 100) + "..."}
+      </span>
+      <p
+        style={{
+          marginTop: "10px",
+          color: "#008bb7",
+        }}
+      >
+        <a href={url} target="_blank" rel="noreferrer">
+          Continue Reading
+        </a>
+      </p>
     </div>
   );
 };

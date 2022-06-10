@@ -45,3 +45,37 @@ export const fetchNewsKeywordData = () => async (dispatch) => {
     });
   }
 };
+
+// blogs api fetching
+export const fetchGithubReposData = () => async (dispatch) => {
+  try {
+    dispatch({ type: types.API_FETCH_GITHUB_REPOS_START });
+
+    const { data } = await axios.get(
+      "https://gtrend.yapie.me/repositories?since=daily"
+    );
+
+    dispatch({ type: types.API_FETCH_GITHUB_REPOS_SUCCESS, payload: data });
+  } catch (err) {
+    dispatch({
+      type: types.API_FETCH_GITHUB_REPOS_FAIL,
+      payload: err.response.data.message,
+    });
+  }
+};
+
+// dev to articles api fetching
+export const fetchDevToArticlesData = () => async (dispatch) => {
+  try {
+    dispatch({ type: types.API_FETCH_DEV_TO_ARTICLES_START });
+
+    const { data } = await axios.get("https://dev.to/api/articles");
+
+    dispatch({ type: types.API_FETCH_DEV_TO_ARTICLES_SUCCESS, payload: data });
+  } catch (err) {
+    dispatch({
+      type: types.API_FETCH_DEV_TO_ARTICLES_FAIL,
+      payload: err.response.data.message,
+    });
+  }
+};

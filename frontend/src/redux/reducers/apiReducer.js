@@ -43,6 +43,8 @@ export const apiNewsAppleReducer = (state = newsAppleInitialState, action) => {
   }
 };
 
+// news Tesla Initial State
+
 const newsTeslaInitialState = {
   loading: false,
   error: null,
@@ -76,6 +78,7 @@ export const apiNewsTeslaReducer = (state = newsTeslaInitialState, action) => {
   }
 };
 
+// keyword news reducer
 const newsKeywordInitialState = {
   loading: false,
   error: null,
