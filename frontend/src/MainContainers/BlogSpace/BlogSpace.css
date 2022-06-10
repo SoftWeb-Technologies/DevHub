@@ -21,3 +21,24 @@
   align-items: center;
   gap: 20px;
 }
+
+.blogSpace__main__container {
+  width: 100%;
+  padding: 2rem 5rem;
+}
+
+.blogSpace__main__container > div {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.blogSpace__card {
+  min-width: 300px;
+  width: 300px;
+
+  background: #e8f5fa;
+  border-radius: 10px;
+  padding: 1.5rem;
+}
