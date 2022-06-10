@@ -4,6 +4,10 @@ import {
   apiNewsKeywordReducer,
   apiNewsTeslaReducer,
 } from "./apiReducer";
+import {
+  apiDevToArticlesReducer,
+  apiGithubReposReducer,
+} from "./blogApiReducer";
 import { userReducer } from "./reducer";
 
 const rootReducer = combineReducers({
@@ -11,6 +15,8 @@ const rootReducer = combineReducers({
   newsAppleApi: apiNewsAppleReducer,
   newsTeslaApi: apiNewsTeslaReducer,
   newsKeywordApi: apiNewsKeywordReducer,
+  blogGithubReposApi: apiGithubReposReducer,
+  blogDevToArticlesApi: apiDevToArticlesReducer,
 });
 
 export default rootReducer;
