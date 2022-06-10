@@ -1,5 +1,4 @@
 import React from "react";
-import { MenuIcon } from "../../../DevHubIcons";
 
 const UserHeader = ({ displayName }) => {
   const firstLetter = displayName.charAt(0);
@@ -34,33 +33,13 @@ const UserHeader = ({ displayName }) => {
                 color: "#000",
                 textTransform: "capitalize",
                 fontWeight: "500",
-                marginRight: "2rem",
+                marginRight: "0.5rem",
                 cursor: "pointer",
               }}
             >
               Library
             </p>
           </div>
-          <div
-            style={{
-              maxWidth: "22px",
-              width: "100%",
-              objectFit: "contain",
-              cursor: "pointer",
-            }}
-          >
-            <MenuIcon />
-          </div>{" "}
-          <p
-            style={{
-              color: "#000",
-              textTransform: "uppercase",
-              fontWeight: "500",
-              marginBottom: "0.2rem",
-            }}
-          >
-            Menu
-          </p>
         </div>
 
         <div
