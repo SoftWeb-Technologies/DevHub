@@ -5,9 +5,10 @@ import {
 } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import { DashboardSideNavigation } from "../components";
-import { Title } from "../../components";
+import { Button, Title } from "../../components";
 import "./BlogSpace.css";
 import UserHeader from "../components/UserHeader/UserHeader";
+import { CloseNavIcon, RightArrowIcon } from "../../DevHubIcons";
 
 const BlogSpace = () => {
   const navigate = useNavigate();
@@ -19,6 +20,8 @@ const BlogSpace = () => {
   );
 
   const [isNavActive, setIsNavActive] = useState(false);
+  const [isPopUpBoxActive, setIsPopUpBoxActive] = useState(false);
+  const [popUpData, setPopUpData] = useState(null);
 
   useEffect(() => {
     if (!isAuthenticated) {
@@ -47,6 +50,10 @@ const BlogSpace = () => {
                   title={item?.title}
                   description={item?.description}
                   date={item?.published_at}
+                  onClick={() => {
+                    setIsPopUpBoxActive(true);
+                    setPopUpData(item);
+                  }}
                 />
               );
             })}
@@ -62,6 +69,76 @@ const BlogSpace = () => {
             })}
           </div>
         </div>
+
+        <div
+          className={`blogSpace__popup__container ${
+            isPopUpBoxActive ? "active" : ""
+          }`}
+        >
+          <div
+            onClick={() => setIsPopUpBoxActive(false)}
+            style={{
+              position: "absolute",
+              top: "1rem",
+              right: "1rem",
+              cursor: "pointer",
+            }}
+          >
+            <div
+              style={{
+                width: "22px",
+                height: "2px",
+                background: "#fff",
+                transform: "rotate(45deg)  translate(2px,1px) ",
+              }}
+            />
+            <div
+              style={{
+                width: "22px",
+                height: "2px",
+                background: "#fff",
+                transform: "rotate(-45deg)",
+              }}
+            />
+          </div>
+
+          <div className="popup__main__container">
+            <div
+              style={{
+                width: "450px",
+                height: "80vh",
+                borderRadius: "10px",
+                overflow: "hidden",
+              }}
+            >
+              <img
+                src={popUpData?.social_image}
+                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                alt="popup"
+              />
+            </div>
+
+            <div className="popup__description">
+              <h1
+                style={{
+                  color: "#ffff",
+                  marginBottom: "1rem",
+                }}
+              >
+                {popUpData?.title}
+              </h1>
+              <p>{popUpData?.description}</p>
+
+              <div style={{ marginTop: "1rem" }}>
+                <Button
+                  label={"Read more"}
+                  renderIconRight={true}
+                  Icon={RightArrowIcon}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -70,7 +147,7 @@ const BlogSpace = () => {
 const FilterHeader = () => {
   const filterList = ["Web Dev", "Python", "Frontend", "Backend"];
 
-  const [activeFilter, setActiveFilter] = useState("Topic-1");
+  const [activeFilter, setActiveFilter] = useState("Web Dev");
   return (
     <div className="blogSpace__filter__header">
       {filterList.map((item, index) => {
@@ -106,9 +183,9 @@ const FilterHeader = () => {
   );
 };
 
-const BlogCard = ({ title, description, date }) => {
+const BlogCard = ({ title, description, date, onClick }) => {
   return (
-    <div className="blogSpace__card">
+    <div className="blogSpace__card" onClick={onClick}>
       <div>
         <h3
           style={{
