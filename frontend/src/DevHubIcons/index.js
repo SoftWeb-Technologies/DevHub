@@ -25,6 +25,7 @@ import NewsIcon from "./NewsIcon";
 import TaskListIcon from "./TaskListIcon";
 import TechHuntIcon from "./TechHuntIcon";
 import LogoutIcon from "./LogoutIcon";
+import BookmarkIcon from "./BookmarkIcon";
 
 export {
   HomeIcon,
@@ -52,4 +53,5 @@ export {
   TaskListIcon,
   TechHuntIcon,
   LogoutIcon,
+  BookmarkIcon
 };

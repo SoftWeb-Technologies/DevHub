@@ -1,6 +1,8 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const UserHeader = ({ displayName }) => {
+  const navigate = useNavigate();
   const firstLetter = displayName.charAt(0);
   return (
     <div className="blogSpace__header">
@@ -29,6 +31,7 @@ const UserHeader = ({ displayName }) => {
         >
           <div>
             <p
+              onClick={() => navigate("/library")}
               style={{
                 color: "#000",
                 textTransform: "capitalize",
