@@ -2,10 +2,9 @@ import * as types from "../contacts/libActionTypes";
 
 export const libReducer = (
   state = {
-    libItems:
-      localStorage.getItem("libItems") !== "undefined"
-        ? JSON.parse(localStorage.getItem("libItems"))
-        : [],
+    libItems: localStorage.getItem("libItems")
+      ? JSON.parse(localStorage.getItem("libItems"))
+      : [],
   },
   action
 ) => {
