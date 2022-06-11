@@ -14,6 +14,9 @@ import FaqImg from "../assets/images/faqImgs/faqImg.svg";
 // error page images
 import ErrorImg from "../assets/images/404-error.svg";
 
+// library images
+import EmptyCuateImg from "../assets/images/libraryImgs/Empty-cuate.svg";
+
 export {
   AboutImg,
   DevHubLogoLight,
@@ -24,4 +27,5 @@ export {
   LoginImg,
   FaqImg,
   ErrorImg,
+  EmptyCuateImg,
 };

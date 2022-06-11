@@ -1,24 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink, useNavigate } from "react-router-dom";
-import { DashboardSideNavigation } from "../components";
+import { useNavigate } from "react-router-dom";
 import { Button, Title } from "../../components";
-import "./BlogSpace.css";
-import UserHeader from "../components/UserHeader/UserHeader";
+import { EmptyCuateImg } from "../../constants/Images";
 import { BookmarkIcon, RightArrowIcon } from "../../DevHubIcons";
-import {
-  addItemsToLibrary,
-  removeItemFromLibrary,
-} from "../../redux/actions/libActions";
+import { removeItemFromLibrary } from "../../redux/actions/libActions";
+import { DashboardSideNavigation } from "../components";
+import UserHeader from "../components/UserHeader/UserHeader";
 
-const BlogSpace = () => {
+import "./LibraryPage.css";
+
+const LibraryPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { isAuthenticated, currentUser } = useSelector((state) => state.user);
-  const { githubRepoData } = useSelector((state) => state.blogGithubReposApi);
-  const { devToArticlesData } = useSelector(
-    (state) => state.blogDevToArticlesApi
-  );
+  const { libItems } = useSelector((state) => state.lib);
 
   const [isNavActive, setIsNavActive] = useState(false);
   const [isPopUpBoxActive, setIsPopUpBoxActive] = useState(false);
@@ -31,8 +27,9 @@ const BlogSpace = () => {
     }
   }, [isAuthenticated, navigate]);
 
-  const addItemsToLib = () => {
-    dispatch(addItemsToLibrary(popUpData.id, popUpData, isAddedToLib));
+  const removeItemFromLib = (id) => {
+    dispatch(removeItemFromLibrary(id));
+    console.log("removed => ", id);
   };
 
   return (
@@ -42,40 +39,67 @@ const BlogSpace = () => {
       <DashboardSideNavigation setIsNavActive={setIsNavActive} />
       <div id="blogSpace">
         <UserHeader displayName={currentUser.displayName} />
-        <FilterHeader />
-
-        <div
-          className={`blogSpace__main__container  ${
-            isNavActive ? "active" : ""
-          }`}
-        >
-          <div>
-            {devToArticlesData.slice(0, 5).map((item, index) => {
-              return (
-                <BlogCard
-                  key={index}
-                  title={item?.title}
-                  description={item?.description}
-                  date={item?.published_at}
-                  onClick={() => {
-                    setIsPopUpBoxActive(true);
-                    setPopUpData(item);
-                  }}
-                />
-              );
-            })}
-
-            {githubRepoData.slice(0, 4).map((item, index) => {
-              return (
-                <BlogCard
-                  key={index}
-                  title={item?.name}
-                  description={item?.description}
-                />
-              );
-            })}
-          </div>
+        <div className="lib__header">
+          <h1>
+            Your <span style={{ color: "#008bb7" }}>Blogs</span>
+          </h1>
         </div>
+
+        {libItems.length > 0 ? (
+          <div
+            className={`blogSpace__main__container  ${
+              isNavActive ? "active" : ""
+            }`}
+          >
+            <div>
+              {libItems.slice(0, 5).map((item, index) => {
+                return (
+                  <BlogCard
+                    key={index}
+                    onClickDeleteItem={() => removeItemFromLib(item.id)}
+                    title={item?.title}
+                    description={item?.description}
+                    date={item?.published_at}
+                    onClick={() => {
+                      setIsPopUpBoxActive(true);
+                      setPopUpData(item);
+                    }}
+                  />
+                );
+              })}
+            </div>
+          </div>
+        ) : (
+          <div
+            style={{
+              height: "80vh",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              flexDirection: "column",
+            }}
+          >
+            <div
+              style={{
+                minWidth: "250px",
+                opacity: "0.7",
+                pointerEvents: "none",
+              }}
+            >
+              <img src={EmptyCuateImg} alt="no-blogs" />
+            </div>
+            <h1
+              style={{
+                fontSize: "1.5rem",
+                color: "gray",
+                opacity: "0.5",
+              }}
+            >
+              No Blogs
+            </h1>
+            <p>Add </p>
+          </div>
+        )}
 
         <div
           className={`blogSpace__popup__container ${
@@ -100,8 +124,7 @@ const BlogSpace = () => {
               >
                 <BookmarkIcon
                   onClick={() => {
-                    setIsAddedToLib(!isAddedToLib);
-                    addItemsToLib();
+                    setIsAddedToLib(popUpData.bookmark);
                   }}
                   fillColor={isAddedToLib ? "yellow" : "#fff"}
                 />
@@ -172,49 +195,37 @@ const BlogSpace = () => {
   );
 };
 
-const FilterHeader = () => {
-  const filterList = ["Web Dev", "Python", "Frontend", "Backend"];
-
-  const [activeFilter, setActiveFilter] = useState("Web Dev");
+const BlogCard = ({ title, description, date, onClick, onClickDeleteItem }) => {
   return (
-    <div className="blogSpace__filter__header">
-      {filterList.map((item, index) => {
-        return (
-          <NavLink
-            key={index}
-            to={`#`}
-            onClick={() => setActiveFilter(item)}
-            style={{
-              color: activeFilter === item ? "#fff" : "gray",
-              background: activeFilter === item ? "#008bb7" : "",
-              padding: "0.3rem 0.5rem",
-              borderRadius: "50px",
-              fontSize: "0.89rem",
-              transition: "all 0.3s ease-in-out",
-            }}
-          >
-            {item}
-          </NavLink>
-        );
-      })}
-
-      <p
+    <div className="blogSpace__card">
+      <div
+        onClick={onClickDeleteItem}
         style={{
-          color: "red",
-          cursor: "pointer",
-          fontSize: "0.89rem",
+          position: "absolute",
+          top: "15px",
+          right: "15px",
         }}
       >
-        Clear All
-      </p>
-    </div>
-  );
-};
-
-const BlogCard = ({ title, description, date, onClick }) => {
-  return (
-    <div className="blogSpace__card" onClick={onClick}>
-      <div>
+        <div
+          style={{
+            width: "22px",
+            height: "2px",
+            background: "red",
+            opacity: "0.6",
+            transform: "rotate(45deg)  translate(2px,1px) ",
+          }}
+        />
+        <div
+          style={{
+            width: "22px",
+            height: "2px",
+            background: "red",
+            opacity: "0.6",
+            transform: "rotate(-45deg)",
+          }}
+        />
+      </div>
+      <div onClick={onClick}>
         <h3
           style={{
             opacity: "0.7",
@@ -246,4 +257,4 @@ const BlogCard = ({ title, description, date, onClick }) => {
   );
 };
 
-export default BlogSpace;
+export default LibraryPage;
