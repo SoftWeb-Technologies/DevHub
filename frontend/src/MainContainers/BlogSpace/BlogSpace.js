@@ -146,7 +146,7 @@ const BlogSpace = () => {
             <div className="popup__description">
               <h1
                 style={{
-                  color: "#ffff",
+                  color: "#F2F2F2",
                   marginBottom: "1rem",
                 }}
               >
@@ -173,7 +173,7 @@ const BlogSpace = () => {
 };
 
 const FilterHeader = () => {
-  const filterList = ["Web Dev", "Python", "Frontend", "Backend"];
+  const filterList = ["Web Dev", "Python", "Frontend", "Backend",];
 
   const [activeFilter, setActiveFilter] = useState("Web Dev");
   return (

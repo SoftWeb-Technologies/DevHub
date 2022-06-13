@@ -74,7 +74,11 @@ const Dashboard = () => {
             </h2>
             <div>
               <FeatureCard title={"Create Task"} Icon={TaskIcon} />
-              <FeatureCard title={"Read Blogs"} Icon={CarbonBlogIcon} />
+              <FeatureCard
+              onClick={() => navigate("/Blogspace")}
+              title={"Read Blogs"}
+              Icon={CarbonBlogIcon}
+            />
               <FeatureCard title={"Join Contest"} Icon={TrophyIcon} />
               <FeatureCard title={"Read latest news"} Icon={NewsIcon} />
             </div>

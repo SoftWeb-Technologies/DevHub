@@ -41,7 +41,7 @@ const LibraryPage = () => {
         <UserHeader displayName={currentUser.displayName} />
         <div className="lib__header">
           <h1>
-            Your <span style={{ color: "#008bb7" }}>Blogs</span>
+            Your <span style={{ color: "#008bb7" }}>Bookmarks!</span>
           </h1>
         </div>
 
@@ -91,11 +91,11 @@ const LibraryPage = () => {
             <h1
               style={{
                 fontSize: "1.5rem",
-                color: "gray",
+                color: "blue",
                 opacity: "0.5",
               }}
             >
-              No Blogs
+              You have no bookmarks yet
             </h1>
             <p>Add </p>
           </div>
