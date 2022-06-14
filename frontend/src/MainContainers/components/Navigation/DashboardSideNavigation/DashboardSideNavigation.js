@@ -94,7 +94,7 @@ const DashboardSideNavigation = ({ customStyle, ...props }) => {
         <div className="menu__container">
           <NavMenu
             toggle={toggle}
-            path={"/blogspace"}
+            path={"/dashboard/blogspace"}
             menuName="Blog Space"
             Icon={CarbonBlogIcon}
             location={activeLocation}
@@ -102,7 +102,7 @@ const DashboardSideNavigation = ({ customStyle, ...props }) => {
           />
           <NavMenu
             toggle={toggle}
-            path={"/tasklist"}
+            path={"/dashboard/tasklist"}
             menuName="Task List"
             Icon={TaskListIcon}
             location={activeLocation}
@@ -110,7 +110,7 @@ const DashboardSideNavigation = ({ customStyle, ...props }) => {
           />
           <NavMenu
             toggle={toggle}
-            path={"/techhunt"}
+            path={"/dashboard/techhunt"}
             menuName="Tech Hunt"
             Icon={TechHuntIcon}
             location={activeLocation}
@@ -118,7 +118,7 @@ const DashboardSideNavigation = ({ customStyle, ...props }) => {
           />
           <NavMenu
             toggle={toggle}
-            path={"/contest"}
+            path={"/dashboard/contest"}
             menuName="Contest"
             Icon={TechHuntIcon}
             location={activeLocation}

@@ -21,9 +21,9 @@ import {
 } from "../../redux/actions/apiActions";
 
 const Dashboard = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { isAuthenticated, currentUser } = useSelector((state) => state.user);
+  const { currentUser } = useSelector((state) => state.user);
   const [isNavActive, setIsNavActive] = useState(false);
 
   const { newsAppleData } = useSelector((state) => state.newsAppleApi);
@@ -35,12 +35,7 @@ const Dashboard = () => {
 
   const [randomNumber, setRandomNumber] = useState(0);
 
-  useEffect(() => {
-    if (!isAuthenticated) {
-      navigate("/auth", { replace: true });
-    }
-  }, [isAuthenticated, navigate]);
-
+ 
   useEffect(() => {
     dispatch(fetchNewsAppleData());
     dispatch(fetchGithubReposData());
@@ -73,14 +68,14 @@ const Dashboard = () => {
               Features
             </h2>
             <div>
-              <FeatureCard title={"Create Task"} Icon={TaskIcon} />
+              <FeatureCard title={"Create Task"} Icon={TaskIcon} path = "createtask" />
               <FeatureCard
-              onClick={() => navigate("/Blogspace")}
               title={"Read Blogs"}
               Icon={CarbonBlogIcon}
+              path = "blogspace"
             />
-              <FeatureCard title={"Join Contest"} Icon={TrophyIcon} />
-              <FeatureCard title={"Read latest news"} Icon={NewsIcon} />
+              <FeatureCard title={"Join Contest"} Icon={TrophyIcon} path = "contest" />
+              <FeatureCard title={"Read latest news"} Icon={NewsIcon} path = "techhunt" />
             </div>
           </div>
         </div>

@@ -10,7 +10,35 @@
   background-color: #f6f6f6;
 
   margin: 1rem 0;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+  transition: all 0.5s ease-in-out;
 }
+
+.feature__card:hover {
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.feature__card::after{
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  z-index: -1;
+
+  transition: all 0.5s ease-in-out;
+  
+}
+
+.feature__card:hover::after{
+  background-color: #d8d8d84d;
+  width: 100%;
+}
+
+
 
 .feature__card div > svg path {
   fill: #008bb7 !important;

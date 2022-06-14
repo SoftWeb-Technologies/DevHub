@@ -29,7 +29,7 @@ const LibraryPage = () => {
 
   const removeItemFromLib = (id) => {
     dispatch(removeItemFromLibrary(id));
-    console.log("removed => ", id);
+    // console.log("removed => ", id);
   };
 
   return (

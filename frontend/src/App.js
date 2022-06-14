@@ -11,7 +11,7 @@ import {
   Licenses,
 } from "./Containers";
 import { Routes, Route, useNavigate } from "react-router-dom";
-import { Dashboard, BlogSpace, LibraryPage } from "./MainContainers";
+import { Dashboard, BlogSpace, LibraryPage, TaskList, Contest, TechHunt } from "./MainContainers";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { auth } from "./firebase";
@@ -51,8 +51,11 @@ function App() {
         {/* protected routes */}
         <Route exact path="/" element={<ProtectedRoute />}>
           <Route exact path="/dashboard" element={<Dashboard />} />
-          <Route exact path="/blogspace" element={<BlogSpace />} />
-          <Route exact path="/library" element={<LibraryPage />} />
+          <Route exact path="/dashboard/blogspace" element={<BlogSpace />} />
+          <Route exact path="/dashboard/library" element={<LibraryPage />} />
+          <Route exact path="/dashboard/createtask" element = {<TaskList />} />
+          <Route exact path="/dashboard/contest" element = {<Contest />} />
+          <Route exact path="/dashboard/techhunt" element = {<TechHunt/>} />
         </Route>
 
         <Route
