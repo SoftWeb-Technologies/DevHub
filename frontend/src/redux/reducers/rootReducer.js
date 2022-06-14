@@ -1,5 +1,6 @@
 import { combineReducers } from "redux";
 import {
+  apiContestReducer,
   apiNewsAppleReducer,
   apiNewsKeywordReducer,
   apiNewsTeslaReducer,
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   newsKeywordApi: apiNewsKeywordReducer,
   blogGithubReposApi: apiGithubReposReducer,
   blogDevToArticlesApi: apiDevToArticlesReducer,
+  contestApi: apiContestReducer,
 });
 
 export default rootReducer;
