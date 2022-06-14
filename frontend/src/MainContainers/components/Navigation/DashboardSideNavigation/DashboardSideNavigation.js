@@ -102,7 +102,7 @@ const DashboardSideNavigation = ({ customStyle, ...props }) => {
           />
           <NavMenu
             toggle={toggle}
-            path={"/dashboard/tasklist"}
+            path={"/dashboard/createtask"}
             menuName="Task List"
             Icon={TaskListIcon}
             location={activeLocation}

@@ -1,0 +1,38 @@
+.contest__header__container {
+  display: flex;
+  align-items: center;
+}
+
+.header__main__container {
+  padding: 2.4rem 5rem;
+  background: linear-gradient(
+    122.43deg,
+    #008bb7 23.82%,
+    rgba(0, 139, 183, 0.5) 69.43%
+  );
+}
+
+.contest__body__container {
+  padding: 2.4rem 5rem;
+}
+
+.contest__body__container.active {
+  animation: slide-effect 0.5s 1 ease forwards;
+}
+
+.contest__cards__container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.contest__card__container {
+  max-width: 350px;
+  width: 100%;
+  height: 250px;
+  border-radius: 10px;
+  margin-top: 1rem;
+  background-color: #d1d3d36b;
+  padding: 1rem;
+}

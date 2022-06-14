@@ -79,3 +79,20 @@ export const fetchDevToArticlesData = () => async (dispatch) => {
     });
   }
 };
+
+// contest api fetching
+export const fetchContestData = () => async (dispatch) => {
+  try {
+    dispatch({ type: types.API_FETCH_CONTEST_START });
+
+    const { data } = await axios.get("https://kontests.net/api/v1/all");
+    // console.log(data);
+
+    dispatch({ type: types.API_FETCH_CONTEST_SUCCESS, payload: data });
+  } catch (err) {
+    dispatch({
+      type: types.API_FETCH_CONTEST_FAIL,
+      payload: err.response.data.message,
+    });
+  }
+};

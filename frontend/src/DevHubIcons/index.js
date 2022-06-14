@@ -26,6 +26,7 @@ import TaskListIcon from "./TaskListIcon";
 import TechHuntIcon from "./TechHuntIcon";
 import LogoutIcon from "./LogoutIcon";
 import BookmarkIcon from "./BookmarkIcon";
+import ArrowInCircle from "./ArrowInCircle";
 
 export {
   HomeIcon,
@@ -53,5 +54,6 @@ export {
   TaskListIcon,
   TechHuntIcon,
   LogoutIcon,
-  BookmarkIcon
+  BookmarkIcon,
+  ArrowInCircle,
 };

@@ -8,13 +8,12 @@ import UserHeader from "../components/UserHeader/UserHeader";
 import { BookmarkIcon, RightArrowIcon } from "../../DevHubIcons";
 import {
   addItemsToLibrary,
-  removeItemFromLibrary,
 } from "../../redux/actions/libActions";
 
 const BlogSpace = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { isAuthenticated, currentUser } = useSelector((state) => state.user);
+  const {  currentUser } = useSelector((state) => state.user);
   const { githubRepoData } = useSelector((state) => state.blogGithubReposApi);
   const { devToArticlesData } = useSelector(
     (state) => state.blogDevToArticlesApi
@@ -25,11 +24,11 @@ const BlogSpace = () => {
   const [popUpData, setPopUpData] = useState(null);
   const [isAddedToLib, setIsAddedToLib] = useState(false);
 
-  useEffect(() => {
-    if (!isAuthenticated) {
-      navigate("/auth", { replace: true });
-    }
-  }, [isAuthenticated, navigate]);
+  // useEffect(() => {
+  //   if (!isAuthenticated) {
+  //     navigate("/auth", { replace: true });
+  //   }
+  // }, [isAuthenticated, navigate]);
 
   const addItemsToLib = () => {
     dispatch(addItemsToLibrary(popUpData.id, popUpData, isAddedToLib));
