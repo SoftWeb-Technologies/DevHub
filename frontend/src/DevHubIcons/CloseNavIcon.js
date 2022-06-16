@@ -1,36 +1,21 @@
 import React from "react";
 
-const CloseNavIcon = () => {
-  return (
-    <svg viewBox="0 0 228 228" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect
-        x="5"
+const CloseNavIcon = (props) => (
+  <svg viewBox="0 0 23 23" fill="none" width={23} height={23} {...props}>
+    <rect
+        x="9"
         y="5"
         width="218"
         height="218"
         rx="25"
-        stroke="black"
-        strokeWidth="10"
       />
-      <line
-        x1="87"
-        y1="2.18557e-07"
-        x2="87"
-        y2="225"
-        stroke="black"
-        strokeWidth="10"
-      />
-      <path d="M125 116L170.581 70.4645" stroke="black" strokeWidth="10" />
-      <line
-        y1="-5"
-        x2="59.5616"
-        y2="-5"
-        transform="matrix(0.707107 0.707107 0.707107 -0.707107 134 111)"
-        stroke="black"
-        strokeWidth="10"
-      />
-    </svg>
-  );
-};
+    <path
+      fillRule="evenodd"
+      clipRule="evenodd"
+      d="M5 4a1 1 0 00-1 1v14a1 1 0 001 1h3V4H5zm4-2H5a3 3 0 00-3 3v14a3 3 0 003 3h14a3 3 0 003-3V5a3 3 0 00-3-3H9zm1 2v16h9a1 1 0 001-1V5a1 1 0 00-1-1h-9zm6.707 10.707a1 1 0 000-1.414L15.414 12l1.293-1.293a1 1 0 00-1.414-1.414l-2 2a1 1 0 000 1.414l2 2a1 1 0 001.414 0z"
+      fill="Black"
+    />
+  </svg>
+);
 
 export default CloseNavIcon;

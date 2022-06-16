@@ -27,6 +27,7 @@ import TechHuntIcon from "./TechHuntIcon";
 import LogoutIcon from "./LogoutIcon";
 import BookmarkIcon from "./BookmarkIcon";
 import ArrowInCircle from "./ArrowInCircle";
+import ContestIcon from "./ContestIcon";
 
 export {
   HomeIcon,
@@ -56,4 +57,5 @@ export {
   LogoutIcon,
   BookmarkIcon,
   ArrowInCircle,
+  ContestIcon,
 };

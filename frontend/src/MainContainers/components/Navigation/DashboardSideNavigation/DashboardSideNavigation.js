@@ -7,6 +7,7 @@ import {
   LogoutIcon,
   OpenNavIcon,
   TaskListIcon,
+  ContestIcon,
   TechHuntIcon,
 } from "../../../../DevHubIcons";
 import { useDispatch, useSelector } from "react-redux";
@@ -86,7 +87,7 @@ const DashboardSideNavigation = ({ customStyle, ...props }) => {
                 }}
               >
                 <CloseNavIcon />
-                <span className="show__title">hide navigation</span>
+                <span className="show__title">Hide navigation</span>
               </div>
             )}
           </div>
@@ -120,7 +121,7 @@ const DashboardSideNavigation = ({ customStyle, ...props }) => {
             toggle={toggle}
             path={"/dashboard/contest"}
             menuName="Contest"
-            Icon={TechHuntIcon}
+            Icon={ContestIcon}
             location={activeLocation}
             setLocation={setActiveLocation}
           />
