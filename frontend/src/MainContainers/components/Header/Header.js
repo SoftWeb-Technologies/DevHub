@@ -3,7 +3,7 @@ import { MenuIcon, SearchIcon } from "../../../DevHubIcons";
 import "./Header.css";
 
 const Header = ({ displayName, value, onChange }) => {
-  const firstLetter = displayName.charAt(0);
+  const firstLetter = displayName?.charAt(0);
   return (
     <>
       <div
