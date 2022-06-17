@@ -23,10 +23,10 @@ const BlogSpace = () => {
   const [isAddedToLib, setIsAddedToLib] = useState(false);
 
   useEffect(() => {
-    if(location.pathname === "/dashboard/blogspace"){
+    if (location.pathname === "/dashboard/blogspace") {
       dispatch(fetchDevToArticlesData());
     }
-  },[location,dispatch]);
+  }, [location, dispatch]);
 
   const addItemsToLib = () => {
     dispatch(addItemsToLibrary(popUpData.id, popUpData, isAddedToLib));
@@ -38,7 +38,7 @@ const BlogSpace = () => {
 
       <DashboardSideNavigation setIsNavActive={setIsNavActive} />
       <div id="blogSpace">
-        <UserHeader displayName={currentUser.displayName} />
+        <UserHeader displayName={currentUser?.displayName} />
         <FilterHeader />
 
         <div
