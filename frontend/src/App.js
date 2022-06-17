@@ -20,7 +20,7 @@ import {
   TechHunt,
 } from "./MainContainers";
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { auth } from "./firebase";
 import { setUser } from "./redux/actions/actions";
 import ProtectedRoute from "./routes/ProtectedRoute";
@@ -29,7 +29,6 @@ import { Button } from "./components";
 
 function App() {
   const dispatch = useDispatch();
-  const { currentUser } = useSelector((state) => state.user);
   const navigate = useNavigate();
 
   useEffect(() => {
