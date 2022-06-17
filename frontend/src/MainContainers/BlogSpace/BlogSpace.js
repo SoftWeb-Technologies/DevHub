@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { DashboardSideNavigation } from "../components";
@@ -21,6 +21,9 @@ const BlogSpace = () => {
   const [popUpData, setPopUpData] = useState(null);
   const [isAddedToLib, setIsAddedToLib] = useState(false);
 
+  const [filteredData, setFilteredData] = useState(null);
+  console.log(filteredData);
+
   useEffect(() => {
     dispatch(fetchDevToArticlesData());
   }, [dispatch]);
@@ -36,7 +39,10 @@ const BlogSpace = () => {
       <DashboardSideNavigation setIsNavActive={setIsNavActive} />
       <div id="blogSpace">
         <UserHeader displayName={currentUser?.displayName} />
-        <FilterHeader />
+        <FilterHeader
+          devToArticlesData={devToArticlesData}
+          setFilteredData={setFilteredData}
+        />
 
         <div
           className={`blogSpace__main__container  ${
@@ -44,7 +50,7 @@ const BlogSpace = () => {
           }`}
         >
           <div>
-            {devToArticlesData.slice(0, 6).map((item, index) => {
+            {filteredData?.map((item, index) => {
               return (
                 <BlogCard
                   key={index}
@@ -156,10 +162,26 @@ const BlogSpace = () => {
   );
 };
 
-const FilterHeader = () => {
-  const filterList = ["Web Dev", "Python", "Frontend", "Backend"];
+const FilterHeader = ({ devToArticlesData, setFilteredData }) => {
+  const filterList = ["Career", "What", "Python", "Frontend", "Backend"];
 
-  const [activeFilter, setActiveFilter] = useState("Web Dev");
+  const [activeFilter, setActiveFilter] = useState("Career");
+  const [data, setData] = useState("");
+
+  useEffect(() => {
+    const filteredData = devToArticlesData?.filter((item) => {
+      return (
+        item.title.includes(activeFilter.toLowerCase()) ||
+        item.tags.includes(activeFilter.toLowerCase() || "career") ||
+        item.description.includes(activeFilter.toLowerCase()) ||
+        item.slug.includes(activeFilter.toLowerCase())
+      );
+    });
+
+    setData(filteredData);
+  }, [activeFilter, devToArticlesData, setData]);
+
+  console.log(activeFilter);
   return (
     <div className="blogSpace__filter__header">
       {filterList.map((item, index) => {
@@ -167,7 +189,12 @@ const FilterHeader = () => {
           <NavLink
             key={index}
             to={`#`}
-            onClick={() => setActiveFilter(item)}
+            onClick={() => {
+              if (item) {
+                setFilteredData(data);
+                setActiveFilter(item);
+              }
+            }}
             style={{
               color: activeFilter === item ? "#fff" : "gray",
               background: activeFilter === item ? "#008bb7" : "",

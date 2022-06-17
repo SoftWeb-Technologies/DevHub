@@ -22,28 +22,25 @@ import {
   TwitterIcon,
 } from "../../DevHubIcons";
 import { LoginImg, SignUpImg } from "../../constants/Images";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 const SignInAndSignUp = () => {
   const navigate = useNavigate();
+  const { isAuthenticated } = useSelector((state) => state.user);
 
   const [toggle, setToggle] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
   const [toggleFormInMobileView, setToggleFormInMobileView] = useState(false);
-  const [isAuthenticated, setIsAuthenticated] = useState(null);
 
   const dispatch = useDispatch();
-  let authenticated = localStorage.getItem("isAuthenticated");
 
   useEffect(() => {
-    setIsAuthenticated(authenticated);
-
     if (isAuthenticated) {
       navigate("/dashboard", { replace: true });
     }
-  }, [navigate, isAuthenticated, authenticated]);
+  }, [navigate, isAuthenticated]);
 
   // Google Login
   const signInWithGoogle = (e) => {

@@ -43,7 +43,7 @@ const Contact = () => {
 
   return (
     <div id="contact">
-      <Title title="contact" />
+      <Title title="Contact" />
 
       <SideNavigation setIsNavActive={setIsNavActive} />
 
