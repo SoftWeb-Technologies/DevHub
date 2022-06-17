@@ -11,21 +11,14 @@ import UserHeader from "../components/UserHeader/UserHeader";
 import "./LibraryPage.css";
 
 const LibraryPage = () => {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { isAuthenticated, currentUser } = useSelector((state) => state.user);
+  const { currentUser } = useSelector((state) => state.user);
   const { libItems } = useSelector((state) => state.lib);
 
   const [isNavActive, setIsNavActive] = useState(false);
   const [isPopUpBoxActive, setIsPopUpBoxActive] = useState(false);
   const [popUpData, setPopUpData] = useState(null);
   const [isAddedToLib, setIsAddedToLib] = useState(false);
-
-  useEffect(() => {
-    if (!isAuthenticated) {
-      navigate("/auth", { replace: true });
-    }
-  }, [isAuthenticated, navigate]);
 
   const removeItemFromLib = (id) => {
     dispatch(removeItemFromLibrary(id));
@@ -38,7 +31,7 @@ const LibraryPage = () => {
 
       <DashboardSideNavigation setIsNavActive={setIsNavActive} />
       <div id="blogSpace">
-        <UserHeader displayName={currentUser.displayName} />
+        <UserHeader displayName={currentUser?.displayName} />
         <div className="lib__header">
           <h1>
             Your <span style={{ color: "#008bb7" }}>Bookmarks!</span>

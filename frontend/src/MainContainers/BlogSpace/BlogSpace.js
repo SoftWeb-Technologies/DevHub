@@ -11,7 +11,6 @@ import { fetchDevToArticlesData } from "../../redux/actions/apiActions";
 
 const BlogSpace = () => {
   const dispatch = useDispatch();
-  const location = useLocation();
   const { currentUser } = useSelector((state) => state.user);
   const { devToArticlesData } = useSelector(
     (state) => state.blogDevToArticlesApi
@@ -23,10 +22,8 @@ const BlogSpace = () => {
   const [isAddedToLib, setIsAddedToLib] = useState(false);
 
   useEffect(() => {
-    if (location.pathname === "/dashboard/blogspace") {
-      dispatch(fetchDevToArticlesData());
-    }
-  }, [location, dispatch]);
+    dispatch(fetchDevToArticlesData());
+  }, [dispatch]);
 
   const addItemsToLib = () => {
     dispatch(addItemsToLibrary(popUpData.id, popUpData, isAddedToLib));

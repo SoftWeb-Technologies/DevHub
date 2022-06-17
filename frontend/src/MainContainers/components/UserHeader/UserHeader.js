@@ -31,7 +31,7 @@ const UserHeader = ({ displayName }) => {
         >
           <div>
             <p
-              onClick={() => navigate("/dashboard/library")}
+              onClick={() => navigate("/library")}
               style={{
                 color: "#000",
                 textTransform: "capitalize",
