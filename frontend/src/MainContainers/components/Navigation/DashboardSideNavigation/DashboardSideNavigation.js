@@ -24,7 +24,7 @@ const DashboardSideNavigation = ({ customStyle, ...props }) => {
 
   const [toggle, setToggle] = useState(false);
   const [hoverActive, setHoverActive] = useState(false);
-  const [authenticated, setAuthenticated] = useState("");
+  const [authenticated, setAuthenticated] = useState(null);
 
   const [activeLocation, setActiveLocation] = useState("/");
 
@@ -35,11 +35,12 @@ const DashboardSideNavigation = ({ customStyle, ...props }) => {
   }, [location]);
 
   const handleLogout = () => {
-    if (authenticated) {
+    if (currentUser) {
       dispatch(logoutInitiate());
+      localStorage.removeItem("isAuthenticated");
     }
 
-    window.location.reload();
+    // window.location.reload();
   };
 
   useEffect(() => {
