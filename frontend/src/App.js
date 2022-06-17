@@ -11,18 +11,25 @@ import {
   Licenses,
 } from "./Containers";
 import { Routes, Route, useNavigate } from "react-router-dom";
-import { Dashboard, BlogSpace, LibraryPage, TaskList, Contest, TechHunt } from "./MainContainers";
+import {
+  Dashboard,
+  BlogSpace,
+  LibraryPage,
+  TaskList,
+  Contest,
+  TechHunt,
+} from "./MainContainers";
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { auth } from "./firebase";
 import { setUser } from "./redux/actions/actions";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import { ErrorImg } from "./constants/Images";
 import { Button } from "./components";
-import { fetchArticles, } from "./redux/actions/apiActions";
 
 function App() {
   const dispatch = useDispatch();
+  const { currentUser } = useSelector((state) => state.user);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -50,14 +57,37 @@ function App() {
         <Route path="/licenses" element={<Licenses />} />
 
         {/* protected routes */}
-        <Route exact path="/" element={<ProtectedRoute />}>
-          <Route exact path="/dashboard" element={<Dashboard />} />
-          <Route exact path="/dashboard/blogspace" element={<BlogSpace />} />
-          <Route exact path="/dashboard/library" element={<LibraryPage />} />
-          <Route exact path="/dashboard/createtask" element = {<TaskList />} />
-          <Route exact path="/dashboard/contest" element = {<Contest />} />
-          <Route exact path="/dashboard/techhunt" element = {<TechHunt/>} />
-        </Route>
+
+        <Route
+          exact
+          path="/dashboard"
+          element={<ProtectedRoute Component={Dashboard} />}
+        />
+        <Route
+          exact
+          path="/blogspace"
+          element={<ProtectedRoute Component={BlogSpace} />}
+        />
+        <Route
+          exact
+          path="/createtask"
+          element={<ProtectedRoute Component={TaskList} />}
+        />
+        <Route
+          exact
+          path="/library"
+          element={<ProtectedRoute Component={LibraryPage} />}
+        />
+        <Route
+          exact
+          path="/contest"
+          element={<ProtectedRoute Component={Contest} />}
+        />
+        <Route
+          exact
+          path="/techhunt"
+          element={<ProtectedRoute Component={TechHunt} />}
+        />
 
         <Route
           path="/*"

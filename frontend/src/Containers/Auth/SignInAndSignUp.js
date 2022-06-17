@@ -22,7 +22,7 @@ import {
   TwitterIcon,
 } from "../../DevHubIcons";
 import { LoginImg, SignUpImg } from "../../constants/Images";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 const SignInAndSignUp = () => {
@@ -32,15 +32,18 @@ const SignInAndSignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   const [toggleFormInMobileView, setToggleFormInMobileView] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(null);
 
-  const { currentUser } = useSelector((state) => state.user);
   const dispatch = useDispatch();
+  let authenticated = localStorage.getItem("isAuthenticated");
 
   useEffect(() => {
-    if (currentUser) {
+    setIsAuthenticated(authenticated);
+
+    if (isAuthenticated) {
       navigate("/dashboard", { replace: true });
     }
-  }, [currentUser, navigate]);
+  }, [navigate, isAuthenticated, authenticated]);
 
   // Google Login
   const signInWithGoogle = (e) => {
@@ -145,17 +148,17 @@ const SignInForm = ({
   toggleFormInMobileView,
   dispatch,
 }) => {
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleLogin = (e) => {
     e.preventDefault();
 
-    if (!username || !password) {
+    if (!email || !password) {
       return;
     }
 
-    dispatch(loginInitiate(username, password));
+    dispatch(loginInitiate(email, password));
   };
 
   return (
@@ -169,11 +172,11 @@ const SignInForm = ({
         <h3>Login to continue</h3>
 
         <TextInputField
-          type="text"
-          placeholder="Username"
+          type="email"
+          placeholder="Email"
           Icon={PersonIcon}
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
         />
 
         <SizeBox height={2} />
