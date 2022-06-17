@@ -93,7 +93,6 @@ export const logoutInitiate = () => {
       .signOut()
       .then(() => {
         dispatch(logoutSuccess());
-        localStorage.removeItem("isAuthenticated");
       })
       .catch((err) => {
         dispatch(logoutFail(err));
@@ -103,10 +102,15 @@ export const logoutInitiate = () => {
 
 // set user actions
 
-export const setUser = (user) => ({
-  type: types.SET_USER,
-  payload: user,
-});
+export const setUser = (user) => async (dispatch) => {
+  try {
+    dispatch({ type: types.LOAD_USER_START });
+
+    dispatch({ type: types.LOAD_USER_SUCCESS, payload: user });
+  } catch (err) {
+    dispatch({ type: types.LOAD_USER_FAIL, payload: err.response.message });
+  }
+};
 
 // google sign in actions
 const googleSignInStart = () => ({

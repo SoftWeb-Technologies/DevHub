@@ -12,23 +12,17 @@ export const userReducer = (state = initialState, action) => {
     case "LOGOUT_START":
     case "GOOGLE_SIGN_IN_START":
     case "TWITTER_SIGN_IN_START":
+    case "LOAD_USER_START":
       return {
         loading: true,
         isAuthenticated: false,
-      };
-
-    case "SET_USER":
-      return {
-        ...state,
-        loading: false,
-        currentUser: action.payload,
-        isAuthenticated: true,
       };
 
     case "REGISTER_SUCCESS":
     case "LOGIN_SUCCESS":
     case "GOOGLE_SIGN_IN_SUCCESS":
     case "TWITTER_SIGN_IN_SUCCESS":
+    case "LOAD_USER_SUCCESS":
       return {
         ...state,
         loading: false,
@@ -60,6 +54,14 @@ export const userReducer = (state = initialState, action) => {
         ...state,
         loading: false,
         error: action.payload,
+      };
+
+    case "LOAD_USER_FAIL":
+      return {
+        loading: false,
+        error: action.payload,
+        isAuthenticated: false,
+        currentUser: null,
       };
 
     default:

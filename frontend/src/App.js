@@ -36,8 +36,6 @@ function App() {
     auth.onAuthStateChanged((authUser) => {
       if (authUser) {
         dispatch(setUser(authUser));
-      } else {
-        dispatch(setUser(null));
       }
     });
   }, [dispatch]);
