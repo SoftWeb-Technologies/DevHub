@@ -9,6 +9,7 @@ import {
   TaskListIcon,
   ContestIcon,
   TechHuntIcon,
+  DashboardHomeIcon,
 } from "../../../../DevHubIcons";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -93,6 +94,14 @@ const DashboardSideNavigation = ({ customStyle, ...props }) => {
           </div>
         </div>
         <div className="menu__container">
+        <NavMenu
+            toggle={toggle}
+            path={"/dashboard"}
+            menuName="Dashboard"
+            Icon={DashboardHomeIcon}
+            location={activeLocation}
+            setLocation={setActiveLocation}
+          />
           <NavMenu
             toggle={toggle}
             path={"/dashboard/blogspace"}
@@ -140,8 +149,10 @@ const DashboardSideNavigation = ({ customStyle, ...props }) => {
               style={{
                 width: "100%",
                 backgroundColor: "#008bb7",
-                padding: "1.2rem 1rem",
+                padding: "1.2rem 1.5rem",
                 display: "flex",
+                position: "relative",
+                top: "45px",
                 justifyContent: "space-between",
                 alignItems: "center",
                 cursor: "pointer",
