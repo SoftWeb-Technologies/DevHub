@@ -14,7 +14,6 @@ import DashboardSideNavigation from "../components/Navigation/DashboardSideNavig
 import "./Dashboard.css";
 import { useDispatch } from "react-redux";
 import {
-  fetchDevToArticlesData,
   fetchGithubReposData,
   fetchNewsAppleData,
   fetchNewsTeslaData,
@@ -40,7 +39,6 @@ const Dashboard = () => {
     dispatch(fetchNewsAppleData());
     dispatch(fetchGithubReposData());
     dispatch(fetchNewsTeslaData());
-    dispatch(fetchDevToArticlesData());
 
     setRandomNumber(Math.floor(Math.random() * 5));
   }, [dispatch]);

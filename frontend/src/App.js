@@ -19,6 +19,7 @@ import { setUser } from "./redux/actions/actions";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import { ErrorImg } from "./constants/Images";
 import { Button } from "./components";
+import { fetchArticles, } from "./redux/actions/apiActions";
 
 function App() {
   const dispatch = useDispatch();

@@ -4,7 +4,6 @@ import { Title } from "../../components";
 import { ArrowInCircle } from "../../DevHubIcons";
 import { fetchContestData } from "../../redux/actions/apiActions";
 import { DashboardSideNavigation, Header } from "../components";
-import UserHeader from "../components/UserHeader/UserHeader";
 import "./Contest.css";
 
 const Contest = () => {
@@ -13,9 +12,8 @@ const Contest = () => {
   const { contestData } = useSelector((state) => state.contestApi);
 
   const [isNavActive, setIsNavActive] = useState(false);
-  const [isPopUpBoxActive, setIsPopUpBoxActive] = useState(false);
-  const [popUpData, setPopUpData] = useState(null);
-  const [isAddedToLib, setIsAddedToLib] = useState(false);
+  // const [isPopUpBoxActive, setIsPopUpBoxActive] = useState(false);
+  // const [popUpData, setPopUpData] = useState(null);
 
   useEffect(() => {
     dispatch(fetchContestData());

@@ -118,12 +118,14 @@ const DashboardSideNavigation = ({ customStyle, ...props }) => {
             setLocation={setActiveLocation}
           />
           <NavMenu
+            className = {""}
             toggle={toggle}
             path={"/dashboard/contest"}
             menuName="Contest"
             Icon={ContestIcon}
             location={activeLocation}
             setLocation={setActiveLocation}
+            customIconStyle = {"contest__icon"}
           />
 
           <div
@@ -157,9 +159,10 @@ const DashboardSideNavigation = ({ customStyle, ...props }) => {
   );
 };
 
-const NavMenu = ({ path, Icon, menuName, toggle, location, setLocation }) => {
+const NavMenu = ({ path, Icon, menuName, toggle, location, setLocation,customStyle,customIconStyle }) => {
   return (
     <NavLink
+    style={customStyle}
       className={
         location.pathname === path ? "navbar__link active" : "navbar__link"
       }
@@ -168,7 +171,7 @@ const NavMenu = ({ path, Icon, menuName, toggle, location, setLocation }) => {
         setLocation(path);
       }}
     >
-      <Icon />
+      <Icon className = {customIconStyle} />
       {toggle && menuName}
     </NavLink>
   );
