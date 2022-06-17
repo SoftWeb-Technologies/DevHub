@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { Button, Title } from "../../components";
 import { EmptyCuateImg } from "../../constants/Images";
 import { BookmarkIcon, RightArrowIcon } from "../../DevHubIcons";
@@ -22,7 +21,6 @@ const LibraryPage = () => {
 
   const removeItemFromLib = (id) => {
     dispatch(removeItemFromLibrary(id));
-    // console.log("removed => ", id);
   };
 
   return (
