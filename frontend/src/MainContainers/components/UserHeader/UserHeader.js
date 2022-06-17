@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 const UserHeader = ({ displayName }) => {
   const navigate = useNavigate();
-  const firstLetter = displayName.charAt(0);
+  const firstLetter = displayName?.charAt(0);
   return (
     <div className="blogSpace__header">
       <div
