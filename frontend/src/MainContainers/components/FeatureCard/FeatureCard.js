@@ -1,10 +1,9 @@
 import React from "react";
 import { RightArrowIcon } from "../../../DevHubIcons";
 import "./FeatureCard.css";
-import { NavLink, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const FeatureCard = ({ Icon, title, path }) => {
-
   const navigate = useNavigate();
 
   return (

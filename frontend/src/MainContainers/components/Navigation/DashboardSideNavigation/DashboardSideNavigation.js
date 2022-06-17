@@ -24,18 +24,28 @@ const DashboardSideNavigation = ({ customStyle, ...props }) => {
 
   const [toggle, setToggle] = useState(false);
   const [hoverActive, setHoverActive] = useState(false);
+  const [authenticated, setAuthenticated] = useState("");
 
   const [activeLocation, setActiveLocation] = useState("/");
+
+  const authenticatedUser = localStorage.getItem("isAuthenticated");
 
   useEffect(() => {
     setActiveLocation(location.pathname);
   }, [location]);
 
   const handleLogout = () => {
-    if (currentUser) {
+    if (authenticated) {
       dispatch(logoutInitiate());
     }
+
+    window.location.reload();
   };
+
+  useEffect(() => {
+    setAuthenticated(authenticatedUser);
+  }, [authenticatedUser]);
+
   return (
     <>
       <div
@@ -94,7 +104,7 @@ const DashboardSideNavigation = ({ customStyle, ...props }) => {
           </div>
         </div>
         <div className="menu__container">
-        <NavMenu
+          <NavMenu
             toggle={toggle}
             path={"/dashboard"}
             menuName="Dashboard"
@@ -104,7 +114,7 @@ const DashboardSideNavigation = ({ customStyle, ...props }) => {
           />
           <NavMenu
             toggle={toggle}
-            path={"/dashboard/blogspace"}
+            path={"/blogspace"}
             menuName="Blog Space"
             Icon={CarbonBlogIcon}
             location={activeLocation}
@@ -112,7 +122,7 @@ const DashboardSideNavigation = ({ customStyle, ...props }) => {
           />
           <NavMenu
             toggle={toggle}
-            path={"/dashboard/createtask"}
+            path={"/createtask"}
             menuName="Task List"
             Icon={TaskListIcon}
             location={activeLocation}
@@ -120,19 +130,21 @@ const DashboardSideNavigation = ({ customStyle, ...props }) => {
           />
           <NavMenu
             toggle={toggle}
-            path={"/dashboard/techhunt"}
+            path={"/techhunt"}
             menuName="Tech Hunt"
             Icon={TechHuntIcon}
             location={activeLocation}
             setLocation={setActiveLocation}
           />
           <NavMenu
+            className={""}
             toggle={toggle}
-            path={"/dashboard/contest"}
+            path={"/contest"}
             menuName="Contest"
             Icon={ContestIcon}
             location={activeLocation}
             setLocation={setActiveLocation}
+            customIconStyle={"contest__icon"}
           />
 
           <div
@@ -152,7 +164,6 @@ const DashboardSideNavigation = ({ customStyle, ...props }) => {
                 padding: "1.2rem 1.5rem",
                 display: "flex",
                 position: "relative",
-                top: "45px",
                 justifyContent: "space-between",
                 alignItems: "center",
                 cursor: "pointer",
@@ -168,9 +179,19 @@ const DashboardSideNavigation = ({ customStyle, ...props }) => {
   );
 };
 
-const NavMenu = ({ path, Icon, menuName, toggle, location, setLocation }) => {
+const NavMenu = ({
+  path,
+  Icon,
+  menuName,
+  toggle,
+  location,
+  setLocation,
+  customStyle,
+  customIconStyle,
+}) => {
   return (
     <NavLink
+      style={customStyle}
       className={
         location.pathname === path ? "navbar__link active" : "navbar__link"
       }
@@ -179,7 +200,7 @@ const NavMenu = ({ path, Icon, menuName, toggle, location, setLocation }) => {
         setLocation(path);
       }}
     >
-      <Icon />
+      <Icon className={customIconStyle} />
       {toggle && menuName}
     </NavLink>
   );

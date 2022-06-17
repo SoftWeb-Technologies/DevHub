@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { Title } from "../../components";
 import {
   CarbonBlogIcon,
@@ -35,7 +34,6 @@ const Dashboard = () => {
 
   const [randomNumber, setRandomNumber] = useState(0);
 
- 
   useEffect(() => {
     dispatch(fetchNewsAppleData());
     dispatch(fetchGithubReposData());
@@ -68,14 +66,26 @@ const Dashboard = () => {
               Features
             </h2>
             <div>
-              <FeatureCard title={"Create Task"} Icon={TaskIcon} path = "createtask" />
               <FeatureCard
-              title={"Read Blogs"}
-              Icon={CarbonBlogIcon}
-              path = "blogspace"
-            />
-              <FeatureCard title={"Join Contest"} Icon={TrophyIcon} path = "contest" />
-              <FeatureCard title={"Read latest news"} Icon={NewsIcon} path = "techhunt" />
+                title={"Create Task"}
+                Icon={TaskIcon}
+                path="/createtask"
+              />
+              <FeatureCard
+                title={"Read Blogs"}
+                Icon={CarbonBlogIcon}
+                path="/blogspace"
+              />
+              <FeatureCard
+                title={"Join Contest"}
+                Icon={TrophyIcon}
+                path="/contest"
+              />
+              <FeatureCard
+                title={"Read latest news"}
+                Icon={NewsIcon}
+                path="/techhunt"
+              />
             </div>
           </div>
         </div>

@@ -31,6 +31,7 @@ export const registerInitiate = (email, password, displayName) => {
         const user = userCredential.user;
         user.displayName = displayName;
         dispatch(registerSuccess(user));
+        localStorage.setItem("isAuthenticated", true);
       })
       .catch((err) => {
         dispatch(registerFail(err));
@@ -62,6 +63,7 @@ export const loginInitiate = (email, password) => {
         const user = userCredential.user;
         user.displayName = user.displayName || user.email.split("@")[0];
         dispatch(loginSuccess(userCredential.user));
+        localStorage.setItem("isAuthenticated", true);
       })
       .catch((err) => {
         dispatch(loginFail(err));
@@ -91,6 +93,7 @@ export const logoutInitiate = () => {
       .signOut()
       .then(() => {
         dispatch(logoutSuccess());
+        localStorage.removeItem("isAuthenticated");
       })
       .catch((err) => {
         dispatch(logoutFail(err));
@@ -129,6 +132,7 @@ export const googleSignInInitiate = () => {
         const user = userCredential.user;
         user.displayName = user.displayName || user.email.split("@")[0];
         dispatch(googleSignInSuccess(user));
+        localStorage.setItem("isAuthenticated", true);
       })
       .catch((err) => {
         dispatch(googleSignInFail(err));
@@ -160,6 +164,7 @@ export const twitterSignInInitiate = () => {
         const user = userCredential.user;
         user.displayName = user.displayName || user.email.split("@")[0];
         dispatch(twitterSignInSuccess(user));
+        localStorage.setItem("isAuthenticated", true);
       })
       .catch((err) => {
         dispatch(twitterSignInFail(err));

@@ -134,6 +134,10 @@ h1.logo__name {
   background-color: var(--primary-clr);
 }
 
+svg.contest__icon{
+  opacity: 0.6 !important;
+}
+
 @media screen and (min-width: 850px) {
   .side__navbar {
     display: block;

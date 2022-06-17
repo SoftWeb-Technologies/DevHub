@@ -1,20 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { DashboardSideNavigation } from "../components";
 import { Button, Title } from "../../components";
 import "./BlogSpace.css";
 import UserHeader from "../components/UserHeader/UserHeader";
 import { BookmarkIcon, RightArrowIcon } from "../../DevHubIcons";
-import {
-  addItemsToLibrary,
-} from "../../redux/actions/libActions";
+import { addItemsToLibrary } from "../../redux/actions/libActions";
+import { fetchDevToArticlesData } from "../../redux/actions/apiActions";
 
 const BlogSpace = () => {
-  // const navigate = useNavigate();
   const dispatch = useDispatch();
-  const {  currentUser } = useSelector((state) => state.user);
-  const { githubRepoData } = useSelector((state) => state.blogGithubReposApi);
+  const location = useLocation();
+  const { currentUser } = useSelector((state) => state.user);
   const { devToArticlesData } = useSelector(
     (state) => state.blogDevToArticlesApi
   );
@@ -24,11 +22,11 @@ const BlogSpace = () => {
   const [popUpData, setPopUpData] = useState(null);
   const [isAddedToLib, setIsAddedToLib] = useState(false);
 
-  // useEffect(() => {
-  //   if (!isAuthenticated) {
-  //     navigate("/auth", { replace: true });
-  //   }
-  // }, [isAuthenticated, navigate]);
+  useEffect(() => {
+    if(location.pathname === "/dashboard/blogspace"){
+      dispatch(fetchDevToArticlesData());
+    }
+  },[location,dispatch]);
 
   const addItemsToLib = () => {
     dispatch(addItemsToLibrary(popUpData.id, popUpData, isAddedToLib));
@@ -49,7 +47,7 @@ const BlogSpace = () => {
           }`}
         >
           <div>
-            {devToArticlesData.slice(0, 5).map((item, index) => {
+            {devToArticlesData.slice(0, 6).map((item, index) => {
               return (
                 <BlogCard
                   key={index}
@@ -60,16 +58,6 @@ const BlogSpace = () => {
                     setIsPopUpBoxActive(true);
                     setPopUpData(item);
                   }}
-                />
-              );
-            })}
-
-            {githubRepoData.slice(0, 4).map((item, index) => {
-              return (
-                <BlogCard
-                  key={index}
-                  title={item?.name}
-                  description={item?.description}
                 />
               );
             })}
@@ -172,7 +160,7 @@ const BlogSpace = () => {
 };
 
 const FilterHeader = () => {
-  const filterList = ["Web Dev", "Python", "Frontend", "Backend",];
+  const filterList = ["Web Dev", "Python", "Frontend", "Backend"];
 
   const [activeFilter, setActiveFilter] = useState("Web Dev");
   return (

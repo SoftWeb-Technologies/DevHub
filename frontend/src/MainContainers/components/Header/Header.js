@@ -2,7 +2,7 @@ import React from "react";
 import { MenuIcon, SearchIcon } from "../../../DevHubIcons";
 import "./Header.css";
 
-const Header = ({ displayName }) => {
+const Header = ({ displayName, value, onChange }) => {
   const firstLetter = displayName.charAt(0);
   return (
     <>
@@ -36,7 +36,13 @@ const Header = ({ displayName }) => {
       </div>
 
       <div className="dashboard__header__container__search">
-        <input type={"text"} placeholder="Search a keyword" />
+        <input
+          type={"text"}
+          placeholder="Search a keyword"
+          name="search"
+          value={value}
+          onChange={onChange}
+        />
         <SearchIcon />
       </div>
 
