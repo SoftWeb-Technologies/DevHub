@@ -28,6 +28,7 @@ import LogoutIcon from "./LogoutIcon";
 import BookmarkIcon from "./BookmarkIcon";
 import ArrowInCircle from "./ArrowInCircle";
 import ContestIcon from "./ContestIcon";
+import DashboardHomeIcon from "./DashboardHomeIcon";
 
 export {
   HomeIcon,
@@ -58,4 +59,5 @@ export {
   BookmarkIcon,
   ArrowInCircle,
   ContestIcon,
+  DashboardHomeIcon,
 };
