@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { DashboardSideNavigation } from "../components";
@@ -22,11 +22,24 @@ const BlogSpace = () => {
   const [isAddedToLib, setIsAddedToLib] = useState(false);
 
   const [filteredData, setFilteredData] = useState(null);
-  console.log(filteredData);
+  const [filter, setFilter] = useState("career");
 
   useEffect(() => {
     dispatch(fetchDevToArticlesData());
   }, [dispatch]);
+
+  useEffect(() => {
+    let data = devToArticlesData.filter((item) => {
+      return (
+        item.tags.includes(filter.toLowerCase()) ||
+        item.title.includes(filter.toLowerCase()) ||
+        item.description.includes(filter.toLowerCase()) ||
+        item.slug.includes(filter.toLowerCase())
+      );
+    });
+
+    setFilteredData(data);
+  }, [devToArticlesData, filter]);
 
   const addItemsToLib = () => {
     dispatch(addItemsToLibrary(popUpData.id, popUpData, isAddedToLib));
@@ -39,10 +52,7 @@ const BlogSpace = () => {
       <DashboardSideNavigation setIsNavActive={setIsNavActive} />
       <div id="blogSpace">
         <UserHeader displayName={currentUser?.displayName} />
-        <FilterHeader
-          devToArticlesData={devToArticlesData}
-          setFilteredData={setFilteredData}
-        />
+        <FilterHeader setFilter={setFilter} />
 
         <div
           className={`blogSpace__main__container  ${
@@ -162,26 +172,17 @@ const BlogSpace = () => {
   );
 };
 
-const FilterHeader = ({ devToArticlesData, setFilteredData }) => {
-  const filterList = ["Career", "What", "Python", "Frontend", "Backend"];
+const FilterHeader = ({ setFilter }) => {
+  const filterList = [
+    "Career",
+    "WebDev",
+    "Healthydebate",
+    "React",
+    "Programming",
+  ];
 
   const [activeFilter, setActiveFilter] = useState("Career");
-  const [data, setData] = useState("");
 
-  useEffect(() => {
-    const filteredData = devToArticlesData?.filter((item) => {
-      return (
-        item.title.includes(activeFilter.toLowerCase()) ||
-        item.tags.includes(activeFilter.toLowerCase() || "career") ||
-        item.description.includes(activeFilter.toLowerCase()) ||
-        item.slug.includes(activeFilter.toLowerCase())
-      );
-    });
-
-    setData(filteredData);
-  }, [activeFilter, devToArticlesData, setData]);
-
-  console.log(activeFilter);
   return (
     <div className="blogSpace__filter__header">
       {filterList.map((item, index) => {
@@ -190,10 +191,8 @@ const FilterHeader = ({ devToArticlesData, setFilteredData }) => {
             key={index}
             to={`#`}
             onClick={() => {
-              if (item) {
-                setFilteredData(data);
-                setActiveFilter(item);
-              }
+              setActiveFilter(item);
+              setFilter(item);
             }}
             style={{
               color: activeFilter === item ? "#fff" : "gray",
