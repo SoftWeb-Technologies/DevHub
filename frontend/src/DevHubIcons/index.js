@@ -29,6 +29,7 @@ import BookmarkIcon from "./BookmarkIcon";
 import ArrowInCircle from "./ArrowInCircle";
 import ContestIcon from "./ContestIcon";
 import DashboardHomeIcon from "./DashboardHomeIcon";
+import MenuVerticalIcon from "./MenuVerticalIcon";
 
 export {
   HomeIcon,
@@ -60,4 +61,5 @@ export {
   ArrowInCircle,
   ContestIcon,
   DashboardHomeIcon,
+  MenuVerticalIcon
 };
