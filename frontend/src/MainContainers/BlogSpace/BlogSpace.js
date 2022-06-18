@@ -5,7 +5,7 @@ import { DashboardSideNavigation } from "../components";
 import { Button, Title } from "../../components";
 import "./BlogSpace.css";
 import UserHeader from "../components/UserHeader/UserHeader";
-import { BookmarkIcon, RightArrowIcon } from "../../DevHubIcons";
+import { BookmarkIcon, MenuVerticalIcon, RightArrowIcon } from "../../DevHubIcons";
 import { addItemsToLibrary } from "../../redux/actions/libActions";
 import { fetchDevToArticlesData } from "../../redux/actions/apiActions";
 
@@ -46,6 +46,8 @@ const BlogSpace = () => {
     dispatch(addItemsToLibrary(popUpData.id, popUpData, isAddedToLib));
   };
 
+  console.log(filteredData);
+
   return (
     <div>
       <Title title="Blog Space" />
@@ -62,20 +64,42 @@ const BlogSpace = () => {
           }`}
         >
           <div>
-            {filteredData?.map((item, index) => {
-              return (
-                <BlogCard
-                  key={index}
-                  title={item?.title}
-                  description={item?.description}
-                  date={item?.published_at}
-                  onClick={() => {
-                    setIsPopUpBoxActive(true);
-                    setPopUpData(item);
+            {filteredData?.length !== 0 ? (
+              filteredData?.map((item, index) => {
+                return (
+                  <BlogCard
+                    key={index}
+                    title={item?.title}
+                    description={item?.description}
+                    date={item?.published_at}
+                    onClick={() => {
+                      setIsPopUpBoxActive(true);
+                      setPopUpData(item);
+                    }}
+                  />
+                );
+              })
+            ) : (
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  width: "100%",
+                  height: "56vh",
+                }}
+              >
+                <h2
+                  style={{
+                    color: "gray",
+                    fontSize: "1.5rem",
+                    opacity: "0.5",
                   }}
-                />
-              );
-            })}
+                >
+                  Data not found
+                </h2>
+              </div>
+            )}
           </div>
         </div>
 
@@ -216,7 +240,10 @@ const FilterHeader = ({ setFilter }) => {
           cursor: "pointer",
           fontSize: "0.89rem",
         }}
-        onClick={() => setFilter("career")}
+        onClick={() => {
+          setFilter("career");
+          setActiveFilter("Career");
+        }}
       >
         Clear All
       </p>
@@ -274,8 +301,9 @@ const MoreFilterOption = ({ setFilter }) => {
           placeholder="Search articles"
         />
 
-        <div>
+        <div className="addMoreFilter__search__items__container">
           <p
+            className={`${isFilterModelActive ? "active" : ""}`}
             style={{
               color: "gray",
               fontWeight: "500",
@@ -285,6 +313,39 @@ const MoreFilterOption = ({ setFilter }) => {
           >
             Select a filter or search one
           </p>
+
+          <div className={`${isFilterModelActive ? "active" : ""}`}>
+            {["Nodejs", "Web", "Java", "TypeScript"].map((item, index) => (
+              <div style={{
+                display: "flex",
+                alignItems: "center",
+                flexDirection: "row",
+                padding: "0 1rem",
+              }}>
+              <MenuVerticalIcon />
+                <p
+                  style={{
+                    width: "110px",
+                    color: "#fff",
+                    background: "#008bb7",
+                    display: "flex",
+                    flexDirection: "column",
+                    padding: "0.3rem 0.7rem",
+                    margin: "0.3rem 0rem",
+                    borderRadius: "10px",
+                    cursor: "pointer",
+                  }}
+                  onClick={() => {
+                    setFilter(item);
+                    setIsFilterModelActive(false);
+                  }}
+                  key={index}
+                >
+                  {item}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>
