@@ -16,7 +16,7 @@ const Home = () => {
 
   return (
     <div id="home">
-      <Title title="home" />
+      <Title title="Home" />
 
       <SideNavigation setIsNavActive={setIsNavActive} />
 

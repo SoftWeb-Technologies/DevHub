@@ -21,9 +21,25 @@ const BlogSpace = () => {
   const [popUpData, setPopUpData] = useState(null);
   const [isAddedToLib, setIsAddedToLib] = useState(false);
 
+  const [filteredData, setFilteredData] = useState(null);
+  const [filter, setFilter] = useState("career");
+
   useEffect(() => {
     dispatch(fetchDevToArticlesData());
   }, [dispatch]);
+
+  useEffect(() => {
+    let data = devToArticlesData.filter((item) => {
+      return (
+        item.tags.includes(filter.toLowerCase()) ||
+        item.title.includes(filter.toLowerCase()) ||
+        item.description.includes(filter.toLowerCase()) ||
+        item.slug.includes(filter.toLowerCase())
+      );
+    });
+
+    setFilteredData(data);
+  }, [devToArticlesData, filter]);
 
   const addItemsToLib = () => {
     dispatch(addItemsToLibrary(popUpData.id, popUpData, isAddedToLib));
@@ -36,7 +52,7 @@ const BlogSpace = () => {
       <DashboardSideNavigation setIsNavActive={setIsNavActive} />
       <div id="blogSpace">
         <UserHeader displayName={currentUser?.displayName} />
-        <FilterHeader />
+        <FilterHeader setFilter={setFilter} />
 
         <div
           className={`blogSpace__main__container  ${
@@ -44,7 +60,7 @@ const BlogSpace = () => {
           }`}
         >
           <div>
-            {devToArticlesData.slice(0, 8).map((item, index) => {
+            {filteredData?.map((item, index) => {
               return (
                 <BlogCard
                   key={index}
@@ -156,10 +172,17 @@ const BlogSpace = () => {
   );
 };
 
-const FilterHeader = () => {
-  const filterList = ["Web Dev", "Python", "Frontend", "Backend"];
+const FilterHeader = ({ setFilter }) => {
+  const filterList = [
+    "Career",
+    "WebDev",
+    "Healthydebate",
+    "React",
+    "Programming",
+  ];
 
-  const [activeFilter, setActiveFilter] = useState("Web Dev");
+  const [activeFilter, setActiveFilter] = useState("Career");
+
   return (
     <div className="blogSpace__filter__header">
       {filterList.map((item, index) => {
@@ -167,7 +190,10 @@ const FilterHeader = () => {
           <NavLink
             key={index}
             to={`#`}
-            onClick={() => setActiveFilter(item)}
+            onClick={() => {
+              setActiveFilter(item);
+              setFilter(item);
+            }}
             style={{
               color: activeFilter === item ? "#fff" : "gray",
               background: activeFilter === item ? "#008bb7" : "",
