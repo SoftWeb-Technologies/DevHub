@@ -34,7 +34,8 @@ const BlogSpace = () => {
         item.tags.includes(filter.toLowerCase()) ||
         item.title.includes(filter.toLowerCase()) ||
         item.description.includes(filter.toLowerCase()) ||
-        item.slug.includes(filter.toLowerCase())
+        item.slug.includes(filter.toLowerCase()) ||
+        item.published_at.includes(filter.toLowerCase())
       );
     });
 
@@ -53,6 +54,7 @@ const BlogSpace = () => {
       <div id="blogSpace">
         <UserHeader displayName={currentUser?.displayName} />
         <FilterHeader setFilter={setFilter} />
+        <MoreFilterOption setFilter={setFilter} />
 
         <div
           className={`blogSpace__main__container  ${
@@ -214,9 +216,77 @@ const FilterHeader = ({ setFilter }) => {
           cursor: "pointer",
           fontSize: "0.89rem",
         }}
+        onClick={() => setFilter("career")}
       >
         Clear All
       </p>
+    </div>
+  );
+};
+
+const MoreFilterOption = ({ setFilter }) => {
+  const [isFilterModelActive, setIsFilterModelActive] = useState(false);
+
+  const [searchValue, setSearchValue] = useState("");
+  return (
+    <div className="moreFilterOption__main__container">
+      <div>
+        <p
+          style={{
+            color: "#008bb7",
+            fontWeight: "bold",
+            cursor: "pointer",
+            display: "inline-block",
+          }}
+          onClick={() => {
+            setIsFilterModelActive(!isFilterModelActive);
+          }}
+        >
+          Add more filters
+        </p>
+      </div>
+
+      <div
+        onClick={() => setIsFilterModelActive(false)}
+        className={`addMoreFilter__main__container ${
+          isFilterModelActive ? "active" : ""
+        }`}
+      ></div>
+      <div
+        className={`addMoreFilter__model__container ${
+          isFilterModelActive ? "active" : ""
+        }`}
+      >
+        <input
+          type={"text"}
+          value={searchValue}
+          onChange={(e) => {
+            setSearchValue(e.target.value);
+            if (searchValue.length > 0 && searchValue !== "") {
+              setFilter(e.target.value);
+            }
+          }}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" && searchValue.length > 0) {
+              setFilter(searchValue);
+            }
+          }}
+          placeholder="Search articles"
+        />
+
+        <div>
+          <p
+            style={{
+              color: "gray",
+              fontWeight: "500",
+              fontSize: "1.05rem",
+              padding: "0.5rem 1rem",
+            }}
+          >
+            Select a filter or search one
+          </p>
+        </div>
+      </div>
     </div>
   );
 };
