@@ -44,7 +44,7 @@ const BlogSpace = () => {
           }`}
         >
           <div>
-            {devToArticlesData.slice(0, 6).map((item, index) => {
+            {devToArticlesData.slice(0, 8).map((item, index) => {
               return (
                 <BlogCard
                   key={index}
