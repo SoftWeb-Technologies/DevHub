@@ -103,6 +103,8 @@ const BlogSpace = () => {
           </div>
         </div>
 
+        <div onClick={() => setIsPopUpBoxActive(false)} className={`popup__bg__main__container ${isPopUpBoxActive ? "active" : ""}`} />
+
         <div
           className={`blogSpace__popup__container ${
             isPopUpBoxActive ? "active" : ""
@@ -122,6 +124,7 @@ const BlogSpace = () => {
               <div
                 style={{
                   marginTop: "-5.5px",
+                  zIndex: "2",
                 }}
               >
                 <BookmarkIcon
@@ -132,7 +135,7 @@ const BlogSpace = () => {
                   fillColor={isAddedToLib ? "yellow" : "#fff"}
                 />
               </div>
-              <div onClick={() => setIsPopUpBoxActive(false)}>
+              <div style = {{zIndex: "2", cursor: "pointer"}} onClick={() => setIsPopUpBoxActive(false)}>
                 <div
                   style={{
                     width: "22px",
