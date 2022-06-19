@@ -176,14 +176,14 @@ const BlogSpace = () => {
 
 const FilterHeader = ({ setFilter }) => {
   const filterList = [
-    "Career",
     "WebDev",
-    "Healthydebate",
-    "React",
+    "Python",
+    "Frontend",
+    "Backend",
     "Programming",
   ];
 
-  const [activeFilter, setActiveFilter] = useState("Career");
+  const [activeFilter, setActiveFilter] = useState("WebDev");
 
   return (
     <div className="blogSpace__filter__header">
@@ -216,7 +216,7 @@ const FilterHeader = ({ setFilter }) => {
           cursor: "pointer",
           fontSize: "0.89rem",
         }}
-        onClick={() => setFilter("career")}
+        onClick={() => setFilter("webdev")}
       >
         Clear All
       </p>
