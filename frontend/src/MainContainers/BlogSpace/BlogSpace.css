@@ -306,3 +306,25 @@
   color: #000;
   display: block;
 }
+
+.addMoreFilter__search__items__container{
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.addMoreFilter__search__items__container p{
+  display: none;
+}
+
+.addMoreFilter__search__items__container p.active{
+  display: block;
+}
+
+.addMoreFilter__search__items__container > div{
+  display: none;
+}
+
+.addMoreFilter__search__items__container > div.active{
+  display: block;
+}
