@@ -61,6 +61,19 @@ const Contest = () => {
               />
             ))}
           </div>
+          <h2>Upcoming Contests</h2>
+            <div style={{ cursor: "pointer" }}>
+              <ArrowInCircle />
+            </div>
+            <div className="contest__cards__container">
+            {contestData.slice(6, 12).map((contest, index) => (
+              <ContestCard
+                key={index}
+                title={contest.site}
+                description={contest.name}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </div>

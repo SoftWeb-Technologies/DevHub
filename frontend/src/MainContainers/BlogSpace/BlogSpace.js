@@ -96,7 +96,7 @@ const BlogSpace = () => {
                     opacity: "0.5",
                   }}
                 >
-                  Data not found
+                  Articles not found
                 </h2>
               </div>
             )}
@@ -200,10 +200,10 @@ const BlogSpace = () => {
 
 const FilterHeader = ({ setFilter }) => {
   const filterList = [
-    "WebDev",
+    "Discuss",
     "Python",
-    "Frontend",
-    "Backend",
+    "Javascript",
+    "Node",
     "Programming",
   ];
 
@@ -311,11 +311,11 @@ const MoreFilterOption = ({ setFilter }) => {
               padding: "0.5rem 1rem",
             }}
           >
-            Select a filter or search one
+            Select an filter or search one
           </p>
 
           <div className={`${isFilterModelActive ? "active" : ""}`}>
-            {["Nodejs", "Web", "Java", "TypeScript"].map((item, index) => (
+            {["beginners", "WebDev", "Career", "Productivity"].map((item, index) => (
               <div style={{
                 display: "flex",
                 alignItems: "center",

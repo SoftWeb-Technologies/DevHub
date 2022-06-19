@@ -168,6 +168,7 @@ const DashboardSideNavigation = ({ customStyle, ...props }) => {
                 justifyContent: "space-between",
                 alignItems: "center",
                 cursor: "pointer",
+                top: "2.7rem",
               }}
             >
               <p>Logout</p>

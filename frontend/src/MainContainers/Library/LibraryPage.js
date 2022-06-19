@@ -82,7 +82,7 @@ const LibraryPage = () => {
             <h1
               style={{
                 fontSize: "1.5rem",
-                color: "blue",
+                color: "grey",
                 opacity: "0.5",
               }}
             >
