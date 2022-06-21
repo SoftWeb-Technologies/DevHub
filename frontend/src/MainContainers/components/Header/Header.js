@@ -1,9 +1,11 @@
 import React from "react";
+import { useState } from "react";
 import { MenuIcon, SearchIcon } from "../../../DevHubIcons";
 import "./Header.css";
 
 const Header = ({ displayName, value, onChange }) => {
   const firstLetter = displayName?.charAt(0);
+  const [searchValue, setSearchValue] = useState("");
   return (
     <>
       <div
@@ -40,8 +42,17 @@ const Header = ({ displayName, value, onChange }) => {
           type={"text"}
           placeholder="Search a keyword"
           name="search"
-          value={value}
-          onChange={onChange}
+          value={searchValue}
+          onChange={(e) => {
+            setSearchValue(e.target.value);
+            if (searchValue.length > 0 && searchValue !== "") {
+              
+            }
+          }}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" && searchValue.length > 0) {
+            }
+          }}
         />
         <SearchIcon />
       </div>

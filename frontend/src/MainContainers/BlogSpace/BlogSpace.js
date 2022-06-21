@@ -5,7 +5,11 @@ import { DashboardSideNavigation } from "../components";
 import { Button, Title } from "../../components";
 import "./BlogSpace.css";
 import UserHeader from "../components/UserHeader/UserHeader";
-import { BookmarkIcon, MenuVerticalIcon, RightArrowIcon } from "../../DevHubIcons";
+import {
+  BookmarkIcon,
+  MenuVerticalIcon,
+  RightArrowIcon,
+} from "../../DevHubIcons";
 import { addItemsToLibrary } from "../../redux/actions/libActions";
 import { fetchDevToArticlesData } from "../../redux/actions/apiActions";
 
@@ -202,13 +206,7 @@ const BlogSpace = () => {
 };
 
 const FilterHeader = ({ setFilter }) => {
-  const filterList = [
-    "Discuss",
-    "Python",
-    "Javascript",
-    "Node",
-    "Programming",
-  ];
+  const filterList = ["Discuss", "Python", "Javascript", "Node", "Programming"];
 
   const [activeFilter, setActiveFilter] = useState("WebDev");
 
@@ -318,36 +316,40 @@ const MoreFilterOption = ({ setFilter }) => {
           </p>
 
           <div className={`${isFilterModelActive ? "active" : ""}`}>
-            {["beginners", "WebDev", "Career", "Productivity"].map((item, index) => (
-              <div style={{
-                display: "flex",
-                alignItems: "center",
-                flexDirection: "row",
-                padding: "0 1rem",
-              }}>
-              <MenuVerticalIcon />
-                <p
+            {["beginners", "WebDev", "Career", "Productivity"].map(
+              (item, index) => (
+                <div
                   style={{
-                    width: "110px",
-                    color: "#fff",
-                    background: "#008bb7",
                     display: "flex",
-                    flexDirection: "column",
-                    padding: "0.3rem 0.7rem",
-                    margin: "0.3rem 0rem",
-                    borderRadius: "10px",
-                    cursor: "pointer",
+                    alignItems: "center",
+                    flexDirection: "row",
+                    padding: "0 1rem",
                   }}
-                  onClick={() => {
-                    setFilter(item);
-                    setIsFilterModelActive(false);
-                  }}
-                  key={index}
                 >
-                  {item}
-                </p>
-              </div>
-            ))}
+                  <MenuVerticalIcon />
+                  <p
+                    style={{
+                      width: "110px",
+                      color: "#fff",
+                      background: "#008bb7",
+                      display: "flex",
+                      flexDirection: "column",
+                      padding: "0.3rem 0.7rem",
+                      margin: "0.3rem 0rem",
+                      borderRadius: "10px",
+                      cursor: "pointer",
+                    }}
+                    onClick={() => {
+                      setFilter(item);
+                      setIsFilterModelActive(false);
+                    }}
+                    key={index}
+                  >
+                    {item}
+                  </p>
+                </div>
+              )
+            )}
           </div>
         </div>
       </div>
