@@ -17,6 +17,11 @@ import ErrorImg from "../assets/images/404-error.svg";
 // library images
 import EmptyCuateImg from "../assets/images/libraryImgs/Empty-cuate.svg";
 
+// contest poster image
+import Poster1 from "../assets/images/contestPosters/poster1.png";
+import Poster2 from "../assets/images/contestPosters/poster2.png";
+import Poster3 from "../assets/images/contestPosters/poster3.png";
+
 export {
   AboutImg,
   DevHubLogoLight,
@@ -28,4 +33,7 @@ export {
   FaqImg,
   ErrorImg,
   EmptyCuateImg,
+  Poster1,
+  Poster2,
+  Poster3,
 };
