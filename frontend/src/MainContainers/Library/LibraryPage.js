@@ -92,6 +92,9 @@ const LibraryPage = () => {
           </div>
         )}
 
+
+        <div onClick={() => setIsPopUpBoxActive(false)} className={`popup__bg__main__container ${isPopUpBoxActive ? "active" : ""}`} />
+
         <div
           className={`blogSpace__popup__container ${
             isPopUpBoxActive ? "active" : ""
