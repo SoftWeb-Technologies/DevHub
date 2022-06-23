@@ -5,6 +5,7 @@ import { ArrowInCircle } from "../../DevHubIcons";
 import { fetchContestData } from "../../redux/actions/apiActions";
 import { DashboardSideNavigation, Header } from "../components";
 import "./Contest.css";
+import "../ContestsList/contestslist.js";
 
 const Contest = () => {
   const dispatch = useDispatch();
@@ -12,12 +13,14 @@ const Contest = () => {
   const { contestData } = useSelector((state) => state.contestApi);
 
   const [isNavActive, setIsNavActive] = useState(false);
-  // const [isPopUpBoxActive, setIsPopUpBoxActive] = useState(false);
-  // const [popUpData, setPopUpData] = useState(null);
+   //const [isPopUpBoxActive, setIsPopUpBoxActive] = useState(false);
+   //const [popUpData, setPopUpData] = useState(null);
+   //const [isAddedToLib, setIsAddedToLib] = useState(false);
 
   useEffect(() => {
     dispatch(fetchContestData());
   }, [dispatch]);
+
 
   return (
     <div>
@@ -48,7 +51,7 @@ const Contest = () => {
           >
             <h2>Current Contest</h2>
             <div style={{ cursor: "pointer" }}>
-              <ArrowInCircle />
+              <ArrowInCircle onClick={"/contestslist"} />
             </div>
           </div>
 
