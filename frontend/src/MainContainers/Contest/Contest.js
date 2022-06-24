@@ -7,7 +7,6 @@ import { ArrowInCircle } from "../../DevHubIcons";
 import { fetchContestData } from "../../redux/actions/apiActions";
 import { DashboardSideNavigation, Header } from "../components";
 import "./Contest.css";
-import "../ContestsList/Contestslist";
 
 const Contest = () => {
   const dispatch = useDispatch();
@@ -61,7 +60,7 @@ const Contest = () => {
           >
             <h2>Current Contest</h2>
             <div style={{ cursor: "pointer" }}>
-              <ArrowInCircle to={`/contestslist`}/>
+              <ArrowInCircle pushTo={`/contestslist`} />
             </div>
           </div>
 
@@ -93,7 +92,7 @@ const Contest = () => {
           >
             <h2>Upcoming Contest</h2>
             <div style={{ cursor: "pointer" }}>
-              <ArrowInCircle />
+              <ArrowInCircle pushTo={`/contestslist`} />
             </div>
           </div>
           <div className="contest__cards__container">
