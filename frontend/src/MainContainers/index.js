@@ -4,5 +4,6 @@ import LibraryPage from "./Library/LibraryPage";
 import Contest from "./Contest/Contest";
 import TaskList from "./TaskList/TaskList";
 import TechHunt from "./TechHunt/TechHunt";
+import ContestsList from "./ContestsList/Contestslist";
 
-export { Dashboard, BlogSpace, LibraryPage, Contest, TaskList, TechHunt };
+export { Dashboard, BlogSpace, LibraryPage, Contest, TaskList, TechHunt, ContestsList };

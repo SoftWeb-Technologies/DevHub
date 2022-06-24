@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Title } from "../../components";
+import { contestPosterData } from "../../constants/contestData";
+import { Poster1, Poster2, Poster3 } from "../../constants/Images";
 import { ArrowInCircle } from "../../DevHubIcons";
 import { fetchContestData } from "../../redux/actions/apiActions";
 import { DashboardSideNavigation, Header } from "../components";
 import "./Contest.css";
-import "../ContestsList/contestslist.js";
+import "../ContestsList/Contestslist";
 
 const Contest = () => {
   const dispatch = useDispatch();
@@ -13,14 +15,18 @@ const Contest = () => {
   const { contestData } = useSelector((state) => state.contestApi);
 
   const [isNavActive, setIsNavActive] = useState(false);
-   //const [isPopUpBoxActive, setIsPopUpBoxActive] = useState(false);
-   //const [popUpData, setPopUpData] = useState(null);
-   //const [isAddedToLib, setIsAddedToLib] = useState(false);
+  const [isPopUpBoxActive, setIsPopUpBoxActive] = useState(false);
+  const [popUpData, setPopUpData] = useState({
+    data: null,
+    index: null,
+  });
+
+  console.log(popUpData);
+  console.log(contestPosterData);
 
   useEffect(() => {
     dispatch(fetchContestData());
   }, [dispatch]);
-
 
   return (
     <div>
@@ -51,7 +57,7 @@ const Contest = () => {
           >
             <h2>Current Contest</h2>
             <div style={{ cursor: "pointer" }}>
-              <ArrowInCircle onClick={"/contestslist"} />
+              <ArrowInCircle to={`/contestslist`}/>
             </div>
           </div>
 
@@ -61,6 +67,15 @@ const Contest = () => {
                 key={index}
                 title={contest.site}
                 description={contest.name}
+                start_time={contest.start_time}
+                end_time={contest.end_time}
+                openPoster={() => {
+                  setIsPopUpBoxActive(true);
+                  setPopUpData({
+                    data: contest,
+                    index: index,
+                  });
+                }}
               />
             ))}
           </div>
@@ -83,8 +98,54 @@ const Contest = () => {
                 key={index}
                 title={contest.site}
                 description={contest.name}
+                start_time={contest.start_time}
+                end_time={contest.end_time}
+                openPoster={() => {
+                  setIsPopUpBoxActive(true);
+                  setPopUpData({
+                    data: contest,
+                    index: index,
+                  });
+                }}
               />
             ))}
+          </div>
+        </div>
+
+        {/* modal */}
+        <div
+          onClick={() => {
+            setIsPopUpBoxActive(false);
+            setPopUpData({
+              data: null,
+              index: null,
+            });
+          }}
+          className={`contest__poster__model ${
+            isPopUpBoxActive ? "active" : ""
+          }`}
+        />
+
+        <div
+          className={`contest__poster__container ${
+            isPopUpBoxActive ? "active" : ""
+          }`}
+        >
+          <div
+            style={{
+              width: "100%",
+              position: "relative",
+            }}
+          >
+            {popUpData?.data?.site === "HackerRank" && (
+              <img style={{ width: "100%" }} src={Poster1} alt="HackerRank" />
+            )}
+            {popUpData?.data?.site === "CodeChef" && (
+              <img style={{ width: "100%" }} src={Poster2} alt="CodeChef" />
+            )}
+            {popUpData?.data?.site === "HackerEarth" && (
+              <img style={{ width: "100%" }} src={Poster3} alt="HackerEarth" />
+            )}
           </div>
         </div>
       </div>
@@ -94,7 +155,7 @@ const Contest = () => {
 
 const ContestCard = (props) => {
   return (
-    <div className="contest__card__container">
+    <div onClick={props.openPoster} className="contest__card__container">
       <div>
         <h3
           style={{
@@ -113,6 +174,36 @@ const ContestCard = (props) => {
         >
           {props.description}
         </p>
+
+        <div
+          style={{
+            marginTop: "1.5rem",
+          }}
+        >
+          <p
+            style={{
+              color: "green",
+              opacity: "0.6",
+              fontSize: "0.90rem",
+            }}
+          >
+            Start:{" "}
+            <span>
+              {props?.start_time?.split("T")[0] ||
+                props.start_time?.split(" ")[0]}
+            </span>
+          </p>
+          <p
+            style={{
+              color: "red",
+              opacity: "0.6",
+              marginTop: "0.5rem",
+              fontSize: "0.90rem",
+            }}
+          >
+            End: <span>{props?.end_time?.split("T")[0]}</span>
+          </p>
+        </div>
       </div>
     </div>
   );

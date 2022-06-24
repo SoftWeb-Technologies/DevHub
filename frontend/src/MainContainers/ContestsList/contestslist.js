@@ -6,4 +6,4 @@ const contestslist = () => {
   )
 }
 
-export default contestslist
+export default contestslist;
