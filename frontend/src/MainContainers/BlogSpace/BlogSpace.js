@@ -50,7 +50,7 @@ const BlogSpace = () => {
     dispatch(addItemsToLibrary(popUpData.id, popUpData, isAddedToLib));
   };
 
-  console.log(filteredData);
+  // console.log(filteredData);
 
   return (
     <div>
@@ -107,7 +107,12 @@ const BlogSpace = () => {
           </div>
         </div>
 
-        <div onClick={() => setIsPopUpBoxActive(false)} className={`popup__bg__main__container ${isPopUpBoxActive ? "active" : ""}`} />
+        <div
+          onClick={() => setIsPopUpBoxActive(false)}
+          className={`popup__bg__main__container ${
+            isPopUpBoxActive ? "active" : ""
+          }`}
+        />
 
         <div
           className={`blogSpace__popup__container ${
@@ -139,7 +144,10 @@ const BlogSpace = () => {
                   fillColor={isAddedToLib ? "yellow" : "#fff"}
                 />
               </div>
-              <div style = {{zIndex: "2", cursor: "pointer"}} onClick={() => setIsPopUpBoxActive(false)}>
+              <div
+                style={{ zIndex: "2", cursor: "pointer" }}
+                onClick={() => setIsPopUpBoxActive(false)}
+              >
                 <div
                   style={{
                     width: "22px",

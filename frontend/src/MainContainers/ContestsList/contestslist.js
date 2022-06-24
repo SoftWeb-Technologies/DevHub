@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
-const contestslist = () => {
-  return (
-    <div>contestslist</div>
-  )
-}
+const ContestsList = () => {
+  return <div>ContestsList</div>;
+};
 
-export default contestslist;
+export default ContestsList;

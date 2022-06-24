@@ -1,8 +1,12 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
-const ArrowInCircle = () => {
+const ArrowInCircle = ({ pushTo }) => {
+  const navigate = useNavigate();
+
   return (
     <svg
+      onClick={() => navigate(pushTo)}
       width="22"
       height="22"
       viewBox="0 0 22 22"

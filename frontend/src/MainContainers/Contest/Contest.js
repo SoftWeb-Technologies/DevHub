@@ -7,7 +7,6 @@ import { ArrowInCircle } from "../../DevHubIcons";
 import { fetchContestData } from "../../redux/actions/apiActions";
 import { DashboardSideNavigation, Header } from "../components";
 import "./Contest.css";
-import "../ContestsList/Contestslist";
 
 const Contest = () => {
   const dispatch = useDispatch();
@@ -21,8 +20,9 @@ const Contest = () => {
     index: null,
   });
 
-  console.log(popUpData);
-  console.log(contestPosterData);
+  const [filteredDate, setFilteredData] = useState(null);
+  const [filter, setFilter] = useState("");
+  console.log(filteredDate);
 
   useEffect(() => {
     dispatch(fetchContestData());
@@ -36,7 +36,10 @@ const Contest = () => {
       <div className="contest__main__container">
         <div className="header__main__container">
           <div className="contest__header__container">
-            <Header displayName={currentUser?.displayName} />
+            <Header
+              displayName={currentUser?.displayName}
+              setFilter={setFilter}
+            />
           </div>
           <div className="user__name__container">
             <h2 style={{ color: "#fff", marginTop: "0.7rem" }}>
@@ -57,7 +60,7 @@ const Contest = () => {
           >
             <h2>Current Contest</h2>
             <div style={{ cursor: "pointer" }}>
-              <ArrowInCircle to={`/contestslist`}/>
+              <ArrowInCircle pushTo={`/contestslist`} />
             </div>
           </div>
 
@@ -89,7 +92,7 @@ const Contest = () => {
           >
             <h2>Upcoming Contest</h2>
             <div style={{ cursor: "pointer" }}>
-              <ArrowInCircle />
+              <ArrowInCircle pushTo={`/contestslist`} />
             </div>
           </div>
           <div className="contest__cards__container">
