@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Title } from "../../components";
-import { contestPosterData } from "../../constants/contestData";
 import { Poster1, Poster2, Poster3 } from "../../constants/Images";
 import { ArrowInCircle } from "../../DevHubIcons";
 import { fetchContestData } from "../../redux/actions/apiActions";
@@ -137,18 +136,37 @@ const Contest = () => {
           <div
             style={{
               width: "100%",
+              height: "100%",
               position: "relative",
             }}
           >
             {popUpData?.data?.site === "HackerRank" && (
-              <img style={{ width: "100%" }} src={Poster1} alt="HackerRank" />
+              <img
+                style={{ width: "100%", height: "100%", zIndex: "-1" }}
+                src={Poster1}
+                alt="HackerRank"
+              />
             )}
             {popUpData?.data?.site === "CodeChef" && (
-              <img style={{ width: "100%" }} src={Poster2} alt="CodeChef" />
+              <img
+                style={{ width: "100%", height: "100%", zIndex: "-1" }}
+                src={Poster2}
+                alt="CodeChef"
+              />
             )}
             {popUpData?.data?.site === "HackerEarth" && (
-              <img style={{ width: "100%" }} src={Poster3} alt="HackerEarth" />
+              <img
+                style={{ width: "100%", height: "100%", zIndex: "-1" }}
+                src={Poster3}
+                alt="HackerEarth"
+              />
             )}
+
+            <div className="contest__model__button">
+              <a href={popUpData?.data?.url} target="_blank" rel="noreferrer">
+                Participate Now
+              </a>
+            </div>
           </div>
         </div>
       </div>
