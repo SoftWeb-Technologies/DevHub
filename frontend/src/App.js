@@ -18,6 +18,7 @@ import {
   TaskList,
   Contest,
   TechHunt,
+  ContestsList,
 } from "./MainContainers";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
@@ -85,6 +86,11 @@ function App() {
           path="/techhunt"
           element={<ProtectedRoute Component={TechHunt} />}
         />
+        <Route
+        exact
+        path="/contestslist"
+        element={<ProtectedRoute Component={ContestsList} />}
+        />
 
         <Route
           path="/*"
@@ -110,7 +116,7 @@ function App() {
               <Button
                 label={"Back to home"}
                 primary={true}
-                onClick={() => navigate("/", { replace: true })}
+                onClick={() => navigate("/dashboard", { replace: true })}
               />
             </div>
           }

@@ -7,6 +7,7 @@ import { ArrowInCircle } from "../../DevHubIcons";
 import { fetchContestData } from "../../redux/actions/apiActions";
 import { DashboardSideNavigation, Header } from "../components";
 import "./Contest.css";
+import "../ContestsList/Contestslist";
 
 const Contest = () => {
   const dispatch = useDispatch();
@@ -60,7 +61,7 @@ const Contest = () => {
           >
             <h2>Current Contest</h2>
             <div style={{ cursor: "pointer" }}>
-              <ArrowInCircle />
+              <ArrowInCircle to={`/contestslist`}/>
             </div>
           </div>
 
@@ -115,7 +116,7 @@ const Contest = () => {
           </div>
         </div>
 
-        {/* model */}
+        {/* modal */}
         <div
           onClick={() => {
             setIsPopUpBoxActive(false);
