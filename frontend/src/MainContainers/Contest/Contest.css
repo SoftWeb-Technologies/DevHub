@@ -48,6 +48,29 @@
   display: none;
 }
 
+.contest__model__button {
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: all 0.3s ease-in-out;
+}
+
+.contest__model__button a {
+  padding: 0.5rem 1rem;
+  border: 2px solid white;
+  color: #fff;
+  border-radius: 10px;
+}
+
+.contest__model__button:hover {
+  transform: translateX(-50%) scale(1.05);
+}
+
+.contest__model__button:active {
+  transform: translateX(-50%) scale(0.89);
+}
+
 .contest__poster__model.active {
   position: fixed;
   background-color: rgba(0, 0, 0, 0.5);
