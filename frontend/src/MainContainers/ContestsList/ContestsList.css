@@ -1,0 +1,120 @@
+.contestlist__header__container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .header__main__container {
+    padding: 2.4rem 5rem;
+    background: linear-gradient(
+      122.43deg,
+      #008bb7 23.82%,
+      rgba(0, 139, 183, 0.5) 69.43%
+    );
+    position: relative;
+  }
+  
+  .contestlist__body__container {
+    padding: 2.4rem 5rem;
+  }
+  
+  .contestlist__body__container.active {
+    animation: slide-effect 0.5s 1 ease forwards;
+  }
+  
+  .contest__cards__container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .contest__card__container {
+    max-width: 350px;
+    width: 100%;
+    height: 160px;
+    border-radius: 10px;
+    margin-top: 1rem;
+    background-color: #e8f5fa;
+    transition: all 0.5s ease-in-out;
+    cursor: pointer;
+    padding: 1rem;
+  }
+  
+  .contest__card__container:hover {
+    box-shadow: 2px 2px 10px #008cb799;
+  }
+  
+  .contest__poster__model {
+    display: none;
+  }
+  
+  .contest__model__button {
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .contest__model__button a {
+    padding: 0.5rem 1rem;
+    border: 2px solid white;
+    color: #fff;
+    border-radius: 10px;
+  }
+  
+  .contest__model__button:hover {
+    transform: translateX(-50%) scale(1.05);
+  }
+  
+  .contest__model__button:active {
+    transform: translateX(-50%) scale(0.89);
+  }
+  
+  .contest__poster__model.active {
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100vh;
+    z-index: 5;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: block;
+  }
+  
+  .contest__poster__container {
+    display: none;
+  }
+  
+  .contest__poster__container.active {
+    position: fixed;
+    background-color: #fff;
+    overflow: hidden;
+    width: 65%;
+    height: 70vh;
+    top: 50%;
+    left: 50%;
+    z-index: 6;
+    transform: translate(-50%, -50%);
+    border-radius: 15px;
+    display: block;
+    animation: popup_poster 0.3s linear forwards;
+  }
+  
+  @keyframes popup_poster {
+    0% {
+      transform: translate(-50%, -50%) scale(0);
+      opacity: 0;
+    }
+    60% {
+      transform: translate(-50%, -50%) scale(1.08);
+      opacity: 1;
+    }
+    100% {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 1;
+    }
+  }
+  

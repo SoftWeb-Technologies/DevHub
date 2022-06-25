@@ -21,6 +21,7 @@ import EmptyCuateImg from "../assets/images/libraryImgs/Empty-cuate.svg";
 import Poster1 from "../assets/images/contestPosters/poster1.png";
 import Poster2 from "../assets/images/contestPosters/poster2.png";
 import Poster3 from "../assets/images/contestPosters/poster3.png";
+import Poster4 from "../assets/images/contestPosters/poster-4.png";
 
 export {
   AboutImg,
@@ -36,4 +37,5 @@ export {
   Poster1,
   Poster2,
   Poster3,
+  Poster4,
 };

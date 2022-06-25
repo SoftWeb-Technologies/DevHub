@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Title } from "../../components";
-import { Poster1, Poster2, Poster3 } from "../../constants/Images";
+import { Poster1, Poster2, Poster3, Poster4 } from "../../constants/Images";
 import { ArrowInCircle } from "../../DevHubIcons";
 import { fetchContestData } from "../../redux/actions/apiActions";
 import { DashboardSideNavigation, Header } from "../components";
@@ -159,6 +159,14 @@ const Contest = () => {
                 style={{ width: "100%", height: "100%", zIndex: "-1" }}
                 src={Poster3}
                 alt="HackerEarth"
+              />
+            )}
+
+            {popUpData?.data?.site === "LeetCode" && (
+              <img
+              style={{ width: "100%", height: "100%", zIndex: "-1" }}
+              src={Poster4}
+              alt="LeetCode"
               />
             )}
 
