@@ -1,10 +1,10 @@
-import React, { useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Title } from "../../components";
 import { Poster1, Poster2, Poster3, Poster4 } from "../../constants/Images";
 import { fetchContestData } from "../../redux/actions/apiActions";
 import { DashboardSideNavigation, Header } from "../components";
-import './ContestsList.css';
+import "./ContestsList.css";
 
 const ContestsList = () => {
   const dispatch = useDispatch();
@@ -16,52 +16,52 @@ const ContestsList = () => {
   const [popUpData, setPopUpData] = useState({
     data: null,
     index: null,
-});
+  });
 
-const [filteredDate, setFilteredData] = useState(null);
-const [filter, setFilter] = useState("");
-console.log(filteredDate);
+  const [filteredDate, setFilteredData] = useState(null);
+  const [filter, setFilter] = useState("");
 
-useEffect (() => {
-  dispatch(fetchContestData());
-}
-, [dispatch]);
+  useEffect(() => {
+    dispatch(fetchContestData());
+  }, [dispatch]);
 
-return (
-  <div>
-    <Title title="ContestsList" />
+  return (
+    <div>
+      <Title title="ContestsList" />
 
-    <DashboardSideNavigation setIsNavActive={setIsNavActive} />
-    <div className="contestlist__main__container">
-      <div className="header__main__container">
-        <div className="contestlist__header__container">
-          <Header
-            displayName={currentUser?.displayName}
-            setFilter={setFilter}
-          />
+      <DashboardSideNavigation setIsNavActive={setIsNavActive} />
+      <div className="contestlist__main__container">
+        <div className="header__main__container">
+          <div className="contestlist__header__container">
+            <Header
+              displayName={currentUser?.displayName}
+              setFilter={setFilter}
+            />
+          </div>
+          <div className="user__name__container">
+            <h2 style={{ color: "#fff", marginTop: "0.7rem" }}>
+              Hello! {currentUser?.displayName}
+            </h2>
+          </div>
         </div>
-        <div className="user__name__container">
-          <h2 style={{ color: "#fff", marginTop: "0.7rem" }}>
-            Hello! {currentUser?.displayName}
-          </h2>
-        </div>
-      </div>
 
-      <div
-        className={`contestlist__body__container ${isNavActive ? "active" : ""}`}
-      >
         <div
-          style={{
-            display: "flex",
-            alignContent: "center",
-            gap: "0.5rem",
-          }}
+          className={`contestlist__body__container ${
+            isNavActive ? "active" : ""
+          }`}
         >
-          <h2>Current contests</h2>
-        </div>
-        
-        <div className="contest__cards__container">
-            {contestData.slice(6, 30).map((contest, index) => (
+          <div
+            style={{
+              display: "flex",
+              alignContent: "center",
+              gap: "0.5rem",
+            }}
+          >
+            <h2>Current contests</h2>
+          </div>
+
+          <div className="contest__cards__container">
+            {contestData.slice(6, 30)?.map((contest, index) => (
               <ContestCard
                 key={index}
                 title={contest.site}
@@ -75,9 +75,9 @@ return (
                     index: index,
                   });
                 }}
-                />
-              ))}
-              </div>
+              />
+            ))}
+          </div>
           <div
             style={{
               display: "flex",
@@ -86,11 +86,10 @@ return (
               marginTop: "2rem",
             }}
           >
-
             <h2>Upcoming Contest</h2>
-            </div>
-            <div className="contest__cards__container">
-            {contestData.slice(30, 60).map((contest, index) => (
+          </div>
+          <div className="contest__cards__container">
+            {contestData.slice(30, 60)?.map((contest, index) => (
               <ContestCard
                 key={index}
                 title={contest.site}
@@ -157,11 +156,11 @@ return (
               />
             )}
 
-             {popUpData?.data?.site === "LeetCode" && (
+            {popUpData?.data?.site === "LeetCode" && (
               <img
-              style={{ width: "100%", height: "100%", zIndex: "-1" }}
-              src={Poster4}
-              alt="LeetCode"
+                style={{ width: "100%", height: "100%", zIndex: "-1" }}
+                src={Poster4}
+                alt="LeetCode"
               />
             )}
 

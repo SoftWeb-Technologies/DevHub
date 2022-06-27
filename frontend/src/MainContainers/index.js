@@ -4,7 +4,7 @@ import LibraryPage from "./Library/LibraryPage";
 import Contest from "./Contest/Contest";
 import TaskList from "./TaskList/TaskList";
 import TechHunt from "./TechHunt/TechHunt";
-import ContestsList from "./ContestsList/ContestsList";
+import ContestsList from "./ContestsList/contestslist";
 
 export {
   Dashboard,
