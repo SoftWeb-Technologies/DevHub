@@ -1,5 +1,25 @@
 import axios from "axios";
-import * as types from "../contacts/apiActionTypes";
+import * as types from "../constants/apiActionTypes";
+
+export const fetchTechHuntNewsData = () => async (dispatch) => {
+  try {
+    dispatch({ type: types.API_FETCH_TECH_HUNT_START });
+
+    // need to secure this api
+    const API_KEY = "4fe2335bcdbf43c2a98c2bc7913691bf";
+    
+    const { data } = await axios.get(
+      `https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=${API_KEY}`
+    );
+
+    dispatch({ type: types.API_FETCH_TECH_HUNT_SUCCESS, payload: data });
+  } catch (err) {
+    dispatch({
+      type: types.API_FETCH_TECH_HUNT_FAIL,
+      payload: err.response.data.message,
+    });
+  }
+};
 
 export const fetchNewsAppleData = () => async (dispatch) => {
   try {

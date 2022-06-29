@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useState } from "react";
 import { MenuIcon, SearchIcon } from "../../../DevHubIcons";
 import "./Header.css";
@@ -46,9 +46,9 @@ const Header = ({ displayName, setFilter }) => {
           value={searchValue}
           onChange={(e) => {
             setSearchValue(e.target.value);
-            // if (searchValue.length > 0 && searchValue !== "") {
-            //   setFilter && setFilter(e.target.value);
-            // }
+            if (searchValue.length > 0 && searchValue !== "") {
+              setFilter && setFilter(e.target.value);
+            }
           }}
           onKeyDown={(e) => {
             if (e.key === "Enter" && searchValue.length > 0) {

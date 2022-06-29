@@ -1,7 +1,7 @@
 import {
   ADD_ITEM_TO_LIBRARY,
   REMOVE_ITEM_FROM_LIBRARY,
-} from "../contacts/libActionTypes";
+} from "../constants/libActionTypes";
 
 export const addItemsToLibrary =
   (id, items, isAddedToLib) => (dispatch, getState) => {

@@ -11,7 +11,10 @@ import {
   API_FETCH_NEWS_TESLA_FAIL,
   API_FETCH_NEWS_TESLA_START,
   API_FETCH_NEWS_TESLA_SUCCESS,
-} from "../contacts/apiActionTypes";
+  API_FETCH_TECH_HUNT_FAIL,
+  API_FETCH_TECH_HUNT_START,
+  API_FETCH_TECH_HUNT_SUCCESS,
+} from "../constants/apiActionTypes";
 
 const newsAppleInitialState = {
   loading: false,
@@ -141,6 +144,40 @@ export const apiContestReducer = (state = contestInitialState, action) => {
       };
 
     case API_FETCH_CONTEST_FAIL:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+
+    default:
+      return state;
+  }
+};
+
+// tech-hunt reducer
+const techHuntInitialState = {
+  loading: false,
+  error: null,
+  techHuntData: [],
+};
+
+export const apiTechHuntReducer = (state = techHuntInitialState, action) => {
+  switch (action.type) {
+    case API_FETCH_TECH_HUNT_START:
+      return {
+        loading: true,
+        techHuntData: [],
+      };
+
+    case API_FETCH_TECH_HUNT_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        techHuntData: action.payload,
+      };
+
+    case API_FETCH_TECH_HUNT_FAIL:
       return {
         ...state,
         loading: false,

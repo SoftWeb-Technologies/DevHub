@@ -1,4 +1,4 @@
-import * as types from "../contacts/libActionTypes";
+import * as types from "../constants/libActionTypes";
 
 export const libReducer = (
   state = {
