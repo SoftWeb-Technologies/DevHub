@@ -5,7 +5,7 @@ import {
   API_FETCH_GITHUB_REPOS_FAIL,
   API_FETCH_GITHUB_REPOS_START,
   API_FETCH_GITHUB_REPOS_SUCCESS,
-} from "../contacts/apiActionTypes";
+} from "../constants/apiActionTypes";
 
 const githubReposInitialState = {
   loading: false,

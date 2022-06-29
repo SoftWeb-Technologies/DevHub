@@ -5,7 +5,7 @@ import {
   signInWithPopup,
 } from "firebase/auth";
 
-import * as types from "../contacts/actionTypes";
+import * as types from "../constants/actionTypes";
 
 // register actions
 const registerStart = () => ({
