@@ -22,6 +22,10 @@ import Poster1 from "../assets/images/contestPosters/poster1.png";
 import Poster2 from "../assets/images/contestPosters/poster2.png";
 import Poster3 from "../assets/images/contestPosters/poster3.png";
 import Poster4 from "../assets/images/contestPosters/poster-4.png";
+import Poster5 from "../assets/images/contestPosters/poster-5.png";
+import Poster6 from "../assets/images/contestPosters/poster-6.png";
+import Poster7 from "../assets/images/contestPosters/poster-7.png";
+import Poster8 from "../assets/images/contestPosters/poster-8.png";
 
 export {
   AboutImg,
@@ -38,4 +42,8 @@ export {
   Poster2,
   Poster3,
   Poster4,
+  Poster5,
+  Poster6,
+  Poster7,
+  Poster8,
 };
