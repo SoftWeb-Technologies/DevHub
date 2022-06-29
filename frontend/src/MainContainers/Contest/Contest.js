@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Title } from "../../components";
-import { Poster1, Poster2, Poster3, Poster4 } from "../../constants/Images";
+import { Poster1, Poster2, Poster3, Poster4, Poster5, Poster6, Poster7, Poster8 } from "../../constants/Images";
 import { ArrowInCircle } from "../../DevHubIcons";
 import { fetchContestData } from "../../redux/actions/apiActions";
 import { DashboardSideNavigation, Header } from "../components";
@@ -167,6 +167,38 @@ const Contest = () => {
               style={{ width: "100%", height: "100%", zIndex: "-1" }}
               src={Poster4}
               alt="LeetCode"
+              />
+            )}
+
+{popUpData?.data?.site === "AtCoder" && (
+              <img
+                style={{ width: "100%", height: "100%", zIndex: "-1" }}
+                src={Poster5}
+                alt="AtCoder"
+              />
+            )}
+
+            {popUpData?.data?.site === "TopCoder" && (
+              <img
+                style={{ width: "100%", height: "100%", zIndex: "-1" }}
+                src={Poster6}
+                alt="TopCoder"
+              />
+            )}
+
+            {popUpData?.data?.site === "Codeforces" && (
+              <img
+                style={{ width: "100%", height: "100%", zIndex: "-1" }}
+                src={Poster7}
+                alt="Codeforces"
+              />
+            )}
+
+            {popUpData?.data?.site === "Kick Start" && (
+              <img
+                style={{ width: "100%", height: "100%", zIndex: "-1" }}
+                src={Poster8}
+                alt="Kick Start"
               />
             )}
 

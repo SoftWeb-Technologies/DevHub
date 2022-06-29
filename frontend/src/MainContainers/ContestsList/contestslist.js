@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Title } from "../../components";
-import { Poster1, Poster2, Poster3, Poster4 } from "../../constants/Images";
+import { Poster1, Poster2, Poster3, Poster4, Poster5, Poster6, Poster7, Poster8 } from "../../constants/Images";
 import { fetchContestData } from "../../redux/actions/apiActions";
 import { DashboardSideNavigation, Header } from "../components";
 import "./ContestsList.css";
@@ -57,7 +57,7 @@ const ContestsList = () => {
               gap: "0.5rem",
             }}
           >
-            <h2>Current contests</h2>
+            <h2 style={{ color: "rgb(86, 85, 85)", fontFamily: "inherit" }}>Current Contests</h2>
           </div>
 
           <div className="contest__cards__container">
@@ -86,10 +86,10 @@ const ContestsList = () => {
               marginTop: "2rem",
             }}
           >
-            <h2>Upcoming Contest</h2>
+            <h2 style={{ color: "rgb(86, 85, 85)", fontFamily: "inherit" }}>Upcoming Contests</h2>
           </div>
           <div className="contest__cards__container">
-            {contestData.slice(30, 60)?.map((contest, index) => (
+            {contestData.slice(30, 65)?.map((contest, index) => (
               <ContestCard
                 key={index}
                 title={contest.site}
@@ -161,6 +161,38 @@ const ContestsList = () => {
                 style={{ width: "100%", height: "100%", zIndex: "-1" }}
                 src={Poster4}
                 alt="LeetCode"
+              />
+            )}
+
+            {popUpData?.data?.site === "AtCoder" && (
+              <img
+                style={{ width: "100%", height: "100%", zIndex: "-1" }}
+                src={Poster5}
+                alt="AtCoder"
+              />
+            )}
+
+            {popUpData?.data?.site === "TopCoder" && (
+              <img
+                style={{ width: "100%", height: "100%", zIndex: "-1" }}
+                src={Poster6}
+                alt="TopCoder"
+              />
+            )}
+
+            {popUpData?.data?.site === "CodeForces" && (
+              <img
+                style={{ width: "100%", height: "100%", zIndex: "-1" }}
+                src={Poster7}
+                alt="CodeForces"
+              />
+            )}
+
+            {popUpData?.data?.site === "Kick Start" && (
+              <img
+                style={{ width: "100%", height: "100%", zIndex: "-1" }}
+                src={Poster8}
+                alt="Kick Start"
               />
             )}
 
