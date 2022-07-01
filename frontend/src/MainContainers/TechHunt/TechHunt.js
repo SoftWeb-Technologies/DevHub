@@ -109,7 +109,7 @@ const TechHunt = () => {
               </div>
               <div className="techHunt__cards__container">
                 {techHuntData.articles
-                  ?.slice(3, techHuntData.articles?.length || 0)
+                  ?.slice(1, techHuntData.articles?.length || 0)
                   ?.map((article, index) => (
                     <TechHuntCard
                       key={index}
