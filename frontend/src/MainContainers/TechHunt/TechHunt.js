@@ -1,6 +1,7 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Button, Title } from "../../components";
+import { Button, Loader, Title } from "../../components";
 import { ArrowInCircle, RightArrowIcon } from "../../DevHubIcons";
 import { fetchTechHuntNewsData } from "../../redux/actions/apiActions";
 import { DashboardSideNavigation, Header } from "../components";
@@ -19,26 +20,34 @@ const TechHunt = () => {
     index: null,
   });
 
-  const [filteredDate, setFilteredData] = useState("");
+  const [filteredData, setFilteredData] = useState([]);
   const [filter, setFilter] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     dispatch(fetchTechHuntNewsData());
   }, [dispatch]);
 
   useEffect(() => {
-    let data = techHuntData.articles?.filter((item) => {
-      return (
-        item.title.toLowerCase().includes(filter.toLowerCase()) ||
-        item.description.toLowerCase().includes(filter.toLowerCase()) ||
-        item.publishedAt.includes(filter.toLowerCase()) ||
-        item.author.toLowerCase().includes(filter.toLowerCase()) ||
-        item.content.toLowerCase().includes(filter.toLowerCase())
-      );
-    });
+    const fetchAllNews = (keyword) => {
+      var config = {
+        method: "get",
+        url: `/api/news-keyword/${keyword}`,
+      };
 
-    setFilteredData(data);
-  }, [techHuntData, filter]);
+      axios(config).then((response) => {
+        // console.log(response.data);
+        setIsLoading(true);
+        setFilteredData(response.data);
+
+        setTimeout(() => {
+          setIsLoading(false);
+        }, 3000);
+      });
+    };
+
+    filter && fetchAllNews(filter);
+  }, [filter]);
 
   return (
     <div>
@@ -129,20 +138,45 @@ const TechHunt = () => {
           ) : (
             <div>
               <div className="techHunt__cards__container">
-                {filteredDate?.map((article, index) => (
-                  <TechHuntCard
-                    key={index}
-                    title={article.title}
-                    description={article.description}
-                    openPoster={() => {
-                      setIsPopUpBoxActive(true);
-                      setPopUpData({
-                        data: article,
-                        index: index,
-                      });
-                    }}
-                  />
-                ))}
+                {filteredData.length === 0 || isLoading ? (
+                  <>
+                    <div
+                      style={{
+                        width: "100%",
+                        height: "330px",
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        flexDirection: "column",
+                      }}
+                    >
+                      <Loader />
+                      <h2
+                        style={{
+                          marginTop: "4rem",
+                          textAlign: "center",
+                        }}
+                      >
+                        Fetching Latest News
+                      </h2>
+                    </div>
+                  </>
+                ) : (
+                  filteredData?.map((article, index) => (
+                    <TechHuntCard
+                      key={index}
+                      title={article.title}
+                      description={article.description}
+                      openPoster={() => {
+                        setIsPopUpBoxActive(true);
+                        setPopUpData({
+                          data: article,
+                          index: index,
+                        });
+                      }}
+                    />
+                  ))
+                )}
               </div>
             </div>
           )}
