@@ -11,6 +11,8 @@ import TextInputField from "./TextInputField/TextInputField";
 import SizeBox from "./SizeBox/SizeBox";
 import Accordion from "./Accordion/accordion";
 
+import Loader from "./Loader/Loader";
+
 export {
   Button,
   Title,
@@ -24,4 +26,5 @@ export {
   TextInputField,
   SizeBox,
   Accordion,
+  Loader,
 };
