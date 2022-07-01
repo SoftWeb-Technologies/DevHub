@@ -264,30 +264,30 @@ const TechHunt = () => {
   );
 };
 
-const TechHuntCard = (props) => {
-  return (
-    <div onClick={props.openPoster} className="techHunt__card__container">
-      <div>
-        <h3
-          style={{
-            color: "#008bb7",
-          }}
-        >
-          {props.title.slice(0, 60) + "..."}
-        </h3>
-        <p
-          style={{
-            color: "#000",
-            fontSize: "0.85rem",
-            marginTop: "1rem",
-            opacity: "0.7",
-          }}
-        >
-          {props.description?.slice(0, 150) + "..."}
-        </p>
-      </div>
-    </div>
-  );
-};
+// const TechHuntCard = (props) => {
+//   return (
+//     <div onClick={props.openPoster} className="techHunt__card__container">
+//       <div>
+//         <h3
+//           style={{
+//             color: "#008bb7",
+//           }}
+//         >
+//           {props.title.slice(0, 60) + "..."}
+//         </h3>
+//         <p
+//           style={{
+//             color: "#000",
+//             fontSize: "0.85rem",
+//             marginTop: "1rem",
+//             opacity: "0.7",
+//           }}
+//         >
+//           {props.description?.slice(0, 150) + "..."}
+//         </p>
+//       </div>
+//     </div>
+//   );
+// };
 
 export default TechHunt;
