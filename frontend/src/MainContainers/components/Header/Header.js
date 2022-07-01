@@ -46,13 +46,15 @@ const Header = ({ displayName, setFilter }) => {
           value={searchValue}
           onChange={(e) => {
             setSearchValue(e.target.value);
-            if (searchValue.length > 0 && searchValue !== "") {
-              setFilter && setFilter(e.target.value);
-            }
+            // if (searchValue.length > 0 && searchValue !== "") {
+            //   setFilter && setFilter(e.target.value);
+            // }
           }}
           onKeyDown={(e) => {
             if (e.key === "Enter" && searchValue.length > 0) {
               setFilter && setFilter(e.target.value);
+            } else {
+              setFilter && setFilter("");
             }
           }}
         />
