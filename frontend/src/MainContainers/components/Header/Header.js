@@ -1,9 +1,11 @@
 import React from "react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { MenuIcon, SearchIcon } from "../../../DevHubIcons";
 import "./Header.css";
 
 const Header = ({ displayName, setFilter }) => {
+  const navigate = useNavigate();
   const firstLetter = displayName?.charAt(0);
   const [searchValue, setSearchValue] = useState("");
 
@@ -56,6 +58,7 @@ const Header = ({ displayName, setFilter }) => {
       </div>
 
       <div
+        onClick={() => navigate("/profile")}
         style={{
           display: "flex",
           alignItems: "center",
