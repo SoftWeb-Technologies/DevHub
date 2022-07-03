@@ -9,13 +9,7 @@ const Header = ({ displayName, setFilter }) => {
 
   return (
     <>
-      <div
-        style={{
-          display: "flex",
-          width: "100%",
-          gap: "10px",
-        }}
-      >
+      <div className="header__container">
         <div
           style={{
             maxWidth: "22px",
@@ -26,7 +20,7 @@ const Header = ({ displayName, setFilter }) => {
         >
           <MenuIcon />
         </div>{" "}
-        <p
+        {/* <p
           style={{
             color: "#000",
             textTransform: "uppercase",
@@ -35,7 +29,7 @@ const Header = ({ displayName, setFilter }) => {
           }}
         >
           Menu
-        </p>
+        </p> */}
       </div>
 
       <div className="dashboard__header__container__search">

@@ -20,7 +20,9 @@
 }
 
 .card__content {
+  height: 120px;
   padding: 10px;
+  overflow: hidden;
 }
 
 .card__content p {
