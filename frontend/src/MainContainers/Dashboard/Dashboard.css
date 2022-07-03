@@ -22,6 +22,14 @@
   justify-content: space-between;
 }
 
+.hide-on-mobile {
+  display: none;
+}
+
+.hide-on-desktop {
+  display: block;
+}
+
 .dashboard__header__container__search {
   display: flex;
   align-items: center;
@@ -91,6 +99,14 @@
 }
 
 @media screen and (min-width: 850px) {
+  .hide-on-desktop {
+    display: none;
+  }
+
+  .hide-on-mobile {
+    display: block;
+  }
+
   .dashboard {
     width: 100%;
     height: auto;

@@ -172,7 +172,7 @@ const TechHunt = () => {
                       title={article.title}
                       image={article.urlToImage}
                       description={article.description}
-                      openPoster={() => {
+                      openModel={() => {
                         setIsPopUpBoxActive(true);
                         setPopUpData({
                           data: article,
