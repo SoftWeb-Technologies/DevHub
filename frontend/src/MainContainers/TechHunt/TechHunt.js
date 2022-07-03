@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Button, Loader, Title } from "../../components";
+import { Button, Card, Loader, Title } from "../../components";
 import { ArrowInCircle, RightArrowIcon } from "../../DevHubIcons";
 import { fetchTechHuntNewsData } from "../../redux/actions/apiActions";
 import { DashboardSideNavigation, Header } from "../components";
@@ -79,21 +79,23 @@ const TechHunt = () => {
                   display: "flex",
                   alignContent: "center",
                   gap: "0.5rem",
+                  marginBottom: "1rem",
                 }}
               >
                 <h2>Trending News</h2>
                 <div style={{ cursor: "pointer" }}>
-                  <ArrowInCircle />
+                  <ArrowInCircle pushTo={`/techhuntlist`}/>
                 </div>
               </div>
 
               <div className="techHunt__cards__container">
-                {techHuntData.articles?.slice(0, 3)?.map((article, index) => (
-                  <TechHuntCard
+                {techHuntData.articles?.slice(0, 4)?.map((article, index) => (
+                  <Card
                     key={index}
+                    image={article.urlToImage}
                     title={article.title}
                     description={article.description}
-                    openPoster={() => {
+                    openModel={() => {
                       setIsPopUpBoxActive(true);
                       setPopUpData({
                         data: article,
@@ -108,7 +110,8 @@ const TechHunt = () => {
                   display: "flex",
                   alignContent: "center",
                   gap: "0.5rem",
-                  marginTop: "2rem",
+                  marginTop: "4rem",
+                  marginBottom: "1rem",
                 }}
               >
                 <h2>Tech Hunt</h2>
@@ -119,12 +122,14 @@ const TechHunt = () => {
               <div className="techHunt__cards__container">
                 {techHuntData.articles
                   ?.slice(1, techHuntData.articles?.length || 0)
+                  ?.slice(4, techHuntData.articles?.length || 0)
                   ?.map((article, index) => (
-                    <TechHuntCard
+                    <Card
                       key={index}
+                      image={article.urlToImage}
                       title={article.title}
                       description={article.description}
-                      openPoster={() => {
+                      openModel={() => {
                         setIsPopUpBoxActive(true);
                         setPopUpData({
                           data: article,
@@ -163,9 +168,10 @@ const TechHunt = () => {
                   </>
                 ) : (
                   filteredData?.map((article, index) => (
-                    <TechHuntCard
+                    <Card
                       key={index}
                       title={article.title}
+                      image={article.urlToImage}
                       description={article.description}
                       openPoster={() => {
                         setIsPopUpBoxActive(true);
@@ -259,30 +265,30 @@ const TechHunt = () => {
   );
 };
 
-const TechHuntCard = (props) => {
-  return (
-    <div onClick={props.openPoster} className="techHunt__card__container">
-      <div>
-        <h3
-          style={{
-            color: "#008bb7",
-          }}
-        >
-          {props.title.slice(0, 60) + "..."}
-        </h3>
-        <p
-          style={{
-            color: "#000",
-            fontSize: "0.85rem",
-            marginTop: "1rem",
-            opacity: "0.7",
-          }}
-        >
-          {props.description?.slice(0, 150) + "..."}
-        </p>
-      </div>
-    </div>
-  );
-};
+// const TechHuntCard = (props) => {
+//   return (
+//     <div onClick={props.openPoster} className="techHunt__card__container">
+//       <div>
+//         <h3
+//           style={{
+//             color: "#008bb7",
+//           }}
+//         >
+//           {props.title.slice(0, 60) + "..."}
+//         </h3>
+//         <p
+//           style={{
+//             color: "#000",
+//             fontSize: "0.85rem",
+//             marginTop: "1rem",
+//             opacity: "0.7",
+//           }}
+//         >
+//           {props.description?.slice(0, 150) + "..."}
+//         </p>
+//       </div>
+//     </div>
+//   );
+// };
 
 export default TechHunt;

@@ -6,7 +6,7 @@ export const fetchTechHuntNewsData = () => async (dispatch) => {
     dispatch({ type: types.API_FETCH_TECH_HUNT_START });
 
     // need to secure this api key
-    const API_KEY = "4fe2335bcdbf43c2a98c2bc7913691bf";
+    const API_KEY = "0f996e2478b54bbb97086eff0af0896b";
 
     const { data } = await axios.get(
       `https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=${API_KEY}`

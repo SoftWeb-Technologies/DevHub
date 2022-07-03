@@ -12,6 +12,7 @@ import SizeBox from "./SizeBox/SizeBox";
 import Accordion from "./Accordion/accordion";
 
 import Loader from "./Loader/Loader";
+import Card from "./Card/Card";
 
 export {
   Button,
@@ -27,4 +28,5 @@ export {
   SizeBox,
   Accordion,
   Loader,
+  Card,
 };

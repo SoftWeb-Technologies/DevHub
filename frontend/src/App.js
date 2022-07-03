@@ -19,6 +19,7 @@ import {
   Contest,
   TechHunt,
   ContestsList,
+  TechHuntList
 } from "./MainContainers";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
@@ -89,6 +90,11 @@ function App() {
         <Route
         exact
         path="/contestslist"
+        element={<ProtectedRoute Component={ContestsList} />}
+        />
+        <Route
+        exact
+        path="/techhuntlist"
         element={<ProtectedRoute Component={ContestsList} />}
         />
 

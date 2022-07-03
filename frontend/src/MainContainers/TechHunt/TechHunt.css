@@ -26,6 +26,7 @@
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
+  gap: 2rem;
 }
 
 .techHunt__card__container {
@@ -38,10 +39,12 @@
   transition: all 0.5s ease-in-out;
   cursor: pointer;
   padding: 1rem;
+
 }
 
 .techHunt__card__container:hover {
   box-shadow: 2px 2px 10px #008cb799;
+  backdrop-filter: blur(10px);
 }
 
 .techHunt__poster__model {
