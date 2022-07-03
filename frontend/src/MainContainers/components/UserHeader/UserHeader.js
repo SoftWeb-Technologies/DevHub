@@ -64,6 +64,7 @@ const UserHeader = ({ displayName }) => {
           </div>
         </div>
         <div
+          onClick={() => navigate("/profile")}
           style={{
             display: "flex",
             alignItems: "center",
