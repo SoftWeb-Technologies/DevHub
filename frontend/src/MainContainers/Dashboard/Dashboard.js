@@ -173,6 +173,7 @@ export const DashboardHeader = ({ isNavActive, displayName }) => {
           Dashboard
         </h2>
         <h2
+          className="hide-on-mobile"
           style={{
             fontSize: "1.2rem",
           }}
