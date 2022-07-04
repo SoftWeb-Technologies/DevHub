@@ -1,10 +1,18 @@
 import React from "react";
 import "./TextInput.css";
 
-const TextInput = ({ name, placeholder, inputType, value, onChange }) => {
+const TextInput = ({
+  name,
+  placeholder,
+  inputType,
+  value,
+  onChange,
+  props,
+}) => {
   return (
     <div className="text__input__container">
       <input
+        {...props}
         className="form__input"
         type={inputType}
         placeholder=" "

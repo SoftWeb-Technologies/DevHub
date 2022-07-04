@@ -1,21 +1,17 @@
 import React from "react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { MenuIcon, SearchIcon } from "../../../DevHubIcons";
 import "./Header.css";
 
 const Header = ({ displayName, setFilter }) => {
+  const navigate = useNavigate();
   const firstLetter = displayName?.charAt(0);
   const [searchValue, setSearchValue] = useState("");
 
   return (
     <>
-      <div
-        style={{
-          display: "flex",
-          width: "100%",
-          gap: "10px",
-        }}
-      >
+      <div className="header__container">
         <div
           style={{
             maxWidth: "22px",
@@ -26,7 +22,7 @@ const Header = ({ displayName, setFilter }) => {
         >
           <MenuIcon />
         </div>{" "}
-        <p
+        {/* <p
           style={{
             color: "#000",
             textTransform: "uppercase",
@@ -35,7 +31,7 @@ const Header = ({ displayName, setFilter }) => {
           }}
         >
           Menu
-        </p>
+        </p> */}
       </div>
 
       <div className="dashboard__header__container__search">
@@ -62,6 +58,7 @@ const Header = ({ displayName, setFilter }) => {
       </div>
 
       <div
+        onClick={() => navigate("/profile")}
         style={{
           display: "flex",
           alignItems: "center",

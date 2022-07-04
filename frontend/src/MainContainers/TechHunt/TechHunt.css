@@ -4,7 +4,7 @@
 }
 
 .header__main__container {
-  padding: 2.4rem 5rem;
+  padding: 2.4rem 1.5rem !important;
   background: linear-gradient(
     122.43deg,
     #008bb7 23.82%,
@@ -14,7 +14,10 @@
 }
 
 .techHunt__body__container {
-  padding: 2.4rem 5rem;
+  width: 100%;
+  padding: 2.4rem 2rem;
+  display: flex;
+  flex-direction: column;
 }
 
 .techHunt__body__container.active {
@@ -24,7 +27,7 @@
 .techHunt__cards__container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   gap: 2rem;
 }
@@ -128,6 +131,138 @@
   background-color: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(2px);
   text-align: center;
+}
+
+@media screen and (min-width: 850px) {
+  .techHunt__header__container {
+    display: flex;
+    align-items: center;
+  }
+
+  .header__main__container {
+    padding: 2.4rem 5rem !important;
+    background: linear-gradient(
+      122.43deg,
+      #008bb7 23.82%,
+      rgba(0, 139, 183, 0.5) 69.43%
+    );
+    position: relative;
+  }
+
+  .techHunt__body__container {
+    padding: 2.4rem 5rem;
+  }
+
+  .techHunt__body__container.active {
+    animation: slide-effect 0.5s 1 ease forwards;
+  }
+
+  .techHunt__cards__container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .techHunt__card__container {
+    max-width: 350px;
+    width: 100%;
+    height: 200px;
+    border-radius: 10px;
+    margin-top: 1rem;
+    background-color: #e8f5fa;
+    transition: all 0.5s ease-in-out;
+    cursor: pointer;
+    padding: 1rem;
+  }
+
+  .techHunt__card__container:hover {
+    box-shadow: 2px 2px 10px #008cb799;
+  }
+
+  .techHunt__poster__model {
+    display: none;
+  }
+
+  .techHunt__model__button {
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: all 0.3s ease-in-out;
+  }
+
+  .techHunt__model__button a {
+    padding: 0.5rem 1rem;
+    border: 2px solid rgb(7, 193, 244);
+    color: #fff;
+    border-radius: 10px;
+  }
+
+  .techHunt__model__button:hover {
+    transform: translateX(-50%) scale(1.05);
+  }
+
+  .techHunt__model__button:active {
+    transform: translateX(-50%) scale(0.89);
+  }
+
+  .techHunt__poster__model.active {
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100vh;
+    z-index: 5;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: block;
+  }
+
+  .techHunt__poster__container {
+    display: none;
+  }
+
+  .techHunt__poster__container.active {
+    position: fixed;
+    background-color: #008bb7;
+    overflow: hidden;
+    width: 65%;
+    height: 70vh;
+    top: 50%;
+    left: 50%;
+    z-index: 6;
+    transform: translate(-50%, -50%);
+    border-radius: 15px;
+    display: block;
+    animation: popup_poster 0.3s linear forwards;
+  }
+
+  .techHunt__poster__container.active .techHunt__poster__popup__description {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    text-align: center;
+    z-index: 10;
+    padding: 0 3rem;
+  }
+
+  .techHunt__poster__container.active::after {
+    content: "";
+    position: absolute;
+    top: 0%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    min-height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(2px);
+    text-align: center;
+  }
 }
 
 @keyframes popup_poster {

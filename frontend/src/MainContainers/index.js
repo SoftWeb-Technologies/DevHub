@@ -5,7 +5,10 @@ import Contest from "./Contest/Contest";
 import TaskList from "./TaskList/TaskList";
 import TechHunt from "./TechHunt/TechHunt";
 import ContestsList from "./ContestsList/contestslist";
+
 import TechHuntList from "./TechHuntList/TechHuntList";
+import Profile from "./Profile/Profile";
+
 
 export {
   Dashboard,
@@ -16,4 +19,5 @@ export {
   TechHunt,
   ContestsList,
   TechHuntList,
+  Profile,
 };

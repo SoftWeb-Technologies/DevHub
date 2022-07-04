@@ -1,7 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Title } from "../../components";
-import { Poster1, Poster2, Poster3, Poster4, Poster5, Poster6, Poster7, Poster8 } from "../../constants/Images";
+import {
+  Poster1,
+  Poster2,
+  Poster3,
+  Poster4,
+  Poster5,
+  Poster6,
+  Poster7,
+  Poster8,
+} from "../../constants/Images";
 import { ArrowInCircle } from "../../DevHubIcons";
 import { fetchContestData } from "../../redux/actions/apiActions";
 import { DashboardSideNavigation, Header } from "../components";
@@ -41,8 +50,17 @@ const Contest = () => {
             />
           </div>
           <div className="user__name__container">
-            <h2 style={{ color: "#fff", marginTop: "0.7rem" }}>
+            <h2
+              className="hide-on-mobile"
+              style={{ color: "#fff", marginTop: "0.7rem" }}
+            >
               Hello! {currentUser?.displayName}
+            </h2>
+            <h2
+              className="hide-on-desktop"
+              style={{ color: "#fff", marginTop: "0.7rem" }}
+            >
+              Contests 🎉
             </h2>
           </div>
         </div>
@@ -164,13 +182,13 @@ const Contest = () => {
 
             {popUpData?.data?.site === "LeetCode" && (
               <img
-              style={{ width: "100%", height: "100%", zIndex: "-1" }}
-              src={Poster4}
-              alt="LeetCode"
+                style={{ width: "100%", height: "100%", zIndex: "-1" }}
+                src={Poster4}
+                alt="LeetCode"
               />
             )}
 
-{popUpData?.data?.site === "AtCoder" && (
+            {popUpData?.data?.site === "AtCoder" && (
               <img
                 style={{ width: "100%", height: "100%", zIndex: "-1" }}
                 src={Poster5}

@@ -19,7 +19,8 @@ import {
   Contest,
   TechHunt,
   ContestsList,
-  TechHuntList
+  TechHuntList,
+  Profile,
 } from "./MainContainers";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
@@ -88,9 +89,15 @@ function App() {
           element={<ProtectedRoute Component={TechHunt} />}
         />
         <Route
-        exact
-        path="/contestslist"
-        element={<ProtectedRoute Component={ContestsList} />}
+          exact
+          path="/contestslist"
+          element={<ProtectedRoute Component={ContestsList} />}
+        />
+
+        <Route
+          exact
+          path="/profile"
+          element={<ProtectedRoute Component={Profile} />}
         />
         <Route
         exact

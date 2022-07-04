@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { MenuIcon } from "../../../DevHubIcons";
 
 const UserHeader = ({ displayName }) => {
   const navigate = useNavigate();
@@ -14,7 +15,25 @@ const UserHeader = ({ displayName }) => {
           width: "100%",
         }}
       >
+        <div
+          style={{
+            flex: "100%",
+          }}
+          className="hide-on-desktop"
+        >
+          <div
+            style={{
+              maxWidth: "22px",
+              width: "100%",
+              objectFit: "contain",
+              cursor: "pointer",
+            }}
+          >
+            <MenuIcon />
+          </div>{" "}
+        </div>
         <h3
+          className="hide-on-mobile"
           style={{
             flex: "100%",
           }}
@@ -44,8 +63,8 @@ const UserHeader = ({ displayName }) => {
             </p>
           </div>
         </div>
-
         <div
+          onClick={() => navigate("/profile")}
           style={{
             display: "flex",
             alignItems: "center",
