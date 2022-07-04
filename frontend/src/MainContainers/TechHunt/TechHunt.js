@@ -32,7 +32,7 @@ const TechHunt = () => {
     const fetchAllNews = (keyword) => {
       var config = {
         method: "get",
-        url: `/api/news-keyword/${keyword}`,
+        url: `https://devhub-backend-production.up.railway.app/api/news-keyword/${keyword}`,
       };
 
       axios(config).then((response) => {
