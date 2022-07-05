@@ -5,8 +5,6 @@ import Contest from "./Contest/Contest";
 import TaskList from "./TaskList/TaskList";
 import TechHunt from "./TechHunt/TechHunt";
 import ContestsList from "./ContestsList/contestslist";
-
-import TechHuntList from "./TechHuntList/TechHuntList";
 import Profile from "./Profile/Profile";
 
 
@@ -18,6 +16,5 @@ export {
   TaskList,
   TechHunt,
   ContestsList,
-  TechHuntList,
   Profile,
 };

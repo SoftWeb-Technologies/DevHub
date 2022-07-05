@@ -19,7 +19,6 @@ import {
   Contest,
   TechHunt,
   ContestsList,
-  TechHuntList,
   Profile,
 } from "./MainContainers";
 import { useEffect } from "react";
@@ -98,11 +97,6 @@ function App() {
           exact
           path="/profile"
           element={<ProtectedRoute Component={Profile} />}
-        />
-        <Route
-        exact
-        path="/techhuntlist"
-        element={<ProtectedRoute Component={ContestsList} />}
         />
 
         <Route

@@ -89,7 +89,7 @@ const TechHunt = () => {
               </div>
 
               <div className="techHunt__cards__container">
-                {techHuntData.articles?.slice(0, 4)?.map((article, index) => (
+                {techHuntData.articles?.slice(0, 8)?.map((article, index) => (
                   <Card
                     key={index}
                     image={article.urlToImage}
@@ -121,8 +121,7 @@ const TechHunt = () => {
               </div>
               <div className="techHunt__cards__container">
                 {techHuntData.articles
-                  ?.slice(1, techHuntData.articles?.length || 0)
-                  ?.slice(4, techHuntData.articles?.length || 0)
+                  ?.slice(8, 24, techHuntData.articles?.length || 0)
                   ?.map((article, index) => (
                     <Card
                       key={index}
