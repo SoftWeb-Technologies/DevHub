@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { TextInput, Title } from "../../components";
 import { MenuIcon } from "../../DevHubIcons";
-import { DashboardSideNavigation, Header } from "../components";
+import { DashboardSideNavigation } from "../components";
 import "./Profile.css";
 
 const Profile = () => {
