@@ -44,6 +44,11 @@ const Profile = () => {
 
             <div className="profile__form__container">
               <TextInput
+                placeholder={"Name"}
+                inputType="text"
+                value={currentUser?.displayName}
+              />
+              <TextInput
                 placeholder={"Email"}
                 inputType="email"
                 value={currentUser?.email}

@@ -84,7 +84,7 @@ const TechHunt = () => {
               >
                 <h2>Trending News</h2>
                 <div style={{ cursor: "pointer" }}>
-                  <ArrowInCircle pushTo={`/techhuntlist`}/>
+                  <ArrowInCircle />
                 </div>
               </div>
 

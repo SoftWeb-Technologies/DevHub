@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Title } from "../../components";
@@ -30,11 +31,33 @@ const Contest = () => {
 
   const [filteredDate, setFilteredData] = useState(null);
   const [filter, setFilter] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   console.log(filteredDate);
 
   useEffect(() => {
     dispatch(fetchContestData());
   }, [dispatch]);
+
+  useEffect(() => {
+    const fetchContestData = (keyword) => {
+      var config = {
+        method: "get",
+        url: `https://kontests.net/api/v1/all`,
+  };
+
+  axios(config).then((response) => {
+    // console.log(response.data);
+    setIsLoading(true);
+    setFilteredData(response.data);
+
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 3000);
+  });
+};
+
+filter && fetchContestData(filter);
+}, [filter]);
 
   return (
     <div>
