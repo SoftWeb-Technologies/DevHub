@@ -1,10 +1,11 @@
 .card__container {
   width: 250px;
-  height: 300px;
+  height: auto;
   background-color: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   cursor: pointer;
+  padding-bottom: 0.5rem;
 }
 
 .card__container:hover {

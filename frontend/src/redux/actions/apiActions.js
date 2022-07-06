@@ -1,7 +1,7 @@
 import axios from "axios";
 import * as types from "../constants/apiActionTypes";
 
-export const fetchTechHuntNewsData = () => async (dispatch) => {
+export const fetchTopHeadLinesNews = () => async (dispatch) => {
   try {
     dispatch({ type: types.API_FETCH_TECH_HUNT_START });
 

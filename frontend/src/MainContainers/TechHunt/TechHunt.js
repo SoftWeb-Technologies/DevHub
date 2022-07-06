@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Button, Card, Loader, Title } from "../../components";
 import { ArrowInCircle, RightArrowIcon } from "../../DevHubIcons";
-import { fetchTechHuntNewsData } from "../../redux/actions/apiActions";
+import { fetchTopHeadLinesNews } from "../../redux/actions/apiActions";
 import { DashboardSideNavigation, Header } from "../components";
 
 import "./TechHunt.css";
@@ -23,9 +23,10 @@ const TechHunt = () => {
   const [filteredData, setFilteredData] = useState([]);
   const [filter, setFilter] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [techNews, setTechNews] = useState([]);
 
   useEffect(() => {
-    dispatch(fetchTechHuntNewsData());
+    dispatch(fetchTopHeadLinesNews());
   }, [dispatch]);
 
   useEffect(() => {
@@ -48,6 +49,23 @@ const TechHunt = () => {
 
     filter && fetchAllNews(filter);
   }, [filter]);
+
+  useEffect(() => {
+    const fetchTechNews = async (keyword) => {
+      var config = {
+        method: "get",
+        url: `https://devhub-backend-production.up.railway.app/api/news-keyword/${keyword}`,
+      };
+
+      await axios(config).then((response) => {
+        setTechNews(response.data);
+      });
+    };
+
+    fetchTechNews("technologies");
+  }, []);
+
+  console.log(techNews);
 
   return (
     <div>
@@ -120,23 +138,21 @@ const TechHunt = () => {
                 </div>
               </div>
               <div className="techHunt__cards__container">
-                {techHuntData.articles
-                  ?.slice(8, 24, techHuntData.articles?.length || 0)
-                  ?.map((article, index) => (
-                    <Card
-                      key={index}
-                      image={article.urlToImage}
-                      title={article.title}
-                      description={article.description}
-                      openModel={() => {
-                        setIsPopUpBoxActive(true);
-                        setPopUpData({
-                          data: article,
-                          index: index,
-                        });
-                      }}
-                    />
-                  ))}
+                {techNews?.slice(0, 8)?.map((article, index) => (
+                  <Card
+                    key={index}
+                    image={article.urlToImage}
+                    title={article.title}
+                    description={article.description}
+                    openModel={() => {
+                      setIsPopUpBoxActive(true);
+                      setPopUpData({
+                        data: article,
+                        index: index,
+                      });
+                    }}
+                  />
+                ))}
               </div>
             </>
           ) : (
