@@ -30,27 +30,6 @@ const TechHunt = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    const fetchAllNews = (keyword) => {
-      var config = {
-        method: "get",
-        url: `https://devhub-backend-production.up.railway.app/api/news-keyword/${keyword}`,
-      };
-
-      axios(config).then((response) => {
-        // console.log(response.data);
-        setIsLoading(true);
-        setFilteredData(response.data);
-
-        setTimeout(() => {
-          setIsLoading(false);
-        }, 3000);
-      });
-    };
-
-    filter && fetchAllNews(filter);
-  }, [filter]);
-
-  useEffect(() => {
     const fetchTechNews = async (keyword) => {
       var config = {
         method: "get",
@@ -101,9 +80,6 @@ const TechHunt = () => {
                 }}
               >
                 <h2>Trending News</h2>
-                <div style={{ cursor: "pointer" }}>
-                  <ArrowInCircle />
-                </div>
               </div>
 
               <div className="techHunt__cards__container">
@@ -133,9 +109,6 @@ const TechHunt = () => {
                 }}
               >
                 <h2>Tech Hunt</h2>
-                <div style={{ cursor: "pointer" }}>
-                  <ArrowInCircle />
-                </div>
               </div>
               <div className="techHunt__cards__container">
                 {techNews?.slice(0, 8)?.map((article, index) => (
