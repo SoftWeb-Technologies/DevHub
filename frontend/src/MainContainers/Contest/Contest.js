@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Title } from "../../components";
+import { Loader, Title } from "../../components";
 import {
   Poster1,
   Poster2,
@@ -29,10 +29,9 @@ const Contest = () => {
     index: null,
   });
 
-  const [filteredDate, setFilteredData] = useState(null);
+  const [filteredData, setFilteredData] = useState(null);
   const [filter, setFilter] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  console.log(filteredDate);
 
   useEffect(() => {
     dispatch(fetchContestData());
@@ -48,7 +47,15 @@ const Contest = () => {
       axios(config).then((response) => {
         // console.log(response.data);
         setIsLoading(true);
-        setFilteredData(response.data);
+        const data = response.data.filter((item) => {
+          return (
+            item.site.toLowerCase().includes(keyword.toLowerCase()) ||
+            item.name.toLowerCase().includes(keyword.toLowerCase()) ||
+            item.status.toLowerCase().includes(keyword.toLowerCase())
+          );
+        });
+
+        setFilteredData(data);
 
         setTimeout(() => {
           setIsLoading(false);
@@ -91,68 +98,118 @@ const Contest = () => {
         <div
           className={`contest__body__container ${isNavActive ? "active" : ""}`}
         >
-          <div
-            style={{
-              display: "flex",
-              alignContent: "center",
-              gap: "0.5rem",
-            }}
-          >
-            <h2>Current Contest</h2>
-            <div style={{ cursor: "pointer" }}>
-              <ArrowInCircle pushTo={`/contestslist`} />
-            </div>
-          </div>
+          {filter === "" ? (
+            <>
+              <div
+                style={{
+                  display: "flex",
+                  alignContent: "center",
+                  gap: "0.5rem",
+                }}
+              >
+                <h2>Current Contest</h2>
+                <div style={{ cursor: "pointer" }}>
+                  <ArrowInCircle pushTo={`/contestslist`} />
+                </div>
+              </div>
 
-          <div className="contest__cards__container">
-            {contestData.slice(0, 6).map((contest, index) => (
-              <ContestCard
-                key={index}
-                title={contest.site}
-                description={contest.name}
-                start_time={contest.start_time}
-                end_time={contest.end_time}
-                openPoster={() => {
-                  setIsPopUpBoxActive(true);
-                  setPopUpData({
-                    data: contest,
-                    index: index,
-                  });
+              <div className="contest__cards__container">
+                {contestData.slice(0, 6).map((contest, index) => (
+                  <ContestCard
+                    key={index}
+                    title={contest.site}
+                    description={contest.name}
+                    start_time={contest.start_time}
+                    end_time={contest.end_time}
+                    openPoster={() => {
+                      setIsPopUpBoxActive(true);
+                      setPopUpData({
+                        data: contest,
+                        index: index,
+                      });
+                    }}
+                  />
+                ))}
+              </div>
+              <div
+                style={{
+                  display: "flex",
+                  alignContent: "center",
+                  gap: "0.5rem",
+                  marginTop: "2rem",
                 }}
-              />
-            ))}
-          </div>
-          <div
-            style={{
-              display: "flex",
-              alignContent: "center",
-              gap: "0.5rem",
-              marginTop: "2rem",
-            }}
-          >
-            <h2>Upcoming Contest</h2>
-            <div style={{ cursor: "pointer" }}>
-              <ArrowInCircle pushTo={`/contestslist`} />
+              >
+                <h2>Upcoming Contest</h2>
+                <div style={{ cursor: "pointer" }}>
+                  <ArrowInCircle pushTo={`/contestslist`} />
+                </div>
+              </div>
+              <div className="contest__cards__container">
+                {contestData.slice(6, 12).map((contest, index) => (
+                  <ContestCard
+                    key={index}
+                    title={contest.site}
+                    description={contest.name}
+                    start_time={contest.start_time}
+                    end_time={contest.end_time}
+                    openPoster={() => {
+                      setIsPopUpBoxActive(true);
+                      setPopUpData({
+                        data: contest,
+                        index: index,
+                      });
+                    }}
+                  />
+                ))}
+              </div>
+            </>
+          ) : (
+            <div>
+              <div className="techHunt__cards__container">
+                {filteredData?.length === 0 || isLoading ? (
+                  <>
+                    <div
+                      style={{
+                        width: "100%",
+                        height: "330px",
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        flexDirection: "column",
+                      }}
+                    >
+                      <Loader />
+                      <h2
+                        style={{
+                          marginTop: "4rem",
+                          textAlign: "center",
+                        }}
+                      >
+                        Fetching {filter} contests...
+                      </h2>
+                    </div>
+                  </>
+                ) : (
+                  filteredData?.map((contest, index) => (
+                    <ContestCard
+                      key={index}
+                      title={contest.site}
+                      description={contest.name}
+                      start_time={contest.start_time}
+                      end_time={contest.end_time}
+                      openPoster={() => {
+                        setIsPopUpBoxActive(true);
+                        setPopUpData({
+                          data: contest,
+                          index: index,
+                        });
+                      }}
+                    />
+                  ))
+                )}
+              </div>
             </div>
-          </div>
-          <div className="contest__cards__container">
-            {contestData.slice(6, 12).map((contest, index) => (
-              <ContestCard
-                key={index}
-                title={contest.site}
-                description={contest.name}
-                start_time={contest.start_time}
-                end_time={contest.end_time}
-                openPoster={() => {
-                  setIsPopUpBoxActive(true);
-                  setPopUpData({
-                    data: contest,
-                    index: index,
-                  });
-                }}
-              />
-            ))}
-          </div>
+          )}
         </div>
 
         {/* modal */}
