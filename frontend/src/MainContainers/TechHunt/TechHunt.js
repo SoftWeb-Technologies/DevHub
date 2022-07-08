@@ -177,7 +177,7 @@ const TechHunt = () => {
                           textAlign: "center",
                         }}
                       >
-                        Fetching Latest News
+                        Fetching {filter} News...
                       </h2>
                     </div>
                   </>
