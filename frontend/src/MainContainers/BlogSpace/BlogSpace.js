@@ -58,7 +58,7 @@ const BlogSpace = () => {
 
       <DashboardSideNavigation setIsNavActive={setIsNavActive} />
       <div id="blogSpace">
-        <UserHeader displayName={currentUser?.displayName} />
+        <UserHeader displayName={currentUser?.displayName} library={true} />
         <FilterHeader setFilter={setFilter} />
         <MoreFilterOption setFilter={setFilter} />
 

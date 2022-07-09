@@ -1,7 +1,11 @@
-import React from 'react';
-import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from 'react-redux';
-import { DashboardSideNavigation, Header } from "../components";
+import React from "react";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Button } from "../../components";
+import { NotificationIcon, TrashIcon } from "../../DevHubIcons";
+import { DashboardSideNavigation } from "../components";
+import UserHeader from "../components/UserHeader/UserHeader";
+import "./TaskList.css";
 
 const TaskList = () => {
   const dispatch = useDispatch();
@@ -11,28 +15,86 @@ const TaskList = () => {
 
   return (
     <div>
-
       <DashboardSideNavigation setisNavActive={setIsNavActive} />
-      <div className="tasklist__main__container">
-        <div className="header__main__container">
-          <div className="tasklist__header__container">
-          <Header
-            displayName={currentUser?.displayName}
-            setFilter={setFilter}
-          />
+
+      <div>
+        <UserHeader
+          title={"Your Tasks"}
+          displayName={currentUser.displayName}
+        />
+        <TaskHeader />
+        <TaskListHeader />
       </div>
-      <div className="user__name__container">
-        <h2 style={{ color: "#fff", marginTop: "0.7rem" }}>
-          Your Tasks
-          </h2>
-          </div>
-          <div
-          className={`techHunt__body__container ${isNavActive ? "active" : ""}`}
-        ></div>
-    </div>
-    </div>
     </div>
   );
 };
 
-export default TaskList
+const TaskHeader = () => {
+  return (
+    <div className="taskHeader">
+      <div
+        style={{
+          width: "100%",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          gap: "60px",
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "60px",
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "10px",
+              cursor: "pointer",
+            }}
+          >
+            <NotificationIcon />
+            Reminders
+          </div>
+
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "10px",
+              cursor: "pointer",
+            }}
+          >
+            <TrashIcon />
+            Trash
+          </div>
+        </div>
+
+        <Button label={"Create Task"} primary={true} />
+      </div>
+    </div>
+  );
+};
+
+const TaskListHeader = () => {
+  return (
+    <div className="taskListHeader">
+      <div className="taskListHeader__contents">
+        <div>
+          <h3>Todo's </h3>
+        </div>
+        <div>
+          <h3>Pending</h3>
+        </div>
+        <div>
+          <h3>Completed</h3>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default TaskList;

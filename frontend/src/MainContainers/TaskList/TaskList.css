@@ -1,15 +1,27 @@
-.tasklist__header__container {
-    display: flex;
-    background-color: #f9f9f9;
-    align-items: center;
+.taskHeader,
+.taskListHeader {
+  display: flex;
+  background-color: #f5f5f5;
+  align-items: center;
+  padding: 0.2rem 5rem;
+  width: 100%;
 }
 
-.header__main__container {
-    padding: 2.4rem 1.5rem !important;
-    background: linear-gradient(
-    122.43deg,
-  #f9f9f9 23.82%,
-   #f2f2f2 69.43%
-    );
-    position: relative;
+.taskListHeader__contents {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 1.7rem 0 0 0;
+  gap: 50px;
+}
+
+.taskListHeader__contents div {
+  width: 100%;
+}
+
+.taskListHeader__contents h3 {
+  text-align: center;
+  border-bottom: 3px solid var(--primary-clr);
+  padding-bottom: 0.5rem;
+  font-weight: 500;
 }
