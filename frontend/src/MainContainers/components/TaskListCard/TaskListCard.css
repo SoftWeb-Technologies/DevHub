@@ -6,6 +6,7 @@
   border-radius: 10px;
   cursor: pointer;
   position: relative;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
 }
 
 .taskListCard__container p.desc {

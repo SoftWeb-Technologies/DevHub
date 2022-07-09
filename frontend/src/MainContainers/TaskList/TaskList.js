@@ -1,18 +1,106 @@
 import React from "react";
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Button } from "../../components";
 import { NotificationIcon, TrashIcon } from "../../DevHubIcons";
-import { DashboardSideNavigation } from "../components";
-import TaskListCard from "../components/TaskListCard/TaskListCard";
+import { Board, DashboardSideNavigation } from "../components";
+// import TaskListCard from "../components/TaskListCard/TaskListCard";
 import UserHeader from "../components/UserHeader/UserHeader";
 import "./TaskList.css";
+import { data, statusIcons } from "../../data";
+import Col from "../components/Col";
+import Item from "../components/Item";
+import DropWrapper from "../components/DropWrapper";
 
 const TaskList = () => {
-  const dispatch = useDispatch();
   const { currentUser } = useSelector((state) => state.user);
   const [isNavActive, setIsNavActive] = useState(false);
-  const [filter, setFilter] = useState("");
+
+  const [items, setItems] = useState(data);
+  const [dragEl, setDragEl] = useState(null);
+
+  const onDrop = (item, status) => {
+    if (item.status === status) {
+      return;
+    }
+
+    const mapping = statusIcons.find((si) => si.status === status);
+
+    setItems((prevState) => {
+      const newItems = prevState
+        .filter((i) => i.id !== item.id)
+        .concat({ ...item, status, icon: mapping.icon });
+
+      return [...newItems];
+    });
+  };
+
+  const moveItem = (el) => {
+    setItems((prevState) => {
+      const itemIndex = prevState.findIndex(
+        (i) => i.content === dragEl.content
+      );
+
+      const hoverIndex = prevState.findIndex((i) => i.content === el);
+
+      const newState = [...prevState];
+
+      newState.splice(itemIndex, 1);
+      newState.splice(hoverIndex, 0, dragEl);
+
+      return [...newState];
+    });
+  };
+
+  const setDragElement = (el) => setDragEl(el);
+
+  const onAddItem = (col) => {
+    console.log("add item placeholder in col: ", col);
+
+    const status = statusIcons.find((si) => si.status === col);
+
+    setItems((prevState) => {
+      const highestId = Math.max.apply(
+        Math,
+        prevState.map((i) => i.id)
+      );
+
+      const months = [
+        "Jan",
+        "Feb",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "Aug",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dec",
+      ];
+
+      return [
+        ...prevState,
+        {
+          id: highestId + 1,
+          date:
+            new Date().getDate() +
+            " " +
+            months[new Date().getMonth()] +
+            ", " +
+            new Date().getFullYear(),
+          icon: status.icon,
+          status: status.status,
+          title: "Placeholder item for card",
+          content: "Example",
+          issueType: "gg-bookmark",
+          priority: "gg-chevron-double-down",
+          estimate: "0m",
+        },
+      ];
+    });
+  };
 
   return (
     <div>
@@ -21,49 +109,40 @@ const TaskList = () => {
       <div>
         <UserHeader
           title={"Your Tasks"}
-          displayName={currentUser.displayName}
+          displayName={currentUser?.displayName}
         />
-        <TaskHeader />
-        <TaskListHeader />
+        <TaskHeader createTaskHandler={(e) => onAddItem("todo's")} />
+        {/* <TaskListHeader /> */}
 
         <div className="taskList__body__container">
           <div className="taskList__content__container">
-            <div className="taskList__container">
-              <TaskListCard
-                title={"IDE Set-Up"}
-                date={"12/12/2020"}
-                description={
-                  "lajsldkfjlsdjfljsdf jalsdkfjl sadflj lajsldkfjlsdjfljsdf jalsdkfjl sadflj lajsldkfjlsdjfljsdf jalsdkfjl sadflj lajsldkfjlsdjfljsdf jalsdkfjl sadflj lajsldkfjlsdjfljsdf jalsdkfjl sadflj lajsldkfjlsdjfljsdf jalsdkfjl sadflj  "
-                }
-              />
-              <TaskListCard
-                title={"IDE Set-Up"}
-                date={"12/12/2020"}
-                description={
-                  "lajsldkfjlsdjfljsdf jalsdkfjl sadflj lajsldkfjlsdjfljsdf jalsdkfjl sadflj lajsldkfjlsdjfljsdf jalsdkfjl sadflj lajsldkfjlsdjfljsdf jalsdkfjl sadflj lajsldkfjlsdjfljsdf jalsdkfjl sadflj lajsldkfjlsdjfljsdf jalsdkfjl sadflj  "
-                }
-              />
-            </div>
-            <div className="taskList__container">
-              <TaskListCard
-                isPending={true}
-                title={"IDE Set-Up"}
-                date={"12/12/2020"}
-                description={
-                  "lajsldkfjlsdjfljsdf jalsdkfjl sadflj lajsldkfjlsdjfljsdf jalsdkfjl sadflj lajsldkfjlsdjfljsdf jalsdkfjl sadflj lajsldkfjlsdjfljsdf jalsdkfjl sadflj lajsldkfjlsdjfljsdf jalsdkfjl sadflj lajsldkfjlsdjfljsdf jalsdkfjl sadflj  "
-                }
-              />
-            </div>
-            <div className="taskList__container">
-              <TaskListCard
-                title={"IDE Set-Up"}
-                date={"12/12/2020"}
-                isCompleted={true}
-                description={
-                  "lajsldkfjlsdjfljsdf jalsdkfjl sadflj lajsldkfjlsdjfljsdf jalsdkfjl sadflj lajsldkfjlsdjfljsdf jalsdkfjl sadflj lajsldkfjlsdjfljsdf jalsdkfjl sadflj lajsldkfjlsdjfljsdf jalsdkfjl sadflj lajsldkfjlsdjfljsdf jalsdkfjl sadflj  "
-                }
-              />
-            </div>
+            {["todo's", "in progress", "done"].map((status) => {
+              return (
+                <div key={status} className={"col__wrapper"}>
+                  <div className={"col__group"}>
+                    <h4 className={"col__header"}>{status.toUpperCase()}</h4>
+                    <p className={"col__count"}>
+                      {items.filter((item) => item.status === status).length}
+                    </p>
+                  </div>
+
+                  <DropWrapper onDrop={onDrop} status={status}>
+                    <Col>
+                      {items
+                        .filter((i) => i.status === status)
+                        .map((i) => (
+                          <Item
+                            key={i.id}
+                            item={i}
+                            moveItem={moveItem}
+                            setDragElement={setDragElement}
+                          />
+                        ))}
+                    </Col>
+                  </DropWrapper>
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>
@@ -71,7 +150,7 @@ const TaskList = () => {
   );
 };
 
-const TaskHeader = () => {
+const TaskHeader = ({ createTaskHandler }) => {
   return (
     <div className="taskHeader">
       <div
@@ -115,7 +194,11 @@ const TaskHeader = () => {
           </div>
         </div>
 
-        <Button label={"Create Task"} primary={true} />
+        <Button
+          onClick={createTaskHandler}
+          label={"Create Task"}
+          primary={true}
+        />
       </div>
     </div>
   );
