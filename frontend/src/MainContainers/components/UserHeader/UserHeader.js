@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { MenuIcon } from "../../../DevHubIcons";
 
-const UserHeader = ({ displayName }) => {
+const UserHeader = ({ displayName, title, library }) => {
   const navigate = useNavigate();
   const firstLetter = displayName?.charAt(0);
   return (
@@ -38,7 +38,14 @@ const UserHeader = ({ displayName }) => {
             flex: "100%",
           }}
         >
-          Hello! <span style={{ color: "#008bb7" }}>{displayName}</span>
+          {displayName && library && (
+            <>
+              {" "}
+              Hello! <span style={{ color: "#008bb7" }}>{displayName}</span>
+            </>
+          )}
+
+          {title}
         </h3>
         <div
           style={{
@@ -48,20 +55,22 @@ const UserHeader = ({ displayName }) => {
             marginRight: "2rem",
           }}
         >
-          <div>
-            <p
-              onClick={() => navigate("/library")}
-              style={{
-                color: "#000",
-                textTransform: "capitalize",
-                fontWeight: "500",
-                marginRight: "0.5rem",
-                cursor: "pointer",
-              }}
-            >
-              Library
-            </p>
-          </div>
+          {library && (
+            <div>
+              <p
+                onClick={() => navigate("/library")}
+                style={{
+                  color: "#000",
+                  textTransform: "capitalize",
+                  fontWeight: "500",
+                  marginRight: "0.5rem",
+                  cursor: "pointer",
+                }}
+              >
+                Library
+              </p>
+            </div>
+          )}
         </div>
         <div
           onClick={() => navigate("/profile")}

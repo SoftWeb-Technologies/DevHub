@@ -31,6 +31,11 @@ import ContestIcon from "./ContestIcon";
 import DashboardHomeIcon from "./DashboardHomeIcon";
 import MenuVerticalIcon from "./MenuVerticalIcon";
 
+import ActiveCheckIcon from "./ActiveCheckIcon";
+import DisableCheckIcon from "./DisableCheckIcon";
+import NotificationIcon from "./NotificationIcon";
+import TrashIcon from "./TrashIcon";
+
 export {
   HomeIcon,
   AboutIcon,
@@ -61,5 +66,9 @@ export {
   ArrowInCircle,
   ContestIcon,
   DashboardHomeIcon,
-  MenuVerticalIcon
+  MenuVerticalIcon,
+  ActiveCheckIcon,
+  DisableCheckIcon,
+  NotificationIcon,
+  TrashIcon,
 };
