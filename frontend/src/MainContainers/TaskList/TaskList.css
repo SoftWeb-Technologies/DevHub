@@ -20,8 +20,36 @@
 }
 
 .taskListHeader__contents h3 {
-  text-align: center;
+  /* text-align: center; */
   border-bottom: 3px solid var(--primary-clr);
   padding-bottom: 0.5rem;
   font-weight: 500;
+}
+
+.taskList__body__container {
+  display: flex;
+}
+
+.taskList__content__container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 5rem;
+  gap: 50px;
+}
+
+.taskList__container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
+  gap: 20px;
+  border-right: 3px solid #e8e8e8;
+  padding-right: 2rem;
+}
+
+.taskList__container:last-child {
+  border: none;
 }

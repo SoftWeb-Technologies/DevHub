@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Button } from "../../components";
 import { NotificationIcon, TrashIcon } from "../../DevHubIcons";
 import { DashboardSideNavigation } from "../components";
+import TaskListCard from "../components/TaskListCard/TaskListCard";
 import UserHeader from "../components/UserHeader/UserHeader";
 import "./TaskList.css";
 
@@ -24,6 +25,47 @@ const TaskList = () => {
         />
         <TaskHeader />
         <TaskListHeader />
+
+        <div className="taskList__body__container">
+          <div className="taskList__content__container">
+            <div className="taskList__container">
+              <TaskListCard
+                title={"IDE Set-Up"}
+                date={"12/12/2020"}
+                description={
+                  "lajsldkfjlsdjfljsdf jalsdkfjl sadflj lajsldkfjlsdjfljsdf jalsdkfjl sadflj lajsldkfjlsdjfljsdf jalsdkfjl sadflj lajsldkfjlsdjfljsdf jalsdkfjl sadflj lajsldkfjlsdjfljsdf jalsdkfjl sadflj lajsldkfjlsdjfljsdf jalsdkfjl sadflj  "
+                }
+              />
+              <TaskListCard
+                title={"IDE Set-Up"}
+                date={"12/12/2020"}
+                description={
+                  "lajsldkfjlsdjfljsdf jalsdkfjl sadflj lajsldkfjlsdjfljsdf jalsdkfjl sadflj lajsldkfjlsdjfljsdf jalsdkfjl sadflj lajsldkfjlsdjfljsdf jalsdkfjl sadflj lajsldkfjlsdjfljsdf jalsdkfjl sadflj lajsldkfjlsdjfljsdf jalsdkfjl sadflj  "
+                }
+              />
+            </div>
+            <div className="taskList__container">
+              <TaskListCard
+                isPending={true}
+                title={"IDE Set-Up"}
+                date={"12/12/2020"}
+                description={
+                  "lajsldkfjlsdjfljsdf jalsdkfjl sadflj lajsldkfjlsdjfljsdf jalsdkfjl sadflj lajsldkfjlsdjfljsdf jalsdkfjl sadflj lajsldkfjlsdjfljsdf jalsdkfjl sadflj lajsldkfjlsdjfljsdf jalsdkfjl sadflj lajsldkfjlsdjfljsdf jalsdkfjl sadflj  "
+                }
+              />
+            </div>
+            <div className="taskList__container">
+              <TaskListCard
+                title={"IDE Set-Up"}
+                date={"12/12/2020"}
+                isCompleted={true}
+                description={
+                  "lajsldkfjlsdjfljsdf jalsdkfjl sadflj lajsldkfjlsdjfljsdf jalsdkfjl sadflj lajsldkfjlsdjfljsdf jalsdkfjl sadflj lajsldkfjlsdjfljsdf jalsdkfjl sadflj lajsldkfjlsdjfljsdf jalsdkfjl sadflj lajsldkfjlsdjfljsdf jalsdkfjl sadflj  "
+                }
+              />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

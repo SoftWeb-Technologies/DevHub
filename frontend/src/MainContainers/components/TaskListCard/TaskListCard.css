@@ -1,0 +1,36 @@
+.taskListCard__container {
+  width: 100%;
+  height: auto;
+  background: #f1f1f1;
+  padding: 1.5rem;
+  border-radius: 10px;
+  cursor: pointer;
+  position: relative;
+}
+
+.taskListCard__container p.desc {
+  color: rgba(0, 0, 0, 0.5);
+  margin-top: 1rem;
+  line-height: 1.3rem;
+}
+
+p.date,
+p.mark_as_done {
+  color: var(--primary-clr);
+  font-weight: 500;
+}
+
+p.date {
+  margin: 1rem 0rem;
+}
+
+p.mark_as_done {
+  cursor: pointer;
+}
+
+.isPending {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  color: red;
+}
