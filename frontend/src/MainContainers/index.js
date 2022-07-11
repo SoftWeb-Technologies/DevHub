@@ -6,6 +6,8 @@ import TaskList from "./TaskList/TaskList";
 import TechHunt from "./TechHunt/TechHunt";
 import ContestsList from "./ContestsList/contestslist";
 import Profile from "./Profile/Profile";
+import Reminder from "./Reminder/RemindersPage";
+import Trash from "./Trash/TrashPage";
 
 
 export {
@@ -17,4 +19,6 @@ export {
   TechHunt,
   ContestsList,
   Profile,
+  Reminder,
+  Trash,
 };

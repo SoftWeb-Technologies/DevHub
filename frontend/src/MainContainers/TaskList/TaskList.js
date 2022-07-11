@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { Button } from "../../components";
 import { NotificationIcon, TrashIcon } from "../../DevHubIcons";
+import { Navigate, useNavigate } from "react-router-dom";
 import { Board, DashboardSideNavigation } from "../components";
 // import TaskListCard from "../components/TaskListCard/TaskListCard";
 import UserHeader from "../components/UserHeader/UserHeader";
@@ -15,6 +16,7 @@ import DropWrapper from "../components/DropWrapper";
 const TaskList = () => {
   const { currentUser } = useSelector((state) => state.user);
   const [isNavActive, setIsNavActive] = useState(false);
+  const navigate = useNavigate();
 
   const [items, setItems] = useState(data);
   const [dragEl, setDragEl] = useState(null);
@@ -111,7 +113,7 @@ const TaskList = () => {
           title={"Your Tasks"}
           displayName={currentUser?.displayName}
         />
-        <TaskHeader createTaskHandler={(e) => onAddItem("todo's")} />
+        <TaskHeader createTaskHandler={(e) => onAddItem("todo's")} navigateToreminder={() => navigate("/reminder")} navigateTotrash={() => navigate("/trash")}/>
         {/* <TaskListHeader /> */}
 
         <div className="taskList__body__container">
@@ -150,7 +152,7 @@ const TaskList = () => {
   );
 };
 
-const TaskHeader = ({ createTaskHandler }) => {
+const TaskHeader = ({ createTaskHandler, navigateToreminder, navigateTotrash }) => {
   return (
     <div className="taskHeader">
       <div
@@ -169,19 +171,20 @@ const TaskHeader = ({ createTaskHandler }) => {
             gap: "60px",
           }}
         >
-          <div
+          <div onClick={ navigateToreminder }
             style={{
               display: "flex",
               alignItems: "center",
               gap: "10px",
               cursor: "pointer",
+              
             }}
           >
-            <NotificationIcon />
+            <NotificationIcon pushto={`/reminder`} />
             Reminders
           </div>
 
-          <div
+          <div onClick={ navigateTotrash }
             style={{
               display: "flex",
               alignItems: "center",

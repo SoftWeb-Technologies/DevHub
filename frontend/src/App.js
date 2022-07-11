@@ -20,6 +20,8 @@ import {
   TechHunt,
   ContestsList,
   Profile,
+  Reminder,
+  Trash,
 } from "./MainContainers";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
@@ -98,6 +100,16 @@ function App() {
           path="/profile"
           element={<ProtectedRoute Component={Profile} />}
         />
+        <Route
+          exact
+          path="/reminder"
+          element={<ProtectedRoute Component={Reminder} />}
+        />
+        <Route
+          exact
+          path="/trash"
+          element={<ProtectedRoute Component={Trash} />}
+        />
 
         <Route
           path="/*"
@@ -131,6 +143,6 @@ function App() {
       </Routes>
     </>
   );
-}
+};
 
 export default App;
