@@ -17,7 +17,7 @@ const RemindersPage = () => {
   const [isPopUpBoxActive, setIsPopUpBoxActive] = useState(false);
   const [popUpData, setPopUpData] = useState(null);
 
-  const removeItemFromLib = (id) => {
+  const removeItemFromLibrary = (id) => {
     dispatch(removeItemFromLibrary(id));
   };
 
