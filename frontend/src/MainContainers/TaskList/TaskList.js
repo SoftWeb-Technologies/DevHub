@@ -3,9 +3,13 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { Button } from "../../components";
 import { NotificationIcon, TrashIcon } from "../../DevHubIcons";
+
 import { useNavigate } from "react-router-dom";
 import { DashboardSideNavigation, TaskListModel } from "../components";
 // import TaskListCard from "../components/TaskListCard/TaskListCard";
+import { Navigate, useNavigate } from "react-router-dom";
+import { Board, DashboardSideNavigation } from "../components";
+import TaskListCard from "../components/TaskListCard/TaskListCard";
 import UserHeader from "../components/UserHeader/UserHeader";
 import "./TaskList.css";
 import { data, statusIcons } from "../../data";
@@ -15,6 +19,7 @@ import DropWrapper from "../components/DropWrapper";
 
 const TaskList = () => {
   const { currentUser } = useSelector((state) => state.user);
+  const [isPopUpBoxActive, setIsPopUpBoxActive] = useState(false);
   const [isNavActive, setIsNavActive] = useState(false);
   const [isModelActive, setIsModelActive] = useState(false);
   const navigate = useNavigate();
@@ -160,11 +165,15 @@ const TaskList = () => {
   );
 };
 
+
 const TaskHeader = ({
   createTaskHandler,
   navigateToreminder,
   navigateTotrash,
 }) => {
+
+const TaskHeader = ({ createTaskHandler, navigateToreminder, navigateTotrash, setIsPopUpBoxActive }) => {
+
   return (
     <div className="taskHeader">
       <div
@@ -211,7 +220,7 @@ const TaskHeader = ({
         </div>
 
         <Button
-          onClick={createTaskHandler}
+          onClick={setIsPopUpBoxActive}
           label={"Create Task"}
           primary={true}
         />

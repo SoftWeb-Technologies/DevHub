@@ -1,8 +1,11 @@
 import React from "react";
+import { useState } from "react";
 import { ActiveCheckIcon, DisableCheckIcon } from "../../../DevHubIcons";
 import "./TaskListCard.css";
 
 const TaskListCard = (props) => {
+  const [isPopUpBoxActive, setIsPopUpBoxActive] = useState(false);
+  
   const dragStart = (e) => {
     const target = e.target;
 
@@ -24,7 +27,24 @@ const TaskListCard = (props) => {
       onDragOver={dragOver}
       draggable={props.draggable}
       className="taskListCard__container"
+      openPoster={() => setIsPopUpBoxActive(true)}
     >
+      {/* modal */}
+      <div
+          onClick={() => {
+            setIsPopUpBoxActive(false);
+          }}
+          className={`contest__poster__model ${
+            isPopUpBoxActive ? "active" : ""
+          }`}
+        />
+
+          <div
+          className={`contest__poster__container ${
+            isPopUpBoxActive ? "active" : ""
+          }`}
+        ></div>
+        
       <div>
         {props.isPending && <p className="isPending">Pending</p>}
         <h2>{props.title}</h2>
