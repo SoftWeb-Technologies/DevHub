@@ -35,6 +35,8 @@ import ActiveCheckIcon from "./ActiveCheckIcon";
 import DisableCheckIcon from "./DisableCheckIcon";
 import NotificationIcon from "./NotificationIcon";
 import TrashIcon from "./TrashIcon";
+import CloseIcon from "./CloseIcon";
+import DeleteIcon from "./DeleteIcon";
 
 export {
   HomeIcon,
@@ -71,4 +73,6 @@ export {
   DisableCheckIcon,
   NotificationIcon,
   TrashIcon,
+  CloseIcon,
+  DeleteIcon,
 };

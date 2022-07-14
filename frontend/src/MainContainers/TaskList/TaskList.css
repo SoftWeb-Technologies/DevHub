@@ -241,3 +241,7 @@
   padding: 2px 6px;
   font-weight: 600;
 }
+
+.main__taskList__container {
+  position: relative;
+}
