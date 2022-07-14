@@ -22,6 +22,7 @@ import {
   Profile,
   Reminder,
   Trash,
+  RemindersPage,
 } from "./MainContainers";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
@@ -103,7 +104,7 @@ function App() {
         <Route
           exact
           path="/reminder"
-          element={<ProtectedRoute Component={Reminder} />}
+          element={<ProtectedRoute Component={RemindersPage} />}
         />
         <Route
           exact
@@ -143,6 +144,6 @@ function App() {
       </Routes>
     </>
   );
-};
+}
 
 export default App;

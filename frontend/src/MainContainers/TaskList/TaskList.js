@@ -3,8 +3,8 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { Button } from "../../components";
 import { NotificationIcon, TrashIcon } from "../../DevHubIcons";
-import { Navigate, useNavigate } from "react-router-dom";
-import { Board, DashboardSideNavigation } from "../components";
+import { useNavigate } from "react-router-dom";
+import { DashboardSideNavigation, TaskListModel } from "../components";
 // import TaskListCard from "../components/TaskListCard/TaskListCard";
 import UserHeader from "../components/UserHeader/UserHeader";
 import "./TaskList.css";
@@ -16,6 +16,7 @@ import DropWrapper from "../components/DropWrapper";
 const TaskList = () => {
   const { currentUser } = useSelector((state) => state.user);
   const [isNavActive, setIsNavActive] = useState(false);
+  const [isModelActive, setIsModelActive] = useState(false);
   const navigate = useNavigate();
 
   const [items, setItems] = useState(data);
@@ -108,12 +109,16 @@ const TaskList = () => {
     <div>
       <DashboardSideNavigation setisNavActive={setIsNavActive} />
 
-      <div>
+      <div className="main__taskList__container">
         <UserHeader
           title={"Your Tasks"}
           displayName={currentUser?.displayName}
         />
-        <TaskHeader createTaskHandler={(e) => onAddItem("todo's")} navigateToreminder={() => navigate("/reminder")} navigateTotrash={() => navigate("/trash")}/>
+        <TaskHeader
+          createTaskHandler={(e) => onAddItem("todo's")}
+          navigateToreminder={() => navigate("/reminder")}
+          navigateTotrash={() => navigate("/trash")}
+        />
         {/* <TaskListHeader /> */}
 
         <div className="taskList__body__container">
@@ -135,6 +140,7 @@ const TaskList = () => {
                         .map((i) => (
                           <Item
                             key={i.id}
+                            onClick={() => setIsModelActive(true)}
                             item={i}
                             moveItem={moveItem}
                             setDragElement={setDragElement}
@@ -147,12 +153,18 @@ const TaskList = () => {
             })}
           </div>
         </div>
+
+        {isModelActive && <TaskListModel setIsActive={setIsModelActive} />}
       </div>
     </div>
   );
 };
 
-const TaskHeader = ({ createTaskHandler, navigateToreminder, navigateTotrash }) => {
+const TaskHeader = ({
+  createTaskHandler,
+  navigateToreminder,
+  navigateTotrash,
+}) => {
   return (
     <div className="taskHeader">
       <div
@@ -171,20 +183,21 @@ const TaskHeader = ({ createTaskHandler, navigateToreminder, navigateTotrash }) 
             gap: "60px",
           }}
         >
-          <div onClick={ navigateToreminder }
+          <div
+            onClick={navigateToreminder}
             style={{
               display: "flex",
               alignItems: "center",
               gap: "10px",
               cursor: "pointer",
-              
             }}
           >
             <NotificationIcon pushto={`/reminder`} />
             Reminders
           </div>
 
-          <div onClick={ navigateTotrash }
+          <div
+            onClick={navigateTotrash}
             style={{
               display: "flex",
               alignItems: "center",
@@ -202,24 +215,6 @@ const TaskHeader = ({ createTaskHandler, navigateToreminder, navigateTotrash }) 
           label={"Create Task"}
           primary={true}
         />
-      </div>
-    </div>
-  );
-};
-
-const TaskListHeader = () => {
-  return (
-    <div className="taskListHeader">
-      <div className="taskListHeader__contents">
-        <div>
-          <h3>Todo's </h3>
-        </div>
-        <div>
-          <h3>Pending</h3>
-        </div>
-        <div>
-          <h3>Completed</h3>
-        </div>
       </div>
     </div>
   );

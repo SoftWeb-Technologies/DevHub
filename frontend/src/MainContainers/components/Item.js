@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { DisableCheckIcon } from "../../DevHubIcons";
 
-const Item = ({ item, moveItem, setDragElement }) => {
+const Item = ({ item, moveItem, setDragElement, onClick }) => {
   const [show, setShow] = useState(false);
 
   const onClose = () => setShow(false);
@@ -27,7 +27,7 @@ const Item = ({ item, moveItem, setDragElement }) => {
     <>
       <div
         className="item"
-        onClick={onOpen}
+        onClick={onClick}
         draggable="true"
         onDragStart={onDragStart}
         onDragOver={onDragOver}
