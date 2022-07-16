@@ -1,8 +1,14 @@
 import React from "react";
+import { useState } from "react";
 import { CloseIcon, DeleteIcon, NotificationIcon } from "../../../DevHubIcons";
+import CardInfo from "./CardInfo/CardInfo";
 import "./TaskListModel.css";
 
-const TaskListModel = ({ isActive, setIsActive }) => {
+function TaskListModel(props) {
+  const [showModal, setShowModal] = useState(false);
+  const [isActive, setIsActive] = useState(false);
+  const { id, title, date, tasks, labels } = props.card;
+
   return (
     <div className="taskListModel">
       <div
@@ -23,6 +29,14 @@ const TaskListModel = ({ isActive, setIsActive }) => {
               gap: "20px",
             }}
           >
+          {showModal && (
+          <CardInfo
+          onClose={() => setShowModal(false)}
+          card={props.card}
+          boardId={props.boardId}
+          updateCard={props.updateCard}
+          />
+          )}
             <NotificationIcon onClick={() => console.log("set notification")} />
             <DeleteIcon onClick={() => console.log("delete task")} />
             <CloseIcon onClick={() => setIsActive(false)} />
