@@ -6,15 +6,14 @@ import "./TaskListModel.css";
 
 function TaskListModel(props) {
   const [showModal, setShowModal] = useState(false);
-  const [isActive, setIsActive] = useState(false);
-  const { id, title, date, tasks, labels } = props.card;
+  // const { id, title, date, tasks, labels } = props?.card;
 
   return (
     <div className="taskListModel">
       <div
         className="task__list__model__container"
         style={{
-          transform: isActive ? "scale(0)" : "scale(0.8)",
+          transform: props.isActive ? "scale(0)" : "scale(0.8)",
         }}
       >
         <div className="task__list__model__content">
@@ -27,26 +26,26 @@ function TaskListModel(props) {
               alignItems: "center",
               justifyContent: "center",
               gap: "20px",
+              zIndex: "1",
             }}
           >
-          {showModal && (
-          <CardInfo
-          onClose={() => setShowModal(false)}
-          card={props.card}
-          boardId={props.boardId}
-          updateCard={props.updateCard}
-          />
-          )}
             <NotificationIcon onClick={() => console.log("set notification")} />
             <DeleteIcon onClick={() => console.log("delete task")} />
-            <CloseIcon onClick={() => setIsActive(false)} />
+            <CloseIcon onClick={() => props.setIsActive(false)} />
           </div>
+
+          <CardInfo
+            onClose={() => setShowModal(false)}
+            card={props.card}
+            boardId={props.boardId}
+            updateCard={props.updateCard}
+          />
         </div>
       </div>
 
       <div className="taskListModel__bg" />
     </div>
   );
-};
+}
 
 export default TaskListModel;
