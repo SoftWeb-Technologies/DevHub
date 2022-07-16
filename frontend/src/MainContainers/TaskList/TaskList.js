@@ -154,7 +154,12 @@ const TaskList = () => {
           </div>
         </div>
 
-        {isModelActive && <TaskListModel setIsActive={setIsModelActive} />}
+        {isModelActive && (
+          <TaskListModel
+            setIsActive={setIsModelActive}
+            isActive={isModelActive}
+          />
+        )}
       </div>
     </div>
   );
