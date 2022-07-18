@@ -37,6 +37,10 @@ import NotificationIcon from "./NotificationIcon";
 import TrashIcon from "./TrashIcon";
 import CloseIcon from "./CloseIcon";
 import DeleteIcon from "./DeleteIcon";
+import List from "./List";
+import Type from "./Type";
+import AiFillTag from "./AiFillTag";
+import AiFillCheckSquare from "./AiFillCheckSquare";
 
 export {
   HomeIcon,
@@ -75,4 +79,8 @@ export {
   TrashIcon,
   CloseIcon,
   DeleteIcon,
+  List,
+  Type,
+  AiFillTag,
+  AiFillCheckSquare,
 };

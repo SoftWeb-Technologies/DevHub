@@ -21,27 +21,27 @@
   gap: 10px;
 }
 
-/* .cardinfo_box_title {
+ .cardinfo_box_title {
   display: flex;
   gap: 10px;
   align-items: center;
-} */
+} 
 
-/* .cardinfo_box_title p {
+ .cardinfo_box_title p {
   font-weight: bold;
   font-size: 1.2rem;
-} */
+} 
 
-/* .cardinfo_box_title svg {
+ .cardinfo_box_title svg {
   height: 18px;
   width: 18px;
-} */
+} 
 
-/* .cardinfo_box_labels {
+ .cardinfo_box_labels {
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
-} */
+} 
 
 .cardinfo_box_labels label {
   border-radius: 40px;

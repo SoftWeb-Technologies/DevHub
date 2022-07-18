@@ -1,12 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { matchRoutes } from "react-router-dom";
-//import {
-//    Calendar,
-//    CheckSquare,
-//    List,
-//    Tag,
-//    Type,
-//} from "../../../DevHubIcons";
+import { AiFillCheckSquare, List, AiFillTag, Type } from "../../../../DevHubIcons";
 import "./CardInfo.css";
 
 function CardInfo(props) {
@@ -118,12 +112,14 @@ function CardInfo(props) {
     <div className="cardinfo">
       <div className="cardinfo_box">
         <div classNae="cardinfo_box_title">
+          <Type />
           <p>Title</p>
         </div>
       </div>
 
       <div className="cardinfo_box">
         <div className="cardinfo_box_title">
+          <List />
           <p>Description</p>
         </div>
       </div>
@@ -148,6 +144,7 @@ function CardInfo(props) {
         }}
       >
         <div className="cardinfo_box_title">
+          <AiFillTag />
           <p>Labels</p>
         </div>
 
@@ -165,6 +162,7 @@ function CardInfo(props) {
 
       <div className="cardinfo_box">
         <div className="cardinfo_box_title">
+          <AiFillCheckSquare />
           <p>Tasks</p>
         </div>
         <div className="cardinfo_box_progress-bar">
