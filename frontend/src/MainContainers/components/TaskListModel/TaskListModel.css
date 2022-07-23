@@ -1,5 +1,5 @@
 .taskListModel {
-  width: 100vh;
+  width: 100vw;
   height: 100vh;
   position: fixed;
   top: 0;
@@ -24,8 +24,8 @@
 .task__list__model__container {
   position: absolute;
   z-index: 99;
-  width: 500px;
-  height: 400px;
+  width: 600px;
+  height: 600px;
   background-color: #fff;
   padding: 1.5rem;
   border-radius: 15px;
