@@ -50,7 +50,9 @@ const Dashboard = () => {
       <DashboardSideNavigation setIsNavActive={setIsNavActive} />
       <DashboardHeader
         isNavActive={isNavActive}
-        displayName={currentUser?.displayName || "User"}
+        displayName={
+          currentUser?.displayName || currentUser?.user?.name || "User"
+        }
       />
 
       <div

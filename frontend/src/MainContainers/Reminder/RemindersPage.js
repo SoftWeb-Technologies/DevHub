@@ -27,7 +27,11 @@ const RemindersPage = () => {
 
       <DashboardSideNavigation setIsNavActive={setIsNavActive} />
       <div id="blogspace">
-        <UserHeader displayName={currentUser?.displayName} />
+        <UserHeader
+          displayName={
+            currentUser?.displayName || currentUser?.user?.name || "User"
+          }
+        />
         <div className="reminders__header">
           <h1>
             Your <span style={{ color: "#008bb7" }}>Reminders!</span>
@@ -73,97 +77,6 @@ const RemindersPage = () => {
             <p>Add</p>
           </div>
         )}
-
-        <div
-          onClick={() => setIsPopUpBoxActive(false)}
-          className={`popup__bg__main__container ${
-            isPopUpBoxActive ? "active" : ""
-          }`}
-        />
-
-        <div
-          className={`TaskCard__popup__container ${
-            isPopUpBoxActive ? "active" : ""
-          }`}
-        >
-          <div
-            style={{
-              position: "absolute",
-              top: "1rem",
-              right: "1rem",
-              cursor: "pointer",
-            }}
-          >
-            <div
-              style={{ display: "flex", alignItems: "flex-start", gap: "1rem" }}
-            >
-              <div
-                style={{
-                  marginTop: "-5.5px",
-                }}
-              >
-                <div onClick={() => setIsPopUpBoxActive(false)}>
-                  <div
-                    style={{
-                      width: "22px",
-                      height: "2px",
-                      background: "#fff",
-                      transform: "rotate(45deg)  translate(2px,1px) ",
-                    }}
-                  />
-                  <div
-                    style={{
-                      width: "22px",
-                      height: "2px",
-                      background: "#fff",
-                      transform: "rotate(-45deg)",
-                    }}
-                  />
-                </div>
-              </div>
-            </div>
-
-            <div className="popup__main__container">
-              <div
-                style={{
-                  width: "450px",
-                  height: "80vh",
-                  borderRadius: "10px",
-                  overflow: "hidden",
-                }}
-              >
-                <img
-                  src={popUpData?.social_image}
-                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                  alt="popup"
-                />
-              </div>
-
-              <div className="popup__description">
-                <h1
-                  style={{
-                    color: "#ffff",
-                    marginBottom: "1rem",
-                  }}
-                >
-                  {popUpData?.title}
-                </h1>
-                <p>{popUpData?.description}</p>
-
-                {/* <div style={{ marginTop: "1rem" }}>
-                  <Button
-                    onClick={() => {
-                      // return window.open(popUpData?.url, "_blank");
-                    }}
-                    label={"Read more"}
-                    renderIconRight={true}
-                    //Icon={}
-                  />
-                </div> */}
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   );

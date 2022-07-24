@@ -175,7 +175,7 @@
   padding: 20px;
 }
 
-.overlay {
+.overlay__model {
   display: flex;
   justify-content: center;
   position: fixed;

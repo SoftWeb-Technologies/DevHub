@@ -1,8 +1,9 @@
 import React from "react";
 
-const TrashIcon = () => {
+const TrashIcon = ({ ...props }) => {
   return (
     <svg
+      {...props}
       width="13"
       height="13"
       viewBox="0 0 13 13"

@@ -8,8 +8,7 @@ const ProtectedRoute = (props) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    let authenticated = localStorage.getItem("isAuthenticated");
-    if (!authenticated) {
+    if (!isAuthenticated) {
       navigate("/auth");
     }
   }, [navigate, isAuthenticated]);

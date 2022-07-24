@@ -10,7 +10,7 @@ import "./Home.css";
 
 const Home = () => {
   const navigate = useNavigate();
-  const { currentUser } = useSelector((state) => state.user);
+  const { isAuthenticated } = useSelector((state) => state.user);
 
   const [isNavActive, setIsNavActive] = useState(false);
 
@@ -22,7 +22,7 @@ const Home = () => {
 
       <main className="home__main__container">
         <Navbar theme={"light"}>
-          {currentUser ? (
+          {isAuthenticated ? (
             <Button label="Dashboard" onClick={() => navigate("/dashboard")} />
           ) : (
             <Button label="Sign Up" onClick={() => navigate("/auth")} />
