@@ -14,13 +14,13 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 
 import "./DashboardSideNavigation.css";
-import { logoutUser } from "../../../../redux/actions/authAction";
+import { logoutInitiate } from "../../../../redux/actions/actions";
 
 const DashboardSideNavigation = ({ customStyle, ...props }) => {
   const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { isAuthenticated, currentUser } = useSelector((state) => state.user);
+  const { currentUser } = useSelector((state) => state.user);
 
   const [toggle, setToggle] = useState(false);
   const [hoverActive, setHoverActive] = useState(false);
@@ -35,12 +35,10 @@ const DashboardSideNavigation = ({ customStyle, ...props }) => {
   }, [location]);
 
   const handleLogout = () => {
-    if (isAuthenticated) {
-      dispatch(logoutUser());
+    if (currentUser) {
+      dispatch(logoutInitiate());
       localStorage.removeItem("isAuthenticated");
     }
-
-    console.log(isAuthenticated);
 
     // window.location.reload();
   };
@@ -153,7 +151,7 @@ const DashboardSideNavigation = ({ customStyle, ...props }) => {
           <div
             style={{
               width: "100%",
-              height: "80%",
+              height: "100%",
               display: "flex",
               alignItems: "center",
               visibility: toggle ? "visible" : "hidden",
@@ -170,7 +168,7 @@ const DashboardSideNavigation = ({ customStyle, ...props }) => {
                 justifyContent: "space-between",
                 alignItems: "center",
                 cursor: "pointer",
-                top: "0",
+                top: "2.7rem",
               }}
             >
               <p>Logout</p>

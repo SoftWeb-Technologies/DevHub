@@ -1,104 +1,104 @@
 import { auth, googleAuthProvider, twitterAuthProvider } from "../../firebase";
 import {
-  // createUserWithEmailAndPassword,
-  // signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
   signInWithPopup,
 } from "firebase/auth";
 
 import * as types from "../constants/actionTypes";
 
-// // register actions
-// const registerStart = () => ({
-//   type: types.REGISTER_START,
-// });
+// register actions
+const registerStart = () => ({
+  type: types.REGISTER_START,
+});
 
-// const registerSuccess = (user) => ({
-//   type: types.REGISTER_SUCCESS,
-//   payload: user,
-// });
+const registerSuccess = (user) => ({
+  type: types.REGISTER_SUCCESS,
+  payload: user,
+});
 
-// const registerFail = (error) => ({
-//   type: types.REGISTER_FAIL,
-//   payload: error,
-// });
+const registerFail = (error) => ({
+  type: types.REGISTER_FAIL,
+  payload: error,
+});
 
-// export const registerInitiate = (email, password, displayName) => {
-//   return function (dispatch) {
-//     dispatch(registerStart());
+export const registerInitiate = (email, password, displayName) => {
+  return function (dispatch) {
+    dispatch(registerStart());
 
-//     createUserWithEmailAndPassword(auth, email, password)
-//       .then(async (userCredential) => {
-//         const user = userCredential.user;
-//         user.displayName = displayName;
-//         dispatch(registerSuccess(user));
-//         localStorage.setItem("isAuthenticated", true);
-//       })
-//       .catch((err) => {
-//         dispatch(registerFail(err));
-//       });
-//   };
-// };
+    createUserWithEmailAndPassword(auth, email, password)
+      .then(async (userCredential) => {
+        const user = userCredential.user;
+        user.displayName = displayName;
+        dispatch(registerSuccess(user));
+        localStorage.setItem("isAuthenticated", true);
+      })
+      .catch((err) => {
+        dispatch(registerFail(err));
+      });
+  };
+};
 
-// // login actions
-// const loginStart = () => ({
-//   type: types.LOGIN_START,
-// });
+// login actions
+const loginStart = () => ({
+  type: types.LOGIN_START,
+});
 
-// const loginSuccess = (user) => ({
-//   type: types.LOGIN_SUCCESS,
-//   payload: user,
-// });
+const loginSuccess = (user) => ({
+  type: types.LOGIN_SUCCESS,
+  payload: user,
+});
 
-// const loginFail = (error) => ({
-//   type: types.LOGIN_FAIL,
-//   payload: error,
-// });
+const loginFail = (error) => ({
+  type: types.LOGIN_FAIL,
+  payload: error,
+});
 
-// export const loginInitiate = (email, password) => {
-//   return function (dispatch) {
-//     dispatch(loginStart());
+export const loginInitiate = (email, password) => {
+  return function (dispatch) {
+    dispatch(loginStart());
 
-//     signInWithEmailAndPassword(auth, email, password)
-//       .then((userCredential) => {
-//         const user = userCredential.user;
-//         user.displayName = user.displayName || user.email.split("@")[0];
-//         dispatch(loginSuccess(userCredential.user));
-//         localStorage.setItem("isAuthenticated", true);
-//       })
-//       .catch((err) => {
-//         dispatch(loginFail(err));
-//       });
-//   };
-// };
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        user.displayName = user.displayName || user.email.split("@")[0];
+        dispatch(loginSuccess(userCredential.user));
+        localStorage.setItem("isAuthenticated", true);
+      })
+      .catch((err) => {
+        dispatch(loginFail(err));
+      });
+  };
+};
 
-// // logout actions
-// const logoutStart = () => ({
-//   type: types.LOGOUT_START,
-// });
+// logout actions
+const logoutStart = () => ({
+  type: types.LOGOUT_START,
+});
 
-// const logoutSuccess = () => ({
-//   type: types.LOGOUT_SUCCESS,
-// });
+const logoutSuccess = () => ({
+  type: types.LOGOUT_SUCCESS,
+});
 
-// const logoutFail = (error) => ({
-//   type: types.LOGOUT_FAIL,
-//   payload: error,
-// });
+const logoutFail = (error) => ({
+  type: types.LOGOUT_FAIL,
+  payload: error,
+});
 
-// export const logoutInitiate = () => {
-//   return function (dispatch) {
-//     dispatch(logoutStart());
+export const logoutInitiate = () => {
+  return function (dispatch) {
+    dispatch(logoutStart());
 
-//     auth
-//       .signOut()
-//       .then(() => {
-//         dispatch(logoutSuccess());
-//       })
-//       .catch((err) => {
-//         dispatch(logoutFail(err));
-//       });
-//   };
-// };
+    auth
+      .signOut()
+      .then(() => {
+        dispatch(logoutSuccess());
+      })
+      .catch((err) => {
+        dispatch(logoutFail(err));
+      });
+  };
+};
 
 // set user actions
 

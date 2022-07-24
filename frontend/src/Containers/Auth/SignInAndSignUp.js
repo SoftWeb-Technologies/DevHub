@@ -24,7 +24,6 @@ import {
 import { LoginImg, SignUpImg } from "../../constants/Images";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { loginUser, registerUser } from "../../redux/actions/authAction";
 
 const SignInAndSignUp = () => {
   const navigate = useNavigate();
@@ -156,7 +155,7 @@ const SignInForm = ({
       return;
     }
 
-    dispatch(loginUser(email, password));
+    dispatch(loginInitiate(email, password));
   };
 
   return (
@@ -274,7 +273,7 @@ const SignUpForm = ({
       return;
     }
 
-    dispatch(registerUser(username, email, password));
+    dispatch(registerInitiate(email, password, username));
     setUsername("");
     setEmail("");
     setPassword("");
