@@ -59,3 +59,51 @@
   height: 24px;
   width: 24px;
 }
+
+/* styles */
+
+#editable__container {
+  padding: 1rem 2rem;
+}
+
+#editable__container input,
+#editable__container select {
+  width: 100%;
+  height: 2.3rem;
+  font-size: 1rem;
+  padding: 0 0.7rem;
+  margin-bottom: 1rem;
+  outline: none;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 1.4px 1.4px 10px rgba(0, 0, 0, 0.156);
+}
+
+#editable__container select {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+#editable__container option {
+  font-size: 1.056rem;
+}
+
+#singleLine__two_textField {
+  width: 100%;
+  display: flex;
+  margin-top: 0.3rem;
+  gap: 10px;
+}
+
+#editable__description textarea {
+  width: 100%;
+  height: 70px;
+  margin-top: 1.2rem;
+  outline: none;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 1.4px 1.4px 10px rgba(0, 0, 0, 0.156);
+  padding: 0.5rem 0.6rem;
+  font-size: 1rem;
+  resize: none;
+  font-family: inherit;
+}
