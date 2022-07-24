@@ -36,22 +36,28 @@ const Profile = () => {
           </h2>
           <div className="profile__content__container">
             <div className="profile__avatar__container">
-              <h1>{currentUser?.displayName?.charAt(0)}</h1>
+              <h1>
+                {currentUser?.displayName?.charAt(0) ||
+                  currentUser?.user?.name?.charAt(0) ||
+                  "User"?.charAt(0)}
+              </h1>
             </div>
             <h2 style={{ color: "gray", marginBottom: "1rem" }}>
-              {currentUser?.displayName}
+              {currentUser?.displayName || currentUser?.user?.name || "User"}
             </h2>
 
             <div className="profile__form__container">
               <TextInput
                 placeholder={"Name"}
                 inputType="text"
-                value={currentUser?.displayName}
+                value={
+                  currentUser?.displayName || currentUser?.user?.name || "User"
+                }
               />
               <TextInput
                 placeholder={"Email"}
                 inputType="email"
-                value={currentUser?.email}
+                value={currentUser?.email || currentUser?.user?.email}
               />
             </div>
           </div>

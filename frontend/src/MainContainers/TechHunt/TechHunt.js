@@ -55,7 +55,9 @@ const TechHunt = () => {
         <div className="header__main__container">
           <div className="techHunt__header__container">
             <Header
-              displayName={currentUser?.displayName}
+              displayName={
+                currentUser?.displayName || currentUser?.user?.name || "User"
+              }
               setFilter={setFilter}
             />
           </div>

@@ -106,18 +106,20 @@ const TaskList = () => {
 
   return (
     <div>
-      <DashboardSideNavigation setisNavActive={setIsNavActive} />
+      <DashboardSideNavigation setIsNavActive={setIsNavActive} />
 
       <div className="main__taskList__container">
         <UserHeader
           title={"Your Tasks"}
-          displayName={currentUser?.displayName}
+          displayName={
+            currentUser?.displayName || currentUser?.user?.name || "User"
+          }
         />
         <TaskHeader
           setIsActive={setIsModelActive}
           createTaskHandler={(e) => onAddItem("todo's")}
-          navigateToreminder={() => navigate("/reminder")}
-          navigateTotrash={() => navigate("/trash")}
+          navigateToReminder={() => navigate("/reminder")}
+          navigateToTrash={() => navigate("/trash")}
         />
         {/* <TaskListHeader /> */}
 
@@ -167,10 +169,11 @@ const TaskList = () => {
 
 const TaskHeader = ({
   createTaskHandler,
-  navigateToreminder,
-  navigateTotrash,
+  navigateToReminder,
+  navigateToTrash,
   setIsActive,
 }) => {
+  const [reminder, setReminder] = useState(false);
   return (
     <div className="taskHeader">
       <div
@@ -190,7 +193,7 @@ const TaskHeader = ({
           }}
         >
           <div
-            onClick={navigateToreminder}
+            onClick={navigateToReminder}
             style={{
               display: "flex",
               alignItems: "center",
@@ -198,12 +201,12 @@ const TaskHeader = ({
               cursor: "pointer",
             }}
           >
-            <NotificationIcon onClick={`/reminder`} />
+            <NotificationIcon onClick={navigateToReminder} />
             Reminders
           </div>
 
           <div
-            onClick={navigateTotrash}
+            onClick={navigateToTrash}
             style={{
               display: "flex",
               alignItems: "center",
@@ -211,7 +214,7 @@ const TaskHeader = ({
               cursor: "pointer",
             }}
           >
-            <TrashIcon />
+            <TrashIcon onClick={navigateToTrash} />
             Trash
           </div>
         </div>

@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { matchRoutes } from "react-router-dom";
-import { AiFillCheckSquare, List, AiFillTag, Type } from "../../../../DevHubIcons";
+import {
+  AiFillCheckSquare,
+  List,
+  AiFillTag,
+  Type,
+} from "../../../../DevHubIcons";
 import "./CardInfo.css";
 
 function CardInfo(props) {
@@ -90,7 +95,7 @@ function CardInfo(props) {
   };
 
   const calculatePercent = () => {
-    if (!values.tasls?.length) return 0;
+    if (!values.tasks?.length) return 0;
     const completed = values.tasks?.filter((item) => item.completed)?.length;
     return (completed / values.tasks?.length) * 100;
   };
@@ -111,7 +116,7 @@ function CardInfo(props) {
   return (
     <div className="cardinfo">
       <div className="cardinfo_box">
-        <div classNae="cardinfo_box_title">
+        <div className="cardinfo_box_title">
           <Type />
           <p>Title</p>
         </div>
@@ -148,7 +153,7 @@ function CardInfo(props) {
           <p>Labels</p>
         </div>
 
-        <ul>
+        <ul style={{ display: "flex", gap: "20px", width: "100%" }}>
           {colors.map((item, index) => (
             <li
               key={index + item}

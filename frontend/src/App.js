@@ -20,28 +20,27 @@ import {
   TechHunt,
   ContestsList,
   Profile,
-  Reminder,
   Trash,
   RemindersPage,
 } from "./MainContainers";
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { auth } from "./firebase";
-import { setUser } from "./redux/actions/actions";
+import { useDispatch, useSelector } from "react-redux";
+// import { auth } from "./firebase";
+// import { setUser } from "./redux/actions/actions";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import { ErrorImg } from "./constants/Images";
 import { Button } from "./components";
+import { loadUser } from "./redux/actions/authAction";
 
 function App() {
   const dispatch = useDispatch();
+  const { isAuthenticated } = useSelector((state) => state.user);
   const navigate = useNavigate();
 
   useEffect(() => {
-    auth.onAuthStateChanged((authUser) => {
-      if (authUser) {
-        dispatch(setUser(authUser));
-      }
-    });
+    if (isAuthenticated || localStorage.getItem("isAuthenticated")) {
+      dispatch(loadUser());
+    }
   }, [dispatch]);
 
   return (

@@ -29,7 +29,11 @@ const LibraryPage = () => {
 
       <DashboardSideNavigation setIsNavActive={setIsNavActive} />
       <div id="blogSpace">
-        <UserHeader displayName={currentUser?.displayName} />
+        <UserHeader
+          displayName={
+            currentUser?.displayName || currentUser?.user?.name || "User"
+          }
+        />
         <div className="lib__header">
           <h1>
             Your <span style={{ color: "#008bb7" }}>Bookmarks!</span>
@@ -92,8 +96,12 @@ const LibraryPage = () => {
           </div>
         )}
 
-
-        <div onClick={() => setIsPopUpBoxActive(false)} className={`popup__bg__main__container ${isPopUpBoxActive ? "active" : ""}`} />
+        <div
+          onClick={() => setIsPopUpBoxActive(false)}
+          className={`popup__bg__main__container ${
+            isPopUpBoxActive ? "active" : ""
+          }`}
+        />
 
         <div
           className={`blogSpace__popup__container ${
