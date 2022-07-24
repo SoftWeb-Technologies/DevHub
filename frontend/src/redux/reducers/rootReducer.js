@@ -15,7 +15,6 @@ import { userReducer } from "./reducer";
 
 const rootReducer = combineReducers({
   user: userReducer,
-  // auth: authReducer,
   lib: libReducer,
   newsAppleApi: apiNewsAppleReducer,
   newsTeslaApi: apiNewsTeslaReducer,
