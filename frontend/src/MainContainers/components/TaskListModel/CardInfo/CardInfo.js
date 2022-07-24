@@ -6,6 +6,7 @@ import {
   AiFillTag,
   Type,
 } from "../../../../DevHubIcons";
+import Editable from "../../Editable/Editable";
 import "./CardInfo.css";
 
 function CardInfo(props) {
@@ -163,6 +164,11 @@ function CardInfo(props) {
             />
           ))}
         </ul>
+        <Editable
+          text="Add Label"
+          placeholder="Enter label text"
+          onSubmit={(value) => addLabel({ color: selectedColor, text: value })}
+        />
       </div>
 
       <div className="cardinfo_box">
@@ -191,6 +197,11 @@ function CardInfo(props) {
             </div>
           ))}
         </div>
+        <Editable
+          text={"Add a Task"}
+          placeholder="Enter task"
+          onSubmit={addTask}
+        />
       </div>
     </div>
   );
