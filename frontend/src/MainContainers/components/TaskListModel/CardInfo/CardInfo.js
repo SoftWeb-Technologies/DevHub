@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { matchRoutes } from "react-router-dom";
+import { Button } from "../../../../components";
 import {
   AiFillCheckSquare,
   List,
@@ -21,6 +22,7 @@ function CardInfo(props) {
   ];
 
   const [selectedColor, setSelectedColor] = useState();
+  const [updateTask, setUpdateTask] = useState(false);
   const [values, setValues] = useState({
     ...props.card,
   });
@@ -114,11 +116,10 @@ function CardInfo(props) {
   //   if (props.updateCard) props.updateCard(props.boardId, values.id, values);
   // }, [values]);
 
-  const [isCreating, setIsCreating] = useState(true);
   return (
     <>
-      {isCreating ? (
-        <Editable />
+      {props.isCreating ? (
+        <Editable isEditable={updateTask} />
       ) : (
         <div className="cardinfo">
           <div className="cardinfo_box">
@@ -169,11 +170,6 @@ function CardInfo(props) {
                 />
               ))}
             </ul>
-            <Editable
-              text="Add Label"
-              placeholder="Enter label text"
-              onSubmit={(value) => {}}
-            />
           </div>
 
           <div className="cardinfo_box">
@@ -204,6 +200,21 @@ function CardInfo(props) {
                 </div>
               ))}
             </div>
+          </div>
+
+          <div
+            style={{
+              margin: "0 auto",
+            }}
+          >
+            <Button
+              onClick={() => {
+                props.setIsCreating(true);
+                setUpdateTask(true);
+              }}
+              label="Edit Now"
+              primary={true}
+            />
           </div>
         </div>
       )}
