@@ -35,6 +35,8 @@ function TaskListModel(props) {
           </div>
 
           <CardInfo
+            isCreating={props.isCreating}
+            setIsCreating={props.setIsCreating}
             onClose={() => setShowModal(false)}
             card={props.card}
             boardId={props.boardId}

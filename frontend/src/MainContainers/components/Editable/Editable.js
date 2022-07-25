@@ -161,8 +161,16 @@ function Editable(props) {
 
         <div>
           {props.isEditable ? (
-            <div>
-              <Button onClick={handleEditTask} label={"Edit Task"} />
+            <div
+              style={{
+                marginTop: "1rem",
+              }}
+            >
+              <Button
+                onClick={handleEditTask}
+                label={"Update Task"}
+                primary={true}
+              />
             </div>
           ) : (
             <div

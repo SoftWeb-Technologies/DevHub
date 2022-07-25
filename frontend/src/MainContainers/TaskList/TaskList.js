@@ -16,6 +16,7 @@ const TaskList = () => {
   const { currentUser } = useSelector((state) => state.user);
   const [isNavActive, setIsNavActive] = useState(false);
   const [isModelActive, setIsModelActive] = useState(false);
+  const [isCreating, setIsCreating] = useState(false);
   const navigate = useNavigate();
 
   const [items, setItems] = useState(data);
@@ -120,6 +121,7 @@ const TaskList = () => {
           createTaskHandler={(e) => onAddItem("todo's")}
           navigateToReminder={() => navigate("/reminder")}
           navigateToTrash={() => navigate("/trash")}
+          setIsCreating={setIsCreating}
         />
         {/* <TaskListHeader /> */}
 
@@ -142,7 +144,10 @@ const TaskList = () => {
                         .map((i) => (
                           <Item
                             key={i.id}
-                            onClick={() => setIsModelActive(true)}
+                            onClick={() => {
+                              setIsModelActive(true);
+                              setIsCreating(false);
+                            }}
                             item={i}
                             moveItem={moveItem}
                             setDragElement={setDragElement}
@@ -158,6 +163,8 @@ const TaskList = () => {
 
         {isModelActive && (
           <TaskListModel
+            isCreating={isCreating}
+            setIsCreating={setIsCreating}
             setIsActive={setIsModelActive}
             isActive={isModelActive}
           />
@@ -172,6 +179,7 @@ const TaskHeader = ({
   navigateToReminder,
   navigateToTrash,
   setIsActive,
+  setIsCreating,
 }) => {
   const [reminder, setReminder] = useState(false);
   return (
@@ -220,7 +228,10 @@ const TaskHeader = ({
         </div>
 
         <Button
-          onClick={() => setIsActive(true)}
+          onClick={() => {
+            setIsActive(true);
+            setIsCreating(true);
+          }}
           label={"Create Task"}
           primary={true}
         />
