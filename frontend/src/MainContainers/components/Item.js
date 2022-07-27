@@ -41,7 +41,7 @@ const Item = ({ item, moveItem, setDragElement, onClick }) => {
           marginTop: "1rem",
         }}
       >
-        <h3 style={{ color: "#000", fontWeight: "500" }}>{item.title}</h3>
+        <h3 style={{ color: "#000", fontWeight: "500" }}>{item.taskName}</h3>
         <p
           style={{
             color: "rgba(0,0,0,0.6)",
@@ -50,7 +50,7 @@ const Item = ({ item, moveItem, setDragElement, onClick }) => {
             marginBottom: "1rem",
           }}
         >
-          {item.content.length > 50 ? `${item.content} + ...` : item.content}
+          {item.taskDesc.length > 50 ? `${item.taskDesc} + ...` : item.taskDesc}
         </p>
 
         <p
@@ -61,7 +61,7 @@ const Item = ({ item, moveItem, setDragElement, onClick }) => {
             marginBottom: "1rem",
           }}
         >
-          {item.date}
+          {item.dueDate}
         </p>
         <div
           className="item-icons"

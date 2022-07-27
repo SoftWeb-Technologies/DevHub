@@ -1,11 +1,22 @@
 import React, { useState } from "react";
 import { Button } from "../../../components";
+import { db } from "../../../firebase";
+import {
+  setDoc,
+  doc,
+  serverTimestamp,
+  collection,
+  addDoc,
+} from "firebase/firestore";
+import { useDispatch, useSelector } from "react-redux";
 
 import CloseIcon from "../../../DevHubIcons/CloseIcon";
 
 import "./Editable.css";
 
 function Editable(props) {
+  const { currentUser } = useSelector((state) => state.user);
+
   const [addLabel, setAddLabel] = useState("");
 
   const [taskName, setTaskName] = useState("");
@@ -16,15 +27,39 @@ function Editable(props) {
 
   const colors = ["#1ebffa", "#240959", "#9975bd", "#cf61a1"];
 
-  const handleCreateTask = (e) => {
+  const handleCreateTask = async (e) => {
     e.preventDefault();
 
     if (!taskName || !status || !taskDesc || !dueDate || !labels) {
       return;
     }
 
-    console.log(taskName, status, taskDesc, dueDate, labels);
+    try {
+      await addDoc(
+        collection(db, "tasks"),
+        {
+          id: Date.now(),
+          taskName,
+          status,
+          taskDesc,
+          dueDate,
+          labels,
+          createdAt: serverTimestamp(),
+        },
+        { merge: true }
+      );
+    } catch (err) {
+      console.log(err);
+    }
+
+    setTaskName("");
+    setStatus("todo's");
+    setTaskDesc("");
+    setDueDate("");
+    setLabels([]);
+    setAddLabel("");
   };
+
   const handleEditTask = (e) => {
     e.preventDefault();
   };

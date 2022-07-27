@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Button } from "../../components";
 import { NotificationIcon, TrashIcon } from "../../DevHubIcons";
 import { useNavigate } from "react-router-dom";
@@ -11,16 +11,40 @@ import { data, statusIcons } from "../../data";
 import Col from "../components/Col";
 import Item from "../components/Item";
 import DropWrapper from "../components/DropWrapper";
+import { db } from "../../firebase";
+import { getDocs, doc, collection } from "firebase/firestore";
+import { setTasks } from "../../redux/actions/taskAction";
 
 const TaskList = () => {
+  const dispatch = useDispatch();
   const { currentUser } = useSelector((state) => state.user);
+  const tasks = useSelector((state) => state.tasks);
+
   const [isNavActive, setIsNavActive] = useState(false);
   const [isModelActive, setIsModelActive] = useState(false);
   const [isCreating, setIsCreating] = useState(false);
   const navigate = useNavigate();
 
-  const [items, setItems] = useState(data);
+  const [items, setItems] = useState(tasks);
   const [dragEl, setDragEl] = useState(null);
+
+  React.useEffect(() => {
+    const fetchTask = async () => {
+      try {
+        const task = await getDocs(collection(db, "tasks"));
+
+        task.forEach((doc) => {
+          setItems([...items, doc.data()]);
+        });
+
+        dispatch(setTasks(new Set(items)));
+      } catch (e) {
+        console.log(e);
+      }
+    };
+
+    fetchTask();
+  }, []);
 
   const onDrop = (item, status) => {
     if (item.status === status) {
@@ -39,71 +63,67 @@ const TaskList = () => {
   };
 
   const moveItem = (el) => {
-    setItems((prevState) => {
-      const itemIndex = prevState.findIndex(
-        (i) => i.content === dragEl.content
-      );
-
-      const hoverIndex = prevState.findIndex((i) => i.content === el);
-
-      const newState = [...prevState];
-
-      newState.splice(itemIndex, 1);
-      newState.splice(hoverIndex, 0, dragEl);
-
-      return [...newState];
-    });
+    // setItems((prevState) => {
+    //   const itemIndex = prevState.findIndex(
+    //     (i) => i?.content === dragEl?.content
+    //   );
+    //   const hoverIndex = prevState.findIndex((i) => i?.content === el);
+    //   const newState = [...prevState];
+    //   newState.splice(itemIndex, 1);
+    //   newState.splice(hoverIndex, 0, dragEl);
+    //   return [...newState];
+    // });
   };
 
   const setDragElement = (el) => setDragEl(el);
 
-  const onAddItem = (col) => {
-    console.log("add item placeholder in col: ", col);
+  // const onAddItem = (col) => {
+  //   console.log("add item placeholder in col: ", col);
 
-    const status = statusIcons.find((si) => si.status === col);
+  //   const status = statusIcons.find((si) => si.status === col);
 
-    setItems((prevState) => {
-      const highestId = Math.max.apply(
-        Math,
-        prevState.map((i) => i.id)
-      );
+  //   setItems((prevState) => {
+  //     const highestId = Math.max.apply(
+  //       Math,
+  //       prevState.map((i) => i.id)
+  //     );
 
-      const months = [
-        "Jan",
-        "Feb",
-        "March",
-        "April",
-        "May",
-        "June",
-        "July",
-        "Aug",
-        "Sep",
-        "Oct",
-        "Nov",
-        "Dec",
-      ];
+  //     const months = [
+  //       "Jan",
+  //       "Feb",
+  //       "March",
+  //       "April",
+  //       "May",
+  //       "June",
+  //       "July",
+  //       "Aug",
+  //       "Sep",
+  //       "Oct",
+  //       "Nov",
+  //       "Dec",
+  //     ];
 
-      return [
-        ...prevState,
-        {
-          id: highestId + 1,
-          date:
-            new Date().getDate() +
-            " " +
-            months[new Date().getMonth()] +
-            ", " +
-            new Date().getFullYear(),
-          icon: status.icon,
-          status: status.status,
-          title: "Placeholder item for card",
-          content: "Example",
-          issueType: "gg-bookmark",
-          priority: "gg-chevron-double-down",
-          estimate: "0m",
-        },
-      ];
-    });
-  };
+  //     return [
+  //       ...prevState,
+  //       {
+  //         id: highestId + 1,
+  //         date:
+  //           new Date().getDate() +
+  //           " " +
+  //           months[new Date().getMonth()] +
+  //           ", " +
+  //           new Date().getFullYear(),
+  //         icon: status.icon,
+  //         status: status.status,
+  //         title: "Placeholder item for card",
+  //         content: "Example",
+  //         issueType: "gg-bookmark",
+  //         priority: "gg-chevron-double-down",
+  //         estimate: "0m",
+  //       },
+  //     ];
+  //   });
+  // };
 
   return (
     <div>
@@ -118,7 +138,7 @@ const TaskList = () => {
         />
         <TaskHeader
           setIsActive={setIsModelActive}
-          createTaskHandler={(e) => onAddItem("todo's")}
+          // createTaskHandler={(e) => onAddItem("todo's")}
           navigateToReminder={() => navigate("/reminder")}
           navigateToTrash={() => navigate("/trash")}
           setIsCreating={setIsCreating}
@@ -141,9 +161,9 @@ const TaskList = () => {
                     <Col>
                       {items
                         .filter((i) => i.status === status)
-                        .map((i) => (
+                        .map((i, index) => (
                           <Item
-                            key={i.id}
+                            key={index}
                             onClick={() => {
                               setIsModelActive(true);
                               setIsCreating(false);
