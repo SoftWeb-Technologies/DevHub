@@ -1,7 +1,9 @@
 export const setTasks = (tasks) => (dispatch) => {
   try {
-    dispatch({ type: "SET_TASKS", payload: tasks });
+    dispatch({ type: "SET_TASKS_START" });
+
+    dispatch({ type: "SET_TASKS_SUCCESS", payload: tasks });
   } catch (e) {
-    console.log(e);
+    dispatch({ type: "SET_TASKS_FAIL", payload: e.message });
   }
 };

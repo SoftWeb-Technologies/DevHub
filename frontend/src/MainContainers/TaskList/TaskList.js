@@ -7,123 +7,81 @@ import { useNavigate } from "react-router-dom";
 import { DashboardSideNavigation, TaskListModel } from "../components";
 import UserHeader from "../components/UserHeader/UserHeader";
 import "./TaskList.css";
-import { data, statusIcons } from "../../data";
+// import { data, statusIcons } from "../../data";
 import Col from "../components/Col";
 import Item from "../components/Item";
 import DropWrapper from "../components/DropWrapper";
 import { db } from "../../firebase";
-import { getDocs, doc, collection } from "firebase/firestore";
+import { doc, collection, onSnapshot, updateDoc } from "firebase/firestore";
 import { setTasks } from "../../redux/actions/taskAction";
 
 const TaskList = () => {
   const dispatch = useDispatch();
   const { currentUser } = useSelector((state) => state.user);
-  const tasks = useSelector((state) => state.tasks);
+  const { tasksList } = useSelector((state) => state.tasks);
 
   const [isNavActive, setIsNavActive] = useState(false);
   const [isModelActive, setIsModelActive] = useState(false);
   const [isCreating, setIsCreating] = useState(false);
   const navigate = useNavigate();
 
-  const [items, setItems] = useState(tasks);
+  const [items, setItems] = useState([]);
+
   const [dragEl, setDragEl] = useState(null);
 
   React.useEffect(() => {
-    const fetchTask = async () => {
-      try {
-        const task = await getDocs(collection(db, "tasks"));
-
-        task.forEach((doc) => {
-          setItems([...items, doc.data()]);
+    const tasks = onSnapshot(
+      collection(db, "tasks"),
+      (snapshot) => {
+        const list = [];
+        snapshot.docs.forEach((doc) => {
+          // console.log(doc.data());
+          list.push({ uid: doc.id, ...doc.data() });
+          setItems(list);
         });
-
-        dispatch(setTasks(new Set(items)));
-      } catch (e) {
-        console.log(e);
+        dispatch(setTasks(list));
+      },
+      (error) => {
+        console.log(error);
       }
+    );
+
+    return () => {
+      tasks();
     };
+  }, [dispatch, setItems]);
 
-    fetchTask();
-  }, []);
-
-  const onDrop = (item, status) => {
+  const onDrop = async (item, status) => {
     if (item.status === status) {
       return;
     }
 
-    const mapping = statusIcons.find((si) => si.status === status);
-
     setItems((prevState) => {
       const newItems = prevState
         .filter((i) => i.id !== item.id)
-        .concat({ ...item, status, icon: mapping.icon });
+        .concat({ ...item, status });
+
+      const docRef = doc(db, "tasks", item.uid);
+      updateDoc(docRef, { status });
 
       return [...newItems];
     });
   };
 
   const moveItem = (el) => {
-    // setItems((prevState) => {
-    //   const itemIndex = prevState.findIndex(
-    //     (i) => i?.content === dragEl?.content
-    //   );
-    //   const hoverIndex = prevState.findIndex((i) => i?.content === el);
-    //   const newState = [...prevState];
-    //   newState.splice(itemIndex, 1);
-    //   newState.splice(hoverIndex, 0, dragEl);
-    //   return [...newState];
-    // });
+    setItems((prevState) => {
+      const itemIndex = prevState.findIndex(
+        (i) => i?.taskDesc === dragEl?.taskDesc
+      );
+      const hoverIndex = prevState.findIndex((i) => i?.taskDesc === el);
+      const newState = [...prevState];
+      newState.splice(itemIndex, 1);
+      newState.splice(hoverIndex, 0, dragEl);
+      return [...newState];
+    });
   };
 
   const setDragElement = (el) => setDragEl(el);
-
-  // const onAddItem = (col) => {
-  //   console.log("add item placeholder in col: ", col);
-
-  //   const status = statusIcons.find((si) => si.status === col);
-
-  //   setItems((prevState) => {
-  //     const highestId = Math.max.apply(
-  //       Math,
-  //       prevState.map((i) => i.id)
-  //     );
-
-  //     const months = [
-  //       "Jan",
-  //       "Feb",
-  //       "March",
-  //       "April",
-  //       "May",
-  //       "June",
-  //       "July",
-  //       "Aug",
-  //       "Sep",
-  //       "Oct",
-  //       "Nov",
-  //       "Dec",
-  //     ];
-
-  //     return [
-  //       ...prevState,
-  //       {
-  //         id: highestId + 1,
-  //         date:
-  //           new Date().getDate() +
-  //           " " +
-  //           months[new Date().getMonth()] +
-  //           ", " +
-  //           new Date().getFullYear(),
-  //         icon: status.icon,
-  //         status: status.status,
-  //         title: "Placeholder item for card",
-  //         content: "Example",
-  //         issueType: "gg-bookmark",
-  //         priority: "gg-chevron-double-down",
-  //         estimate: "0m",
-  //       },
-  //     ];
-  //   });
-  // };
 
   return (
     <div>
@@ -138,7 +96,6 @@ const TaskList = () => {
         />
         <TaskHeader
           setIsActive={setIsModelActive}
-          // createTaskHandler={(e) => onAddItem("todo's")}
           navigateToReminder={() => navigate("/reminder")}
           navigateToTrash={() => navigate("/trash")}
           setIsCreating={setIsCreating}
@@ -153,26 +110,28 @@ const TaskList = () => {
                   <div className={"col__group"}>
                     <h4 className={"col__header"}>{status.toUpperCase()}</h4>
                     <p className={"col__count"}>
-                      {items.filter((item) => item.status === status).length}
+                      {items.length > 0 &&
+                        items?.filter((item) => item.status === status).length}
                     </p>
                   </div>
 
                   <DropWrapper onDrop={onDrop} status={status}>
                     <Col>
-                      {items
-                        .filter((i) => i.status === status)
-                        .map((i, index) => (
-                          <Item
-                            key={index}
-                            onClick={() => {
-                              setIsModelActive(true);
-                              setIsCreating(false);
-                            }}
-                            item={i}
-                            moveItem={moveItem}
-                            setDragElement={setDragElement}
-                          />
-                        ))}
+                      {items.length > 0 &&
+                        items
+                          .filter((i) => i.status === status)
+                          .map((i, index) => (
+                            <Item
+                              key={index}
+                              onClick={() => {
+                                setIsModelActive(true);
+                                setIsCreating(false);
+                              }}
+                              item={i}
+                              moveItem={moveItem}
+                              setDragElement={setDragElement}
+                            />
+                          ))}
                     </Col>
                   </DropWrapper>
                 </div>
