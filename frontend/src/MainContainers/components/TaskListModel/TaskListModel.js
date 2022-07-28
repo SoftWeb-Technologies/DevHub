@@ -6,7 +6,6 @@ import "./TaskListModel.css";
 
 function TaskListModel(props) {
   const [showModal, setShowModal] = useState(false);
-  // const { id, title, date, tasks, labels } = props?.card;
 
   return (
     <div className="taskListModel">
@@ -35,6 +34,8 @@ function TaskListModel(props) {
           </div>
 
           <CardInfo
+            setIsModelActive={props.setIsActive}
+            cardData={props.cardData}
             isCreating={props.isCreating}
             setIsCreating={props.setIsCreating}
             onClose={() => setShowModal(false)}

@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { matchRoutes } from "react-router-dom";
+import React, { useState } from "react";
+// import { matchRoutes, useNavigate } from "react-router-dom";
 import { Button } from "../../../../components";
 import {
   AiFillCheckSquare,
@@ -26,6 +26,10 @@ function CardInfo(props) {
   const [values, setValues] = useState({
     ...props.card,
   });
+
+  const [editableData, setEditableData] = useState({});
+
+  const { id, taskName, taskDesc, labels, dueDate, status } = props.cardData;
 
   // const updatedTitle = (value) => {
   //   setValues({
@@ -119,20 +123,24 @@ function CardInfo(props) {
   return (
     <>
       {props.isCreating ? (
-        <Editable isEditable={updateTask} />
+        <Editable
+          setIsModelActive={props.setIsModelActive}
+          editableData={editableData}
+          isEditable={updateTask}
+        />
       ) : (
         <div className="cardinfo">
           <div className="cardinfo_box">
             <div className="cardinfo_box_title">
               <Type />
-              <p>Title</p>
+              <p>{taskName}</p>
             </div>
           </div>
 
           <div className="cardinfo_box">
             <div className="cardinfo_box_title">
               <List />
-              <p>Description</p>
+              <p>{taskDesc}</p>
             </div>
           </div>
 
@@ -142,9 +150,8 @@ function CardInfo(props) {
             </div>
             <input
               type="date"
-              defaultValue={values.date}
+              defaultValue={dueDate}
               min={new Date().toISOString().substr(0, 10)}
-              onChange={() => {}}
             />
           </div>
 
@@ -161,13 +168,19 @@ function CardInfo(props) {
             </div>
 
             <ul style={{ display: "flex", gap: "20px", width: "100%" }}>
-              {colors.map((item, index) => (
+              {labels.map((item, index) => (
                 <li
-                  key={index + item}
-                  style={{ backgroundColor: item }}
-                  className={selectedColor === item ? "li_active" : ""}
+                  key={item.id}
+                  style={{
+                    backgroundColor: colors[index],
+                    width: "fit-content",
+                    color: "white",
+                  }}
+                  className={selectedColor === colors[index] ? "li_active" : ""}
                   onClick={() => setSelectedColor(item)}
-                />
+                >
+                  {labels[index]}
+                </li>
               ))}
             </ul>
           </div>
@@ -182,7 +195,8 @@ function CardInfo(props) {
                 className="cardinfo_box_progress"
                 // style={{
                 //   width: `${calculatePercent()}%`,
-                //   backgroundColor: calculatePercent() === 100 ? "limegreen" : "",
+                //   backgroundColor:
+                //     calculatePercent() === 100 ? "limegreen" : "",
                 // }}
               />
             </div>
@@ -211,6 +225,7 @@ function CardInfo(props) {
               onClick={() => {
                 props.setIsCreating(true);
                 setUpdateTask(true);
+                setEditableData(props.cardData);
               }}
               label="Edit Now"
               primary={true}

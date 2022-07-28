@@ -1,29 +1,27 @@
 import React, { useState } from "react";
 import { Button } from "../../../components";
 import { db } from "../../../firebase";
+
 import {
   setDoc,
   doc,
-  serverTimestamp,
   collection,
-  addDoc,
+  query,
+  getDocs,
+  serverTimestamp,
 } from "firebase/firestore";
-import { useDispatch, useSelector } from "react-redux";
 
 import CloseIcon from "../../../DevHubIcons/CloseIcon";
 
 import "./Editable.css";
 
 function Editable(props) {
-  const { currentUser } = useSelector((state) => state.user);
-
   const [addLabel, setAddLabel] = useState("");
-
-  const [taskName, setTaskName] = useState("");
-  const [status, setStatus] = useState("todo's");
-  const [taskDesc, setTaskDesc] = useState("");
-  const [dueDate, setDueDate] = useState("");
-  const [labels, setLabels] = useState([]);
+  const [taskName, setTaskName] = useState(props.editableData.taskName || "");
+  const [status, setStatus] = useState(props.editableData.status || "todo's");
+  const [taskDesc, setTaskDesc] = useState(props.editableData.taskDesc || "");
+  const [dueDate, setDueDate] = useState(props.editableData.dueDate || "");
+  const [labels, setLabels] = useState(props.editableData.labels || []);
 
   const colors = ["#1ebffa", "#240959", "#9975bd", "#cf61a1"];
 
@@ -35,19 +33,31 @@ function Editable(props) {
     }
 
     try {
-      await addDoc(
-        collection(db, "tasks"),
-        {
-          id: Date.now(),
-          taskName,
-          status,
-          taskDesc,
-          dueDate,
-          labels,
-          createdAt: serverTimestamp(),
-        },
-        { merge: true }
-      );
+      const q = query(collection(db, "users"));
+      const querySnapshot = await getDocs(q);
+
+      const queryData = querySnapshot.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id,
+      }));
+
+      queryData.map(async (v) => {
+        const randomId = Date.now();
+
+        await setDoc(
+          doc(db, `users/${v.id}/tasks`, randomId.toString()),
+          {
+            id: Date.now(),
+            taskName,
+            status,
+            taskDesc,
+            dueDate,
+            labels,
+            createdAt: serverTimestamp(),
+          },
+          { merge: true }
+        );
+      });
     } catch (err) {
       console.log(err);
     }
@@ -58,10 +68,43 @@ function Editable(props) {
     setDueDate("");
     setLabels([]);
     setAddLabel("");
+
+    props.setIsModelActive(false);
   };
 
-  const handleEditTask = (e) => {
+  const handleEditTask = async (e) => {
     e.preventDefault();
+
+    e.preventDefault();
+
+    if (!taskName || !status || !taskDesc || !dueDate || !labels) {
+      return;
+    }
+
+    try {
+      const q = query(collection(db, "users"));
+      const querySnapshot = await getDocs(q);
+
+      const queryData = querySnapshot.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id,
+      }));
+
+      queryData.map(async (v) => {
+        await setDoc(doc(db, `users/${v.id}/tasks`, props.editableData.uid), {
+          id: Date.now(),
+          taskName,
+          status,
+          taskDesc,
+          dueDate,
+          labels,
+        });
+      });
+    } catch (err) {
+      console.log(err);
+    }
+
+    props.setIsModelActive(false);
   };
 
   return (
@@ -138,11 +181,13 @@ function Editable(props) {
               placeholder="Add labels"
             />
             <button
-              onClick={() =>
+              onClick={() => {
                 labels.length < 4 &&
-                addLabel !== "" &&
-                setLabels([...labels, addLabel])
-              }
+                  addLabel !== "" &&
+                  setLabels([...labels, addLabel]);
+
+                setAddLabel("");
+              }}
               style={{
                 width: "30%",
                 height: "2.3rem",
