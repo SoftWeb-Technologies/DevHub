@@ -1,4 +1,9 @@
-import { auth, googleAuthProvider, twitterAuthProvider } from "../../firebase";
+import {
+  auth,
+  db,
+  googleAuthProvider,
+  twitterAuthProvider,
+} from "../../firebase";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -6,6 +11,7 @@ import {
 } from "firebase/auth";
 
 import * as types from "../constants/actionTypes";
+import { doc, setDoc } from "firebase/firestore";
 
 // register actions
 const registerStart = () => ({
@@ -32,6 +38,10 @@ export const registerInitiate = (email, password, displayName) => {
         user.displayName = displayName;
         dispatch(registerSuccess(user));
         localStorage.setItem("isAuthenticated", true);
+
+        await setDoc(doc(db, "users", user.uid), {
+          id: user.uid,
+        });
       })
       .catch((err) => {
         dispatch(registerFail(err));

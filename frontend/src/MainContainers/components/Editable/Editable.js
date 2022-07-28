@@ -6,6 +6,8 @@ import {
   doc,
   serverTimestamp,
   collection,
+  query,
+  getDocs,
   addDoc,
 } from "firebase/firestore";
 import { useDispatch, useSelector } from "react-redux";
@@ -35,19 +37,34 @@ function Editable(props) {
     }
 
     try {
-      await addDoc(
-        collection(db, "tasks"),
-        {
-          id: Date.now(),
-          taskName,
-          status,
-          taskDesc,
-          dueDate,
-          labels,
-          createdAt: serverTimestamp(),
-        },
-        { merge: true }
-      );
+      const q = query(collection(db, "users"));
+      const querySnapshot = await getDocs(q);
+
+      const queryData = querySnapshot.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id,
+      }));
+
+      if (queryData.find((user) => user.id === currentUser.uid)) {
+        queryData.map(async (v) => {
+          const randomId = Date.now();
+
+          await setDoc(
+            doc(db, `users/${v.id}/tasks`, randomId.toString()),
+            {
+              id: Date.now(),
+              taskName,
+              status,
+              taskDesc,
+              dueDate,
+              labels,
+            },
+            { merge: true }
+          );
+        });
+      } else {
+        console.log("Not allowed");
+      }
     } catch (err) {
       console.log(err);
     }
