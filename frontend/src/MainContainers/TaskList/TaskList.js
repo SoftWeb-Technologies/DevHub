@@ -24,18 +24,17 @@ const TaskList = () => {
   const [isModelActive, setIsModelActive] = useState(false);
   const [isCreating, setIsCreating] = useState(false);
   const navigate = useNavigate();
-
   const [items, setItems] = useState([]);
-
   const [dragEl, setDragEl] = useState(null);
+
+  const [cardData, setCardData] = useState({});
 
   React.useEffect(() => {
     const tasks = onSnapshot(
-      collection(db, "tasks"),
+      collection(db, `users/${currentUser?.uid}/tasks`),
       (snapshot) => {
         const list = [];
         snapshot.docs.forEach((doc) => {
-          // console.log(doc.data());
           list.push({ uid: doc.id, ...doc.data() });
           setItems(list);
         });
@@ -49,7 +48,7 @@ const TaskList = () => {
     return () => {
       tasks();
     };
-  }, [dispatch, setItems]);
+  }, [dispatch, setItems, currentUser]);
 
   const onDrop = async (item, status) => {
     if (item.status === status) {
@@ -61,7 +60,7 @@ const TaskList = () => {
         .filter((i) => i.id !== item.id)
         .concat({ ...item, status });
 
-      const docRef = doc(db, "tasks", item.uid);
+      const docRef = doc(db, `users/${currentUser.uid}/tasks`, item.uid);
       updateDoc(docRef, { status });
 
       return [...newItems];
@@ -125,6 +124,7 @@ const TaskList = () => {
                               key={index}
                               onClick={() => {
                                 setIsModelActive(true);
+                                setCardData(i);
                                 setIsCreating(false);
                               }}
                               item={i}
@@ -142,6 +142,7 @@ const TaskList = () => {
 
         {isModelActive && (
           <TaskListModel
+            cardData={cardData}
             isCreating={isCreating}
             setIsCreating={setIsCreating}
             setIsActive={setIsModelActive}

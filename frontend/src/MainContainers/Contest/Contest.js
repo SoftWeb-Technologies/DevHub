@@ -76,7 +76,10 @@ const Contest = () => {
           <div className="contest__header__container">
             <Header
               displayName={
-                currentUser?.displayName || currentUser?.user?.name || "User"
+                currentUser?.displayName ||
+                currentUser?.user?.name ||
+                currentUser?.email ||
+                "User"
               }
               setFilter={setFilter}
             />
@@ -87,7 +90,10 @@ const Contest = () => {
               style={{ color: "#fff", marginTop: "0.7rem" }}
             >
               Hello!{" "}
-              {currentUser?.displayName || currentUser?.user?.name || "User"}
+              {currentUser?.displayName ||
+                currentUser?.user?.name ||
+                currentUser?.email ||
+                "User"}
             </h2>
             <h2
               className="hide-on-desktop"

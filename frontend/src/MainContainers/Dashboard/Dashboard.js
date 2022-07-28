@@ -51,7 +51,10 @@ const Dashboard = () => {
       <DashboardHeader
         isNavActive={isNavActive}
         displayName={
-          currentUser?.displayName || currentUser?.user?.name || "User"
+          currentUser?.displayName ||
+          currentUser?.user?.name ||
+          currentUser?.email ||
+          "User"
         }
       />
 

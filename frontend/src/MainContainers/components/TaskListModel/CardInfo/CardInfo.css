@@ -67,10 +67,12 @@
 
 .cardinfo_box ul li {
   list-style: none;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
+  width: fit-content;
+  height: fit-content;
+  padding: 0.3rem 1rem;
+  border-radius: 10px;
   cursor: pointer;
+  font-size: 0.95rem;
 }
 
 .cardinfo_box ul .li_active {

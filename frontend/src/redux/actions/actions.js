@@ -69,7 +69,7 @@ export const loginInitiate = (email, password) => {
     dispatch(loginStart());
 
     signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
+      .then(async (userCredential) => {
         const user = userCredential.user;
         user.displayName = user.displayName || user.email.split("@")[0];
         dispatch(loginSuccess(userCredential.user));
@@ -142,11 +142,15 @@ export const googleSignInInitiate = () => {
     dispatch(googleSignInStart());
 
     signInWithPopup(auth, googleAuthProvider)
-      .then((userCredential) => {
+      .then(async (userCredential) => {
         const user = userCredential.user;
         user.displayName = user.displayName || user.email.split("@")[0];
         dispatch(googleSignInSuccess(user));
         localStorage.setItem("isAuthenticated", true);
+
+        await setDoc(doc(db, "users", user.uid), {
+          id: user.uid,
+        });
       })
       .catch((err) => {
         dispatch(googleSignInFail(err));
@@ -174,11 +178,15 @@ export const twitterSignInInitiate = () => {
     dispatch(twitterSignInStart());
 
     signInWithPopup(auth, twitterAuthProvider)
-      .then((userCredential) => {
+      .then(async (userCredential) => {
         const user = userCredential.user;
         user.displayName = user.displayName || user.email.split("@")[0];
         dispatch(twitterSignInSuccess(user));
         localStorage.setItem("isAuthenticated", true);
+
+        await setDoc(doc(db, "users", user.uid), {
+          id: user.uid,
+        });
       })
       .catch((err) => {
         dispatch(twitterSignInFail(err));

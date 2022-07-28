@@ -39,11 +39,15 @@ const Profile = () => {
               <h1>
                 {currentUser?.displayName?.charAt(0) ||
                   currentUser?.user?.name?.charAt(0) ||
+                  currentUser?.email?.charAt(0) ||
                   "User"?.charAt(0)}
               </h1>
             </div>
             <h2 style={{ color: "gray", marginBottom: "1rem" }}>
-              {currentUser?.displayName || currentUser?.user?.name || "User"}
+              {currentUser?.displayName ||
+                currentUser?.user?.name ||
+                currentUser?.email?.split("@")[0] ||
+                "User"}
             </h2>
 
             <div className="profile__form__container">
@@ -51,7 +55,10 @@ const Profile = () => {
                 placeholder={"Name"}
                 inputType="text"
                 value={
-                  currentUser?.displayName || currentUser?.user?.name || "User"
+                  currentUser?.displayName ||
+                  currentUser?.user?.name ||
+                  currentUser?.email?.split("@")[0] ||
+                  "User"
                 }
               />
               <TextInput
