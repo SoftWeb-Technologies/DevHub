@@ -20,7 +20,6 @@ import {
   TechHunt,
   ContestsList,
   Profile,
-  Reminder,
   Trash,
   RemindersPage,
 } from "./MainContainers";

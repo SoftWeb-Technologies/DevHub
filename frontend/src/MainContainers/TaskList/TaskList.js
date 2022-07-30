@@ -161,7 +161,7 @@ const TaskHeader = ({
   setIsActive,
   setIsCreating,
 }) => {
-  const [reminder, setReminder] = useState(false);
+  // const [reminder, setReminder] = useState(false);
   return (
     <div className="taskHeader">
       <div
