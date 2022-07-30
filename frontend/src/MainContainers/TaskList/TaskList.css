@@ -3,8 +3,34 @@
   display: flex;
   background-color: #f5f5f5;
   align-items: center;
-  padding: 1rem 5rem;
+  padding: 1.5rem 1rem;
   width: 100%;
+}
+
+@media screen and (min-width: 850px) {
+  .taskHeader,
+  .taskListHeader {
+    display: flex;
+    background-color: #f5f5f5;
+    align-items: center;
+    padding: 1rem 5rem;
+    width: 100%;
+  }
+}
+
+.taskHeader__container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+@media screen and (min-width: 850px) {
+  .taskHeader__container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 60px;
+  }
 }
 
 .taskListHeader__contents {
@@ -28,14 +54,29 @@
 
 .taskList__body__container {
   display: flex;
+  scroll-behavior: smooth;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  width: auto;
+  height: 100vh;
 }
 
 .taskList__content__container {
   width: 100%;
   display: flex;
   justify-content: space-between;
-  padding: 1rem 5rem;
+  padding: 1.5rem 1rem;
   gap: 50px;
+}
+
+@media screen and (min-width: 850px) {
+  .taskList__content__container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 1.5rem 5rem;
+    gap: 50px;
+  }
 }
 
 .taskList__container {

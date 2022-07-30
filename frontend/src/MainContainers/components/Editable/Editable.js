@@ -132,6 +132,7 @@ function Editable(props) {
               alignItems: "center",
               width: "100%",
               gap: "1rem",
+              flexWrap: "wrap",
               padding: "0.5rem 0rem 1.5rem 0rem",
             }}
           >
