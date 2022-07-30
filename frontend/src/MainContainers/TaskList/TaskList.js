@@ -173,13 +173,7 @@ const TaskHeader = ({
           gap: "60px",
         }}
       >
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "60px",
-          }}
-        >
+        <div className="taskHeader__container">
           <div
             onClick={navigateToReminder}
             style={{

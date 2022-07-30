@@ -73,7 +73,8 @@ function App() {
         <Route
           exact
           path="/createtask"
-          element={<ProtectedRoute Component={TaskList} />}
+          element={<TaskList />}
+          // element={<ProtectedRoute Component={TaskList} />}
         />
         <Route
           exact

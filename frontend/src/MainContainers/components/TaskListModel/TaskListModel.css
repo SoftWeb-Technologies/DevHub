@@ -24,8 +24,8 @@
 .task__list__model__container {
   position: absolute;
   z-index: 99;
-  width: 600px;
-  height: 500px;
+  width: 90%;
+  height: auto;
   background-color: #fff;
   padding: 1.5rem;
   border-radius: 15px;
@@ -33,6 +33,19 @@
   animation: popUp_model 0.4s linear forwards;
 }
 
+@media screen and (min-width: 650px) {
+  .task__list__model__container {
+    position: absolute;
+    z-index: 99;
+    width: 600px;
+    height: 500px;
+    background-color: #fff;
+    padding: 1.5rem;
+    border-radius: 15px;
+
+    animation: popUp_model 0.4s linear forwards;
+  }
+}
 @keyframes popUp_model {
   0% {
     transform: scale(0);
