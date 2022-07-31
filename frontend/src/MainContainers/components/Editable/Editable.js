@@ -14,8 +14,10 @@ import {
 import CloseIcon from "../../../DevHubIcons/CloseIcon";
 
 import "./Editable.css";
+import { useSelector } from "react-redux";
 
 function Editable(props) {
+  const { currentUser } = useSelector((state) => state.user);
   const [addLabel, setAddLabel] = useState("");
   const [taskName, setTaskName] = useState(props.editableData.taskName || "");
   const [status, setStatus] = useState(props.editableData.status || "todo's");
@@ -44,9 +46,8 @@ function Editable(props) {
       queryData.map(async (v) => {
         const randomId = Date.now();
 
-        await setDoc(
-          doc(db, `users/${v.id}/tasks`, randomId.toString()),
-          {
+        if (v.id === currentUser.uid) {
+          await setDoc(doc(db, `users/${v.id}/tasks`, randomId.toString()), {
             id: Date.now(),
             taskName,
             status,
@@ -54,9 +55,8 @@ function Editable(props) {
             dueDate,
             labels,
             createdAt: serverTimestamp(),
-          },
-          { merge: true }
-        );
+          });
+        }
       });
     } catch (err) {
       console.log(err);
@@ -91,14 +91,17 @@ function Editable(props) {
       }));
 
       queryData.map(async (v) => {
-        await setDoc(doc(db, `users/${v.id}/tasks`, props.editableData.uid), {
-          id: Date.now(),
-          taskName,
-          status,
-          taskDesc,
-          dueDate,
-          labels,
-        });
+        await setDoc(
+          doc(db, `users/${currentUser.uid}/tasks`, props.editableData.uid),
+          {
+            id: Date.now(),
+            taskName,
+            status,
+            taskDesc,
+            dueDate,
+            labels,
+          }
+        );
       });
     } catch (err) {
       console.log(err);
