@@ -106,6 +106,7 @@
     width: 100%;
     display: flex;
     margin-top: 0.3rem;
+    flex-direction: row;
     gap: 10px;
   }
 }

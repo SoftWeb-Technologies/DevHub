@@ -58,7 +58,7 @@
   overflow-x: scroll;
   overflow-y: hidden;
   width: auto;
-  height: 100vh;
+  height: auto;
 }
 
 .taskList__content__container {
