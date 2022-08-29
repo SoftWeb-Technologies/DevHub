@@ -1,0 +1,66 @@
+#trashPage__main {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  justify-content: space-between;
+  gap: 15px;
+  padding: 3rem 1rem;
+}
+
+#trashPage__card {
+  width: 100%;
+  height: auto;
+  background-color: #f1f1f1;
+  padding: 1.5rem;
+  border-radius: 10px;
+
+  overflow: hidden;
+  position: relative;
+}
+
+#trashPage__card h1,
+#trashPage__card p {
+  color: #000;
+}
+
+#trashPage__card p {
+  color: #000;
+  opacity: 0.5;
+  margin-top: 1rem;
+}
+
+p#trashPage__dueDate {
+  color: var(--primary-clr);
+  opacity: 1;
+}
+
+#trashPage__status {
+  position: absolute;
+
+  right: 5%;
+  bottom: 5%;
+}
+
+#trashPage__itemRestore {
+  position: absolute;
+
+  right: -10%;
+  top: 10%;
+  opacity: 0;
+  transition: 0.3s linear;
+  cursor: pointer;
+}
+
+#trashPage__card:hover #trashPage__itemRestore {
+  right: 5%;
+  opacity: 1;
+}
+
+@media screen and (min-width: 650px) {
+  #trashPage__main {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  #trashPage__main {
+    padding: 3rem 5rem;
+  }
+}

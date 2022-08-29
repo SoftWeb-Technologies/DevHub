@@ -1,8 +1,10 @@
 import React from "react";
 
-const DeleteIcon = ({ onClick }) => {
+const DeleteIcon = ({ onClick }, ...props) => {
   return (
     <svg
+      onClick={onClick}
+      {...props}
       style={{ cursor: "pointer" }}
       width="13"
       height="15"
