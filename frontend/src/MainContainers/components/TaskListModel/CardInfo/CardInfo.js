@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 // import { matchRoutes, useNavigate } from "react-router-dom";
 import { Button } from "../../../../components";
 import {
@@ -31,94 +31,11 @@ function CardInfo(props) {
 
   const { id, taskName, taskDesc, labels, dueDate, status } = props.cardData;
 
-  // const updatedTitle = (value) => {
-  //   setValues({
-  //     ...values,
-  //     title: value,
-  //   });
-  // };
-
-  // const updatedDesc = (value) => {
-  //   setValues({
-  //     ...values,
-  //     desc: value,
-  //   });
-  // };
-
-  // const addLabel = (label) => {
-  //   const index = values.labels.findIndex((item) => item.text === label.text);
-  //   if (index > -1) return;
-
-  //   setSelectedColor("");
-  //   setValues({
-  //     ...values,
-  //     labels: [...values.labels, label],
-  //   });
-  // };
-
-  // const removeLabel = (label) => {
-  //   const tempLabels = values.labels.filter((item) => item.text !== label.text);
-
-  //   setValues({
-  //     ...values,
-  //     labels: tempLabels,
-  //   });
-  // };
-
-  // const addTask = (value) => {
-  //   const task = {
-  //     id: Date.now() + matchRoutes.random() * 2,
-  //     completed: false,
-  //     text: value,
-  //   };
-  //   setValues({
-  //     ...values,
-  //     tasks: [...values.tasks, task],
-  //   });
-  // };
-
-  // const removeTask = (id) => {
-  //   const tasks = [...values.tasks];
-
-  //   const tempTasks = tasks.filter((item) => item.id !== id);
-  //   setValues({
-  //     ...values,
-  //     tasks: tempTasks,
-  //   });
-  // };
-
-  // const updateTask = (id, value) => {
-  //   const tasks = [...values.tasks];
-
-  //   const index = tasks.findIndex((item) => item.id === id);
-  //   if (index < 0) return;
-
-  //   tasks[index].completed = value;
-
-  //   setValues({
-  //     ...values,
-  //     tasks,
-  //   });
-  // };
-
-  // const calculatePercent = () => {
-  //   if (!values.tasks?.length) return 0;
-  //   const completed = values.tasks?.filter((item) => item.completed)?.length;
-  //   return (completed / values.tasks?.length) * 100;
-  // };
-
-  // const updateDate = (date) => {
-  //   if (!date) return;
-
-  //   setValues({
-  //     ...values,
-  //     date,
-  //   });
-  // };
-
-  // useEffect(() => {
-  //   if (props.updateCard) props.updateCard(props.boardId, values.id, values);
-  // }, [values]);
+  React.useEffect(() => {
+    if (id) {
+      props.setSelectedItem(props.cardData);
+    }
+  }, [id, props.setSelectedItem, props]);
 
   return (
     <>

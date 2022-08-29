@@ -12,12 +12,13 @@ import {
 } from "./blogApiReducer";
 import { libReducer } from "./libReducer";
 import { userReducer } from "./reducer";
-import { tasksReducer } from "./tasksReducer";
+import { tasksReducer, trashReducer } from "./tasksReducer";
 
 const rootReducer = combineReducers({
   user: userReducer,
   tasks: tasksReducer,
   lib: libReducer,
+  trashStore: trashReducer,
   newsAppleApi: apiNewsAppleReducer,
   newsTeslaApi: apiNewsTeslaReducer,
   newsKeywordApi: apiNewsKeywordReducer,

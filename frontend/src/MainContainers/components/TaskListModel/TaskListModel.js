@@ -1,11 +1,21 @@
 import React from "react";
 import { useState } from "react";
 import { CloseIcon, DeleteIcon, NotificationIcon } from "../../../DevHubIcons";
+import { addItemToTrash } from "../../../redux/actions/taskAction";
 import CardInfo from "./CardInfo/CardInfo";
 import "./TaskListModel.css";
 
+import { useDispatch } from "react-redux";
+
 function TaskListModel(props) {
+  const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
+
+  const [selectedItem, setSelectedItem] = useState("");
+
+  const handleTaskDelete = () => {
+    dispatch(addItemToTrash(selectedItem));
+  };
 
   return (
     <div className="taskListModel">
@@ -29,7 +39,7 @@ function TaskListModel(props) {
             }}
           >
             <NotificationIcon onClick={() => console.log("set notification")} />
-            <DeleteIcon onClick={() => console.log("delete task")} />
+            <DeleteIcon onClick={handleTaskDelete} />
             <CloseIcon onClick={() => props.setIsActive(false)} />
           </div>
 
@@ -38,7 +48,10 @@ function TaskListModel(props) {
             cardData={props.cardData}
             isCreating={props.isCreating}
             setIsCreating={props.setIsCreating}
-            onClose={() => setShowModal(false)}
+            onClose={() => {
+              setShowModal(false);
+            }}
+            setSelectedItem={setSelectedItem}
             card={props.card}
             boardId={props.boardId}
             updateCard={props.updateCard}

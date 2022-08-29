@@ -74,7 +74,6 @@ const RemindersPage = () => {
             >
               You have no reminders
             </h1>
-            <p>Add</p>
           </div>
         )}
       </div>
