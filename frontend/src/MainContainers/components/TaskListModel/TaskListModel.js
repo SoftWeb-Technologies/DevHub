@@ -5,16 +5,27 @@ import { addItemToTrash } from "../../../redux/actions/taskAction";
 import CardInfo from "./CardInfo/CardInfo";
 import "./TaskListModel.css";
 
-import { useDispatch } from "react-redux";
+import { db } from "../../../firebase";
+import { doc, deleteDoc } from "firebase/firestore";
+import { useDispatch, useSelector } from "react-redux";
 
 function TaskListModel(props) {
   const dispatch = useDispatch();
+
+  const { currentUser } = useSelector((state) => state.user);
+
   const [showModal, setShowModal] = useState(false);
 
   const [selectedItem, setSelectedItem] = useState("");
 
-  const handleTaskDelete = () => {
+  const handleTaskDelete = async () => {
     dispatch(addItemToTrash(selectedItem));
+
+    await deleteDoc(
+      doc(db, `users/${currentUser?.uid}/tasks/${selectedItem.uid}`)
+    );
+
+    props.setIsActive(false);
   };
 
   return (

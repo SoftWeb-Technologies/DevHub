@@ -1,9 +1,18 @@
+import {
+  collection,
+  doc,
+  getDocs,
+  query,
+  serverTimestamp,
+  setDoc,
+} from "firebase/firestore";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Title } from "../../components";
 import { EmptyCuateImg } from "../../constants/Images";
 import { DisableCheckIcon } from "../../DevHubIcons";
 import TrashRestoreIcon from "../../DevHubIcons/TrashRestoreIcon";
+import { db } from "../../firebase";
 import { trashReStore } from "../../redux/actions/taskAction";
 
 import { DashboardSideNavigation } from "../components";
@@ -52,7 +61,39 @@ const TrashPage = () => {
 
                     <div id="trashPage__itemRestore">
                       <TrashRestoreIcon
-                        onClick={() => dispatch(trashReStore(item.id))}
+                        onClick={async () => {
+                          const q = query(collection(db, "users"));
+                          const querySnapshot = await getDocs(q);
+
+                          const queryData = querySnapshot.docs.map((doc) => ({
+                            ...doc.data(),
+                            id: doc.id,
+                          }));
+
+                          queryData.map(async (v) => {
+                            const randomId = Date.now();
+                            if (v.id === currentUser.uid) {
+                              await setDoc(
+                                doc(
+                                  db,
+                                  `users/${v.id}/tasks`,
+                                  randomId.toString()
+                                ),
+                                {
+                                  id: Date.now(),
+                                  taskName: item.taskName,
+                                  status: item.status,
+                                  taskDesc: item.taskDesc,
+                                  dueDate: item.dueDate,
+                                  labels: item.labels,
+                                  createdAt: serverTimestamp(),
+                                }
+                              );
+                            }
+                          });
+
+                          dispatch(trashReStore(item.id));
+                        }}
                       />
                     </div>
 

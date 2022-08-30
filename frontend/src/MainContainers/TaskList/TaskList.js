@@ -18,7 +18,6 @@ import { setTasks } from "../../redux/actions/taskAction";
 const TaskList = () => {
   const dispatch = useDispatch();
   const { currentUser } = useSelector((state) => state.user);
-  const { tasksList } = useSelector((state) => state.tasks);
 
   const [isNavActive, setIsNavActive] = useState(false);
   const [isModelActive, setIsModelActive] = useState(false);
