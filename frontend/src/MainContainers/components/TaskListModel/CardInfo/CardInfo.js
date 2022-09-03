@@ -1,12 +1,7 @@
 import React, { useState } from "react";
 
 import { Button } from "../../../../components";
-import {
-  AiFillCheckSquare,
-  List,
-  AiFillTag,
-  Type,
-} from "../../../../DevHubIcons";
+import { FlagIcon, ClockIcon, LabelIcon } from "../../../../DevHubIcons";
 import Editable from "../../Editable/Editable";
 import "./CardInfo.css";
 
@@ -49,88 +44,130 @@ function CardInfo(props) {
         <div className="cardinfo">
           <div className="cardinfo_box">
             <div className="cardinfo_box_title">
-              <Type />
-              <p>{taskName}</p>
+              <h1>{taskName}</h1>
             </div>
           </div>
 
           <div className="cardinfo_box">
             <div className="cardinfo_box_title">
-              <List />
-              <p>{taskDesc}</p>
+              <FlagIcon />
+              <p
+                style={{
+                  color: "#808080",
+                }}
+              >
+                Status
+              </p>
+              <p
+                style={{
+                  textTransform: "capitalize",
+                  background: "#F9ECEA",
+                  padding: "5px 10px",
+                  borderRadius: "50px",
+                  fontSize: "15px",
+                  color: "#FF876C",
+                  marginLeft: "40px",
+                }}
+              >
+                {status}
+              </p>
             </div>
           </div>
 
           <div className="cardinfo_box">
             <div className="cardinfo_box_title">
-              <p>Date</p>
+              <ClockIcon />
+              <p
+                style={{
+                  color: "#808080",
+                }}
+              >
+                Timeline
+              </p>
+              <p
+                style={{
+                  fontWeight: "500",
+                  marginLeft: "28px",
+                }}
+              >
+                {dueDate}
+              </p>
             </div>
-            <input
-              type="date"
-              defaultValue={dueDate}
-              min={new Date().toISOString().substr(0, 10)}
-            />
+          </div>
+
+          <div className="cardinfo_box">
+            <div className="cardinfo_box_title">
+              <LabelIcon />
+              <p
+                style={{
+                  color: "#808080",
+                }}
+              >
+                Labels
+              </p>
+              <ul
+                style={{
+                  display: "flex",
+                  flexWrap: "wrap",
+                  gap: "20px",
+                  width: "100%",
+                  marginLeft: "45px",
+                }}
+              >
+                {labels.slice(0, 3).map((item, index) => (
+                  <li
+                    key={item.id}
+                    style={{
+                      backgroundColor: colors[index],
+                      width: "fit-content",
+                      color: "white",
+                    }}
+                    className={
+                      selectedColor === colors[index] ? "li_active" : ""
+                    }
+                    onClick={() => setSelectedColor(item)}
+                  >
+                    {labels[index]}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
 
           <div
-            className="cardinfo_box"
             style={{
-              display: "flex",
               width: "100%",
+              height: "2px",
+              background: "#000",
+              opacity: 0.1,
             }}
-          >
-            <div className="cardinfo_box_title">
-              <AiFillTag />
-              <p>Labels</p>
-            </div>
-
-            <ul style={{ display: "flex", gap: "20px", width: "100%" }}>
-              {labels.map((item, index) => (
-                <li
-                  key={item.id}
-                  style={{
-                    backgroundColor: colors[index],
-                    width: "fit-content",
-                    color: "white",
-                  }}
-                  className={selectedColor === colors[index] ? "li_active" : ""}
-                  onClick={() => setSelectedColor(item)}
-                >
-                  {labels[index]}
-                </li>
-              ))}
-            </ul>
-          </div>
+          />
 
           <div className="cardinfo_box">
             <div className="cardinfo_box_title">
-              <AiFillCheckSquare />
-              <p>Tasks</p>
+              <h2
+                style={{
+                  fontWeight: "600",
+                  fontSize: "20px",
+                }}
+              >
+                Description
+              </h2>
             </div>
-            <div className="cardinfo_box_progress-bar">
-              <div
-                className="cardinfo_box_progress"
-                // style={{
-                //   width: `${calculatePercent()}%`,
-                //   backgroundColor:
-                //     calculatePercent() === 100 ? "limegreen" : "",
-                // }}
-              />
-            </div>
-            <div className="cardinfo_box_task_list">
-              {values.tasks?.map((item) => (
-                <div key={item.id} className="cardinfo_box_task_checkbox">
-                  <input
-                    type="checkbox"
-                    defaultChecked={item.completed}
-                    onChange={(event) => {}}
-                  />
-                  <p className={item.completed ? "completed" : ""}>
-                    {item.text}
-                  </p>
-                </div>
-              ))}
-            </div>
+            <textarea
+              style={{
+                height: "90px",
+                outline: "none",
+                border: "none",
+                resize: "none",
+                fontFamily: "inherit",
+                fontWeight: "normal",
+                fontSize: "16px",
+                color: "#000",
+                opacity: 0.8,
+              }}
+              value={taskDesc}
+            />
           </div>
 
           <div

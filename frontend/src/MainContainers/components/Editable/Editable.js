@@ -238,7 +238,7 @@ function Editable(props) {
           <textarea
             value={taskDesc}
             onChange={(e) => setTaskDesc(e.target.value)}
-            maxLength={300}
+            maxLength={500}
             placeholder="Enter task description..."
           />
         </div>

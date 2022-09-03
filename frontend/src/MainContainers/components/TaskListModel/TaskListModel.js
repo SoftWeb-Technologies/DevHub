@@ -19,6 +19,12 @@ function TaskListModel(props) {
   const [selectedItem, setSelectedItem] = useState("");
 
   const handleTaskDelete = async () => {
+    if (
+      prompt("Do you want to delete this task? Yes/No").toLowerCase() === "no"
+    ) {
+      return;
+    }
+
     dispatch(addItemToTrash(selectedItem));
 
     await deleteDoc(

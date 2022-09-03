@@ -42,6 +42,10 @@ import Type from "./Type";
 import AiFillTag from "./AiFillTag";
 import AiFillCheckSquare from "./AiFillCheckSquare";
 
+import FlagIcon from "./FlagIcon";
+import ClockIcon from "./ClockIcon";
+import LabelIcon from "./LabelIcon";
+
 export {
   HomeIcon,
   AboutIcon,
@@ -83,4 +87,7 @@ export {
   Type,
   AiFillTag,
   AiFillCheckSquare,
+  FlagIcon,
+  ClockIcon,
+  LabelIcon,
 };
