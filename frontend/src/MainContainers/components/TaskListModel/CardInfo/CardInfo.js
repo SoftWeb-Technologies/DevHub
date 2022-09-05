@@ -61,11 +61,16 @@ function CardInfo(props) {
               <p
                 style={{
                   textTransform: "capitalize",
-                  background: "#F9ECEA",
+                  background:
+                    status === "done"
+                      ? "green"
+                      : status === "in progress"
+                      ? "orange"
+                      : "grey",
                   padding: "5px 10px",
                   borderRadius: "50px",
                   fontSize: "15px",
-                  color: "#FF876C",
+                  color: "white",
                   marginLeft: "40px",
                 }}
               >
