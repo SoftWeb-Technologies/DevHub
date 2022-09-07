@@ -68,3 +68,44 @@ export const trashReducer = (
       return state;
   }
 };
+
+export const remainderReducer = (
+  state = {
+    remainderItems: localStorage.getItem("remainderItem")
+      ? JSON.parse(localStorage.getItem("remainderItem"))
+      : [],
+  },
+  action
+) => {
+  switch (action.type) {
+    case "SET_REMAINDER_TASK_SUCCESS":
+      const item = action.payload;
+
+      const isTaskExit = state.remainderItems.find((i) => i.id === item.id);
+
+      if (isTaskExit) {
+        return {
+          ...state,
+          remainderItems: state.remainderItems.map((i) => {
+            return i.id === isTaskExit ? item : i;
+          }),
+        };
+      } else {
+        return {
+          ...state,
+          remainderItems: [...state.remainderItems, item],
+        };
+      }
+
+    case "SET_REMAINDER_TASK_FAIL":
+      return {
+        ...state,
+        remainderItems: state.remainderItems.filter(
+          (i) => i.id !== action.payload
+        ),
+      };
+
+    default:
+      return state;
+  }
+};

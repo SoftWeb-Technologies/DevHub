@@ -18,9 +18,6 @@ function CardInfo(props) {
 
   const [selectedColor, setSelectedColor] = useState();
   const [updateTask, setUpdateTask] = useState(false);
-  const [values, setValues] = useState({
-    ...props.card,
-  });
 
   const [editableData, setEditableData] = useState({});
 

@@ -37,3 +37,20 @@ export const trashReStore = (id) => async (dispatch, getState) => {
     dispatch({ type: "TASK_DELETE_FAIL", payload: err.message });
   }
 };
+
+export const addItemToRemainder = (item) => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: "SET_REMAINDER_TASK_SUCCESS",
+      payload: item,
+    });
+
+    // Storing data into the local storage
+    localStorage.setItem(
+      "remainderItem",
+      JSON.stringify(getState().remainder.remainderItems)
+    );
+  } catch (err) {
+    dispatch({ type: "SET_REMAINDER_TASK_FAIL", payload: err.message });
+  }
+};

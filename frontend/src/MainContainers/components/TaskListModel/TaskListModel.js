@@ -1,7 +1,10 @@
 import React from "react";
 import { useState } from "react";
 import { CloseIcon, DeleteIcon, NotificationIcon } from "../../../DevHubIcons";
-import { addItemToTrash } from "../../../redux/actions/taskAction";
+import {
+  addItemToRemainder,
+  addItemToTrash,
+} from "../../../redux/actions/taskAction";
 import CardInfo from "./CardInfo/CardInfo";
 import "./TaskListModel.css";
 
@@ -34,6 +37,10 @@ function TaskListModel(props) {
     props.setIsActive(false);
   };
 
+  const handleReminder = () => {
+    dispatch(addItemToRemainder(selectedItem));
+  };
+
   return (
     <div className="taskListModel">
       <div
@@ -55,7 +62,7 @@ function TaskListModel(props) {
               zIndex: "1",
             }}
           >
-            <NotificationIcon onClick={() => console.log("set notification")} />
+            <NotificationIcon onClick={handleReminder} />
             <DeleteIcon onClick={handleTaskDelete} />
             <CloseIcon onClick={() => props.setIsActive(false)} />
           </div>
