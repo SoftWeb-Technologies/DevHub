@@ -18,6 +18,7 @@ function TaskListModel(props) {
   const { currentUser } = useSelector((state) => state.user);
 
   const [showModal, setShowModal] = useState(false);
+  const [isActiveRemainder, setIsActiveRemainder] = useState(false);
 
   const [selectedItem, setSelectedItem] = useState("");
 
@@ -39,6 +40,7 @@ function TaskListModel(props) {
 
   const handleReminder = () => {
     dispatch(addItemToRemainder(selectedItem));
+    setIsActiveRemainder(!isActiveRemainder);
   };
 
   return (
@@ -62,7 +64,11 @@ function TaskListModel(props) {
               zIndex: "1",
             }}
           >
-            <NotificationIcon onClick={handleReminder} />
+            <NotificationIcon
+              fillColor={"#008bb7"}
+              isActive={isActiveRemainder}
+              onClick={handleReminder}
+            />
             <DeleteIcon onClick={handleTaskDelete} />
             <CloseIcon onClick={() => props.setIsActive(false)} />
           </div>

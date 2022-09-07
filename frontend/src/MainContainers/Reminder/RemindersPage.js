@@ -1,23 +1,16 @@
 import React, { useState } from "react";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Button, Title } from "../../components";
+import { useSelector } from "react-redux";
+import { Title } from "../../components";
 import { EmptyCuateImg } from "../../constants/Images";
-import { removeItemFromLibrary } from "../../redux/actions/libActions";
 import { DashboardSideNavigation } from "../components";
 import UserHeader from "../components/UserHeader/UserHeader";
 
 import "./RemindersPage.css";
 
 const RemindersPage = () => {
-  // const dispatch = useDispatch();
   const { currentUser } = useSelector((state) => state.user);
-
   const { remainderItems } = useSelector((state) => state.remainder);
-
   const [isNavActive, setIsNavActive] = useState(false);
-
-  useEffect(() => {}, []);
 
   return (
     <div>
@@ -101,11 +94,12 @@ const NotificationCard = ({ item }) => {
       <div>
         <h4
           style={{
+            textTransform: "capitalize",
             color:
               item.status === "done"
                 ? "green"
                 : item.status === "in progress"
-                ? "orange"
+                ? "rgba(255, 106, 0, 0.7)"
                 : "#000000d0",
           }}
         >
