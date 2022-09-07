@@ -1,7 +1,10 @@
 import React from "react";
 import { useState } from "react";
 import { CloseIcon, DeleteIcon, NotificationIcon } from "../../../DevHubIcons";
-import { addItemToTrash } from "../../../redux/actions/taskAction";
+import {
+  addItemToRemainder,
+  addItemToTrash,
+} from "../../../redux/actions/taskAction";
 import CardInfo from "./CardInfo/CardInfo";
 import "./TaskListModel.css";
 
@@ -15,6 +18,7 @@ function TaskListModel(props) {
   const { currentUser } = useSelector((state) => state.user);
 
   const [showModal, setShowModal] = useState(false);
+  const [isActiveRemainder, setIsActiveRemainder] = useState(false);
 
   const [selectedItem, setSelectedItem] = useState("");
 
@@ -32,6 +36,11 @@ function TaskListModel(props) {
     );
 
     props.setIsActive(false);
+  };
+
+  const handleReminder = () => {
+    dispatch(addItemToRemainder(selectedItem));
+    setIsActiveRemainder(!isActiveRemainder);
   };
 
   return (
@@ -55,7 +64,11 @@ function TaskListModel(props) {
               zIndex: "1",
             }}
           >
-            <NotificationIcon onClick={() => console.log("set notification")} />
+            <NotificationIcon
+              fillColor={"#008bb7"}
+              isActive={isActiveRemainder}
+              onClick={handleReminder}
+            />
             <DeleteIcon onClick={handleTaskDelete} />
             <CloseIcon onClick={() => props.setIsActive(false)} />
           </div>

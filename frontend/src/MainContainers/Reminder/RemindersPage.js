@@ -1,25 +1,16 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Button, Title } from "../../components";
+import { useSelector } from "react-redux";
+import { Title } from "../../components";
 import { EmptyCuateImg } from "../../constants/Images";
-import { removeItemFromLibrary } from "../../redux/actions/libActions";
 import { DashboardSideNavigation } from "../components";
 import UserHeader from "../components/UserHeader/UserHeader";
 
 import "./RemindersPage.css";
 
 const RemindersPage = () => {
-  const dispatch = useDispatch();
   const { currentUser } = useSelector((state) => state.user);
-  const { libItems } = useSelector((state) => state.lib);
-
+  const { remainderItems } = useSelector((state) => state.remainder);
   const [isNavActive, setIsNavActive] = useState(false);
-  const [isPopUpBoxActive, setIsPopUpBoxActive] = useState(false);
-  const [popUpData, setPopUpData] = useState(null);
-
-  const removeItemFromLibrary = (id) => {
-    dispatch(removeItemFromLibrary(id));
-  };
 
   return (
     <div>
@@ -38,13 +29,17 @@ const RemindersPage = () => {
           </h1>
         </div>
 
-        {libItems.length > 0 ? (
+        {remainderItems?.length > 0 ? (
           <div
             className={`reminders__main__container  ${
               isNavActive ? "active" : ""
             }`}
           >
-            {/* <div>{libItems.slice(0, 5).map((item, index) => {})}</div> */}
+            <div id="remainder__main">
+              {remainderItems?.slice(0, 5).map((item, index) => {
+                return <NotificationCard item={item} />;
+              })}
+            </div>
           </div>
         ) : (
           <div
@@ -76,6 +71,48 @@ const RemindersPage = () => {
             </h1>
           </div>
         )}
+      </div>
+    </div>
+  );
+};
+
+const NotificationCard = ({ item }) => {
+  console.log(item);
+  return (
+    <div
+      id="remainder__card"
+      style={{
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+      }}
+    >
+      <div>
+        <h3>{item.taskName}</h3>
+        <p>{item.taskDesc}</p>
+      </div>
+      <div>
+        <h4
+          style={{
+            textTransform: "capitalize",
+            color:
+              item.status === "done"
+                ? "green"
+                : item.status === "in progress"
+                ? "rgba(255, 106, 0, 0.7)"
+                : "#000000d0",
+          }}
+        >
+          {item.status}
+        </h4>
+        <p
+          style={{
+            color: "#000000d0",
+            opacity: 0.8,
+          }}
+        >
+          {item.dueDate}
+        </p>
       </div>
     </div>
   );

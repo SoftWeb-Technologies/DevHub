@@ -18,6 +18,7 @@ import { setTasks } from "../../redux/actions/taskAction";
 const TaskList = () => {
   const dispatch = useDispatch();
   const { currentUser } = useSelector((state) => state.user);
+  const { remainderItems } = useSelector((state) => state.remainder);
 
   const [isNavActive, setIsNavActive] = useState(false);
   const [isModelActive, setIsModelActive] = useState(false);
@@ -48,6 +49,50 @@ const TaskList = () => {
       tasks();
     };
   }, [dispatch, setItems, currentUser]);
+
+  const showNotification = () => {
+    const notification = new Notification("Remainder message from DebHub", {
+      body: `Hey! you have set a remainder for doing a task, which should be done by today`,
+      icon: require("../../assets/images/logo/devHub-logo.svg"),
+    });
+
+    notification.onclick = (e) => {
+      window.location.href = "http://localhost:3000/remainder";
+    };
+  };
+
+  const currentDate = new Date();
+  React.useEffect(() => {
+    const year = currentDate.getFullYear();
+    const month =
+      currentDate.getMonth().toString().length === 1
+        ? "0" + currentDate.getMonth()
+        : currentDate.getMonth();
+
+    const date =
+      currentDate.getDate().toString().length === 1
+        ? "0" + currentDate.getDate()
+        : currentDate.getDate();
+
+    const presentDate = `${year}-${month}-${date}`;
+
+    remainderItems.map((item, index) => {
+      console.log(currentDate.getUTCMonth(), item.dueDate);
+
+      if (presentDate === item.dueDate) {
+        if (Notification.permission === "granted") {
+          showNotification();
+        } else if (Notification.permission !== "denied") {
+          Notification.requestPermission().then((permission) => {
+            if (permission === "granted") {
+              showNotification();
+            }
+          });
+        }
+      }
+      return null;
+    });
+  }, [remainderItems, currentDate]);
 
   const onDrop = async (item, status) => {
     if (item.status === status) {
@@ -94,7 +139,7 @@ const TaskList = () => {
         />
         <TaskHeader
           setIsActive={setIsModelActive}
-          navigateToReminder={() => navigate("/reminder")}
+          navigateToReminder={() => navigate("/remainder")}
           navigateToTrash={() => navigate("/trash")}
           setIsCreating={setIsCreating}
         />
