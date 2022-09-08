@@ -77,7 +77,7 @@ const TaskList = () => {
     const presentDate = `${year}-${month}-${date}`;
 
     remainderItems.map((item, index) => {
-      console.log(currentDate.getUTCMonth(), item.dueDate);
+      // console.log(currentDate.getUTCMonth(), item.dueDate);
 
       if (presentDate === item.dueDate) {
         if (Notification.permission === "granted") {

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Title } from "../../components";
 import { EmptyCuateImg } from "../../constants/Images";
@@ -12,9 +12,19 @@ const RemindersPage = () => {
   const { remainderItems } = useSelector((state) => state.remainder);
   const [isNavActive, setIsNavActive] = useState(false);
 
+  useEffect(() => {
+    remainderItems.map((item, index) => {
+      if (item.status === "done") {
+        remainderItems.splice(index);
+      }
+
+      return remainderItems;
+    });
+  }, [remainderItems]);
+
   return (
     <div>
-      <Title title="Reminders" />
+      <Title title="Remainders" />
 
       <DashboardSideNavigation setIsNavActive={setIsNavActive} />
       <div id="blogspace">
@@ -36,7 +46,7 @@ const RemindersPage = () => {
             }`}
           >
             <div id="remainder__main">
-              {remainderItems?.slice(0, 5).map((item, index) => {
+              {remainderItems?.reverse()?.map((item, index) => {
                 return <NotificationCard item={item} />;
               })}
             </div>
