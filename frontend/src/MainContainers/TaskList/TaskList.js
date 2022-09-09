@@ -50,9 +50,9 @@ const TaskList = () => {
     };
   }, [dispatch, setItems, currentUser]);
 
-  const showNotification = () => {
+  const showNotification = (dueDate) => {
     const notification = new Notification("Remainder message from DebHub", {
-      body: `Hey! you have set a remainder for doing a task, which should be done by today`,
+      body: `Hey! you have set a remainder for doing a task, which should be done by ${dueDate}`,
       icon: require("../../assets/images/logo/devHub-logo.svg"),
     });
 
@@ -61,38 +61,32 @@ const TaskList = () => {
     };
   };
 
-  const currentDate = new Date();
   React.useEffect(() => {
-    const year = currentDate.getFullYear();
-    const month =
-      currentDate.getMonth().toString().length === 1
-        ? "0" + currentDate.getMonth()
-        : currentDate.getMonth();
-
-    const date =
-      currentDate.getDate().toString().length === 1
-        ? "0" + currentDate.getDate()
-        : currentDate.getDate();
-
-    const presentDate = `${year}-${month}-${date}`;
+    const date = new Date();
+    const currentMonth = date.getMonth() + 1;
+    const currentDate = date.getDate();
 
     remainderItems.map((item, index) => {
-      // console.log(currentDate.getUTCMonth(), item.dueDate);
+      const dueDate = new Date(item[index].dueDate);
 
-      if (presentDate === item.dueDate) {
+      if (
+        dueDate.getDate() >= currentDate &&
+        dueDate.getMonth() + 1 === currentMonth
+      ) {
         if (Notification.permission === "granted") {
-          showNotification();
+          showNotification(item[index].dueDate);
         } else if (Notification.permission !== "denied") {
           Notification.requestPermission().then((permission) => {
             if (permission === "granted") {
-              showNotification();
+              showNotification(item[index].dueDate);
             }
           });
         }
       }
+
       return null;
     });
-  }, [remainderItems, currentDate]);
+  }, [remainderItems]);
 
   const onDrop = async (item, status) => {
     if (item.status === status) {
