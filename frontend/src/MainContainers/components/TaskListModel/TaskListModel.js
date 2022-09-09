@@ -9,7 +9,16 @@ import CardInfo from "./CardInfo/CardInfo";
 import "./TaskListModel.css";
 
 import { db } from "../../../firebase";
-import { doc, deleteDoc } from "firebase/firestore";
+import {
+  doc,
+  deleteDoc,
+  onSnapshot,
+  collection,
+  query,
+  getDocs,
+  setDoc,
+  serverTimestamp,
+} from "firebase/firestore";
 import { useDispatch, useSelector } from "react-redux";
 
 function TaskListModel(props) {
@@ -38,9 +47,47 @@ function TaskListModel(props) {
     props.setIsActive(false);
   };
 
-  const handleReminder = () => {
-    dispatch(addItemToRemainder(selectedItem));
-    setIsActiveRemainder(!isActiveRemainder);
+  const handleReminder = async () => {
+    try {
+      const q = query(collection(db, "users"));
+      const querySnapshot = await getDocs(q);
+
+      const queryData = querySnapshot.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id,
+      }));
+
+      queryData.map(async (v) => {
+        const randomId = Date.now();
+
+        const dueDate = new Date(selectedItem.dueDate);
+
+        if (
+          v.id === currentUser.uid &&
+          selectedItem.status !== "done" &&
+          dueDate.getDate() >= new Date().getDate() &&
+          dueDate.getMonth() + 1 >= new Date().getMonth() + 1 &&
+          dueDate.getFullYear() >= new Date().getFullYear()
+        ) {
+          await setDoc(
+            doc(db, `users/${v.id}/remainders`, randomId.toString()),
+            {
+              id: Date.now(),
+              taskName: selectedItem.taskName,
+              taskDesc: selectedItem.taskDesc,
+              dueDate: selectedItem.dueDate,
+              status: selectedItem.status,
+
+              createdAt: serverTimestamp(),
+            }
+          );
+        }
+      });
+
+      setIsActiveRemainder(!isActiveRemainder);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (

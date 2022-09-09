@@ -1,26 +1,43 @@
+import { collection, deleteDoc, doc, onSnapshot } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Title } from "../../components";
 import { EmptyCuateImg } from "../../constants/Images";
+import { DeleteIcon } from "../../DevHubIcons";
+import { db } from "../../firebase";
+import { addItemToRemainder } from "../../redux/actions/taskAction";
 import { DashboardSideNavigation } from "../components";
 import UserHeader from "../components/UserHeader/UserHeader";
 
 import "./RemindersPage.css";
 
 const RemindersPage = () => {
+  const dispatch = useDispatch();
   const { currentUser } = useSelector((state) => state.user);
-  const { remainderItems } = useSelector((state) => state.remainder);
   const [isNavActive, setIsNavActive] = useState(false);
 
-  useEffect(() => {
-    remainderItems.map((item, index) => {
-      if (item.status === "done") {
-        remainderItems.splice(index);
-      }
+  const [remainderItemsList, setRemainderItemsList] = useState([]);
 
-      return remainderItems;
-    });
-  }, [remainderItems]);
+  React.useEffect(() => {
+    const tasks = onSnapshot(
+      collection(db, `users/${currentUser?.uid}/remainders`),
+      (snapshot) => {
+        const list = [];
+        snapshot.docs.forEach((doc) => {
+          list.push({ uid: doc.id, ...doc.data() });
+          setRemainderItemsList(list);
+        });
+        dispatch(addItemToRemainder(list));
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+
+    return () => {
+      tasks();
+    };
+  }, [setRemainderItemsList, currentUser, dispatch]);
 
   return (
     <div>
@@ -39,15 +56,15 @@ const RemindersPage = () => {
           </h1>
         </div>
 
-        {remainderItems?.length > 0 ? (
+        {remainderItemsList?.length > 0 ? (
           <div
             className={`reminders__main__container  ${
               isNavActive ? "active" : ""
             }`}
           >
             <div id="remainder__main">
-              {remainderItems?.reverse()?.map((item, index) => {
-                return <NotificationCard item={item} />;
+              {remainderItemsList?.reverse()?.map((item, index) => {
+                return <NotificationCard key={index} item={item} />;
               })}
             </div>
           </div>
@@ -87,7 +104,6 @@ const RemindersPage = () => {
 };
 
 const NotificationCard = ({ item }) => {
-  console.log(item);
   return (
     <div
       id="remainder__card"
@@ -95,6 +111,7 @@ const NotificationCard = ({ item }) => {
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
+        position: "relative",
       }}
     >
       <div>

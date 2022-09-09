@@ -33,6 +33,19 @@
   font-weight: 500;
 }
 
+#remainder__deleteBtn {
+  transform: translateX(0px);
+  transition: all 0.5s;
+  z-index: -99;
+  opacity: 0;
+}
+
+#remainder__card:hover #remainder__deleteBtn {
+  transform: translateX(45px);
+
+  opacity: 1;
+}
+
 @media screen and (min-width: 650px) {
   .reminders__header {
     padding: 1rem 5rem;
