@@ -1,10 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { CloseIcon, DeleteIcon, NotificationIcon } from "../../../DevHubIcons";
-import {
-  addItemToRemainder,
-  addItemToTrash,
-} from "../../../redux/actions/taskAction";
+import { addItemToTrash } from "../../../redux/actions/taskAction";
 import CardInfo from "./CardInfo/CardInfo";
 import "./TaskListModel.css";
 
@@ -12,7 +9,6 @@ import { db } from "../../../firebase";
 import {
   doc,
   deleteDoc,
-  onSnapshot,
   collection,
   query,
   getDocs,
@@ -70,7 +66,7 @@ function TaskListModel(props) {
           dueDate.getFullYear() >= new Date().getFullYear()
         ) {
           await setDoc(
-            doc(db, `users/${v.id}/remainders`, randomId.toString()),
+            doc(db, `users/${v.id}/reminders`, randomId.toString()),
             {
               id: Date.now(),
               taskName: selectedItem.taskName,

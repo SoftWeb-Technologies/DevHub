@@ -102,7 +102,7 @@ function App() {
         />
         <Route
           exact
-          path="/remainder"
+          path="/reminder"
           element={<ProtectedRoute Component={RemindersPage} />}
         />
         <Route

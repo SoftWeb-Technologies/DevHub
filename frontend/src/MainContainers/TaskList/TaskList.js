@@ -61,24 +61,46 @@ const TaskList = () => {
     };
   };
 
+  const [remainderItemsList, setRemainderItemsList] = useState([]);
+
+  React.useEffect(() => {
+    const tasks = onSnapshot(
+      collection(db, `users/${currentUser?.uid}/reminders`),
+      (snapshot) => {
+        const list = [];
+        snapshot.docs.forEach((doc) => {
+          list.push({ uid: doc.id, ...doc.data() });
+          setRemainderItemsList(list);
+        });
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+
+    return () => {
+      tasks();
+    };
+  }, [setRemainderItemsList, currentUser, dispatch]);
+
   React.useEffect(() => {
     const date = new Date();
     const currentMonth = date.getMonth() + 1;
     const currentDate = date.getDate();
 
-    remainderItems.map((item, index) => {
-      const dueDate = new Date(item[index].dueDate);
+    remainderItemsList.map((item, index) => {
+      const dueDate = new Date(item.dueDate);
 
       if (
         dueDate.getDate() >= currentDate &&
         dueDate.getMonth() + 1 === currentMonth
       ) {
         if (Notification.permission === "granted") {
-          showNotification(item[index].dueDate);
+          showNotification(item.dueDate);
         } else if (Notification.permission !== "denied") {
           Notification.requestPermission().then((permission) => {
             if (permission === "granted") {
-              showNotification(item[index].dueDate);
+              showNotification(item.dueDate);
             }
           });
         }
@@ -86,7 +108,7 @@ const TaskList = () => {
 
       return null;
     });
-  }, [remainderItems]);
+  });
 
   const onDrop = async (item, status) => {
     if (item.status === status) {
@@ -133,7 +155,7 @@ const TaskList = () => {
         />
         <TaskHeader
           setIsActive={setIsModelActive}
-          navigateToReminder={() => navigate("/remainder")}
+          navigateToReminder={() => navigate("/reminder")}
           navigateToTrash={() => navigate("/trash")}
           setIsCreating={setIsCreating}
         />
