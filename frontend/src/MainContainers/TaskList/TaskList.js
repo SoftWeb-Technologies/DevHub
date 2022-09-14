@@ -18,7 +18,7 @@ import { setTasks } from "../../redux/actions/taskAction";
 const TaskList = () => {
   const dispatch = useDispatch();
   const { currentUser } = useSelector((state) => state.user);
-  const { tasksList } = useSelector((state) => state.tasks);
+  const { remainderItems } = useSelector((state) => state.remainder);
 
   const [isNavActive, setIsNavActive] = useState(false);
   const [isModelActive, setIsModelActive] = useState(false);
@@ -49,6 +49,66 @@ const TaskList = () => {
       tasks();
     };
   }, [dispatch, setItems, currentUser]);
+
+  const showNotification = (dueDate) => {
+    const notification = new Notification("Remainder message from DebHub", {
+      body: `Hey! you have set a remainder for doing a task, which should be done by ${dueDate}`,
+      icon: require("../../assets/images/logo/devHub-logo.svg"),
+    });
+
+    notification.onclick = (e) => {
+      window.location.href = "http://localhost:3000/remainder";
+    };
+  };
+
+  const [remainderItemsList, setRemainderItemsList] = useState([]);
+
+  React.useEffect(() => {
+    const tasks = onSnapshot(
+      collection(db, `users/${currentUser?.uid}/reminders`),
+      (snapshot) => {
+        const list = [];
+        snapshot.docs.forEach((doc) => {
+          list.push({ uid: doc.id, ...doc.data() });
+          setRemainderItemsList(list);
+        });
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+
+    return () => {
+      tasks();
+    };
+  }, [setRemainderItemsList, currentUser, dispatch]);
+
+  React.useEffect(() => {
+    const date = new Date();
+    const currentMonth = date.getMonth() + 1;
+    const currentDate = date.getDate();
+
+    remainderItemsList.map((item, index) => {
+      const dueDate = new Date(item.dueDate);
+
+      if (
+        dueDate.getDate() >= currentDate &&
+        dueDate.getMonth() + 1 === currentMonth
+      ) {
+        if (Notification.permission === "granted") {
+          showNotification(item.dueDate);
+        } else if (Notification.permission !== "denied") {
+          Notification.requestPermission().then((permission) => {
+            if (permission === "granted") {
+              showNotification(item.dueDate);
+            }
+          });
+        }
+      }
+
+      return null;
+    });
+  });
 
   const onDrop = async (item, status) => {
     if (item.status === status) {

@@ -1,12 +1,7 @@
 import React, { useState } from "react";
-// import { matchRoutes, useNavigate } from "react-router-dom";
+
 import { Button } from "../../../../components";
-import {
-  AiFillCheckSquare,
-  List,
-  AiFillTag,
-  Type,
-} from "../../../../DevHubIcons";
+import { FlagIcon, ClockIcon, LabelIcon } from "../../../../DevHubIcons";
 import Editable from "../../Editable/Editable";
 import "./CardInfo.css";
 
@@ -23,102 +18,16 @@ function CardInfo(props) {
 
   const [selectedColor, setSelectedColor] = useState();
   const [updateTask, setUpdateTask] = useState(false);
-  const [values, setValues] = useState({
-    ...props.card,
-  });
 
   const [editableData, setEditableData] = useState({});
 
   const { id, taskName, taskDesc, labels, dueDate, status } = props.cardData;
 
-  // const updatedTitle = (value) => {
-  //   setValues({
-  //     ...values,
-  //     title: value,
-  //   });
-  // };
-
-  // const updatedDesc = (value) => {
-  //   setValues({
-  //     ...values,
-  //     desc: value,
-  //   });
-  // };
-
-  // const addLabel = (label) => {
-  //   const index = values.labels.findIndex((item) => item.text === label.text);
-  //   if (index > -1) return;
-
-  //   setSelectedColor("");
-  //   setValues({
-  //     ...values,
-  //     labels: [...values.labels, label],
-  //   });
-  // };
-
-  // const removeLabel = (label) => {
-  //   const tempLabels = values.labels.filter((item) => item.text !== label.text);
-
-  //   setValues({
-  //     ...values,
-  //     labels: tempLabels,
-  //   });
-  // };
-
-  // const addTask = (value) => {
-  //   const task = {
-  //     id: Date.now() + matchRoutes.random() * 2,
-  //     completed: false,
-  //     text: value,
-  //   };
-  //   setValues({
-  //     ...values,
-  //     tasks: [...values.tasks, task],
-  //   });
-  // };
-
-  // const removeTask = (id) => {
-  //   const tasks = [...values.tasks];
-
-  //   const tempTasks = tasks.filter((item) => item.id !== id);
-  //   setValues({
-  //     ...values,
-  //     tasks: tempTasks,
-  //   });
-  // };
-
-  // const updateTask = (id, value) => {
-  //   const tasks = [...values.tasks];
-
-  //   const index = tasks.findIndex((item) => item.id === id);
-  //   if (index < 0) return;
-
-  //   tasks[index].completed = value;
-
-  //   setValues({
-  //     ...values,
-  //     tasks,
-  //   });
-  // };
-
-  // const calculatePercent = () => {
-  //   if (!values.tasks?.length) return 0;
-  //   const completed = values.tasks?.filter((item) => item.completed)?.length;
-  //   return (completed / values.tasks?.length) * 100;
-  // };
-
-  // const updateDate = (date) => {
-  //   if (!date) return;
-
-  //   setValues({
-  //     ...values,
-  //     date,
-  //   });
-  // };
-
-  // useEffect(() => {
-  //   if (props.updateCard) props.updateCard(props.boardId, values.id, values);
-  // }, [values]);
+  React.useEffect(() => {
+    if (id) {
+      props.setSelectedItem(props.cardData);
+    }
+  }, [id, props.setSelectedItem, props]);
 
   return (
     <>
@@ -132,88 +41,135 @@ function CardInfo(props) {
         <div className="cardinfo">
           <div className="cardinfo_box">
             <div className="cardinfo_box_title">
-              <Type />
-              <p>{taskName}</p>
+              <h1>{taskName}</h1>
             </div>
           </div>
 
           <div className="cardinfo_box">
             <div className="cardinfo_box_title">
-              <List />
-              <p>{taskDesc}</p>
+              <FlagIcon />
+              <p
+                style={{
+                  color: "#808080",
+                }}
+              >
+                Status
+              </p>
+              <p
+                style={{
+                  textTransform: "capitalize",
+                  background:
+                    status === "done"
+                      ? "green"
+                      : status === "in progress"
+                      ? "orange"
+                      : "grey",
+                  padding: "5px 10px",
+                  borderRadius: "50px",
+                  fontSize: "15px",
+                  color: "white",
+                  marginLeft: "40px",
+                }}
+              >
+                {status}
+              </p>
             </div>
           </div>
 
           <div className="cardinfo_box">
             <div className="cardinfo_box_title">
-              <p>Date</p>
+              <ClockIcon />
+              <p
+                style={{
+                  color: "#808080",
+                }}
+              >
+                Timeline
+              </p>
+              <p
+                style={{
+                  fontWeight: "500",
+                  marginLeft: "28px",
+                }}
+              >
+                {dueDate}
+              </p>
             </div>
-            <input
-              type="date"
-              defaultValue={dueDate}
-              min={new Date().toISOString().substr(0, 10)}
-            />
+          </div>
+
+          <div className="cardinfo_box">
+            <div className="cardinfo_box_title">
+              <LabelIcon />
+              <p
+                style={{
+                  color: "#808080",
+                }}
+              >
+                Labels
+              </p>
+              <ul
+                style={{
+                  display: "flex",
+                  flexWrap: "wrap",
+                  gap: "20px",
+                  width: "100%",
+                  marginLeft: "45px",
+                }}
+              >
+                {labels.slice(0, 3).map((item, index) => (
+                  <li
+                    key={item.id}
+                    style={{
+                      backgroundColor: colors[index],
+                      width: "fit-content",
+                      color: "white",
+                    }}
+                    className={
+                      selectedColor === colors[index] ? "li_active" : ""
+                    }
+                    onClick={() => setSelectedColor(item)}
+                  >
+                    {labels[index]}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
 
           <div
-            className="cardinfo_box"
             style={{
-              display: "flex",
               width: "100%",
+              height: "2px",
+              background: "#000",
+              opacity: 0.1,
             }}
-          >
-            <div className="cardinfo_box_title">
-              <AiFillTag />
-              <p>Labels</p>
-            </div>
-
-            <ul style={{ display: "flex", gap: "20px", width: "100%" }}>
-              {labels.map((item, index) => (
-                <li
-                  key={item.id}
-                  style={{
-                    backgroundColor: colors[index],
-                    width: "fit-content",
-                    color: "white",
-                  }}
-                  className={selectedColor === colors[index] ? "li_active" : ""}
-                  onClick={() => setSelectedColor(item)}
-                >
-                  {labels[index]}
-                </li>
-              ))}
-            </ul>
-          </div>
+          />
 
           <div className="cardinfo_box">
             <div className="cardinfo_box_title">
-              <AiFillCheckSquare />
-              <p>Tasks</p>
+              <h2
+                style={{
+                  fontWeight: "600",
+                  fontSize: "20px",
+                }}
+              >
+                Description
+              </h2>
             </div>
-            <div className="cardinfo_box_progress-bar">
-              <div
-                className="cardinfo_box_progress"
-                // style={{
-                //   width: `${calculatePercent()}%`,
-                //   backgroundColor:
-                //     calculatePercent() === 100 ? "limegreen" : "",
-                // }}
-              />
-            </div>
-            <div className="cardinfo_box_task_list">
-              {values.tasks?.map((item) => (
-                <div key={item.id} className="cardinfo_box_task_checkbox">
-                  <input
-                    type="checkbox"
-                    defaultChecked={item.completed}
-                    onChange={(event) => {}}
-                  />
-                  <p className={item.completed ? "completed" : ""}>
-                    {item.text}
-                  </p>
-                </div>
-              ))}
-            </div>
+            <textarea
+              style={{
+                height: "90px",
+                outline: "none",
+                border: "none",
+                resize: "none",
+                fontFamily: "inherit",
+                fontWeight: "normal",
+                fontSize: "16px",
+                color: "#000",
+                opacity: 0.8,
+              }}
+              value={taskDesc}
+            />
           </div>
 
           <div

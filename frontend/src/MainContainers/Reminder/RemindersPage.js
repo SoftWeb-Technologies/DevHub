@@ -1,8 +1,12 @@
-import React, { useState } from "react";
+import { collection, deleteDoc, doc, onSnapshot } from "firebase/firestore";
+import { getMessaging, getToken } from "firebase/messaging";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Button, Title } from "../../components";
+import { Title } from "../../components";
 import { EmptyCuateImg } from "../../constants/Images";
-import { removeItemFromLibrary } from "../../redux/actions/libActions";
+import { DeleteIcon } from "../../DevHubIcons";
+import { db, messaging } from "../../firebase";
+import { addItemToRemainder } from "../../redux/actions/taskAction";
 import { DashboardSideNavigation } from "../components";
 import UserHeader from "../components/UserHeader/UserHeader";
 
@@ -11,19 +15,57 @@ import "./RemindersPage.css";
 const RemindersPage = () => {
   const dispatch = useDispatch();
   const { currentUser } = useSelector((state) => state.user);
-  const { libItems } = useSelector((state) => state.lib);
-
   const [isNavActive, setIsNavActive] = useState(false);
-  const [isPopUpBoxActive, setIsPopUpBoxActive] = useState(false);
-  const [popUpData, setPopUpData] = useState(null);
 
-  const removeItemFromLibrary = (id) => {
-    dispatch(removeItemFromLibrary(id));
-  };
+  const [remainderItemsList, setRemainderItemsList] = useState([]);
+
+  React.useEffect(() => {
+    const tasks = onSnapshot(
+      collection(db, `users/${currentUser?.uid}/reminders`),
+      (snapshot) => {
+        const list = [];
+        snapshot.docs.forEach((doc) => {
+          list.push({ uid: doc.id, ...doc.data() });
+          setRemainderItemsList(list);
+        });
+        dispatch(addItemToRemainder(list));
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+
+    return () => {
+      tasks();
+    };
+  }, [setRemainderItemsList, currentUser, dispatch]);
+
+  React.useEffect(() => {
+    getToken(messaging, {
+      vapidKey:
+        "BLCDKlMTAsrqy3Ck44k6EWZlFb3Wb61BhZ_L9c3FcP1HJA5Hfo1l7Sjej1zryIXqc-mPqt2FfBUFhWW-P52nGfo",
+    })
+      .then((currentToken) => {
+        if (currentToken) {
+          // Send the token to your server and update the UI if necessary
+          // ...
+        } else {
+          // Show permission request UI
+          console.log(
+            "No registration token available. Request permission to generate one."
+          );
+          // ...
+        }
+      })
+      .catch((err) => {
+        console.log("An error occurred while retrieving token. ", err);
+        // ...
+      });
+  });
 
   return (
     <div>
-      <Title title="Reminders" />
+      <Title title="Remainders" />
 
       <DashboardSideNavigation setIsNavActive={setIsNavActive} />
       <div id="blogspace">
@@ -38,13 +80,17 @@ const RemindersPage = () => {
           </h1>
         </div>
 
-        {libItems.length > 0 ? (
+        {remainderItemsList?.length > 0 ? (
           <div
             className={`reminders__main__container  ${
               isNavActive ? "active" : ""
             }`}
           >
-            {/* <div>{libItems.slice(0, 5).map((item, index) => {})}</div> */}
+            <div id="remainder__main">
+              {remainderItemsList?.reverse()?.map((item, index) => {
+                return <NotificationCard key={index} item={item} />;
+              })}
+            </div>
           </div>
         ) : (
           <div
@@ -74,9 +120,50 @@ const RemindersPage = () => {
             >
               You have no reminders
             </h1>
-            <p>Add</p>
           </div>
         )}
+      </div>
+    </div>
+  );
+};
+
+const NotificationCard = ({ item }) => {
+  return (
+    <div
+      id="remainder__card"
+      style={{
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        position: "relative",
+      }}
+    >
+      <div>
+        <h3>{item.taskName}</h3>
+        <p>{item.taskDesc}</p>
+      </div>
+      <div>
+        <h4
+          style={{
+            textTransform: "capitalize",
+            color:
+              item.status === "done"
+                ? "green"
+                : item.status === "in progress"
+                ? "rgba(255, 106, 0, 0.7)"
+                : "#000000d0",
+          }}
+        >
+          {item.status}
+        </h4>
+        <p
+          style={{
+            color: "#000000d0",
+            opacity: 0.8,
+          }}
+        >
+          {item.dueDate}
+        </p>
       </div>
     </div>
   );
