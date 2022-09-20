@@ -1,12 +1,10 @@
-import { collection, deleteDoc, doc, onSnapshot } from "firebase/firestore";
-import { getMessaging, getToken } from "firebase/messaging";
-import React, { useEffect, useState } from "react";
+import { collection, onSnapshot } from "firebase/firestore";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Title } from "../../components";
 import { EmptyCuateImg } from "../../constants/Images";
-import { DeleteIcon } from "../../DevHubIcons";
-import { db, messaging } from "../../firebase";
-import { addItemToRemainder } from "../../redux/actions/taskAction";
+import { db } from "../../firebase";
+import { subscribeUser } from "../../subscription";
 import { DashboardSideNavigation } from "../components";
 import UserHeader from "../components/UserHeader/UserHeader";
 
@@ -28,7 +26,11 @@ const RemindersPage = () => {
           list.push({ uid: doc.id, ...doc.data() });
           setRemainderItemsList(list);
         });
-        dispatch(addItemToRemainder(list));
+        // dispatch(addItemToRemainder(list));
+
+        list.map((item) => {
+          return subscribeUser(currentUser.displayName, item.dueDate);
+        });
       },
       (error) => {
         console.log(error);
@@ -39,29 +41,6 @@ const RemindersPage = () => {
       tasks();
     };
   }, [setRemainderItemsList, currentUser, dispatch]);
-
-  React.useEffect(() => {
-    getToken(messaging, {
-      vapidKey:
-        "BLCDKlMTAsrqy3Ck44k6EWZlFb3Wb61BhZ_L9c3FcP1HJA5Hfo1l7Sjej1zryIXqc-mPqt2FfBUFhWW-P52nGfo",
-    })
-      .then((currentToken) => {
-        if (currentToken) {
-          // Send the token to your server and update the UI if necessary
-          // ...
-        } else {
-          // Show permission request UI
-          console.log(
-            "No registration token available. Request permission to generate one."
-          );
-          // ...
-        }
-      })
-      .catch((err) => {
-        console.log("An error occurred while retrieving token. ", err);
-        // ...
-      });
-  });
 
   return (
     <div>
