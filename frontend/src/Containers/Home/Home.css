@@ -27,7 +27,7 @@
   background: linear-gradient(
     122.43deg,
     #008bb7 23.82%,
-    rgba(0, 139, 183, 0.5) 69.43%
+    rgba(9, 91, 139) 69.43%
   );
   clip-path: polygon(0 0, 100% 0, 100% 50%, 0 100%);
   height: 100%;
@@ -68,7 +68,8 @@ p {
 
 .home__img img {
   width: 110%;
-  position: relative;
+  margin-top: 40%;
+  position: absolute;
 }
 
 .home__desc h1 {

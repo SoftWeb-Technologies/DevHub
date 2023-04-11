@@ -8,6 +8,7 @@
 
 h1.logo__name {
   display: none;
+  color: #fff;
 }
 
 .main__logo__container {
@@ -77,7 +78,7 @@ h1.logo__name {
   width: 100%;
   position: relative;
   cursor: pointer;
-  color: rgba(0, 0, 0, 0.5);
+  color: #fff;
 
   font-size: 1.2rem;
   font-weight: 500;
@@ -99,7 +100,7 @@ h1.logo__name {
 }
 
 .navbar__link:hover::after {
-  background-color: var(--primary-clr);
+  background-color: #fff;
 }
 
 .navbar__link svg {
@@ -109,7 +110,7 @@ h1.logo__name {
 }
 
 .navbar__link:hover {
-  color: var(--primary-clr);
+  color: #fff;
 }
 
 .navbar__link:hover svg path {
@@ -127,7 +128,7 @@ h1.logo__name {
 }
 
 .navbar__link.active .menu__container ul li::after {
-  background-color: var(--primary-clr);
+  background-color: #003140;
 }
 
 .navbar__link.active::after {
@@ -141,13 +142,14 @@ h1.logo__name {
     width: 50px;
     height: 100vh;
     z-index: 99;
-    background-color: #eee;
+    background-color: #003140;
 
-    border-right: 2px solid rgba(194, 193, 193, 0.537);
+    border-right: 2px solid #003140;
   }
 
   .side__navbar.deactive {
     animation: close-nav 0.5s ease 1 backwards;
+    background-color: #003140;
     /* overflow: hidden; */
   }
 
@@ -163,6 +165,7 @@ h1.logo__name {
   .side__navbar.active {
     position: fixed;
     z-index: 99;
+    background-color: #003140;
     transition: width 0.5s ease-in-out;
     animation: expand-nav 0.5s ease 1 forwards;
   }
@@ -231,6 +234,6 @@ h1.logo__name {
   .side__navbar.active h1.logo__name {
     display: block;
     font-size: 1.2rem;
-    color: var(--primary-clr);
+    color: #fff;
   }
 }
