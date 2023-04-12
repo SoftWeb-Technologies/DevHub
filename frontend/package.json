@@ -10,6 +10,7 @@
     "cra-append-sw": "^2.7.0",
     "firebase": "^9.8.2",
     "framer-motion": "^6.3.4",
+    "lottie-react": "^2.4.0",
     "node-schedule": "^2.1.0",
     "react": "^18.1.0",
     "react-cookie": "^4.1.1",

@@ -12,11 +12,11 @@ const PricingCard = ({ isPopular, plans }) => {
         <div className="popular__tag">
           <p>Popular</p>
         </div>
-      )}
+      )}{/*&#8377;*/}
 
       <h1 className={`${isPopular && "popular"}`}>{plans.planName}</h1>
       <div className="pricing">
-        <h2>&#8377;{plans.planPrice}</h2>
+        <h2>{plans.planPrice}</h2>
         <p> month</p>
       </div>
 
