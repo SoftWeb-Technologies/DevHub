@@ -68,7 +68,7 @@ const Dashboard = () => {
                 color: "#008bb7",
               }}
             >
-              Features
+              What would you like to do?
             </h2>
             <div>
               <FeatureCard
@@ -173,6 +173,7 @@ export const DashboardHeader = ({ isNavActive, displayName }) => {
         <h2
           style={{
             fontSize: "1.2rem",
+            color: "#fff",
           }}
         >
           Dashboard
@@ -181,6 +182,7 @@ export const DashboardHeader = ({ isNavActive, displayName }) => {
           className="hide-on-mobile"
           style={{
             fontSize: "1.2rem",
+            color: "#fff",
           }}
         >
           Hello!{" "}

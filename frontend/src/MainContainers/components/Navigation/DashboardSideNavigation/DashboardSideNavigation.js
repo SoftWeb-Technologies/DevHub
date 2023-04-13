@@ -161,9 +161,10 @@ const DashboardSideNavigation = ({ customStyle, ...props }) => {
               onClick={handleLogout}
               style={{
                 width: "100%",
-                backgroundColor: "#008bb7",
+                backgroundColor: "#024279",
                 padding: "1.2rem 1.5rem",
                 display: "flex",
+                top: "40px",
                 position: "relative",
                 justifyContent: "space-between",
                 alignItems: "center",

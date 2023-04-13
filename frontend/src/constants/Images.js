@@ -18,6 +18,9 @@ import ErrorImg from "../assets/images/404-error.svg";
 // library images
 import EmptyCuateImg from "../assets/images/libraryImgs/Empty-cuate.svg";
 
+// Dashboard image
+import DashboardImg from "../assets/images/dashboardImg/DashboardImage.png";
+
 // contest poster image
 import Poster1 from "../assets/images/contestPosters/poster1.png";
 import Poster2 from "../assets/images/contestPosters/poster2.png";
@@ -40,6 +43,7 @@ export {
   FaqImg,
   ErrorImg,
   EmptyCuateImg,
+  DashboardImg,
   Poster1,
   Poster2,
   Poster3,

@@ -5,11 +5,12 @@
 }
 
 .dashboard__header {
-  background-color: #f2f2f2;
-  width: 100%;
+  background-image: url(/workspaces/DevHub/frontend/src/assets/images/dashboardImg/DashboardImage.png);
+  background-repeat: no-repeat;
+  max-width: 100%;
   height: auto;
-
-  padding: 2.5rem 1rem;
+  display: block;
+  margin-left: 10px;
 }
 
 .dashboard__header.active {

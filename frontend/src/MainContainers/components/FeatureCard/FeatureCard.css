@@ -1,13 +1,13 @@
 .feature__card {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
   gap: 10px;
 
   min-width: 300px;
   width: 100%;
   padding: 1rem;
-  background-color: #f6f6f6;
+  background-color: #E8F5FA;
 
   margin: 1rem 0;
   cursor: pointer;
@@ -34,7 +34,7 @@
 }
 
 .feature__card:hover::after{
-  background-color: #d8d8d84d;
+  background-color: #9dd6ff;
   width: 100%;
 }
 
