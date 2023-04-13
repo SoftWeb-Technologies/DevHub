@@ -5,8 +5,11 @@
 }
 
 .dashboard__header {
-  background-image: url(/workspaces/DevHub/frontend/src/assets/images/dashboardImg/DashboardImage.png);
+  background-image: url('../../assets/images/dashboardImg/DashboardImage.png');
   background-repeat: no-repeat;
+  width: 100%;
+  background-position: center;
+  background-size: cover;
   max-width: 100%;
   height: auto;
   display: block;
