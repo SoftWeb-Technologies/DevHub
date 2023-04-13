@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Button, Navbar, SideNavigation, Title } from "../../components";
 
 //import { HomeImg } from "../../constants/Images";
-import { LandingImage } from "../../constants/Images";
+import LandingImage from "../../constants/Images";
 // import Lottie from "lottie-react";
 import { DownArrowIcon } from "../../DevHubIcons";
 import { useSelector } from "react-redux";

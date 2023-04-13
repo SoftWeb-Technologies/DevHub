@@ -5,7 +5,11 @@
 
 #about {
   width: 100%;
-  background: var(--bg-linear-gradient);
+  background-image: linear-gradient(
+    141.96deg,
+    rgba(16, 101, 148,1),
+    rgba(14, 128, 211,1)
+  );
   height: 60vh;
 
   display: flex;
@@ -61,7 +65,7 @@
 .about__desc h1 {
   color: var(--primary-clr);
   font-size: 1.6rem;
-  margin: 1rem 0;
+  margin: 4rem 0;
 }
 
 .about__desc p {
