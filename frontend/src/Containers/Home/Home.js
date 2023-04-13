@@ -39,7 +39,7 @@ const Home = () => {
               <Button label="Get Started" onClick={() => navigate("/auth")} />
             </div>
             <div className="home__img">
-              {/* <Lottie animationData={LandingImage} /> */}
+              {/* <Lottie animationData= {LandingImage} /> */}
             </div>
           </div>
         </div>
