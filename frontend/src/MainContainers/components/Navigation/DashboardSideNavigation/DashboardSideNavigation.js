@@ -76,12 +76,12 @@ const DashboardSideNavigation = ({ customStyle, ...props }) => {
                       <span className="open__nav">Open navigation</span>
                     </>
                   ) : (
-                    <DevHubLogo fillColor={"#0E80D3"} />
+                    <DevHubLogo fillColor={"#fff"} />
                   )}
                 </div>
                 <h1
                   onClick={() => navigate("/dashboard")}
-                  style={{ cursor: "pointer" }}
+                  style={{ cursor: "pointer", color: "#fff" }}
                   className="logo__name"
                 >
                   DevHub

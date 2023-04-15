@@ -9,6 +9,9 @@ import AuthBackgroundImg from "../assets/images/authImgs/background.png";
 import SignUpImg from "../assets/images/authImgs/signUpImg.svg";
 import LoginImg from "../assets/images/authImgs/loginImg.svg";
 
+// profile images
+import thinkingImg from "../assets/images/profileImgs/thinking-img.svg";
+
 // faq images
 import FaqImg from "../assets/images/faqImgs/faqImg.svg";
 
@@ -37,6 +40,7 @@ export {
   DevHubLogo,
   HomeImg,
   LandingImage,
+  thinkingImg,
   AuthBackgroundImg,
   SignUpImg,
   LoginImg,

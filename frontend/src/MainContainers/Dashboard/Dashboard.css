@@ -16,6 +16,11 @@
   margin-left: 10px;
 }
 
+.feature__card__container {
+  display: flex;
+  flex-direction: row;
+}
+
 .dashboard__header.active {
   animation: slide-effect 0.5s 1 ease forwards;
 }

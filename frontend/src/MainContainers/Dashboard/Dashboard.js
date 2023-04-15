@@ -70,7 +70,8 @@ const Dashboard = () => {
             >
               What would you like to do?
             </h2>
-            <div>
+            <div className="feature__card__container">
+              <div>
               <FeatureCard
                 title={"Create Task"}
                 Icon={TaskIcon}
@@ -81,6 +82,8 @@ const Dashboard = () => {
                 Icon={CarbonBlogIcon}
                 path="/blogspace"
               />
+              </div>
+              <div>
               <FeatureCard
                 title={"Join Contest"}
                 Icon={TrophyIcon}
@@ -91,6 +94,7 @@ const Dashboard = () => {
                 Icon={NewsIcon}
                 path="/techhunt"
               />
+              </div>
             </div>
           </div>
         </div>

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { TextInput, Title } from "../../components";
+import {thinkingImg} from "../../constants/Images";
 import { MenuIcon } from "../../DevHubIcons";
 import { DashboardSideNavigation } from "../components";
 import "./Profile.css";
@@ -24,7 +25,7 @@ const Profile = () => {
               width: "100%",
               objectFit: "contain",
               cursor: "pointer",
-              position: "absolute",
+              position: "absolute", 
               top: "5%",
               left: "5%",
             }}
@@ -43,7 +44,7 @@ const Profile = () => {
                   "User"?.charAt(0)}
               </h1>
             </div>
-            <h2 style={{ color: "gray", marginBottom: "1rem" }}>
+            <h2 style={{ color: "gray", marginBottom: "1rem", marginRight: "50%" }}>
               {currentUser?.displayName ||
                 currentUser?.user?.name ||
                 currentUser?.email?.split("@")[0] ||
@@ -66,6 +67,16 @@ const Profile = () => {
                 inputType="email"
                 value={currentUser?.email || currentUser?.user?.email}
               />
+            </div>
+            <div className="user-profile-inner"/>
+            <div className="user-profile-inner1">
+             <div className="image_wrapper">
+              <img className="thinking_image" alt="" src={thinkingImg} />
+             </div>
+             </div>
+            <div className="Facts__container">Do you know?</div>
+            <div className="Facts__wrapper">
+              <div className="coding__fact">Coding will soon be as important as "reading"!</div>
             </div>
           </div>
         </div>
