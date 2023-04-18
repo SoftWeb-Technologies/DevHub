@@ -50,7 +50,7 @@ const TaskList = () => {
   }, [dispatch, setItems, currentUser]);
 
   const showNotification = (dueDate) => {
-    const notification = new Notification("Remainder message from DebHub", {
+    const notification = new Notification("Reminder message from DevHub", {
       body: `Hey! you have set a remainder for doing a task, which should be done by ${dueDate}`,
       icon: require("../../assets/images/logo/devHub-logo.svg"),
     });

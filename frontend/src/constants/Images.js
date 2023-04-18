@@ -25,6 +25,7 @@ import EmptyCuateImg from "../assets/images/libraryImgs/Empty-cuate.svg";
 import DashboardImg from "../assets/images/dashboardImg/DashboardImage.png";
 
 // contest poster image
+import coverImg from "../assets/images/contestPosters/cover.svg";
 import Poster1 from "../assets/images/contestPosters/poster1.png";
 import Poster2 from "../assets/images/contestPosters/poster2.png";
 import Poster3 from "../assets/images/contestPosters/poster3.png";
@@ -37,6 +38,7 @@ import Poster8 from "../assets/images/contestPosters/poster-8.png";
 export {
   AboutImg,
   DevHubLogoLight,
+  coverImg,
   DevHubLogo,
   HomeImg,
   LandingImage,

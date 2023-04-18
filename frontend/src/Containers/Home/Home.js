@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { Button, Navbar, SideNavigation, Title } from "../../components";
 
 //import { HomeImg } from "../../constants/Images";
-import LandingImage from "../../constants/Images";
-// import Lottie from "lottie-react";
+import {LandingImage} from "../../constants/Images";
+import Lottie from "lottie-react";
 import { DownArrowIcon } from "../../DevHubIcons";
 import { useSelector } from "react-redux";
 
@@ -39,7 +39,7 @@ const Home = () => {
               <Button label="Get Started" onClick={() => navigate("/auth")} />
             </div>
             <div className="home__img">
-              {/* <Lottie animationData= {LandingImage} /> */}
+               <Lottie animationData= {LandingImage} />
             </div>
           </div>
         </div>

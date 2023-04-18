@@ -87,9 +87,9 @@ const Contest = () => {
           <div className="user__name__container">
             <h2
               className="hide-on-mobile"
-              style={{ color: "#fff", marginTop: "0.7rem" }}
+              style={{ color: "#DAF5FF", marginTop: "0.7rem" }}
             >
-              Hello!{" "}
+              Contest mania made for you! {" "}
               {currentUser?.displayName ||
                 currentUser?.user?.name ||
                 currentUser?.email ||

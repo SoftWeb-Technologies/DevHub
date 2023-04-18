@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Title } from "../../components";
-import { Poster1, Poster2, Poster3, Poster4, Poster5, Poster6, Poster7, Poster8 } from "../../constants/Images";
+import { Poster1, Poster2, Poster3, Poster4, Poster5, Poster6, Poster7, Poster8, coverImg } from "../../constants/Images";
 import { fetchContestData } from "../../redux/actions/apiActions";
 import { DashboardSideNavigation, Header } from "../components";
 import "./ContestsList.css";
@@ -217,6 +217,7 @@ const ContestCard = (props) => {
             color: "#008bb7",
           }}
         >
+          {/*<img className="cover" alt="" src={coverImg} />*/}
           {props.title}
         </h3>
         <p
