@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import {
   Button,
   Footer,
@@ -10,12 +10,19 @@ import {
 } from "../../components";
 
 import "./Contact.css";
+import emailjs from "@emailjs/browser";
 import { email } from "../../constants/Icons";
 import { PaperAirPlane } from "../../DevHubIcons";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const companyEmailAddress = ["contactdevhub@gmail.com", "@DevHub"];
+
+const Result = () => {
+  return (
+    <p> Your message has been successfully sent!</p>
+  );
+};
 
 const Contact = () => {
   const [isNavActive, setIsNavActive] = useState(false);
@@ -26,6 +33,20 @@ const Contact = () => {
     subject: "",
     message: "",
   });
+
+  const form = useRef();
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs.sendForm('service_hj5ykdr', 'template_lc1kxgh', form.current, 'JA7Fw91gK_oMbAQdu')
+      .then((result) => {
+          console.log(result.text);
+      }, (error) => {
+          console.log(error.text);
+      });
+  };
+
 
   const navigate = useNavigate();
 
@@ -88,7 +109,7 @@ const Contact = () => {
           </div>
           <div className="contact__form__right__container">
             <div className="form__container">
-              <form>
+              <form ref={form} onSubmit={sendEmail}>
                 <TextInput
                   name={"username"}
                   inputType={"text"}
@@ -141,6 +162,6 @@ const Contact = () => {
       </main>
     </div>
   );
-};
+}
 
 export default Contact;
