@@ -68,6 +68,7 @@ const Footer = () => {
             <div className="newsletter__form">
               <img className="emailIcon" src={email} alt="email" />
               <input type={"email"} placeholder="Enter your email" />
+              <a href="https://devhubweekly.beehiiv.com/subscribe">
               <Button
                 customStyle={{ padding: "0.55rem   1rem" }}
                 label={"Send"}
@@ -75,6 +76,7 @@ const Footer = () => {
                 Icon={PaperAirPlane}
                 onClick={handleOnSend}
               />
+              </a>
             </div>
           </div>
         </div>
