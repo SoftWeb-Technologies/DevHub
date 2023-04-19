@@ -18,6 +18,7 @@ import {
   fetchNewsAppleData,
   fetchNewsTeslaData,
 } from "../../redux/actions/apiActions";
+import AutoLatestNews from "../components/autoSlider/autoSlider";
 
 const Dashboard = () => {
   // const navigate = useNavigate();
@@ -72,53 +73,58 @@ const Dashboard = () => {
             </h2>
             <div className="feature__card__container">
               <div>
-              <FeatureCard
-                title={"Create Task"}
-                Icon={TaskIcon}
-                path="/createtask"
-              />
-              <FeatureCard
-                title={"Read Blogs"}
-                Icon={CarbonBlogIcon}
-                path="/blogspace"
-              />
+                <FeatureCard
+                  title={"Create Task"}
+                  Icon={TaskIcon}
+                  path="/createtask"
+                />
+                <FeatureCard
+                  title={"Read Blogs"}
+                  Icon={CarbonBlogIcon}
+                  path="/blogspace"
+                />
               </div>
               <div>
-              <FeatureCard
-                title={"Join Contest"}
-                Icon={TrophyIcon}
-                path="/contest"
-              />
-              <FeatureCard
-                title={"Read latest news"}
-                Icon={NewsIcon}
-                path="/techhunt"
-              />
+                <FeatureCard
+                  title={"Join Contest"}
+                  Icon={TrophyIcon}
+                  path="/contest"
+                />
+                <FeatureCard
+                  title={"Read latest news"}
+                  Icon={NewsIcon}
+                  path="/techhunt"
+                />
               </div>
             </div>
           </div>
         </div>
         <div className="dashboard__right__container">
-          <div>
+          <div
+            style={{
+              marginTop: "1.5rem",
+            }}
+          >
             <h2
               style={{
-                color: "#008bb7",
+                color: "#0E80D3",
               }}
             >
               Trending Blogs
             </h2>
-            <div className="latestNewsAndBlogs__container">
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "20px",
+              }}
+            >
               <CardData
                 title={githubRepoData[randomNumber]?.name}
                 description={githubRepoData[randomNumber]?.description}
                 url={githubRepoData[randomNumber]?.url}
               />
-              <hr
-                style={{
-                  margin: "10px 0",
-                  opacity: 0.7,
-                }}
-              ></hr>
+
               <CardData
                 title={devToArticlesData[randomNumber]?.title}
                 description={devToArticlesData[randomNumber]?.description}
@@ -127,31 +133,29 @@ const Dashboard = () => {
             </div>
           </div>
 
-          <div>
+          <div
+            style={{
+              marginTop: "1.5rem",
+            }}
+          >
             <h2
               style={{
-                color: "#008bb7",
+                color: "#0E80D3",
               }}
             >
               Latest News
             </h2>
-            <div className="latestNewsAndBlogs__container">
-              <CardData
-                title={newsAppleData[randomNumber]?.title}
-                description={newsAppleData[randomNumber]?.description}
-                url={newsAppleData[randomNumber]?.url}
-              />
-              <hr
-                style={{
-                  margin: "10px 0",
-                  opacity: 0.7,
-                }}
-              ></hr>
-              <CardData
-                title={newsTeslaData[randomNumber]?.title}
-                description={newsTeslaData[randomNumber]?.description}
-                url={newsTeslaData[randomNumber]?.url}
-              />
+            <div>
+              <div>{/* Keep lastest new images */}</div>
+              <div>
+                <CardData
+                  title={newsAppleData[randomNumber]?.title}
+                  description={newsAppleData[randomNumber]?.description}
+                  url={newsAppleData[randomNumber]?.url}
+                />
+              </div>
+
+              <AutoLatestNews />
             </div>
           </div>
         </div>
@@ -192,7 +196,7 @@ export const DashboardHeader = ({ isNavActive, displayName }) => {
           Hello!{" "}
           <span
             style={{
-              color: "#008bb7",
+              color: "#0E80D3",
             }}
           >
             {displayName}
@@ -205,33 +209,56 @@ export const DashboardHeader = ({ isNavActive, displayName }) => {
 
 const CardData = ({ title, description, url }) => {
   return (
-    <div>
-      <p
+    <div
+      style={{
+        width: "72%",
+        minWidth: "570px",
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        background:
+          "linear-gradient(90deg, var(--secondary-clr), var(--primary-clr))",
+        borderRadius: 10,
+        padding: "1rem 2rem",
+      }}
+    >
+      <div>
+        <p
+          style={{
+            textDecoration: "none",
+            textTransform: "Capitalize",
+          }}
+        >
+          <b>{title}</b>
+        </p>
+        <span
+          style={{
+            color: "#000",
+            opacity: 0.7,
+          }}
+        >
+          {description?.slice(0, 100) + "..."}
+        </span>
+        <p
+          style={{
+            marginTop: "10px",
+            color: "#0E80D3",
+          }}
+        >
+          <a href={url} target="_blank" rel="noreferrer">
+            Continue Reading
+          </a>
+        </p>
+      </div>
+      <div
         style={{
-          textDecoration: "none",
-          textTransform: "Capitalize",
+          width: "60px",
+          height: "60px",
+          background: "white",
         }}
       >
-        <b>{title}</b>
-      </p>
-      <span
-        style={{
-          color: "#000",
-          opacity: 0.7,
-        }}
-      >
-        {description?.slice(0, 100) + "..."}
-      </span>
-      <p
-        style={{
-          marginTop: "10px",
-          color: "#008bb7",
-        }}
-      >
-        <a href={url} target="_blank" rel="noreferrer">
-          Continue Reading
-        </a>
-      </p>
+        {/* place image here */}
+      </div>
     </div>
   );
 };

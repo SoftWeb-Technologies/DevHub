@@ -1,13 +1,13 @@
 .feature__card {
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
   gap: 10px;
 
-  min-width: 300px;
+  min-width: 500px;
   width: 100%;
-  padding: 1rem;
-  background-color: #E8F5FA;
+  padding: 1rem 2rem;
+  background-color: #abe6f864;
 
   margin: 1rem 0;
   cursor: pointer;
