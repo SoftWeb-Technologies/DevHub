@@ -11,6 +11,7 @@ import LoginImg from "../assets/images/authImgs/loginImg.svg";
 
 // profile images
 import thinkingImg from "../assets/images/profileImgs/thinking-img.svg";
+import ProfileImg from "../assets/images/profileImgs/ProfileImg.jpg";
 
 // faq images
 import FaqImg from "../assets/images/faqImgs/faqImg.svg";
@@ -43,6 +44,7 @@ export {
   HomeImg,
   LandingImage,
   thinkingImg,
+  ProfileImg,
   AuthBackgroundImg,
   SignUpImg,
   LoginImg,
