@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
+import { Header } from "../components";
 import { TextInput, Title } from "../../components";
 import {thinkingImg} from "../../constants/Images";
 import { MenuIcon } from "../../DevHubIcons";
@@ -16,6 +17,16 @@ const Profile = () => {
       <Title title="Profile" />
 
       <DashboardSideNavigation setIsNavActive={setIsNavActive} />
+      <ProfileHeader
+      isNavActive={isNavActive}
+      displayName={
+        currentUser?.displayName ||
+        currentUser?.user?.name ||
+        currentUser.email ||
+        "User"
+      }
+      />
+
       <div className="profile__main__container">
         <div className="">
           <div
@@ -44,7 +55,7 @@ const Profile = () => {
                   "User"?.charAt(0)}
               </h1>
             </div>
-            <h2 style={{ color: "gray", marginBottom: "1rem", marginRight: "50%" }}>
+            <h2 style={{ color: "gray", marginBottom: "1rem", marginRight: "5%" }}>
               {currentUser?.displayName ||
                 currentUser?.user?.name ||
                 currentUser?.email?.split("@")[0] ||
@@ -82,6 +93,49 @@ const Profile = () => {
         </div>
       </div>
     </>
+  );
+};
+
+export const ProfileHeader = ({ isNavActive, displayName }) => {
+  return (
+    <div className={`profile__header ${isNavActive} ? "active" : ""`}>
+      <div className="profile__header__container">
+        <Header displayName={displayName} />
+      </div>
+      <div
+      style={{
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        marginTop: "1rem",
+      }}
+      >
+        <h2
+        style={{
+          fontSize: "1.2rem",
+          color: "#fff",
+        }}
+        >
+          Your Profile
+        </h2>
+        <h2
+        className="hide-on-mobile"
+        style={{
+          fontSize: "1.2rem",
+          color: "#fff",
+        }}
+        >
+          What's up? {" "}
+          <span
+          style={{
+            color: "#0E80D3",
+          }}
+          >
+            {displayName}
+          </span>
+        </h2>
+      </div>
+    </div>
   );
 };
 
