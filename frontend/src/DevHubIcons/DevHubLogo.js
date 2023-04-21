@@ -4,7 +4,7 @@ const DevHubLogo = ({ fillColor, ...props }) => {
   return (
     <svg
       {...props}
-      viewBox="0 0 153 130"
+      viewBox="0 0 158 133"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -15,7 +15,7 @@ const DevHubLogo = ({ fillColor, ...props }) => {
       <g filter="url(#filter0_f_636_20)">
         <path
           d="M73.1035 94.4043C85.1098 89.7567 89.8865 83.5922 92.4685 77.46C98.278 80.8488 90.9176 102.075 88.1114 101.182C77.4606 97.7932 78.7516 96.3408 73.1035 94.4043Z"
-          fill="#878787"
+          fill="#fff"
         />
       </g>
       <path

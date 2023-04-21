@@ -52,7 +52,7 @@ const SideNavigation = ({ customStyle, ...props }) => {
                       <span className="open__nav">Open navigation</span>
                     </>
                   ) : (
-                    <DevHubLogo fillColor={"#008bb7"} />
+                    <DevHubLogo fillColor={"#fff"} />
                   )}
                 </div>
                 <h1 className="logo__name">DevHub</h1>

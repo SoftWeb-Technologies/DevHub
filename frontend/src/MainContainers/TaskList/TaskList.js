@@ -18,7 +18,6 @@ import { setTasks } from "../../redux/actions/taskAction";
 const TaskList = () => {
   const dispatch = useDispatch();
   const { currentUser } = useSelector((state) => state.user);
-  const { remainderItems } = useSelector((state) => state.remainder);
 
   const [isNavActive, setIsNavActive] = useState(false);
   const [isModelActive, setIsModelActive] = useState(false);
@@ -83,32 +82,32 @@ const TaskList = () => {
     };
   }, [setRemainderItemsList, currentUser, dispatch]);
 
-  React.useEffect(() => {
-    const date = new Date();
-    const currentMonth = date.getMonth() + 1;
-    const currentDate = date.getDate();
+  // React.useEffect(() => {
+  //   const date = new Date();
+  //   const currentMonth = date.getMonth() + 1;
+  //   const currentDate = date.getDate();
 
-    remainderItemsList.map((item, index) => {
-      const dueDate = new Date(item.dueDate);
+  //   remainderItemsList.map((item, index) => {
+  //     const dueDate = new Date(item.dueDate);
 
-      if (
-        dueDate.getDate() >= currentDate &&
-        dueDate.getMonth() + 1 === currentMonth
-      ) {
-        if (Notification.permission === "granted") {
-          showNotification(item.dueDate);
-        } else if (Notification.permission !== "denied") {
-          Notification.requestPermission().then((permission) => {
-            if (permission === "granted") {
-              showNotification(item.dueDate);
-            }
-          });
-        }
-      }
+  //     if (
+  //       dueDate.getDate() >= currentDate &&
+  //       dueDate.getMonth() + 1 === currentMonth
+  //     ) {
+  //       if (Notification.permission === "granted") {
+  //         showNotification(item.dueDate);
+  //       } else if (Notification.permission !== "denied") {
+  //         Notification.requestPermission().then((permission) => {
+  //           if (permission === "granted") {
+  //             showNotification(item.dueDate);
+  //           }
+  //         });
+  //       }
+  //     }
 
-      return null;
-    });
-  });
+  //     return null;
+  //   });
+  // });
 
   const onDrop = async (item, status) => {
     if (item.status === status) {
