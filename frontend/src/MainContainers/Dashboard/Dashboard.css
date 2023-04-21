@@ -100,6 +100,12 @@
   justify-content: space-between;
 }
 
+.blogs__and__news__container{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 @media screen and (min-width: 640px) {
   .dashboard__header {
     background-color: #f2f2f2;

@@ -19,9 +19,7 @@ import { useSelector } from "react-redux";
 const companyEmailAddress = ["contactdevhub@gmail.com", "@DevHub"];
 
 const Result = () => {
-  return (
-    <p> Your message has been successfully sent!</p>
-  );
+  return <p> Your message has been successfully sent!</p>;
 };
 
 const Contact = () => {
@@ -39,14 +37,22 @@ const Contact = () => {
   const sendEmail = (e) => {
     e.preventDefault();
 
-    emailjs.sendForm('service_hj5ykdr', 'template_lc1kxgh', form.current, 'JA7Fw91gK_oMbAQdu')
-      .then((result) => {
+    emailjs
+      .sendForm(
+        "service_hj5ykdr",
+        "template_lc1kxgh",
+        form.current,
+        "JA7Fw91gK_oMbAQdu"
+      )
+      .then(
+        (result) => {
           console.log(result.text);
-      }, (error) => {
+        },
+        (error) => {
           console.log(error.text);
-      });
+        }
+      );
   };
-
 
   const navigate = useNavigate();
 
@@ -59,7 +65,15 @@ const Contact = () => {
 
   const handleContactFormSubmit = (e) => {
     e.preventDefault();
-    console.log(contactFormData);
+    sendEmail(e); // add this
+
+    setContactFormData({
+      // add this
+      username: "",
+      email: "",
+      subject: "",
+      message: "",
+    });
   };
 
   return (
@@ -81,7 +95,8 @@ const Contact = () => {
         <div className="contact__header">
           <h1>Get in touch</h1>
           <p>
-            Got some queries about the product? Well, we're always available to help you ;)
+            Got some queries about the product? Well, we're always available to
+            help you ;)
           </p>
         </div>
 
@@ -92,7 +107,9 @@ const Contact = () => {
               <div>
                 <h2>Contact Info</h2>
                 <p>
-                  Here is where you can reach out to us. We're damn sure we'll get back to you and solve all your doubts and queries related to anything (;
+                  Here is where you can reach out to us. We're damn sure we'll
+                  get back to you and solve all your doubts and queries related
+                  to anything (;
                 </p>
               </div>
               <div>
@@ -162,6 +179,6 @@ const Contact = () => {
       </main>
     </div>
   );
-}
+};
 
 export default Contact;

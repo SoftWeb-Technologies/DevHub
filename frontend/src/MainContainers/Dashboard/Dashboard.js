@@ -99,70 +99,80 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
-        <div className="dashboard__right__container">
+        <div className="blogs__and__news__container">
           <div
             style={{
-              marginTop: "1.5rem",
+              display: "flex",
+              justifyContent: "space-between",
             }}
           >
-            <h2
-              style={{
-                color: "#0E80D3",
-              }}
-            >
-              Trending Blogs
-            </h2>
             <div
               style={{
-                display: "flex",
-                flexDirection: "column",
-                gap: "20px",
+                marginTop: "1.5rem",
               }}
             >
-              <CardData
-                title={githubRepoData[randomNumber]?.name}
-                description={githubRepoData[randomNumber]?.description}
-                url={githubRepoData[randomNumber]?.url}
-              />
-
-              <CardData
-                title={devToArticlesData[randomNumber]?.title}
-                description={devToArticlesData[randomNumber]?.description}
-                url={devToArticlesData[randomNumber]?.url}
-              />
-            </div>
-          </div>
-
-          <div
-            style={{
-              marginTop: "1.5rem",
-            }}
-          >
-            <h2
-              style={{
-                color: "#0E80D3",
-              }}
-            >
-              Latest News
-            </h2>
-            <div>
-              <div>{/* Keep lastest new images */}</div>
-              <div>
+              <h2
+                style={{
+                  color: "#0E80D3",
+                }}
+              >
+                Trending Blogs
+              </h2>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "20px",
+                }}
+              >
                 <CardData
-                  title={newsAppleData[randomNumber]?.title}
-                  description={newsAppleData[randomNumber]?.description}
-                  url={newsAppleData[randomNumber]?.url}
+                  title={githubRepoData[randomNumber]?.name}
+                  description={githubRepoData[randomNumber]?.description}
+                  url={githubRepoData[randomNumber]?.url}
+                />
+
+                <CardData
+                  title={devToArticlesData[randomNumber]?.title}
+                  description={devToArticlesData[randomNumber]?.description}
+                  url={devToArticlesData[randomNumber]?.url}
                 />
               </div>
-
-              <AutoLatestNews />
             </div>
           </div>
+
+          <AutoLatestNews />
         </div>
       </div>
     </div>
   );
 };
+
+//           <div
+//             style={{
+//               marginTop: "1.5rem",
+//             }}
+//           >
+//             <h2
+//               style={{
+//                 color: "#0E80D3",
+//               }}
+//             >
+//               Latest News
+//             </h2>
+//             <div>
+//               <div>{/* Keep lastest new images */}</div>
+//               <div>
+//                 <CardData
+//                   title={newsAppleData[randomNumber]?.title}
+//                   description={newsAppleData[randomNumber]?.description}
+//                   url={newsAppleData[randomNumber]?.url}
+//                 />
+//               </div>
+
+//               <AutoLatestNews />
+//             </div>
+//           </div>
+//         </div>
 
 export const DashboardHeader = ({ isNavActive, displayName }) => {
   return (
