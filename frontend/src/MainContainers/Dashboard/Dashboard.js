@@ -100,47 +100,44 @@ const Dashboard = () => {
           </div>
         </div>
         <div className="blogs__and__news__container">
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-            }}
-          >
-            <div
+          <div>
+            <h2
               style={{
-                marginTop: "1.5rem",
+                color: "#0E80D3",
               }}
             >
-              <h2
-                style={{
-                  color: "#0E80D3",
-                }}
-              >
-                Trending Blogs
-              </h2>
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "20px",
-                }}
-              >
-                <CardData
-                  title={githubRepoData[randomNumber]?.name}
-                  description={githubRepoData[randomNumber]?.description}
-                  url={githubRepoData[randomNumber]?.url}
-                />
+              Trending Blogs
+            </h2>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "20px",
+              }}
+            >
+              <CardData
+                title={githubRepoData[randomNumber]?.name}
+                description={githubRepoData[randomNumber]?.description}
+                url={githubRepoData[randomNumber]?.url}
+              />
 
-                <CardData
-                  title={devToArticlesData[randomNumber]?.title}
-                  description={devToArticlesData[randomNumber]?.description}
-                  url={devToArticlesData[randomNumber]?.url}
-                />
-              </div>
+              <CardData
+                title={devToArticlesData[randomNumber]?.title}
+                description={devToArticlesData[randomNumber]?.description}
+                url={devToArticlesData[randomNumber]?.url}
+              />
             </div>
           </div>
-
-          <AutoLatestNews />
+          <div className="latest_news_container">
+            <h2
+              style={{
+                color: "#0E80D3",
+              }}
+            >
+              Latest News
+            </h2>
+            <AutoLatestNews data={devToArticlesData} />
+          </div>
         </div>
       </div>
     </div>

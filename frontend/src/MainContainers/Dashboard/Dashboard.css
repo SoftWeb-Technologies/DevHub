@@ -101,9 +101,14 @@
 }
 
 .blogs__and__news__container{
+  width: 100%;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  margin-top: 1.5rem;
+}
+
+.latest_news_container{
+  width: 80%;
 }
 
 @media screen and (min-width: 640px) {

@@ -1,58 +1,44 @@
-import React, { Component } from "react";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import React, { useEffect, useState } from "react";
 
 import "./autoSlider.css";
 
-const AutoLatestNews = () => {
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-          infinite: true,
-          dots: true,
-        },
-      },
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
-  };
+const AutoLatestNews = ({ data }) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    if (currentIndex < data.length) {
+      setTimeout(() => {
+        setCurrentIndex(currentIndex + 1);
+      }, 5000);
+    }
+
+    if (currentIndex == data.length) {
+      setCurrentIndex(0);
+    }
+  }, [currentIndex]);
 
   return (
-    <Slider {...settings}>
-      <div>
-        <h1 style={{ color: "red" }}>22</h1>
+    <>
+      <div class="slideshow-container">
+        <div
+          class="mySlides fade"
+          onClick={window.open(data[currentIndex]?.canonical_url)}
+        >
+          <div class="slider_img_container">
+            <img
+              src={data[currentIndex]?.social_image}
+              width={"100%"}
+              height={"100%"}
+            />
+          </div>
+
+          <div class="slider__content">
+            <p>{data[currentIndex]?.title.slice(0, 50)}</p>
+            <p>{data[currentIndex]?.description.slice(0, 40)}...</p>
+          </div>
+        </div>
       </div>
-      <div>
-        <h1 style={{ color: "red" }}>22</h1>
-      </div>
-      <div>
-        <h1 style={{ color: "red" }}>22</h1>
-      </div>
-      <div>
-        <h1 style={{ color: "red" }}>22</h1>
-      </div>
-      <div>
-        <h1 style={{ color: "red" }}>22</h1>
-      </div>
-      <div>
-        <h1 style={{ color: "red" }}>22</h1>
-      </div>
-    </Slider>
+    </>
   );
 };
 
