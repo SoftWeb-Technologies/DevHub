@@ -3,15 +3,6 @@
   align-items: center;
 }
 
-.header__main__container {
-  padding: 2.4rem 5rem;
-  background: linear-gradient(
-    122.43deg,
-    #008bb7 23.82%,
-    rgba(0, 139, 183, 0.5) 69.43%
-  );
-  position: relative;
-}
 
 .contest__body__container {
   padding: 2.4rem 2rem;
@@ -108,16 +99,6 @@
   .contest__header__container {
     display: flex;
     align-items: center;
-  }
-
-  .header__main__container {
-    padding: 2.4rem 5rem;
-    background: linear-gradient(
-      122.43deg,
-      #008bb7 23.82%,
-      rgba(0, 139, 183, 0.5) 69.43%
-    );
-    position: relative;
   }
 
   .contest__body__container {
