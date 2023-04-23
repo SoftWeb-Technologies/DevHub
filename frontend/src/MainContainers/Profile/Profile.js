@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { Header } from "../components";
 import { TextInput, Title } from "../../components";
-import { thinkingImg } from "../../constants/Images";
 import { MenuIcon } from "../../DevHubIcons";
 import { DashboardSideNavigation } from "../components";
 import "./Profile.css";
@@ -59,18 +57,6 @@ const Profile = () => {
                 value={currentUser?.email || currentUser?.user?.email}
               />
             </div>
-            {/* <div className="user-profile-inner" />
-            <div className="user-profile-inner1">
-              <div className="image_wrapper">
-                <img className="thinking_image" alt="" src={thinkingImg} />
-              </div>
-            </div>
-            <div className="Facts__container">Do you know?</div>
-            <div className="Facts__wrapper">
-              <div className="coding__fact">
-                Coding will soon be as important as "reading"!
-              </div>
-            </div> */}
           </div>
         </div>
       </div>
@@ -78,7 +64,7 @@ const Profile = () => {
   );
 };
 
-export const ProfileHeader = ({ isNavActive, displayName, currentUser }) => {
+export const ProfileHeader = ({ isNavActive, currentUser }) => {
   return (
     <div className={`profile__header ${isNavActive} ? "active" : ""`}>
       <div className="profile__header__container"></div>

@@ -146,33 +146,6 @@ const Dashboard = () => {
   );
 };
 
-//           <div
-//             style={{
-//               marginTop: "1.5rem",
-//             }}
-//           >
-//             <h2
-//               style={{
-//                 color: "#0E80D3",
-//               }}
-//             >
-//               Latest News
-//             </h2>
-//             <div>
-//               <div>{/* Keep lastest new images */}</div>
-//               <div>
-//                 <CardData
-//                   title={newsAppleData[randomNumber]?.title}
-//                   description={newsAppleData[randomNumber]?.description}
-//                   url={newsAppleData[randomNumber]?.url}
-//                 />
-//               </div>
-
-//               <AutoLatestNews />
-//             </div>
-//           </div>
-//         </div>
-
 export const DashboardHeader = ({ isNavActive, displayName }) => {
   return (
     <div className={`dashboard__header ${isNavActive}  ? "active" : ""`}>

@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Button, Card, Loader, Title } from "../../components";
-import { ArrowInCircle, RightArrowIcon } from "../../DevHubIcons";
+import { RightArrowIcon } from "../../DevHubIcons";
 import { fetchTopHeadLinesNews } from "../../redux/actions/apiActions";
 import { DashboardSideNavigation, Header } from "../components";
 
