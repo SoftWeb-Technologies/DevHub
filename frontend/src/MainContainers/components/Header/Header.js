@@ -22,16 +22,6 @@ const Header = ({ displayName, setFilter }) => {
         >
           <MenuIcon />
         </div>{" "}
-        {/* <p
-          style={{
-            color: "#000",
-            textTransform: "uppercase",
-            fontWeight: "500",
-            marginBottom: "0.2rem",
-          }}
-        >
-          Menu
-        </p> */}
       </div>
 
       <div className="dashboard__header__container__search">

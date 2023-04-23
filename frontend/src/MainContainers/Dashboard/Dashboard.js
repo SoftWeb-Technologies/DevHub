@@ -157,12 +157,12 @@ export const DashboardHeader = ({ isNavActive, displayName }) => {
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          marginTop: "1rem",
+          marginTop: "3rem",
         }}
       >
         <h2
           style={{
-            fontSize: "1.2rem",
+            fontSize: "1.5rem",
             color: "#fff",
           }}
         >
@@ -178,7 +178,7 @@ export const DashboardHeader = ({ isNavActive, displayName }) => {
           Hello!{" "}
           <span
             style={{
-              color: "#0E80D3",
+              color: "#fff",
             }}
           >
             {displayName}

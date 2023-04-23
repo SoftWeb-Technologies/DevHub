@@ -27,13 +27,6 @@
   position: relative;
 }
 
-.hide-on-mobile {
-  display: none;
-}
-
-.hide-on-desktop {
-  display: block;
-}
 
 .profile_center{
   position: absolute;

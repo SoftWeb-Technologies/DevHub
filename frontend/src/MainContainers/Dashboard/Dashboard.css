@@ -5,7 +5,7 @@
 }
 
 .dashboard__header {
-  background-image: linear-gradient(180deg, rgba(0,0,0,0.2), rgba(0,0,0,0.8)),url('../../assets/images/dashboardImg/DashboardImage.png');
+  background-image: url('../../assets/images/dashboardImg/DashboardImage.png');
   background-repeat: no-repeat;
   width: 100%;
   background-position: center;
@@ -13,7 +13,7 @@
   max-width: 100%;
   height: auto;
   display: block;
-  margin-left: 10px;
+  padding-left: 10px;
 }
 
 .feature__card__container {
@@ -33,7 +33,7 @@
 }
 
 .hide-on-mobile {
-  display: none;
+  display: block;
 }
 
 .hide-on-desktop {
