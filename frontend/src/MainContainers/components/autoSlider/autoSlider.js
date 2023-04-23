@@ -15,14 +15,15 @@ const AutoLatestNews = ({ data }) => {
     if (currentIndex == data.length) {
       setCurrentIndex(0);
     }
-  }, [currentIndex]);
+  }, [currentIndex, data.length]);
 
   return (
     <>
       <div class="slideshow-container">
         <div
           class="mySlides fade"
-          onClick={window.open(data[currentIndex]?.canonical_url)}
+          style={{ cursor: "pointer" }}
+          onClick={() => window.open(data[currentIndex]?.canonical_url)}
         >
           <div class="slider_img_container">
             <img
@@ -33,8 +34,16 @@ const AutoLatestNews = ({ data }) => {
           </div>
 
           <div class="slider__content">
-            <p>{data[currentIndex]?.title.slice(0, 50)}</p>
-            <p>{data[currentIndex]?.description.slice(0, 40)}...</p>
+            <p style={{ fontSize: "20px" }}>
+              {`${
+                data[currentIndex]?.title.length > 40
+                  ? data[currentIndex]?.title.slice(0, 40) + "..."
+                  : data[currentIndex]?.title
+              }`}
+            </p>
+            <p style={{ color: "#000" }}>
+              {data[currentIndex]?.description.slice(0, 40)}...
+            </p>
           </div>
         </div>
       </div>

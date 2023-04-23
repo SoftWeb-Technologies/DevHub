@@ -119,12 +119,14 @@ const Dashboard = () => {
                 title={githubRepoData[randomNumber]?.name}
                 description={githubRepoData[randomNumber]?.description}
                 url={githubRepoData[randomNumber]?.url}
+                image={githubRepoData[randomNumber]?.social_image}
               />
 
               <CardData
                 title={devToArticlesData[randomNumber]?.title}
                 description={devToArticlesData[randomNumber]?.description}
                 url={devToArticlesData[randomNumber]?.url}
+                image={devToArticlesData[randomNumber]?.social_image}
               />
             </div>
           </div>
@@ -214,7 +216,7 @@ export const DashboardHeader = ({ isNavActive, displayName }) => {
   );
 };
 
-const CardData = ({ title, description, url }) => {
+const CardData = ({ title, description, url, image }) => {
   return (
     <div
       style={{
@@ -232,8 +234,8 @@ const CardData = ({ title, description, url }) => {
       <div>
         <p
           style={{
-            textDecoration: "none",
             textTransform: "Capitalize",
+            fontSize: "20px",
           }}
         >
           <b>{title}</b>
@@ -249,10 +251,15 @@ const CardData = ({ title, description, url }) => {
         <p
           style={{
             marginTop: "10px",
-            color: "#0E80D3",
+            color: "#000",
           }}
         >
-          <a href={url} target="_blank" rel="noreferrer">
+          <a
+            href={url}
+            target="_blank"
+            rel="noreferrer"
+            style={{ color: "#000", textDecoration: "underline" }}
+          >
             Continue Reading
           </a>
         </p>
@@ -261,10 +268,15 @@ const CardData = ({ title, description, url }) => {
         style={{
           width: "60px",
           height: "60px",
-          background: "white",
+          objectFit: "contain",
         }}
       >
-        {/* place image here */}
+        <img
+          src={image}
+          width={"100%"}
+          height={"100%"}
+          style={{ objectFit: "cover" }}
+        />
       </div>
     </div>
   );
