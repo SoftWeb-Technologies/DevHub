@@ -4,26 +4,27 @@
   justify-content: center;
   align-items: center;
   gap: 15px;
-
-  height: 65vh;
+  margin-top: 4rem;
 }
 
 .profile__header {
-  background-image: linear-gradient(180deg, rgba(0,0,0,0.2), rgba(0,0,0,0.8)), url('../../assets/images/profileImgs/ProfileImg.jpg');
+  background-image: url('../../assets/images/profileImgs/ProfileImg.jpg');
   background-repeat: no-repeat;
   width: 100%;
   background-position: center;
   background-size: cover;
   max-width: 100%;
-  height: auto;
+  height: 100%;
   display: block;
-  margin-left: 10px;
+  height: 40vh;
 }
 
 .profile__header__container {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  /* height: 24vh; */
+  position: relative;
 }
 
 .hide-on-mobile {
@@ -32,6 +33,13 @@
 
 .hide-on-desktop {
   display: block;
+}
+
+.profile_center{
+  position: absolute;
+  left: 50%;
+  top: 80%; 
+  transform: translateX(-50%);
 }
 
 .profile__avatar__container {
