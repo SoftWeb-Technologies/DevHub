@@ -5,11 +5,8 @@ export const fetchTopHeadLinesNews = () => async (dispatch) => {
   try {
     dispatch({ type: types.API_FETCH_TECH_HUNT_START });
 
-    // need to secure this api key
-    const API_KEY = "0f996e2478b54bbb97086eff0af0896b";
-
     const { data } = await axios.get(
-      `https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=${API_KEY}`
+      `https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=${process.env.REACT_APP_API_KEY_NEWS}`
     );
 
     dispatch({ type: types.API_FETCH_TECH_HUNT_SUCCESS, payload: data });
