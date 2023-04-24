@@ -30,21 +30,19 @@ const TechHunt = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    const fetchTechNews = async (keyword) => {
+    const fetchTechNews = async () => {
       var config = {
         method: "get",
-        url: `https://devhub-backend-production.up.railway.app/api/news-keyword/${keyword}`,
+        url: `https://newsapi.org/v2/everything?q=technologies&sortBy=popularity&apiKey=${process.env.REACT_APP_API_KEY_NEWS}`,
       };
 
       await axios(config).then((response) => {
-        setTechNews(response.data);
+        setTechNews(response.data.articles);
       });
     };
 
-    fetchTechNews("technologies");
+    fetchTechNews();
   }, []);
-
-  console.log(techNews);
 
   return (
     <div>
@@ -113,7 +111,7 @@ const TechHunt = () => {
                 <h2>Tech Hunt</h2>
               </div>
               <div className="techHunt__cards__container">
-                {techNews?.slice(0, 8)?.map((article, index) => (
+                {techNews.map((article, index) => (
                   <Card
                     key={index}
                     image={article.urlToImage}

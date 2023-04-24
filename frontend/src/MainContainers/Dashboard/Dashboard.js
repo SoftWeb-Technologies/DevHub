@@ -44,6 +44,8 @@ const Dashboard = () => {
     setRandomNumber(Math.floor(Math.random() * 5));
   }, [dispatch]);
 
+  console.log(newsTeslaData);
+
   return (
     <div className={`dashboard ${isNavActive ? "active" : ""}`}>
       <Title title="Dashboard" />
@@ -100,7 +102,7 @@ const Dashboard = () => {
           </div>
         </div>
         <div className="blogs__and__news__container">
-          <div>
+          <div className="blogs__conatiner">
             <h2
               style={{
                 color: "#0E80D3",
@@ -116,10 +118,10 @@ const Dashboard = () => {
               }}
             >
               <CardData
-                title={githubRepoData[randomNumber]?.name}
-                description={githubRepoData[randomNumber]?.description}
-                url={githubRepoData[randomNumber]?.url}
-                image={githubRepoData[randomNumber]?.social_image}
+                title={newsTeslaData[randomNumber]?.name}
+                description={newsTeslaData[randomNumber]?.description}
+                url={newsTeslaData[randomNumber]?.url}
+                image={newsTeslaData[randomNumber]?.urlToImage}
               />
 
               <CardData
@@ -191,19 +193,7 @@ export const DashboardHeader = ({ isNavActive, displayName }) => {
 
 const CardData = ({ title, description, url, image }) => {
   return (
-    <div
-      style={{
-        width: "72%",
-        minWidth: "570px",
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-        background:
-          "linear-gradient(90deg, var(--secondary-clr), var(--primary-clr))",
-        borderRadius: 10,
-        padding: "1rem 2rem",
-      }}
-    >
+    <div className="blog_card">
       <div>
         <p
           style={{

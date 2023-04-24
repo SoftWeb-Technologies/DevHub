@@ -34,7 +34,7 @@ const AutoLatestNews = ({ data }) => {
           </div>
 
           <div class="slider__content">
-            <p style={{ fontSize: "20px" }}>
+            <p style={{ fontSize: "20px", fontWeight: 600 }}>
               {`${
                 data[currentIndex]?.title.length > 40
                   ? data[currentIndex]?.title.slice(0, 40) + "..."
