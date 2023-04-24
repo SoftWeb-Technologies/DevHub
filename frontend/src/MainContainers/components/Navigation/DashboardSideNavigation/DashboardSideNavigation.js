@@ -10,6 +10,7 @@ import {
   ContestIcon,
   TechHuntIcon,
   DashboardHomeIcon,
+  TrophyIcon,
 } from "../../../../DevHubIcons";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -75,12 +76,12 @@ const DashboardSideNavigation = ({ customStyle, ...props }) => {
                       <span className="open__nav">Open navigation</span>
                     </>
                   ) : (
-                    <DevHubLogo fillColor={"#008bb7"} />
+                    <DevHubLogo fillColor={"#fff"} />
                   )}
                 </div>
                 <h1
                   onClick={() => navigate("/dashboard")}
-                  style={{ cursor: "pointer" }}
+                  style={{ cursor: "pointer", color: "#fff" }}
                   className="logo__name"
                 >
                   DevHub
@@ -142,7 +143,7 @@ const DashboardSideNavigation = ({ customStyle, ...props }) => {
             toggle={toggle}
             path={"/contest"}
             menuName="Contest"
-            Icon={ContestIcon}
+            Icon={TrophyIcon}
             location={activeLocation}
             setLocation={setActiveLocation}
             customIconStyle={"contest__icon"}
@@ -161,9 +162,10 @@ const DashboardSideNavigation = ({ customStyle, ...props }) => {
               onClick={handleLogout}
               style={{
                 width: "100%",
-                backgroundColor: "#008bb7",
+                backgroundColor: "#0E80D3",
                 padding: "1.2rem 1.5rem",
                 display: "flex",
+                top: "40px",
                 position: "relative",
                 justifyContent: "space-between",
                 alignItems: "center",

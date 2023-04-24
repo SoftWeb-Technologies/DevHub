@@ -13,7 +13,7 @@ import "./Pricing.css";
 
 const basicPlans = {
   planName: "Basic",
-  planPrice: "99",
+  planPrice: "Coming Soon...",
   planDescription:
     "Access to todo list, upcoming contents,and latest tech news.",
   plansProvided: ["Todo List", "Contest Info", "Latest Tech News"],
@@ -21,7 +21,7 @@ const basicPlans = {
 
 const standardPlans = {
   planName: "Standard",
-  planPrice: "249",
+  planPrice: "Coming Soon...",
   planDescription: "Access to all the basic features and more. ",
   plansProvided: [
     "Latest Blogs",
@@ -33,7 +33,7 @@ const standardPlans = {
 
 const premiumPlans = {
   planName: "Premium",
-  planPrice: "499",
+  planPrice: "Coming Soon...",
   planDescription:
     "Access to all the basic and standard features and much more",
   plansProvided: [
@@ -78,8 +78,7 @@ const Pricing = () => {
           <div className="pricing__header">
             <h1>Our Pricing Plan</h1>
             <p>
-              We're providing best in class features in this product with
-              honest, integrity and efficiency building quality.
+              As of now, we're in beta! We'll be rolling out our pricing plan soon.
             </p>
           </div>
 

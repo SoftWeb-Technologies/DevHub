@@ -4,10 +4,11 @@
   justify-content: space-between;
   gap: 10px;
 
-  min-width: 300px;
+  min-width: 500px;
+  border-radius: 10px;
   width: 100%;
-  padding: 1rem;
-  background-color: #f6f6f6;
+  padding: 1rem 2rem;
+  background-color: #abe6f864;
 
   margin: 1rem 0;
   cursor: pointer;
@@ -17,12 +18,14 @@
 }
 
 .feature__card:hover {
+  border-radius: 10px;
   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.15);
 }
 
 .feature__card::after{
   content: "";
   position: absolute;
+  border-radius: 10px;
   top: 0;
   left: 0;
   width: 0%;
@@ -34,7 +37,8 @@
 }
 
 .feature__card:hover::after{
-  background-color: #d8d8d84d;
+  background-color: #9dd6ff;
+  border-radius: 10px;
   width: 100%;
 }
 

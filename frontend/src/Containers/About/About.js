@@ -45,12 +45,9 @@ const About = () => {
             </div>
           </div>
           <div className="about__desc">
-            <h1>Lorem Ipsum</h1>
+            <h1>Empower your development with DevHub!</h1>
             <p>
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book.
+            Welcome to DevHub, your all-in-one solution for developers! DevHub is a comprehensive tool designed to streamline the development process, faster collaboration, and promote continuous learning. With features such as Blog Space, Tech Hunt, Contests, and Task List, DevHub is the ultimate platform for developers to enhance their skills, stay up-to-date with the latest tech trends, and showcase their expertise.
             </p>
           </div>
         </div>

@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { CloseIcon, DeleteIcon, NotificationIcon } from "../../../DevHubIcons";
 import { addItemToTrash } from "../../../redux/actions/taskAction";
+import toast, { Toaster } from "react-hot-toast"
 import CardInfo from "./CardInfo/CardInfo";
 import "./TaskListModel.css";
 
@@ -42,6 +43,10 @@ function TaskListModel(props) {
 
     props.setIsActive(false);
   };
+
+  const notify = () => {
+    toast.success('Reminder added!');
+  }
 
   const handleReminder = async () => {
     try {
@@ -110,8 +115,9 @@ function TaskListModel(props) {
             <NotificationIcon
               fillColor={"#008bb7"}
               isActive={isActiveRemainder}
-              onClick={handleReminder}
+              onClick={notify}
             />
+            <Toaster />
             <DeleteIcon onClick={handleTaskDelete} />
             <CloseIcon onClick={() => props.setIsActive(false)} />
           </div>

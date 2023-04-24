@@ -40,9 +40,14 @@ export const fetchNewsTeslaData = () => async (dispatch) => {
   try {
     dispatch({ type: types.API_FETCH_NEWS_TESLA_START });
 
-    const { data } = await axios.get("/api/news-tesla");
+    const { data } = await axios.get(
+      `https://newsapi.org/v2/everything?q=tesla&sortBy=publishedAt&apiKey=${process.env.REACT_APP_API_KEY_NEWS}`
+    );
 
-    dispatch({ type: types.API_FETCH_NEWS_TESLA_SUCCESS, payload: data });
+    dispatch({
+      type: types.API_FETCH_NEWS_TESLA_SUCCESS,
+      payload: data.articles,
+    });
   } catch (err) {
     dispatch({
       type: types.API_FETCH_NEWS_TESLA_FAIL,
@@ -74,6 +79,8 @@ export const fetchGithubReposData = () => async (dispatch) => {
     const { data } = await axios.get(
       "https://gtrend.yapie.me/repositories?since=daily"
     );
+
+    console.log(data);
 
     dispatch({ type: types.API_FETCH_GITHUB_REPOS_SUCCESS, payload: data });
   } catch (err) {
