@@ -1,7 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Title } from "../../components";
-import { Poster1, Poster2, Poster3, Poster4, Poster5, Poster6, Poster7, Poster8, coverImg } from "../../constants/Images";
+import {
+  Poster1,
+  Poster2,
+  Poster3,
+  Poster4,
+  Poster5,
+  Poster6,
+  Poster7,
+  Poster8,
+  contestImg1,
+  coverImg,
+} from "../../constants/Images";
 import { fetchContestData } from "../../redux/actions/apiActions";
 import { DashboardSideNavigation, Header } from "../components";
 import "./ContestsList.css";
@@ -57,7 +68,9 @@ const ContestsList = () => {
               gap: "0.5rem",
             }}
           >
-            <h2 style={{ color: "rgb(86, 85, 85)", fontFamily: "inherit" }}>Current Contests</h2>
+            <h2 style={{ color: "rgb(86, 85, 85)", fontFamily: "inherit" }}>
+              Current Contests
+            </h2>
           </div>
 
           <div className="contest__cards__container">
@@ -86,7 +99,9 @@ const ContestsList = () => {
               marginTop: "2rem",
             }}
           >
-            <h2 style={{ color: "rgb(86, 85, 85)", fontFamily: "inherit" }}>Upcoming Contests</h2>
+            <h2 style={{ color: "rgb(86, 85, 85)", fontFamily: "inherit" }}>
+              Upcoming Contests
+            </h2>
           </div>
           <div className="contest__cards__container">
             {contestData.slice(30, 65)?.map((contest, index) => (
@@ -217,7 +232,6 @@ const ContestCard = (props) => {
             color: "#008bb7",
           }}
         >
-          {/*<img className="cover" alt="" src={coverImg} />*/}
           {props.title}
         </h3>
         <p

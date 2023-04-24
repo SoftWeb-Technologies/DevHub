@@ -36,6 +36,11 @@ import Poster6 from "../assets/images/contestPosters/poster-6.png";
 import Poster7 from "../assets/images/contestPosters/poster-7.png";
 import Poster8 from "../assets/images/contestPosters/poster-8.png";
 
+import contestImg1 from "../assets/images/contestPosters/contest_logo/codechef.png";
+import contestImg2 from "../assets/images/contestPosters/contest_logo/hackerearth.png";
+import contestImg3 from "../assets/images/contestPosters/contest_logo/hackerrank.png";
+import contestImg4 from "../assets/images/contestPosters/contest_logo/codeForces.png";
+
 export {
   AboutImg,
   DevHubLogoLight,
@@ -60,4 +65,8 @@ export {
   Poster6,
   Poster7,
   Poster8,
+  contestImg1,
+  contestImg2,
+  contestImg3,
+  contestImg4,
 };
