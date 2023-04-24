@@ -348,7 +348,9 @@ const ContestCard = (props) => {
             {props.title !== "CodeForces" ||
               props.title !== "HackerRank" ||
               props.title !== "HackerEarth" ||
-              (props.title !== "CodeChef" && <h1>No Image</h1>)}
+              (props.title !== "CodeChef" && (
+                <h1 style={{ color: "#fff", fontWeight: "bold" }}>No Image</h1>
+              ))}
           </div>
         </div>
         <div
