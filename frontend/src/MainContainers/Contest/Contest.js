@@ -45,8 +45,8 @@ const Contest = () => {
       };
 
       axios(config).then((response) => {
-        // console.log(response.data);
         setIsLoading(true);
+        console.log(response.data);
         const data = response.data.filter((item) => {
           return (
             item.site.toLowerCase().includes(keyword.toLowerCase()) ||
@@ -65,6 +65,8 @@ const Contest = () => {
 
     filter && fetchContestData(filter);
   }, [filter]);
+
+  console.log(filteredData);
 
   return (
     <div>
@@ -89,7 +91,7 @@ const Contest = () => {
               className="hide-on-mobile"
               style={{ color: "#DAF5FF", marginTop: "0.7rem" }}
             >
-              Contest mania made for you! {" "}
+              Contest mania made for you!{" "}
               {currentUser?.displayName ||
                 currentUser?.user?.name ||
                 currentUser?.email ||

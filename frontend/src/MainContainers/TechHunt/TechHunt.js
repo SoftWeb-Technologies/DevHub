@@ -44,6 +44,21 @@ const TechHunt = () => {
     fetchTechNews();
   }, []);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      var config = {
+        method: "get",
+        url: `https://newsapi.org/v2/everything?q=${filter}&sortBy=popularity&apiKey=${process.env.REACT_APP_API_KEY_NEWS}`,
+      };
+
+      await axios(config).then((response) => {
+        setFilteredData(response.data.articles);
+      });
+    };
+
+    fetchData();
+  }, [filter]);
+
   return (
     <div>
       <Title title="Tech-Hunt" />
