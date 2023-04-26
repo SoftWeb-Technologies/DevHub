@@ -6,6 +6,7 @@ import "./PricingCard.css";
 
 const PricingCard = ({ isPopular, plans }) => {
   const handleBuyButton = () => {};
+  const handleScheduleButton = () => {};
   return (
     <div className={`pricing__card ${isPopular && "primary"}`}>
       {isPopular && (
@@ -17,13 +18,14 @@ const PricingCard = ({ isPopular, plans }) => {
       <h1 className={`${isPopular && "popular"}`}>{plans.planName}</h1>
       <div className="pricing">
         <h2>{plans.planPrice}</h2>
-        <p> month</p>
+        <p>/ month</p>
       </div>
 
       <p className="desc">{plans.planDescription}</p>
 
       <div className="choose__btn__container">
         <Button label="Buy" primary="true" onClick={handleBuyButton} />
+        <Button label="Schedule a demo" primary="true" onClick={handleScheduleButton} />
       </div>
 
       <div className="plan__details">
