@@ -40,6 +40,8 @@ import contestImg1 from "../assets/images/contestPosters/contest_logo/codechef.p
 import contestImg2 from "../assets/images/contestPosters/contest_logo/hackerearth.png";
 import contestImg3 from "../assets/images/contestPosters/contest_logo/hackerrank.png";
 import contestImg4 from "../assets/images/contestPosters/contest_logo/codeForces.png";
+import contestImg5 from "../assets/images/contestPosters/contest_logo/atcoder.png";
+import contestImg6 from "../assets/images/contestPosters/contest_logo/leetcode.png";
 
 export {
   AboutImg,
@@ -69,4 +71,6 @@ export {
   contestImg2,
   contestImg3,
   contestImg4,
+  contestImg5,
+  contestImg6,
 };

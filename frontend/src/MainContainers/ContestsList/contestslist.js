@@ -11,6 +11,11 @@ import {
   Poster7,
   Poster8,
   contestImg1,
+  contestImg2,
+  contestImg3,
+  contestImg4,
+  contestImg5,
+  contestImg6,
   coverImg,
 } from "../../constants/Images";
 import { fetchContestData } from "../../redux/actions/apiActions";
@@ -57,9 +62,8 @@ const ContestsList = () => {
         </div>
 
         <div
-          className={`contestlist__body__container ${
-            isNavActive ? "active" : ""
-          }`}
+          className={`contestlist__body__container ${isNavActive ? "active" : ""
+            }`}
         >
           <div
             style={{
@@ -132,15 +136,13 @@ const ContestsList = () => {
               index: null,
             });
           }}
-          className={`contest__poster__model ${
-            isPopUpBoxActive ? "active" : ""
-          }`}
+          className={`contest__poster__model ${isPopUpBoxActive ? "active" : ""
+            }`}
         />
 
         <div
-          className={`contest__poster__container ${
-            isPopUpBoxActive ? "active" : ""
-          }`}
+          className={`contest__poster__container ${isPopUpBoxActive ? "active" : ""
+            }`}
         >
           <div
             style={{
@@ -227,52 +229,91 @@ const ContestCard = (props) => {
   return (
     <div onClick={props.openPoster} className="contest__card__container">
       <div>
-        <h3
-          style={{
-            color: "#008bb7",
-          }}
-        >
-          {props.title}
-        </h3>
-        <p
-          style={{
-            color: "#000",
-            fontSize: "0.85rem",
-            marginTop: "0.5rem",
-            opacity: "0.7",
-          }}
-        >
-          {props.description}
-        </p>
+        <div className="contest__card__image">
+          <div>
+            {props.title == "CodeChef" && (
+              <img src={contestImg1} width={"100%"} height={"100%"} />
+            )}
+            {props.title == "HackerEarth" && (
+              <img src={contestImg2} width={"100%"} height={"100%"} />
+            )}
+            {props.title == "HackerRank" && (
+              <img src={contestImg3} width={"100%"} height={"100%"} />
+            )}
+            {props.title == "CodeForces" && (
+              <img src={contestImg4} width={"100%"} height={"100%"} />
+            )}
+            {props.title == "AtCoder" && (
+              <img src={contestImg5} width={"100%"} height={"100%"} />
+            )}
+            {props.title == "LeetCode" && (
+              <img src={contestImg6} width={"100%"} height={"100%"} />
+            )}
 
+            {props.title !== "CodeForces" ||
+              props.title !== "HackerRank" ||
+              props.title !== "HackerEarth" ||
+              (props.title !== "CodeChef" && (
+                <h1 style={{ color: "#fff", fontWeight: "bold" }}>No Image</h1>
+              ))}
+          </div>
+        </div>
         <div
           style={{
-            marginTop: "1.5rem",
+            padding: "1rem",
           }}
         >
-          <p
+          <h3
             style={{
-              color: "green",
-              opacity: "0.6",
-              fontSize: "0.90rem",
+              color: "#008bb7",
             }}
           >
-            Start:{" "}
-            <span>
-              {props?.start_time?.split("T")[0] ||
-                props.start_time?.split(" ")[0]}
-            </span>
-          </p>
+            {props.title}
+          </h3>
           <p
             style={{
-              color: "red",
-              opacity: "0.6",
+              color: "#000",
+              fontSize: "0.85rem",
               marginTop: "0.5rem",
-              fontSize: "0.90rem",
+              opacity: "0.7",
             }}
           >
-            End: <span>{props?.end_time?.split("T")[0]}</span>
+            {props.description.length > 20
+              ? props.description.slice(0, 20) + "..."
+              : props.description}
           </p>
+
+          <div
+            style={{
+              marginTop: "1.5rem",
+            }}
+          >
+            <p
+              style={{
+                color: "green",
+                fontWeight: "bold",
+                opacity: "0.6",
+                fontSize: "0.9rem",
+              }}
+            >
+              Start:{" "}
+              <span>
+                {props?.start_time?.split("T")[0] ||
+                  props.start_time?.split(" ")[0]}
+              </span>
+            </p>
+            <p
+              style={{
+                color: "red",
+                fontWeight: "bold",
+                opacity: "0.6",
+                marginTop: "0.5rem",
+                fontSize: "0.90rem",
+              }}
+            >
+              End: <span>{props?.end_time?.split("T")[0]}</span>
+            </p>
+          </div>
         </div>
       </div>
     </div>
