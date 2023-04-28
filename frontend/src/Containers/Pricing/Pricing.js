@@ -14,9 +14,13 @@ import "./Pricing.css";
 const basicPlans = {
   planName: "Basic",
   planPrice: "$0",
-  planDescription:
-    "Best option to get started and see how DevHub works.",
-  plansProvided: ["Access Todo List", "Basic features of DevHub", "Usage Limit for basic features", "Ads included"],
+  planDescription: "Best option to get started and see how DevHub works.",
+  plansProvided: [
+    "Access Todo List",
+    "Basic features of DevHub",
+    "Usage Limit for basic features",
+    "Ads included",
+  ],
 };
 
 const standardPlans = {
@@ -29,7 +33,7 @@ const standardPlans = {
     "Free Gift 🎁 (Exclusive deals worth $300k)",
     "Exclusive community",
     "Early access to new features",
-    "Priority support"
+    "Priority support",
   ],
 };
 
@@ -45,7 +49,7 @@ const premiumPlans = {
     "Personalised onboarding",
     "Exclusive community access",
     "Access to your team for free",
-    "No ads at all"
+    "No ads at all",
   ],
 };
 
@@ -68,6 +72,7 @@ const Pricing = () => {
           {currentUser ? (
             <Button
               label="Dashboard"
+              customStyle={{ background: "var(--btn-primary-clr)" }}
               primary={true}
               onClick={() => navigate("/dashboard")}
             />
@@ -84,7 +89,8 @@ const Pricing = () => {
           <div className="pricing__header">
             <h1>Our Pricing Plan</h1>
             <p>
-              As of now, we're in beta! We'll be rolling out our pricing plan soon.
+              As of now, we're in beta! We'll be rolling out our pricing plan
+              soon.
             </p>
           </div>
 

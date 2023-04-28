@@ -3,17 +3,36 @@ import { checkMark } from "../../constants/Icons";
 import Button from "../Button/Button";
 
 import "./PricingCard.css";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const PricingCard = ({ isPopular, plans }) => {
-  const handleBuyButton = () => {};
-  const handleScheduleButton = () => {};
+  const { isAuthenticated } = useSelector((state) => state.user);
+  const navigate = useNavigate();
+
+  const handleForBasicPlan = () => {
+    if (isAuthenticated) {
+      navigate("/dashboard");
+    } else {
+      navigate("/auth");
+    }
+  };
+
+  const handleForStandardPlan = () => {
+    // code for payment integration
+  };
+
+  const handleForSchedulePlan = () => {
+    window.open("https://cal.com/devhubhq", "__blank");
+  };
+
   return (
     <div className={`pricing__card ${isPopular && "primary"}`}>
       {isPopular && (
         <div className="popular__tag">
           <p>Popular</p>
         </div>
-      )}{/*&#8377;*/}
+      )}
 
       <h1 className={`${isPopular && "popular"}`}>{plans.planName}</h1>
       <div className="pricing">
@@ -24,8 +43,30 @@ const PricingCard = ({ isPopular, plans }) => {
       <p className="desc">{plans.planDescription}</p>
 
       <div className="choose__btn__container">
-        <Button label="Buy" primary="true" onClick={handleBuyButton} />
-        <Button label="Schedule a demo" primary="true" onClick={handleScheduleButton} />
+        {plans.planName === "Basic" && (
+          <Button
+            customClassName={"plan__button"}
+            label="Get Started"
+            primary="true"
+            onClick={handleForBasicPlan}
+          />
+        )}
+        {plans.planName === "Standard" && (
+          <Button
+            customClassName={"plan__button"}
+            label="Buy Now"
+            primary="true"
+            onClick={handleForStandardPlan}
+          />
+        )}
+        {plans.planName === "Premium" && (
+          <Button
+            customClassName={"plan__button"}
+            label="Schedule a Demo"
+            primary="true"
+            onClick={handleForSchedulePlan}
+          />
+        )}
       </div>
 
       <div className="plan__details">
