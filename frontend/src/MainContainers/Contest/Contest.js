@@ -15,6 +15,8 @@ import {
   contestImg2,
   contestImg3,
   contestImg4,
+  contestImg5,
+  contestImg6,
 } from "../../constants/Images";
 import { ArrowInCircle } from "../../DevHubIcons";
 import { fetchContestData } from "../../redux/actions/apiActions";
@@ -332,23 +334,69 @@ const ContestCard = (props) => {
       <div>
         <div className="contest__card__image">
           <div>
-            {props.title == "CodeChef" && (
-              <img src={contestImg1} width={"100%"} height={"100%"} />
+            {props.title === "CodeChef" && (
+              <img
+                src={contestImg1}
+                width={"100%"}
+                height={"100%"}
+                alt="contest_poster"
+              />
             )}
-            {props.title == "HackerEarth" && (
-              <img src={contestImg2} width={"100%"} height={"100%"} />
+            {props.title === "HackerEarth" && (
+              <img
+                src={contestImg2}
+                width={"100%"}
+                height={"100%"}
+                alt="contest_poster"
+              />
             )}
-            {props.title == "HackerRank" && (
-              <img src={contestImg3} width={"100%"} height={"100%"} />
+            {props.title === "HackerRank" && (
+              <img
+                src={contestImg3}
+                width={"100%"}
+                height={"100%"}
+                alt="contest_poster"
+              />
             )}
-            {props.title == "CodeForces" && (
-              <img src={contestImg4} width={"100%"} height={"100%"} />
+            {props.title === "CodeForces" && (
+              <img
+                src={contestImg4}
+                width={"100%"}
+                height={"100%"}
+                alt="contest_poster"
+              />
             )}
 
-            {props.title != "CodeForces" ||
-              props.title != "HackerRank" ||
-              props.title != "HackerEarth" ||
-              (props.title != "CodeChef" ? (
+            {props.title === "CodeForces::Gym" && (
+              <img
+                src={contestImg4}
+                width={"100%"}
+                height={"100%"}
+                alt="contest_poster"
+              />
+            )}
+
+            {props.title === "AtCoder" && (
+              <img
+                src={contestImg5}
+                width={"100%"}
+                height={"100%"}
+                alt="contest_poster"
+              />
+            )}
+            {props.title === "LeetCode" && (
+              <img
+                src={contestImg6}
+                width={"100%"}
+                height={"100%"}
+                alt="contest_poster"
+              />
+            )}
+
+            {props.title !== "CodeForces" ||
+              props.title !== "HackerRank" ||
+              props.title !== "HackerEarth" ||
+              (props.title !== "CodeChef" ? (
                 <h1 style={{ color: "#fff", fontWeight: "bold" }}>No Image</h1>
               ) : null)}
           </div>

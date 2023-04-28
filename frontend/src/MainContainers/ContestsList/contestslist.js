@@ -62,8 +62,9 @@ const ContestsList = () => {
         </div>
 
         <div
-          className={`contestlist__body__container ${isNavActive ? "active" : ""
-            }`}
+          className={`contestlist__body__container ${
+            isNavActive ? "active" : ""
+          }`}
         >
           <div
             style={{
@@ -136,13 +137,15 @@ const ContestsList = () => {
               index: null,
             });
           }}
-          className={`contest__poster__model ${isPopUpBoxActive ? "active" : ""
-            }`}
+          className={`contest__poster__model ${
+            isPopUpBoxActive ? "active" : ""
+          }`}
         />
 
         <div
-          className={`contest__poster__container ${isPopUpBoxActive ? "active" : ""
-            }`}
+          className={`contest__poster__container ${
+            isPopUpBoxActive ? "active" : ""
+          }`}
         >
           <div
             style={{
@@ -231,23 +234,63 @@ const ContestCard = (props) => {
       <div>
         <div className="contest__card__image">
           <div>
-            {props.title == "CodeChef" && (
-              <img src={contestImg1} width={"100%"} height={"100%"} />
+            {props.title === "CodeChef" && (
+              <img
+                src={contestImg1}
+                width={"100%"}
+                height={"100%"}
+                alt="contest_poster"
+              />
             )}
-            {props.title == "HackerEarth" && (
-              <img src={contestImg2} width={"100%"} height={"100%"} />
+            {props.title === "HackerEarth" && (
+              <img
+                src={contestImg2}
+                width={"100%"}
+                height={"100%"}
+                alt="contest_poster"
+              />
             )}
-            {props.title == "HackerRank" && (
-              <img src={contestImg3} width={"100%"} height={"100%"} />
+            {props.title === "HackerRank" && (
+              <img
+                src={contestImg3}
+                width={"100%"}
+                height={"100%"}
+                alt="contest_poster"
+              />
             )}
-            {props.title == "CodeForces" && (
-              <img src={contestImg4} width={"100%"} height={"100%"} />
+            {props.title === "CodeForces" && (
+              <img
+                src={contestImg4}
+                width={"100%"}
+                height={"100%"}
+                alt="contest_poster"
+              />
             )}
-            {props.title == "AtCoder" && (
-              <img src={contestImg5} width={"100%"} height={"100%"} />
+
+            {props.title === "CodeForces::Gym" && (
+              <img
+                src={contestImg4}
+                width={"100%"}
+                height={"100%"}
+                alt="contest_poster"
+              />
             )}
-            {props.title == "LeetCode" && (
-              <img src={contestImg6} width={"100%"} height={"100%"} />
+
+            {props.title === "AtCoder" && (
+              <img
+                src={contestImg5}
+                width={"100%"}
+                height={"100%"}
+                alt="contest_poster"
+              />
+            )}
+            {props.title === "LeetCode" && (
+              <img
+                src={contestImg6}
+                width={"100%"}
+                height={"100%"}
+                alt="contest_poster"
+              />
             )}
 
             {props.title !== "CodeForces" ||
