@@ -5,9 +5,12 @@ import Button from "../Button/Button";
 import "./PricingCard.css";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { useEffect } from "react";
 
 const PricingCard = ({ isPopular, plans }) => {
   const { isAuthenticated } = useSelector((state) => state.user);
+  const { currentUser } = useSelector((state) => state.user);
   const navigate = useNavigate();
 
   const handleForBasicPlan = () => {
@@ -18,9 +21,59 @@ const PricingCard = ({ isPopular, plans }) => {
     }
   };
 
-  const handleForStandardPlan = () => {
-    // code for payment integration
+  const handleForStandardPlan = async (amount) => {
+    try {
+      if (isAuthenticated) {
+        const {
+          data: { key },
+        } = await axios.get("http://localhost:4000/api/getkey");
+
+        const {
+          data: { order },
+        } = await axios.post("http://localhost:4000/api/checkout", {
+          amount,
+        });
+
+        const options = {
+          key,
+          amount: order.amount,
+          currency: "INR",
+          name: "Devhub",
+          description: "We are a team of Creators & Innovators",
+          image: "https://app.cal.com/devhubhq/avatar.png",
+          order_id: order.id,
+          callback_url: "http://localhost:4000/api/paymentverification",
+          prefill: {
+            name:
+              currentUser?.displayName ||
+              currentUser?.user?.name ||
+              currentUser?.email.split("@")[0],
+            email: currentUser?.email || null,
+            contact: "9999999999",
+          },
+          notes: {
+            address: "Razorpay Corporate Office",
+          },
+          theme: {
+            color: "#106594",
+          },
+        };
+        const razor = new window.Razorpay(options);
+        razor.open();
+      } else {
+        console.log("Please login into Devhub");
+      }
+    } catch (err) {
+      console.error(err.message);
+    }
   };
+
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src = "https://checkout.razorpay.com/v1/checkout.js";
+    script.async = true;
+    document.body.appendChild(script);
+  }, []);
 
   const handleForSchedulePlan = () => {
     window.open("https://cal.com/devhubhq", "__blank");
@@ -56,7 +109,7 @@ const PricingCard = ({ isPopular, plans }) => {
             customClassName={"plan__button"}
             label="Buy Now"
             primary="true"
-            onClick={handleForStandardPlan}
+            onClick={(e) => handleForStandardPlan(8000)}
           />
         )}
         {plans.planName === "Premium" && (
