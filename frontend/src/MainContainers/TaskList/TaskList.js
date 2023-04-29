@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Button } from "../../components";
-import { NotificationIcon, TrashIcon } from "../../DevHubIcons";
+import { NotificationIcon, TrashIcon, InviteIcon } from "../../DevHubIcons";
 import { useNavigate } from "react-router-dom";
 import { DashboardSideNavigation, TaskListModel } from "../components";
 import UserHeader from "../components/UserHeader/UserHeader";
