@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { CloseIcon, DeleteIcon, NotificationIcon } from "../../../DevHubIcons";
+import { CloseIcon, DeleteIcon, NotificationIcon, InviteIcon } from "../../../DevHubIcons";
 import { addItemToTrash } from "../../../redux/actions/taskAction";
 import toast, { Toaster } from "react-hot-toast"
 import CardInfo from "./CardInfo/CardInfo";
@@ -112,6 +112,11 @@ function TaskListModel(props) {
               zIndex: "1",
             }}
           >
+            <InviteIcon
+            isActive={""}
+            onClick={notify}
+            />
+            <Toaster />
             <NotificationIcon
               fillColor={"#008bb7"}
               isActive={isActiveRemainder}
