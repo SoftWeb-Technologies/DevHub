@@ -9,6 +9,7 @@ import {
   Services,
   Support,
   Licenses,
+  RedirectOnPayment,
 } from "./Containers";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import {
@@ -131,6 +132,12 @@ function App() {
           exact
           path="/trash"
           element={<ProtectedRoute Component={Trash} />}
+        />
+
+        <Route
+          exact
+          path="/paymentsuccess"
+          element={<ProtectedRoute Component={RedirectOnPayment} />}
         />
 
         <Route
