@@ -11,6 +11,7 @@ import { useEffect } from "react";
 const PricingCard = ({ isPopular, plans }) => {
   const { isAuthenticated } = useSelector((state) => state.user);
   const { currentUser } = useSelector((state) => state.user);
+  const indianRupees = 81.75;
   const navigate = useNavigate();
 
   const handleForBasicPlan = () => {
@@ -109,7 +110,11 @@ const PricingCard = ({ isPopular, plans }) => {
             customClassName={"plan__button"}
             label="Buy Now"
             primary="true"
-            onClick={(e) => handleForStandardPlan(8000)}
+            onClick={(e) =>
+              handleForStandardPlan(
+                Number(plans.planPrice.split("$")[1]) * indianRupees
+              )
+            }
           />
         )}
         {plans.planName === "Premium" && (

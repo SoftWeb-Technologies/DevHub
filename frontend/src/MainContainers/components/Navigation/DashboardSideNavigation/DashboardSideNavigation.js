@@ -15,7 +15,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 
 import "./DashboardSideNavigation.css";
-import { logoutInitiate } from "../../../../redux/actions/actions";
+import { logoutInitiate, setUser } from "../../../../redux/actions/actions";
 
 const DashboardSideNavigation = ({ customStyle, ...props }) => {
   const location = useLocation();
@@ -37,11 +37,11 @@ const DashboardSideNavigation = ({ customStyle, ...props }) => {
 
   const handleLogout = () => {
     if (currentUser) {
+      dispatch(setUser(null));
       dispatch(logoutInitiate());
       localStorage.removeItem("isAuthenticated");
+      localStorage.removeItem("loginUsing");
     }
-
-    // window.location.reload();
   };
 
   useEffect(() => {

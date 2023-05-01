@@ -44,8 +44,6 @@ const Dashboard = () => {
     setRandomNumber(Math.floor(Math.random() * 5));
   }, [dispatch]);
 
-  console.log(newsTeslaData);
-
   return (
     <div className={`dashboard ${isNavActive ? "active" : ""}`}>
       <Title title="Dashboard" />
