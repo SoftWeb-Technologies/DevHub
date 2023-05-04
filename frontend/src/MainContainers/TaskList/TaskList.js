@@ -14,6 +14,7 @@ import DropWrapper from "../components/DropWrapper";
 import { db } from "../../firebase";
 import { doc, collection, onSnapshot, updateDoc } from "firebase/firestore";
 import { setTasks } from "../../redux/actions/taskAction";
+import axios from "axios";
 
 const TaskList = () => {
   const dispatch = useDispatch();
@@ -29,25 +30,41 @@ const TaskList = () => {
   const [cardData, setCardData] = useState({});
 
   React.useEffect(() => {
-    const tasks = onSnapshot(
-      collection(db, `users/${currentUser?.uid}/tasks`),
-      (snapshot) => {
-        const list = [];
-        snapshot.docs.forEach((doc) => {
-          list.push({ uid: doc.id, ...doc.data() });
-          setItems(list);
-        });
-        dispatch(setTasks(list));
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+    // const tasks = onSnapshot(
+    //   collection(
+    //     db,
+    //     `users/${currentUser?.uid || currentUser?.user?._id}/tasks`
+    //   ),
+    //   (snapshot) => {
+    //     const list = [];
+    //     snapshot.docs.forEach((doc) => {
+    //       list.push({ uid: doc.id, ...doc.data() });
+    //       setItems(list);
+    //     });
+    //     dispatch(setTasks(list));
+    //   },
+    //   (error) => {
+    //     console.log(error);
+    //   }
+    // );
 
-    return () => {
-      tasks();
+    const fetchAllTasks = async () => {
+      try {
+        const tasks = await axios.get("/api/tasks");
+
+        if (tasks.data) {
+          dispatch(setTasks(tasks.data.tasks));
+          setItems(tasks.data.tasks);
+        }
+      } catch (err) {
+        console.error(err.message);
+      }
     };
-  }, [dispatch, setItems, currentUser]);
+
+    fetchAllTasks();
+
+    return () => {};
+  }, [dispatch, setItems]);
 
   const showNotification = (dueDate) => {
     const notification = new Notification("Reminder message from DevHub", {
@@ -109,6 +126,8 @@ const TaskList = () => {
   //   });
   // });
 
+  console.log(items);
+
   const onDrop = async (item, status) => {
     if (item.status === status) {
       return;
@@ -116,7 +135,7 @@ const TaskList = () => {
 
     setItems((prevState) => {
       const newItems = prevState
-        .filter((i) => i.id !== item.id)
+        .filter((i) => i.id !== item._id)
         .concat({ ...item, status });
 
       const docRef = doc(db, `users/${currentUser.uid}/tasks`, item.uid);

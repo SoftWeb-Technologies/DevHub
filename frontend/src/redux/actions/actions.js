@@ -73,9 +73,13 @@ export const loginInitiate = (email, password) => {
         password,
       });
 
-      dispatch(loginSuccess(user.data));
-      localStorage.setItem("isAuthenticated", true);
-      localStorage.setItem("loginUsing", "emailAndPassword");
+      if (user.data.success) {
+        dispatch(loginSuccess(user.data));
+        localStorage.setItem("isAuthenticated", true);
+        localStorage.setItem("loginUsing", "emailAndPassword");
+      } else {
+        dispatch(loginFail(user.data));
+      }
     } catch (err) {
       dispatch(loginFail(err));
     }
@@ -153,13 +157,26 @@ export const googleSignInInitiate = () => {
       .then(async (userCredential) => {
         const user = userCredential.user;
         user.displayName = user.displayName || user.email.split("@")[0];
-        dispatch(googleSignInSuccess(user));
+
         localStorage.setItem("isAuthenticated", true);
         localStorage.setItem("loginUsing", "googleOrTwitter");
 
-        await setDoc(doc(db, "users", user.uid), {
-          id: user.uid,
+        const res = await axios.post("/api/user/register", {
+          email: user.email,
+          name: user.displayName,
+          password: user.uid,
         });
+
+        if (res.data.message === "User already exists") {
+          const res = await axios.post("/api/user/login", {
+            email: user.email,
+            password: user.uid,
+          });
+
+          dispatch(googleSignInSuccess(res.data.user));
+        } else {
+          dispatch(googleSignInSuccess(res.data.user));
+        }
       })
       .catch((err) => {
         dispatch(googleSignInFail(err));
@@ -190,13 +207,25 @@ export const twitterSignInInitiate = () => {
       .then(async (userCredential) => {
         const user = userCredential.user;
         user.displayName = user.displayName || user.email.split("@")[0];
-        dispatch(twitterSignInSuccess(user));
         localStorage.setItem("isAuthenticated", true);
         localStorage.setItem("loginUsing", "googleOrTwitter");
 
-        await setDoc(doc(db, "users", user.uid), {
-          id: user.uid,
+        const res = await axios.post("/api/user/register", {
+          email: user.email,
+          name: user.displayName,
+          password: user.uid,
         });
+
+        if (res.data.message === "User already exists") {
+          const res = await axios.post("/api/user/login", {
+            email: user.email,
+            password: user.uid,
+          });
+
+          dispatch(twitterSignInSuccess(res.data.user));
+        } else {
+          dispatch(twitterSignInSuccess(res.data.user));
+        }
       })
       .catch((err) => {
         dispatch(twitterSignInFail(err));

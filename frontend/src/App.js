@@ -63,7 +63,7 @@ function App() {
         }
       });
     }
-  }, [dispatch]);
+  }, [dispatch, getLoginStatusFromLocalStorage]);
 
   return (
     <>
