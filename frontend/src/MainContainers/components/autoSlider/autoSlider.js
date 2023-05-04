@@ -12,7 +12,7 @@ const AutoLatestNews = ({ data }) => {
       }, 5000);
     }
 
-    if (currentIndex == data.length) {
+    if (currentIndex === data.length) {
       setCurrentIndex(0);
     }
   }, [currentIndex, data.length]);
@@ -30,6 +30,7 @@ const AutoLatestNews = ({ data }) => {
               src={data[currentIndex]?.social_image}
               width={"100%"}
               height={"100%"}
+              alt="socail-images"
             />
           </div>
 
