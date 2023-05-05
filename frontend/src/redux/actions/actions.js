@@ -12,6 +12,7 @@ import {
 
 import * as types from "../constants/actionTypes";
 import { doc, setDoc } from "firebase/firestore";
+import axios from "axios";
 
 // register actions
 const registerStart = () => ({
@@ -29,23 +30,21 @@ const registerFail = (error) => ({
 });
 
 export const registerInitiate = (email, password, displayName) => {
-  return function (dispatch) {
+  return async function (dispatch) {
     dispatch(registerStart());
-
-    createUserWithEmailAndPassword(auth, email, password)
-      .then(async (userCredential) => {
-        const user = userCredential.user;
-        user.displayName = displayName;
-        dispatch(registerSuccess(user));
-        localStorage.setItem("isAuthenticated", true);
-
-        await setDoc(doc(db, "users", user.uid), {
-          id: user.uid,
-        });
-      })
-      .catch((err) => {
-        dispatch(registerFail(err));
+    try {
+      const user = await axios.post("/api/user/register", {
+        email,
+        password,
+        name: displayName,
       });
+
+      dispatch(registerSuccess(user.data));
+      localStorage.setItem("isAuthenticated", true);
+      localStorage.setItem("loginUsing", "emailAndPassword");
+    } catch (err) {
+      dispatch(registerFail(err));
+    }
   };
 };
 
@@ -65,19 +64,25 @@ const loginFail = (error) => ({
 });
 
 export const loginInitiate = (email, password) => {
-  return function (dispatch) {
+  return async function (dispatch) {
     dispatch(loginStart());
 
-    signInWithEmailAndPassword(auth, email, password)
-      .then(async (userCredential) => {
-        const user = userCredential.user;
-        user.displayName = user.displayName || user.email.split("@")[0];
-        dispatch(loginSuccess(userCredential.user));
-        localStorage.setItem("isAuthenticated", true);
-      })
-      .catch((err) => {
-        dispatch(loginFail(err));
+    try {
+      const user = await axios.post("/api/user/login", {
+        email,
+        password,
       });
+
+      if (user.data.success) {
+        dispatch(loginSuccess(user.data));
+        localStorage.setItem("isAuthenticated", true);
+        localStorage.setItem("loginUsing", "emailAndPassword");
+      } else {
+        dispatch(loginFail(user.data));
+      }
+    } catch (err) {
+      dispatch(loginFail(err));
+    }
   };
 };
 
@@ -96,17 +101,24 @@ const logoutFail = (error) => ({
 });
 
 export const logoutInitiate = () => {
-  return function (dispatch) {
+  return async function (dispatch) {
     dispatch(logoutStart());
 
-    auth
-      .signOut()
-      .then(() => {
-        dispatch(logoutSuccess());
-      })
-      .catch((err) => {
-        dispatch(logoutFail(err));
-      });
+    if (localStorage.getItem("loginUsing") === "emailAndPassword") {
+      await axios.get("/api/user/logout");
+      return;
+    }
+
+    if (localStorage.getItem("loginUsing") === "googleOrTwitter") {
+      auth
+        .signOut()
+        .then(async () => {
+          dispatch(logoutSuccess());
+        })
+        .catch((err) => {
+          dispatch(logoutFail(err));
+        });
+    }
   };
 };
 
@@ -145,12 +157,26 @@ export const googleSignInInitiate = () => {
       .then(async (userCredential) => {
         const user = userCredential.user;
         user.displayName = user.displayName || user.email.split("@")[0];
-        dispatch(googleSignInSuccess(user));
-        localStorage.setItem("isAuthenticated", true);
 
-        await setDoc(doc(db, "users", user.uid), {
-          id: user.uid,
+        localStorage.setItem("isAuthenticated", true);
+        localStorage.setItem("loginUsing", "googleOrTwitter");
+
+        const res = await axios.post("/api/user/register", {
+          email: user.email,
+          name: user.displayName,
+          password: user.uid,
         });
+
+        if (res.data.message === "User already exists") {
+          const res = await axios.post("/api/user/login", {
+            email: user.email,
+            password: user.uid,
+          });
+
+          dispatch(googleSignInSuccess(res.data.user));
+        } else {
+          dispatch(googleSignInSuccess(res.data.user));
+        }
       })
       .catch((err) => {
         dispatch(googleSignInFail(err));
@@ -181,12 +207,25 @@ export const twitterSignInInitiate = () => {
       .then(async (userCredential) => {
         const user = userCredential.user;
         user.displayName = user.displayName || user.email.split("@")[0];
-        dispatch(twitterSignInSuccess(user));
         localStorage.setItem("isAuthenticated", true);
+        localStorage.setItem("loginUsing", "googleOrTwitter");
 
-        await setDoc(doc(db, "users", user.uid), {
-          id: user.uid,
+        const res = await axios.post("/api/user/register", {
+          email: user.email,
+          name: user.displayName,
+          password: user.uid,
         });
+
+        if (res.data.message === "User already exists") {
+          const res = await axios.post("/api/user/login", {
+            email: user.email,
+            password: user.uid,
+          });
+
+          dispatch(twitterSignInSuccess(res.data.user));
+        } else {
+          dispatch(twitterSignInSuccess(res.data.user));
+        }
       })
       .catch((err) => {
         dispatch(twitterSignInFail(err));

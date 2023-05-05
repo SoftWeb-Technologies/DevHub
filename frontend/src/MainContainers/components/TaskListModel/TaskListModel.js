@@ -1,8 +1,14 @@
 import React from "react";
 import { useState } from "react";
-import { CloseIcon, DeleteIcon, NotificationIcon } from "../../../DevHubIcons";
+import {
+  CloseIcon,
+  DeleteIcon,
+  NotificationIcon,
+  InviteIcon,
+} from "../../../DevHubIcons";
+import axios from "axios";
 import { addItemToTrash } from "../../../redux/actions/taskAction";
-import toast, { Toaster } from "react-hot-toast"
+import toast, { Toaster } from "react-hot-toast";
 import CardInfo from "./CardInfo/CardInfo";
 import "./TaskListModel.css";
 
@@ -37,16 +43,14 @@ function TaskListModel(props) {
 
     dispatch(addItemToTrash(selectedItem));
 
-    await deleteDoc(
-      doc(db, `users/${currentUser?.uid}/tasks/${selectedItem.uid}`)
-    );
+    await axios.delete(`/api/task/${props.cardData._id}`);
 
     props.setIsActive(false);
   };
 
   const notify = () => {
-    toast.success('Reminder added!');
-  }
+    toast.success("Reminder added!");
+  };
 
   const handleReminder = async () => {
     try {
@@ -112,6 +116,8 @@ function TaskListModel(props) {
               zIndex: "1",
             }}
           >
+            <InviteIcon isActive={""} onClick={notify} />
+            <Toaster />
             <NotificationIcon
               fillColor={"#008bb7"}
               isActive={isActiveRemainder}

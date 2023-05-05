@@ -12,10 +12,10 @@
 #remainder__card {
   width: 100%;
   height: auto;
-  background-color: #8cb8ff;
+  background-color: #5db6ff;
   padding: 1rem;
   border-radius: 10px;
-  box-shadow: 2px 2px 10px #8cb8ff;
+  box-shadow: 3px 3px 20px #5db6ff;
   margin-bottom: 1rem;
 
   transition: transform 0.3s linear;
@@ -60,7 +60,7 @@
   #remainder__card {
     width: 100%;
     height: auto;
-    background-color: #a4c4f8;
+    background-color: #5db6ff;
     padding: 1rem;
     border-radius: 10px;
   }

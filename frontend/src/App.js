@@ -9,6 +9,7 @@ import {
   Services,
   Support,
   Licenses,
+  RedirectOnPayment,
 } from "./Containers";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import {
@@ -30,18 +31,39 @@ import { setUser } from "./redux/actions/actions";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import { ErrorImg } from "./constants/Images";
 import { Button } from "./components";
+import axios from "axios";
 
 function App() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const loadUser = async () => {
+    try {
+      const user = await axios.get("/api/user/me");
+      dispatch(setUser(user.data));
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
+
+  const getLoginStatusFromLocalStorage = () => {
+    const loginStatus = localStorage.getItem("loginUsing");
+    return loginStatus;
+  };
+
   useEffect(() => {
-    auth.onAuthStateChanged((authUser) => {
-      if (authUser) {
-        dispatch(setUser(authUser));
-      }
-    });
-  }, [dispatch]);
+    if (getLoginStatusFromLocalStorage() === "emailAndPassword") {
+      loadUser();
+    }
+
+    if (getLoginStatusFromLocalStorage() === "googleOrTwitter") {
+      auth.onAuthStateChanged((authUser) => {
+        if (authUser) {
+          dispatch(setUser(authUser));
+        }
+      });
+    }
+  }, [dispatch, getLoginStatusFromLocalStorage]);
 
   return (
     <>
@@ -84,6 +106,7 @@ function App() {
           path="/contest"
           element={<ProtectedRoute Component={Contest} />}
         />
+
         <Route
           exact
           path="/techhunt"
@@ -109,6 +132,12 @@ function App() {
           exact
           path="/trash"
           element={<ProtectedRoute Component={Trash} />}
+        />
+
+        <Route
+          exact
+          path="/paymentsuccess"
+          element={<ProtectedRoute Component={RedirectOnPayment} />}
         />
 
         <Route

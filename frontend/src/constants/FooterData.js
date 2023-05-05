@@ -7,7 +7,7 @@ export const socialMedias = [
   },
   {
     iconSrc: twitter,
-    link: "https://twitter.com/SoftWebtec",
+    link: "https://twitter.com/Devhubhq",
   },
   {
     iconSrc: instagram,

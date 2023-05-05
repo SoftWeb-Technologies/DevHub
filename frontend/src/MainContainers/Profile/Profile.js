@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { TextInput, Title } from "../../components";
 import { MenuIcon } from "../../DevHubIcons";
+import { Button } from "../../components";
 import { DashboardSideNavigation } from "../components";
 import "./Profile.css";
 
 const Profile = () => {
   const { currentUser } = useSelector((state) => state.user);
+  const navigate = useNavigate();
 
   const [isNavActive, setIsNavActive] = useState(false);
 
@@ -56,6 +59,12 @@ const Profile = () => {
                 inputType="email"
                 value={currentUser?.email || currentUser?.user?.email}
               />
+              <Button
+            customClassName={"pricing__button"}
+            label="Upgrade Plan"
+            primary="true"
+            onClick={() => navigate("/pricing")}
+          />
             </div>
           </div>
         </div>

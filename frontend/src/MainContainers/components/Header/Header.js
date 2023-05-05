@@ -67,6 +67,7 @@ const Header = ({ displayName, setFilter }) => {
             color: "#008bb7",
             fontSize: "1.2rem",
             fontWeight: "bold",
+            textTransform: "uppercase",
           }}
         >
           {firstLetter}

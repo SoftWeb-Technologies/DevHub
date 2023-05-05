@@ -29,7 +29,7 @@
 .plan__cards {
   width: var(--mobileView-width);
   height: auto;
-  -webkit-filter: blur(3px);
+  /*-webkit-filter: blur(3px);*/
   margin: 0 auto;
   display: flex;
   flex-direction: row;

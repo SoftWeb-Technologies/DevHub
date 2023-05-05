@@ -19,6 +19,11 @@
   height: 40vh;
 }
 
+.pricing__button {
+  display: flex;
+  justify-content: center;
+}
+
 .profile__header__container {
   display: flex;
   align-items: center;

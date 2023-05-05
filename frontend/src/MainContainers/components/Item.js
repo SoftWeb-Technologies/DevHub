@@ -41,7 +41,7 @@ const Item = ({ item, moveItem, setDragElement, onClick }) => {
           marginTop: "1rem",
         }}
       >
-        <h3 style={{ color: "#000", fontWeight: "500" }}>{item.taskName}</h3>
+        <h3 style={{ color: "#000", fontWeight: "500" }}>{item.taskTitle}</h3>
         <p
           style={{
             color: "rgba(0,0,0,0.6)",
