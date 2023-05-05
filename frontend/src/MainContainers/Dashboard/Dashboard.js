@@ -133,7 +133,7 @@ const Dashboard = () => {
           <div className="latest_news_container">
             <h2
               style={{
-                color: "#0E80D3",
+                color: "#fff",
               }}
             >
               Latest News
@@ -203,7 +203,7 @@ const CardData = ({ title, description, url, image }) => {
         </p>
         <span
           style={{
-            color: "#000",
+            color: "#fff",
             opacity: 0.7,
           }}
         >
@@ -219,7 +219,7 @@ const CardData = ({ title, description, url, image }) => {
             href={url}
             target="_blank"
             rel="noreferrer"
-            style={{ color: "#000", textDecoration: "underline" }}
+            style={{ color: "#E8F5FA", textDecoration: "underline" }}
           >
             Continue Reading
           </a>
@@ -228,6 +228,7 @@ const CardData = ({ title, description, url, image }) => {
       <div
         style={{
           width: "60px",
+          color: "#fff",
           height: "60px",
           objectFit: "contain",
         }}

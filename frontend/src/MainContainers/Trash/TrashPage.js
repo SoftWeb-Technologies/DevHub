@@ -1,8 +1,20 @@
-import { useState } from "react";
+import {
+  collection,
+  doc,
+  getDocs,
+  query,
+  serverTimestamp,
+  setDoc,
+} from "firebase/firestore";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Button, Title } from "../../components";
+import { Title } from "../../components";
 import { EmptyCuateImg } from "../../constants/Images";
-import { removeItemFromLibrary } from "../../redux/actions/libActions";
+import { DisableCheckIcon } from "../../DevHubIcons";
+import TrashRestoreIcon from "../../DevHubIcons/TrashRestoreIcon";
+import { db } from "../../firebase";
+import { trashReStore } from "../../redux/actions/taskAction";
+
 import { DashboardSideNavigation } from "../components";
 import UserHeader from "../components/UserHeader/UserHeader";
 
@@ -10,47 +22,93 @@ import "./TrashPage.css";
 
 const TrashPage = () => {
   const dispatch = useDispatch();
+  const { trashItems } = useSelector((state) => state.trashStore);
   const { currentUser } = useSelector((state) => state.user);
-  const { libItems } = useSelector((state) => state.lib);
-  
-  const [isNavActive, setIsNavActive] = useState(false);
-  const [isPopUpBoxActive, setIsPopUpBoxActive] = useState(false);
-  const [popUpData, setPopUpData] = useState(null);
 
-  const removeItemFromLibrary = (id) => {
-    dispatch(removeItemFromLibrary(id));
-  };
+  const [isNavActive, setIsNavActive] = useState(false);
 
   return (
     <div>
       <Title title="Trash" />
 
       <DashboardSideNavigation setIsNavActive={setIsNavActive} />
-<<<<<<< HEAD
-      <div id="trashpage">
-        <UserHeader
-          displayName={
-            currentUser?.displayName || currentUser?.user?.name || "User"
-          }
-        />
-=======
       <div id="blogspace">
         <UserHeader displayName={currentUser?.name} />
->>>>>>> 13551777db00f731c9e9769012598531dfc7c449
         <div className="reminders__header">
           <h1>
-            Your <span style={{ color: "#008bb7" }}>Trash!</span>
+            Deleted <span style={{ color: "#008bb7" }}>Tasks!</span>
           </h1>
-    </div>
+        </div>
 
-        {libItems.length > 0 ? (
+        {trashItems.length > 0 ? (
           <div
             className={`reminders__main__container  ${
               isNavActive ? "active" : ""
             }`}
-            >
-            {/* <div>{libItems.slice(0, 5).map((item, index) => {})}</div> */}
+          >
+            <div id="trashPage__main">
+              {trashItems.map((item, index) => {
+                return (
+                  <div key={index} id="trashPage__card">
+                    <h3>{item.taskName}</h3>
+                    <p>{item.taskDesc}</p>
+
+                    <p id="trashPage__dueDate">{item.dueDate}</p>
+
+                    <div id="trashPage__itemRestore">
+                      <TrashRestoreIcon
+                        onClick={async () => {
+                          const q = query(collection(db, "users"));
+                          const querySnapshot = await getDocs(q);
+
+                          const queryData = querySnapshot.docs.map((doc) => ({
+                            ...doc.data(),
+                            id: doc.id,
+                          }));
+
+                          queryData.map(async (v) => {
+                            const randomId = Date.now();
+                            if (v.id === currentUser.uid) {
+                              await setDoc(
+                                doc(
+                                  db,
+                                  `users/${v.id}/tasks`,
+                                  randomId.toString()
+                                ),
+                                {
+                                  id: Date.now(),
+                                  taskName: item.taskName,
+                                  status: item.status,
+                                  taskDesc: item.taskDesc,
+                                  dueDate: item.dueDate,
+                                  labels: item.labels,
+                                  createdAt: serverTimestamp(),
+                                }
+                              );
+                            }
+                          });
+
+                          dispatch(trashReStore(item.id));
+                        }}
+                      />
+                    </div>
+
+                    <div id="trashPage__status">
+                      <DisableCheckIcon
+                        fillColor={
+                          item.status === "done"
+                            ? "green"
+                            : item.status === "in progress"
+                            ? "orange"
+                            : "#979797"
+                        }
+                      />
+                    </div>
+                  </div>
+                );
+              })}
             </div>
+          </div>
         ) : (
           <div
             style={{
@@ -60,26 +118,26 @@ const TrashPage = () => {
               alignItems: "center",
               flexDirection: "column",
             }}
-            >
+          >
             <div
               style={{
                 minWidth: "250px",
                 opacity: "0.7",
                 pointerEvents: "none",
               }}
-              >
-            <img src={EmptyCuateImg} alt="empty-cuate" />
-              </div>
-              <h1 
-                style={{
-                  fontSize: "2rem",
-                  fontWeight: "bold",
-                  opacity: "0.5",
-                }}
-                >
-                Your Trash is Empty
-              </h1>
+            >
+              <img src={EmptyCuateImg} alt="no-reminders" />
             </div>
+            <h1
+              style={{
+                fontSize: "1.5rem",
+                color: "grey",
+                opacity: "0.5",
+              }}
+            >
+              Empty Trash
+            </h1>
+          </div>
         )}
       </div>
     </div>

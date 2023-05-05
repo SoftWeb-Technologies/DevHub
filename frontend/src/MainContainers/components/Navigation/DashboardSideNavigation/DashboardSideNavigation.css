@@ -99,7 +99,7 @@ h1.logo__name {
 }
 
 .navbar__link:hover::after {
-  background-color: var(--secondary-clr);
+  background-color: #75d8ff;
 }
 
 .navbar__link svg {
@@ -109,7 +109,7 @@ h1.logo__name {
 }
 
 .navbar__link:hover {
-  color: var(--secondary-clr);
+  color: #75d8ff;
 }
 
 .navbar__link svg path {
@@ -118,30 +118,30 @@ h1.logo__name {
 }
 
 .navbar__link:hover svg path {
-  fill: var(--secondary-clr);
+  fill: #75d8ff;
   fill-opacity: 1;
 }
 
 .navbar__link:hover svg path {
-  fill: var(--secondary-clr);
+  fill: #75d8ff;
   fill-opacity: 1;
 }
 
 .navbar__link.active svg path {
-  fill: var(--secondary-clr);
+  fill: #75d8ff;
   fill-opacity: 1;
 }
 
 .navbar__link.active {
-  color: var(--secondary-clr) !important;
+  color: #75d8ff !important;
 }
 
 .navbar__link.active .menu__container ul li::after {
-  background-color: var(--secondary-clr);
+  background-color: #75d8ff;
 }
 
 .navbar__link.active::after {
-  background-color: var(--secondary-clr);
+  background-color: #75d8ff;
 }
 
 svg.contest__icon{
