@@ -30,24 +30,6 @@ const TaskList = () => {
   const [cardData, setCardData] = useState({});
 
   React.useEffect(() => {
-    // const tasks = onSnapshot(
-    //   collection(
-    //     db,
-    //     `users/${currentUser?.uid || currentUser?.user?._id}/tasks`
-    //   ),
-    //   (snapshot) => {
-    //     const list = [];
-    //     snapshot.docs.forEach((doc) => {
-    //       list.push({ uid: doc.id, ...doc.data() });
-    //       setItems(list);
-    //     });
-    //     dispatch(setTasks(list));
-    //   },
-    //   (error) => {
-    //     console.log(error);
-    //   }
-    // );
-
     const fetchAllTasks = async () => {
       try {
         const tasks = await axios.get("/api/tasks");
@@ -58,13 +40,14 @@ const TaskList = () => {
         }
       } catch (err) {
         console.error(err.message);
+        alert("Error fetching tasks!");
       }
     };
 
-    fetchAllTasks();
+    console.log("isRunning....");
 
-    return () => {};
-  }, [dispatch, setItems]);
+    fetchAllTasks();
+  }, [dispatch]);
 
   const showNotification = (dueDate) => {
     const notification = new Notification("Reminder message from DevHub", {
@@ -125,8 +108,6 @@ const TaskList = () => {
   //     return null;
   //   });
   // });
-
-  console.log(items);
 
   const onDrop = async (item, status) => {
     if (item.status === status) {

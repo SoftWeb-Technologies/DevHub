@@ -33,11 +33,7 @@ const TrashPage = () => {
 
       <DashboardSideNavigation setIsNavActive={setIsNavActive} />
       <div id="blogspace">
-        <UserHeader
-          displayName={
-            currentUser?.displayName || currentUser?.user?.name || "User"
-          }
-        />
+        <UserHeader displayName={currentUser?.name} />
         <div className="reminders__header">
           <h1>
             Deleted <span style={{ color: "#008bb7" }}>Tasks!</span>
