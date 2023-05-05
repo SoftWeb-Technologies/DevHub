@@ -26,12 +26,17 @@ const TrashPage = () => {
       <Title title="Trash" />
 
       <DashboardSideNavigation setIsNavActive={setIsNavActive} />
+<<<<<<< HEAD
       <div id="trashpage">
         <UserHeader
           displayName={
             currentUser?.displayName || currentUser?.user?.name || "User"
           }
         />
+=======
+      <div id="blogspace">
+        <UserHeader displayName={currentUser?.name} />
+>>>>>>> 13551777db00f731c9e9769012598531dfc7c449
         <div className="reminders__header">
           <h1>
             Your <span style={{ color: "#008bb7" }}>Trash!</span>

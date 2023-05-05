@@ -8,6 +8,7 @@ import Faq from "./Faq/Faq";
 import Services from "./Services/Services";
 import Support from "./Support/Support";
 import Licenses from "./Licenses/Licenses";
+import RedirectOnPayment from "./RedirectPage/RedirectOnPayment";
 
 export {
   About,
@@ -19,4 +20,5 @@ export {
   Services,
   Support,
   Licenses,
+  RedirectOnPayment,
 };

@@ -18,6 +18,7 @@ import {
   fetchNewsAppleData,
   fetchNewsTeslaData,
 } from "../../redux/actions/apiActions";
+import AutoLatestNews from "../components/autoSlider/autoSlider";
 
 const Dashboard = () => {
   // const navigate = useNavigate();
@@ -68,87 +69,76 @@ const Dashboard = () => {
                 color: "#008bb7",
               }}
             >
-              Features
+              What would you like to do?
             </h2>
-            <div>
-              <FeatureCard
-                title={"Create Task"}
-                Icon={TaskIcon}
-                path="/createtask"
-              />
-              <FeatureCard
-                title={"Read Blogs"}
-                Icon={CarbonBlogIcon}
-                path="/blogspace"
-              />
-              <FeatureCard
-                title={"Join Contest"}
-                Icon={TrophyIcon}
-                path="/contest"
-              />
-              <FeatureCard
-                title={"Read latest news"}
-                Icon={NewsIcon}
-                path="/techhunt"
-              />
+            <div className="feature__card__container">
+              <div>
+                <FeatureCard
+                  title={"Create Task"}
+                  Icon={TaskIcon}
+                  path="/createtask"
+                />
+                <FeatureCard
+                  title={"Read Blogs"}
+                  Icon={CarbonBlogIcon}
+                  path="/blogspace"
+                />
+              </div>
+              <div>
+                <FeatureCard
+                  title={"Join Contest"}
+                  Icon={TrophyIcon}
+                  path="/contest"
+                />
+                <FeatureCard
+                  title={"Read latest news"}
+                  Icon={NewsIcon}
+                  path="/techhunt"
+                />
+              </div>
             </div>
           </div>
         </div>
-        <div className="dashboard__right__container">
-          <div>
+        <div className="blogs__and__news__container">
+          <div className="blogs__conatiner">
             <h2
               style={{
-                color: "#008bb7",
+                color: "#0E80D3",
               }}
             >
               Trending Blogs
             </h2>
-            <div className="latestNewsAndBlogs__container">
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "20px",
+              }}
+            >
               <CardData
-                title={githubRepoData[randomNumber]?.name}
-                description={githubRepoData[randomNumber]?.description}
-                url={githubRepoData[randomNumber]?.url}
+                title={newsTeslaData[randomNumber]?.name}
+                description={newsTeslaData[randomNumber]?.description}
+                url={newsTeslaData[randomNumber]?.url}
+                image={newsTeslaData[randomNumber]?.urlToImage}
               />
-              <hr
-                style={{
-                  margin: "10px 0",
-                  opacity: 0.7,
-                }}
-              ></hr>
+
               <CardData
                 title={devToArticlesData[randomNumber]?.title}
                 description={devToArticlesData[randomNumber]?.description}
                 url={devToArticlesData[randomNumber]?.url}
+                image={devToArticlesData[randomNumber]?.social_image}
               />
             </div>
           </div>
-
-          <div>
+          <div className="latest_news_container">
             <h2
               style={{
-                color: "#008bb7",
+                color: "#0E80D3",
               }}
             >
               Latest News
             </h2>
-            <div className="latestNewsAndBlogs__container">
-              <CardData
-                title={newsAppleData[randomNumber]?.title}
-                description={newsAppleData[randomNumber]?.description}
-                url={newsAppleData[randomNumber]?.url}
-              />
-              <hr
-                style={{
-                  margin: "10px 0",
-                  opacity: 0.7,
-                }}
-              ></hr>
-              <CardData
-                title={newsTeslaData[randomNumber]?.title}
-                description={newsTeslaData[randomNumber]?.description}
-                url={newsTeslaData[randomNumber]?.url}
-              />
-            </div>
+            <AutoLatestNews data={devToArticlesData} />
           </div>
         </div>
       </div>
@@ -167,12 +157,13 @@ export const DashboardHeader = ({ isNavActive, displayName }) => {
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          marginTop: "1rem",
+          marginTop: "3rem",
         }}
       >
         <h2
           style={{
-            fontSize: "1.2rem",
+            fontSize: "1.5rem",
+            color: "#fff",
           }}
         >
           Dashboard
@@ -181,12 +172,13 @@ export const DashboardHeader = ({ isNavActive, displayName }) => {
           className="hide-on-mobile"
           style={{
             fontSize: "1.2rem",
+            color: "#fff",
           }}
         >
           Hello!{" "}
           <span
             style={{
-              color: "#008bb7",
+              color: "#fff",
             }}
           >
             {displayName}
@@ -197,35 +189,56 @@ export const DashboardHeader = ({ isNavActive, displayName }) => {
   );
 };
 
-const CardData = ({ title, description, url }) => {
+const CardData = ({ title, description, url, image }) => {
   return (
-    <div>
-      <p
+    <div className="blog_card">
+      <div>
+        <p
+          style={{
+            textTransform: "Capitalize",
+            fontSize: "20px",
+          }}
+        >
+          <b>{title}</b>
+        </p>
+        <span
+          style={{
+            color: "#000",
+            opacity: 0.7,
+          }}
+        >
+          {description?.slice(0, 100) + "..."}
+        </span>
+        <p
+          style={{
+            marginTop: "10px",
+            color: "#000",
+          }}
+        >
+          <a
+            href={url}
+            target="_blank"
+            rel="noreferrer"
+            style={{ color: "#000", textDecoration: "underline" }}
+          >
+            Continue Reading
+          </a>
+        </p>
+      </div>
+      <div
         style={{
-          textDecoration: "none",
-          textTransform: "Capitalize",
+          width: "60px",
+          height: "60px",
+          objectFit: "contain",
         }}
       >
-        <b>{title}</b>
-      </p>
-      <span
-        style={{
-          color: "#000",
-          opacity: 0.7,
-        }}
-      >
-        {description?.slice(0, 100) + "..."}
-      </span>
-      <p
-        style={{
-          marginTop: "10px",
-          color: "#008bb7",
-        }}
-      >
-        <a href={url} target="_blank" rel="noreferrer">
-          Continue Reading
-        </a>
-      </p>
+        <img
+          src={image}
+          width={"100%"}
+          height={"100%"}
+          style={{ objectFit: "cover" }}
+        />
+      </div>
     </div>
   );
 };

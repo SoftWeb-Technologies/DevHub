@@ -13,34 +13,43 @@ import "./Pricing.css";
 
 const basicPlans = {
   planName: "Basic",
-  planPrice: "99",
-  planDescription:
-    "Access to todo list, upcoming contents,and latest tech news.",
-  plansProvided: ["Todo List", "Contest Info", "Latest Tech News"],
+  planPrice: "$0",
+  planDescription: "Best option to get started and see how DevHub works.",
+  plansProvided: [
+    "Access Todo List",
+    "Basic features of DevHub",
+    "Usage Limit for basic features",
+    "Ads included",
+  ],
 };
 
 const standardPlans = {
   planName: "Standard",
-  planPrice: "249",
+  planPrice: "$10",
   planDescription: "Access to all the basic features and more. ",
   plansProvided: [
-    "Latest Blogs",
-    "No Ads",
-    "Free Gift 🎁",
+    "Access to everything from basic plan",
+    "No Ads at all",
+    "Free Gift 🎁 (Exclusive deals worth $300k)",
     "Exclusive community",
+    "Early access to new features",
+    "Priority support",
   ],
 };
 
 const premiumPlans = {
   planName: "Premium",
-  planPrice: "499",
+  planPrice: "Custom",
   planDescription:
     "Access to all the basic and standard features and much more",
   plansProvided: [
-    "Premium Access",
-    "Montly Group Call",
-    "24/7 Support",
-    "Awesome Surprises",
+    "Access to everything from standard plan",
+    "Premium Acces",
+    "Exclusive deals (worth $400k)",
+    "Personalised onboarding",
+    "Exclusive community access",
+    "Access to your team for free",
+    "No ads at all",
   ],
 };
 
@@ -48,6 +57,7 @@ const Pricing = () => {
   const [isNavActive, setIsNavActive] = useState(false);
   const navigate = useNavigate();
   const { currentUser } = useSelector((state) => state.user);
+  const handleScheduleButton = () => {};
 
   return (
     <div id="pricing">
@@ -62,6 +72,7 @@ const Pricing = () => {
           {currentUser ? (
             <Button
               label="Dashboard"
+              customStyle={{ background: "var(--btn-primary-clr)" }}
               primary={true}
               onClick={() => navigate("/dashboard")}
             />
@@ -78,15 +89,15 @@ const Pricing = () => {
           <div className="pricing__header">
             <h1>Our Pricing Plan</h1>
             <p>
-              We're providing best in class features in this product with
-              honest, integrity and efficiency building quality.
+              As of now, we're in beta! We'll be rolling out our pricing plan
+              soon.
             </p>
           </div>
 
           <div className="plan__cards">
             <PricingCard plans={basicPlans} />
             <PricingCard isPopular={true} plans={standardPlans} />
-            <PricingCard plans={premiumPlans} />
+            <PricingCard onClick={handleScheduleButton} plans={premiumPlans} />
           </div>
         </div>
       </main>

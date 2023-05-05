@@ -13,17 +13,19 @@
   --rounded-md: 10px;
 
   /* colors */
-  --btn-primary-clr: #008bb7;
+  --btn-primary-clr: #0E80D3;
   --btn-secondary-clr: #ffffff;
   --light-text-clr: rgb(134, 133, 133);
 
   --bg-linear-gradient: linear-gradient(
     141.96deg,
-    #095B8B 129.67%
+    #106594 129.67%
     #0E80D3 31.03%,
   );
 
-  --primary-clr: #008bb7;
+  --primary-clr: #106594;
+  --secondary-clr: #0E80D3;
+  --white-clr: #ffffff;
 }
 
 body {

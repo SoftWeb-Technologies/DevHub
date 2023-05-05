@@ -1,12 +1,7 @@
 import React from "react";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
 import { CloseIcon, DeleteIcon, NotificationIcon } from "../../../DevHubIcons";
-<<<<<<< HEAD
-import { addItemsToReminder } from "../../../redux/actions/ReminderAction";
-=======
 import { addItemToTrash } from "../../../redux/actions/taskAction";
->>>>>>> 51e7f286ee8c030575fc7655c0ff1f4807c754fd
 import CardInfo from "./CardInfo/CardInfo";
 import "./TaskListModel.css";
 
@@ -48,11 +43,13 @@ function TaskListModel(props) {
 
     dispatch(addItemToTrash(selectedItem));
 
-    await deleteDoc(
-      doc(db, `users/${currentUser?.uid}/tasks/${selectedItem.uid}`)
-    );
+    await axios.delete(`/api/task/${props.cardData._id}`);
 
     props.setIsActive(false);
+  };
+
+  const notify = () => {
+    toast.success("Reminder added!");
   };
 
   const handleReminder = async () => {
@@ -120,6 +117,8 @@ function TaskListModel(props) {
               zIndex: "1",
             }}
           >
+            <InviteIcon isActive={""} onClick={notify} />
+            <Toaster />
             <NotificationIcon
 <<<<<<< HEAD
               onClick={() => {
@@ -133,8 +132,9 @@ function TaskListModel(props) {
 =======
               fillColor={"#008bb7"}
               isActive={isActiveRemainder}
-              onClick={handleReminder}
+              onClick={notify}
             />
+            <Toaster />
             <DeleteIcon onClick={handleTaskDelete} />
 >>>>>>> 51e7f286ee8c030575fc7655c0ff1f4807c754fd
             <CloseIcon onClick={() => props.setIsActive(false)} />

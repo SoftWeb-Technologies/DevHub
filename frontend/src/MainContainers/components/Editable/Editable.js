@@ -15,11 +15,14 @@ import CloseIcon from "../../../DevHubIcons/CloseIcon";
 
 import "./Editable.css";
 import { useSelector } from "react-redux";
+import axios from "axios";
 
 function Editable(props) {
   const { currentUser } = useSelector((state) => state.user);
   const [addLabel, setAddLabel] = useState("");
-  const [taskName, setTaskName] = useState(props.editableData.taskName || "");
+  const [taskTitle, setTaskTitle] = useState(
+    props.editableData.taskTitle || ""
+  );
   const [status, setStatus] = useState(props.editableData.status || "todo's");
   const [taskDesc, setTaskDesc] = useState(props.editableData.taskDesc || "");
   const [dueDate, setDueDate] = useState(props.editableData.dueDate || "");
@@ -30,39 +33,23 @@ function Editable(props) {
   const handleCreateTask = async (e) => {
     e.preventDefault();
 
-    if (!taskName || !status || !taskDesc || !dueDate || !labels) {
+    if (!taskTitle || !status || !taskDesc || !dueDate || !labels) {
       return;
     }
 
     try {
-      const q = query(collection(db, "users"));
-      const querySnapshot = await getDocs(q);
-
-      const queryData = querySnapshot.docs.map((doc) => ({
-        ...doc.data(),
-        id: doc.id,
-      }));
-
-      queryData.map(async (v) => {
-        const randomId = Date.now();
-
-        if (v.id === currentUser.uid) {
-          await setDoc(doc(db, `users/${v.id}/tasks`, randomId.toString()), {
-            id: Date.now(),
-            taskName,
-            status,
-            taskDesc,
-            dueDate,
-            labels,
-            createdAt: serverTimestamp(),
-          });
-        }
+      await axios.post("/api/task/create", {
+        taskTitle,
+        taskDesc,
+        dueDate,
+        labels,
+        status,
       });
     } catch (err) {
       console.log(err);
     }
 
-    setTaskName("");
+    setTaskTitle("");
     setStatus("todo's");
     setTaskDesc("");
     setDueDate("");
@@ -77,7 +64,7 @@ function Editable(props) {
 
     e.preventDefault();
 
-    if (!taskName || !status || !taskDesc || !dueDate || !labels) {
+    if (!taskTitle || !status || !taskDesc || !dueDate || !labels) {
       return;
     }
 
@@ -95,7 +82,7 @@ function Editable(props) {
           doc(db, `users/${currentUser.uid}/tasks`, props.editableData.uid),
           {
             id: Date.now(),
-            taskName,
+            taskTitle,
             status,
             taskDesc,
             dueDate,
@@ -122,8 +109,8 @@ function Editable(props) {
         id="editable__container"
       >
         <input
-          value={taskName}
-          onChange={(e) => setTaskName(e.target.value)}
+          value={taskTitle}
+          onChange={(e) => setTaskTitle(e.target.value)}
           type={"text"}
           placeholder="Enter Task Name"
         />

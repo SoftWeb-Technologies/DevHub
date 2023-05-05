@@ -35,6 +35,7 @@ import ActiveCheckIcon from "./ActiveCheckIcon";
 import DisableCheckIcon from "./DisableCheckIcon";
 import NotificationIcon from "./NotificationIcon";
 import TrashIcon from "./TrashIcon";
+import InviteIcon from "./InviteIcon";
 import CloseIcon from "./CloseIcon";
 import DeleteIcon from "./DeleteIcon";
 import List from "./List";
@@ -65,6 +66,7 @@ export {
   MenuIcon,
   SearchIcon,
   TaskIcon,
+  InviteIcon,
   RightArrowIcon,
   CarbonBlogIcon,
   TrophyIcon,

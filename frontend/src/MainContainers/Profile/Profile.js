@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { TextInput, Title } from "../../components";
 import { MenuIcon } from "../../DevHubIcons";
+import { Button } from "../../components";
 import { DashboardSideNavigation } from "../components";
 import "./Profile.css";
 
 const Profile = () => {
   const { currentUser } = useSelector((state) => state.user);
+  const navigate = useNavigate();
 
   const [isNavActive, setIsNavActive] = useState(false);
 
@@ -15,6 +18,8 @@ const Profile = () => {
       <Title title="Profile" />
 
       <DashboardSideNavigation setIsNavActive={setIsNavActive} />
+      <ProfileHeader isNavActive={isNavActive} currentUser={currentUser} />
+
       <div className="profile__main__container">
         <div className="">
           <div
@@ -31,25 +36,13 @@ const Profile = () => {
           >
             <MenuIcon />
           </div>{" "}
-          <h2 style={{ textAlign: "center", padding: "2rem 0" }}>
-            Edit Profile
-          </h2>
           <div className="profile__content__container">
-            <div className="profile__avatar__container">
-              <h1>
-                {currentUser?.displayName?.charAt(0) ||
-                  currentUser?.user?.name?.charAt(0) ||
-                  currentUser?.email?.charAt(0) ||
-                  "User"?.charAt(0)}
-              </h1>
-            </div>
-            <h2 style={{ color: "gray", marginBottom: "1rem" }}>
+            <h2 style={{ color: "gray" }}>
               {currentUser?.displayName ||
                 currentUser?.user?.name ||
                 currentUser?.email?.split("@")[0] ||
                 "User"}
             </h2>
-
             <div className="profile__form__container">
               <TextInput
                 placeholder={"Name"}
@@ -66,11 +59,33 @@ const Profile = () => {
                 inputType="email"
                 value={currentUser?.email || currentUser?.user?.email}
               />
+              <Button
+            customClassName={"pricing__button"}
+            label="Upgrade Plan"
+            primary="true"
+            onClick={() => navigate("/pricing")}
+          />
             </div>
           </div>
         </div>
       </div>
     </>
+  );
+};
+
+export const ProfileHeader = ({ isNavActive, currentUser }) => {
+  return (
+    <div className={`profile__header ${isNavActive} ? "active" : ""`}>
+      <div className="profile__header__container"></div>
+      <div className="profile__avatar__container profile_center">
+        <h1>
+          {currentUser?.displayName?.charAt(0) ||
+            currentUser?.user?.name?.charAt(0) ||
+            currentUser?.email?.charAt(0) ||
+            "User"?.charAt(0)}
+        </h1>
+      </div>
+    </div>
   );
 };
 

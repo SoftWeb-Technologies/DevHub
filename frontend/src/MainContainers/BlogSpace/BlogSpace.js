@@ -50,8 +50,6 @@ const BlogSpace = () => {
     dispatch(addItemsToLibrary(popUpData.id, popUpData, isAddedToLib));
   };
 
-  // console.log(filteredData);
-
   return (
     <div>
       <Title title="Blog Space" />
@@ -78,9 +76,7 @@ const BlogSpace = () => {
                 return (
                   <BlogCard
                     key={index}
-                    title={item?.title}
-                    description={item?.description}
-                    date={item?.published_at}
+                    item={item}
                     onClick={() => {
                       setIsPopUpBoxActive(true);
                       setPopUpData(item);
@@ -174,16 +170,9 @@ const BlogSpace = () => {
           </div>
 
           <div className="popup__main__container">
-            <div
-              style={{
-                width: "450px",
-                height: "80vh",
-                borderRadius: "10px",
-                overflow: "hidden",
-              }}
-            >
+            <div className="popup__img">
               <img
-                src={popUpData?.social_image}
+                src={popUpData?.cover_image || popUpData?.social_image}
                 style={{ width: "100%", height: "100%", objectFit: "cover" }}
                 alt="popup"
               />
@@ -370,36 +359,46 @@ const MoreFilterOption = ({ setFilter }) => {
   );
 };
 
-const BlogCard = ({ title, description, date, onClick }) => {
+const BlogCard = ({ title, description, date, onClick, item }) => {
+  console.log(item);
   return (
     <div className="blogSpace__card" onClick={onClick}>
       <div>
-        <h3
+        <div className="blogSpace__card__img__container">
+          <img src={item.cover_image || item.social_image} />
+        </div>
+        <div
           style={{
-            opacity: "0.7",
+            padding: "1.2rem",
           }}
         >
-          {title}
-        </h3>
-        <p
-          style={{
-            fontSize: "0.89rem",
-            color: "gray",
-            margin: "1rem 0",
-          }}
-        >
-          {description?.slice(0, 100)}
-        </p>
+          <h3
+            style={{
+              opacity: "0.7",
+            }}
+          >
+            {item?.title}
+          </h3>
+          <p
+            style={{
+              fontSize: "0.89rem",
+              color: "gray",
+              margin: "1rem 0",
+            }}
+          >
+            {item?.description?.slice(0, 100)}
+          </p>
 
-        <p
-          style={{
-            fontSize: "0.89rem",
-            color: "gray",
-            marginTop: "1rem",
-          }}
-        >
-          {date?.split("T")[0]}
-        </p>
+          <p
+            style={{
+              fontSize: "0.89rem",
+              color: "gray",
+              marginTop: "1rem",
+            }}
+          >
+            {item?.published_at?.split("T")[0]}
+          </p>
+        </div>
       </div>
     </div>
   );

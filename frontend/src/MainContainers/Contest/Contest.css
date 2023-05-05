@@ -3,15 +3,6 @@
   align-items: center;
 }
 
-.header__main__container {
-  padding: 2.4rem 5rem;
-  background: linear-gradient(
-    122.43deg,
-    #008bb7 23.82%,
-    rgba(0, 139, 183, 0.5) 69.43%
-  );
-  position: relative;
-}
 
 .contest__body__container {
   padding: 2.4rem 2rem;
@@ -27,22 +18,6 @@
   justify-content: center !important;
   align-items: center;
   gap: 20px;
-}
-
-.contest__card__container {
-  max-width: 350px;
-  width: 100%;
-  height: 160px;
-  border-radius: 10px;
-  margin-top: 1rem;
-  background-color: #e8f5fa;
-  transition: all 0.5s ease-in-out;
-  cursor: pointer;
-  padding: 1rem;
-}
-
-.contest__card__container:hover {
-  box-shadow: 2px 2px 10px #008cb799;
 }
 
 .contest__poster__model {
@@ -89,6 +64,18 @@
   display: none;
 }
 
+
+
+.contest__card__image{
+  width: 100%;
+  height: 150px;
+  background-color: var(--secondary-clr);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  object-fit: contain;
+}
+
 .contest__poster__container.active {
   position: fixed;
   background-color: #fff;
@@ -110,16 +97,6 @@
     align-items: center;
   }
 
-  .header__main__container {
-    padding: 2.4rem 5rem;
-    background: linear-gradient(
-      122.43deg,
-      #008bb7 23.82%,
-      rgba(0, 139, 183, 0.5) 69.43%
-    );
-    position: relative;
-  }
-
   .contest__body__container {
     padding: 2.4rem 5rem;
   }
@@ -135,21 +112,33 @@
     align-items: center;
   }
 
-  .contest__card__container {
+  /* .contest__card__container {
     max-width: 350px;
     width: 100%;
-    height: 160px;
+    height: 250px;
     border-radius: 10px;
     margin-top: 1rem;
     background-color: #e8f5fa;
     transition: all 0.5s ease-in-out;
     cursor: pointer;
     padding: 1rem;
-  }
+  } */
 
-  .contest__card__container:hover {
+  /* .contest__card__container:hover {
     box-shadow: 2px 2px 10px #008cb799;
+  } */
+
+
+  .contest__card__image{
+    width: 100%;
+    height: 150px;
+    background-color: var(--secondary-clr);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    object-fit: contain;
   }
+  
 
   .contest__poster__model {
     display: none;
@@ -209,6 +198,7 @@
     display: block;
     animation: popup_poster 0.3s linear forwards;
   }
+
 }
 
 @keyframes popup_poster {

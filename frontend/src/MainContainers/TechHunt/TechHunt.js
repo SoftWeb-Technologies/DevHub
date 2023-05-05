@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Button, Card, Loader, Title } from "../../components";
-import { ArrowInCircle, RightArrowIcon } from "../../DevHubIcons";
+import { RightArrowIcon } from "../../DevHubIcons";
 import { fetchTopHeadLinesNews } from "../../redux/actions/apiActions";
 import { DashboardSideNavigation, Header } from "../components";
 
@@ -30,21 +30,34 @@ const TechHunt = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    const fetchTechNews = async (keyword) => {
+    const fetchTechNews = async () => {
       var config = {
         method: "get",
-        url: `https://devhub-backend-production.up.railway.app/api/news-keyword/${keyword}`,
+        url: `https://newsapi.org/v2/everything?q=technologies&sortBy=popularity&apiKey=${process.env.REACT_APP_API_KEY_NEWS}`,
       };
 
       await axios(config).then((response) => {
-        setTechNews(response.data);
+        setTechNews(response.data.articles);
       });
     };
 
-    fetchTechNews("technologies");
+    fetchTechNews();
   }, []);
 
-  console.log(techNews);
+  useEffect(() => {
+    const fetchData = async () => {
+      var config = {
+        method: "get",
+        url: `https://newsapi.org/v2/everything?q=${filter}&sortBy=popularity&apiKey=${process.env.REACT_APP_API_KEY_NEWS}`,
+      };
+
+      await axios(config).then((response) => {
+        setFilteredData(response.data.articles);
+      });
+    };
+
+    fetchData();
+  }, [filter]);
 
   return (
     <div>
@@ -113,7 +126,7 @@ const TechHunt = () => {
                 <h2>Tech Hunt</h2>
               </div>
               <div className="techHunt__cards__container">
-                {techNews?.slice(0, 8)?.map((article, index) => (
+                {techNews.map((article, index) => (
                   <Card
                     key={index}
                     image={article.urlToImage}

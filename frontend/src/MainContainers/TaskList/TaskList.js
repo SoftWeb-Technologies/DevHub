@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Button } from "../../components";
-import { NotificationIcon, TrashIcon } from "../../DevHubIcons";
+import { NotificationIcon, TrashIcon, InviteIcon } from "../../DevHubIcons";
 import { useNavigate } from "react-router-dom";
 import { DashboardSideNavigation, TaskListModel } from "../components";
 import UserHeader from "../components/UserHeader/UserHeader";
@@ -14,6 +14,7 @@ import DropWrapper from "../components/DropWrapper";
 import { db } from "../../firebase";
 import { doc, collection, onSnapshot, updateDoc } from "firebase/firestore";
 import { setTasks } from "../../redux/actions/taskAction";
+import axios from "axios";
 
 const TaskList = () => {
   const dispatch = useDispatch();
@@ -29,28 +30,27 @@ const TaskList = () => {
   const [cardData, setCardData] = useState({});
 
   React.useEffect(() => {
-    const tasks = onSnapshot(
-      collection(db, `users/${currentUser?.uid}/tasks`),
-      (snapshot) => {
-        const list = [];
-        snapshot.docs.forEach((doc) => {
-          list.push({ uid: doc.id, ...doc.data() });
-          setItems(list);
-        });
-        dispatch(setTasks(list));
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+    const fetchAllTasks = async () => {
+      try {
+        const tasks = await axios.get("/api/tasks");
 
-    return () => {
-      tasks();
+        if (tasks.data) {
+          dispatch(setTasks(tasks.data.tasks));
+          setItems(tasks.data.tasks);
+        }
+      } catch (err) {
+        console.error(err.message);
+        alert("Error fetching tasks!");
+      }
     };
-  }, [dispatch, setItems, currentUser]);
+
+    console.log("isRunning....");
+
+    fetchAllTasks();
+  }, [dispatch]);
 
   const showNotification = (dueDate) => {
-    const notification = new Notification("Remainder message from DebHub", {
+    const notification = new Notification("Reminder message from DevHub", {
       body: `Hey! you have set a remainder for doing a task, which should be done by ${dueDate}`,
       icon: require("../../assets/images/logo/devHub-logo.svg"),
     });
@@ -116,7 +116,7 @@ const TaskList = () => {
 
     setItems((prevState) => {
       const newItems = prevState
-        .filter((i) => i.id !== item.id)
+        .filter((i) => i.id !== item._id)
         .concat({ ...item, status });
 
       const docRef = doc(db, `users/${currentUser.uid}/tasks`, item.uid);

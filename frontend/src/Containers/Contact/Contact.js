@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import {
   Button,
   Footer,
@@ -10,12 +10,17 @@ import {
 } from "../../components";
 
 import "./Contact.css";
+import emailjs from "@emailjs/browser";
 import { email } from "../../constants/Icons";
 import { PaperAirPlane } from "../../DevHubIcons";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-const companyEmailAddress = ["contact@softweb.com", "contact@softweb.com"];
+const companyEmailAddress = ["contactdevhub@gmail.com", "@DevHub"];
+
+const Result = () => {
+  return <p> Your message has been successfully sent!</p>;
+};
 
 const Contact = () => {
   const [isNavActive, setIsNavActive] = useState(false);
@@ -26,6 +31,28 @@ const Contact = () => {
     subject: "",
     message: "",
   });
+
+  const form = useRef();
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs
+      .sendForm(
+        "service_hj5ykdr",
+        "template_lc1kxgh",
+        form.current,
+        "JA7Fw91gK_oMbAQdu"
+      )
+      .then(
+        (result) => {
+          console.log(result.text);
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      );
+  };
 
   const navigate = useNavigate();
 
@@ -38,7 +65,15 @@ const Contact = () => {
 
   const handleContactFormSubmit = (e) => {
     e.preventDefault();
-    console.log(contactFormData);
+    sendEmail(e); // add this
+
+    setContactFormData({
+      // add this
+      username: "",
+      email: "",
+      subject: "",
+      message: "",
+    });
   };
 
   return (
@@ -60,8 +95,8 @@ const Contact = () => {
         <div className="contact__header">
           <h1>Get in touch</h1>
           <p>
-            We're providing best in class features in this product with honest,
-            integrity and efficiency building quality.
+            Got some queries about the product? Well, we're always available to
+            help you ;)
           </p>
         </div>
 
@@ -72,9 +107,9 @@ const Contact = () => {
               <div>
                 <h2>Contact Info</h2>
                 <p>
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's
-                  standard dummy text ever since the 1500s,
+                  Here is where you can reach out to us. We're damn sure we'll
+                  get back to you and solve all your doubts and queries related
+                  to anything (;
                 </p>
               </div>
               <div>
@@ -91,7 +126,7 @@ const Contact = () => {
           </div>
           <div className="contact__form__right__container">
             <div className="form__container">
-              <form>
+              <form ref={form} onSubmit={sendEmail}>
                 <TextInput
                   name={"username"}
                   inputType={"text"}

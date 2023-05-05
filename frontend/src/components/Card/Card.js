@@ -10,7 +10,7 @@ const Card = ({ image, title, description, openModel }) => {
         ) : (
           <div
             style={{
-              background: "#008bb7",
+              background: "var(--primary-clr)",
               width: "100%",
               height: "100%",
               display: "flex",

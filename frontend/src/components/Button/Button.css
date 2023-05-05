@@ -3,7 +3,6 @@
   outline: none;
   line-height: 1.5;
   padding: 0.6rem 2.5rem;
-  min-width: 100px;
   border-radius: var(--rounded-md);
   cursor: pointer;
 
@@ -31,17 +30,18 @@
 
 /* Primary Button styles */
 .btn.btn-primary {
-  background-color: var(--btn-primary-clr);
+  background-color: var(--primary-clr);
   color: var(--btn-secondary-clr);
   position: relative;
   transform: scale(1);
+  opacity: 0.89;
 
   transition: all 0.3s ease-in-out;
 }
 
 .btn.btn-primary:hover {
-  background-color: var(--btn-primary-clr);
-  opacity: 0.85;
+  background-color: var(--primary-clr);
+  opacity: 1;
   transform: scale(1.02);
 }
 

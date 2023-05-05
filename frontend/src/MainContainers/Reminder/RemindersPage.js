@@ -1,7 +1,7 @@
 import { collection, onSnapshot } from "firebase/firestore";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Title } from "../../components";
+import { Card, Title } from "../../components";
 import { EmptyCuateImg } from "../../constants/Images";
 import { db } from "../../firebase";
 import { subscribeUser } from "../../subscription";
@@ -111,9 +111,9 @@ const NotificationCard = ({ item }) => {
     <div
       id="remainder__card"
       style={{
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
+        display: "-ms-grid",
+        justifyContent: "center",
+        alignItems: "flex-start",
         position: "relative",
       }}
     >
