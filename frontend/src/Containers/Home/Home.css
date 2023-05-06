@@ -66,6 +66,14 @@ p {
   transform: translateX(-5%);
 }
 
+.backedby__text {
+  display: flex;
+  bottom: 25%;
+  margin-left: 5rem;
+  font-size: x-small;
+  position: relative;
+}
+
 .home__img img {
   width: 110%;
   margin-top: 40%;

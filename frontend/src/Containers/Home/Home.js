@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Button, Navbar, SideNavigation, Title } from "../../components";
 
 //import { HomeImg } from "../../constants/Images";
+import { razorpayrize } from "../../constants/Images";
 import {LandingImage} from "../../constants/Images";
 import Lottie from "lottie-react";
 import { DownArrowIcon } from "../../DevHubIcons";
@@ -42,6 +43,10 @@ const Home = () => {
                <Lottie animationData= {LandingImage} />
             </div>
           </div>
+        </div>
+
+        <div className="backedby__text">
+          <h1>Backed by:</h1><img src={razorpayrize} alt=""/>
         </div>
 
         <div className="down__arrow__container">

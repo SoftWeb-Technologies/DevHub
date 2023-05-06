@@ -2,6 +2,7 @@ import AboutImg from "../assets/images/aboutImgs/aboutImg.svg";
 import DevHubLogoLight from "../assets/images/logo/devHub-logo-light.svg";
 import DevHubLogo from "../assets/images/logo/devHub-logo.svg";
 import HomeImg from "../assets/images/homeImgs/homeImg.svg";
+import razorpayrize from "../assets/images/homeImgs/razorpayrize.svg";
 import LandingImage from "../assets/images/homeImgs/landingimage.json";
 
 // auth images
@@ -51,6 +52,7 @@ export {
   coverImg,
   DevHubLogo,
   HomeImg,
+  razorpayrize,
   LandingImage,
   thinkingImg,
   ProfileImg,
