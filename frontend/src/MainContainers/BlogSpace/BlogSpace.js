@@ -12,6 +12,7 @@ import {
 } from "../../DevHubIcons";
 import { addItemsToLibrary } from "../../redux/actions/libActions";
 import { fetchDevToArticlesData } from "../../redux/actions/apiActions";
+import DevHubAIButton from "../../components/devhub-ai/DevHubAIButton";
 
 const BlogSpace = () => {
   const dispatch = useDispatch();
@@ -51,10 +52,12 @@ const BlogSpace = () => {
   };
 
   return (
-    <div>
+    <div style={{ position: "relative" }}>
       <Title title="Blog Space" />
 
       <DashboardSideNavigation setIsNavActive={setIsNavActive} />
+      <DevHubAIButton />
+
       <div id="blogSpace">
         <UserHeader
           displayName={

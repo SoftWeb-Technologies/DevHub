@@ -7,6 +7,7 @@ import { fetchTopHeadLinesNews } from "../../redux/actions/apiActions";
 import { DashboardSideNavigation, Header } from "../components";
 
 import "./TechHunt.css";
+import DevHubAIButton from "../../components/devhub-ai/DevHubAIButton";
 
 const TechHunt = () => {
   const dispatch = useDispatch();
@@ -60,10 +61,11 @@ const TechHunt = () => {
   }, [filter]);
 
   return (
-    <div>
+    <div style={{ position: "relative" }}>
       <Title title="Tech-Hunt" />
 
       <DashboardSideNavigation setIsNavActive={setIsNavActive} />
+      <DevHubAIButton />
       <div className="techHunt__main__container">
         <div className="header__main__container">
           <div className="techHunt__header__container">

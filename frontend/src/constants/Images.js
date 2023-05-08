@@ -45,6 +45,7 @@ import contestImg5 from "../assets/images/contestPosters/contest_logo/atcoder.pn
 import contestImg6 from "../assets/images/contestPosters/contest_logo/leetcode.png";
 
 import paymentSuccessImg from "../assets/images/successful-purchase.gif";
+import devhubAiImg from "../assets/images/devhub-ai.png";
 
 export {
   AboutImg,
@@ -78,4 +79,5 @@ export {
   contestImg5,
   contestImg6,
   paymentSuccessImg,
+  devhubAiImg,
 };

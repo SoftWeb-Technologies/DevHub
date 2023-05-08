@@ -19,6 +19,7 @@ import {
   fetchNewsTeslaData,
 } from "../../redux/actions/apiActions";
 import AutoLatestNews from "../components/autoSlider/autoSlider";
+import DevHubAIButton from "../../components/devhub-ai/DevHubAIButton";
 
 const Dashboard = () => {
   // const navigate = useNavigate();
@@ -58,6 +59,8 @@ const Dashboard = () => {
           "User"
         }
       />
+
+      <DevHubAIButton />
 
       <div
         className={`dashboard__main__container  ${isNavActive ? "active" : ""}`}

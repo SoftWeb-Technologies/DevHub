@@ -40,14 +40,11 @@ const TaskList = () => {
         }
       } catch (err) {
         console.error(err.message);
-        alert("Error fetching tasks!");
       }
     };
 
-    console.log("isRunning....");
-
     fetchAllTasks();
-  }, [dispatch]);
+  }, [dispatch, setItems]);
 
   const showNotification = (dueDate) => {
     const notification = new Notification("Reminder message from DevHub", {
@@ -109,6 +106,18 @@ const TaskList = () => {
   //   });
   // });
 
+  const updateOnDropTask = async (itemId, status) => {
+    try {
+      const res = await axios.put(`/api/task/${itemId}/status`, {
+        status,
+      });
+
+      console.log(res);
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
+
   const onDrop = async (item, status) => {
     if (item.status === status) {
       return;
@@ -118,9 +127,11 @@ const TaskList = () => {
       const newItems = prevState
         .filter((i) => i.id !== item._id)
         .concat({ ...item, status });
+      console.log("updated");
 
-      const docRef = doc(db, `users/${currentUser.uid}/tasks`, item.uid);
-      updateDoc(docRef, { status });
+      // const docRef = doc(db, `users/${currentUser.uid}/tasks`, item.uid);
+      // updateDoc(docRef, { status });
+      updateOnDropTask(item._id, status);
 
       return [...newItems];
     });

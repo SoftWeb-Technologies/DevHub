@@ -22,6 +22,7 @@ import { ArrowInCircle } from "../../DevHubIcons";
 import { fetchContestData } from "../../redux/actions/apiActions";
 import { DashboardSideNavigation, Header } from "../components";
 import "./Contest.css";
+import DevHubAIButton from "../../components/devhub-ai/DevHubAIButton";
 
 const Contest = () => {
   const dispatch = useDispatch();
@@ -71,13 +72,13 @@ const Contest = () => {
     filter && fetchContestData(filter);
   }, [filter]);
 
-  console.log(filteredData);
-
   return (
     <div>
       <Title title="Contest" />
 
       <DashboardSideNavigation setIsNavActive={setIsNavActive} />
+      <DevHubAIButton />
+
       <div className="contest__main__container">
         <div className="header__main__container">
           <div className="contest__header__container">
