@@ -69,7 +69,10 @@ p {
 .backedby__text {
   display: flex;
   bottom: 25%;
+  color: #727272;
+  font-family: "Inter", sans-serif;
   margin-left: 5rem;
+  font-style: italic;
   font-size: x-small;
   position: relative;
 }

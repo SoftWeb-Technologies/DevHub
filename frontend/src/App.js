@@ -3,7 +3,8 @@ import {
   About,
   Contact,
   Home,
-  Pricing,
+  //Pricing,
+  Features,
   SignInAndSignUp,
   Faq,
   Services,
@@ -71,7 +72,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
-        <Route path="/pricing" element={<Pricing />} />
+        <Route path="/features" element={<Features />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/auth" element={<SignInAndSignUp />} />
         <Route path="/faq" element={<Faq />} />

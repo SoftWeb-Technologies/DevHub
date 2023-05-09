@@ -4,7 +4,7 @@ import { NavLink, useLocation } from "react-router-dom";
 import {
   HomeIcon,
   AboutIcon,
-  PricingIcon,
+  FeatureIcon,
   ContactIcon,
   DevHubLogo,
   CloseNavIcon,
@@ -94,9 +94,9 @@ const SideNavigation = ({ customStyle, ...props }) => {
           />
           <NavMenu
             toggle={toggle}
-            path={"/pricing"}
-            menuName="Pricing"
-            Icon={PricingIcon}
+            path={"/features"}
+            menuName="Features"
+            Icon={FeatureIcon}
             location={activeLocation}
             setLocation={setActiveLocation}
           />

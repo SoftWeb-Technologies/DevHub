@@ -245,6 +245,6 @@ svg.contest__icon{
   .side__navbar.active h1.logo__name {
     display: block;
     font-size: 1.2rem;
-    color: var(--secondary-clr);
+    color: #75d8ff;
   }
 }
