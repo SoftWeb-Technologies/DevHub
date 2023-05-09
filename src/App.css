@@ -1,0 +1,16 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+
+@import 'tailwindcss/utilities';
+
+
+@layer utilities {
+    .rtl {
+        direction: rtl;
+    }
+}
+
+
+[x-cloak=""] {
+    display: none;
+}

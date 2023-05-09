@@ -1,0 +1,49 @@
+.feature__card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+
+  min-width: 500px;
+  border-radius: 10px;
+  width: 100%;
+  padding: 1rem 2rem;
+  background-color: #abe6f864;
+
+  margin: 1rem 0;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+  transition: all 0.5s ease-in-out;
+}
+
+.feature__card:hover {
+  border-radius: 10px;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.feature__card::after{
+  content: "";
+  position: absolute;
+  border-radius: 10px;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  z-index: -1;
+
+  transition: all 0.5s ease-in-out;
+  
+}
+
+.feature__card:hover::after{
+  background-color: #9dd6ff;
+  border-radius: 10px;
+  width: 100%;
+}
+
+
+
+.feature__card div > svg path {
+  fill: #008bb7 !important;
+}
