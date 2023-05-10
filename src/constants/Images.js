@@ -17,6 +17,13 @@ import ProfileImg from "../assets/images/profileImgs/ProfileImg.jpg";
 // faq images
 import FaqImg from "../assets/images/faqImgs/faqImg.svg";
 
+// feature images
+import Feature1 from "../assets/images/featureImgs/Feature1.png";
+import Feature2 from "../assets/images/featureImgs/Feature2.png";
+import Feature3 from "../assets/images/featureImgs/Feature3.png";
+import Feature4 from "../assets/images/featureImgs/Feature4.png";
+import Feature5 from "../assets/images/featureImgs/Feature5.png";
+
 // error page images
 import ErrorImg from "../assets/images/404-error.svg";
 
@@ -61,6 +68,11 @@ export {
   SignUpImg,
   LoginImg,
   FaqImg,
+  Feature1,
+  Feature2,
+  Feature3,
+  Feature4,
+  Feature5,
   ErrorImg,
   EmptyCuateImg,
   DashboardImg,
