@@ -179,14 +179,14 @@ const TaskList = () => {
                   <div className={"col__group"}>
                     <h4 className={"col__header"}>{status.toUpperCase()}</h4>
                     <p className={"col__count"}>
-                      {items.length > 0 &&
+                      {items?.length > 0 &&
                         items?.filter((item) => item.status === status).length}
                     </p>
                   </div>
 
                   <DropWrapper onDrop={onDrop} status={status}>
                     <Col>
-                      {items.length > 0 &&
+                      {items?.length > 0 &&
                         items
                           .filter((i) => i.status === status)
                           .map((i, index) => (

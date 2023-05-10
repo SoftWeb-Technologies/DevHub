@@ -83,7 +83,6 @@ export const fetchGithubReposData = () => async (dispatch) => {
   } catch (err) {
     dispatch({
       type: types.API_FETCH_GITHUB_REPOS_FAIL,
-      payload: err.response.data.message,
     });
   }
 };
