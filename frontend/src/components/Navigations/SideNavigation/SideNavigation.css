@@ -1,0 +1,240 @@
+.side__navbar {
+  display: none;
+}
+
+.side__navbar .nav__header {
+  display: flex;
+}
+
+h1.logo__name {
+  display: none;
+  color: #fff;
+}
+
+.main__logo__container {
+  display: flex;
+  align-items: center;
+}
+
+.main__logo__container .devHub__logo {
+  width: 35px;
+  height: 35px;
+  margin: 0.7rem 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.devHub__logo svg {
+  min-width: 25px;
+  height: 25px;
+  transition: transform 0.5s ease-in-out;
+}
+
+.devHub__logo svg:hover {
+  transform: scale(1.05);
+}
+
+.devHub__logo svg:active {
+  transform: scale(0.8);
+  position: relative;
+}
+
+.devHub__logo > .open__nav {
+  background-color: #000;
+  min-width: 120px;
+  position: absolute;
+  border-radius: var(--rounded-md);
+  color: #fff;
+  z-index: 99;
+  text-align: center;
+  padding: 0.5rem 1rem;
+  font-size: 0.65rem;
+  opacity: 0;
+  pointer-events: none;
+
+  transform: translateX(65%);
+  transition: opacity 0.3s ease-in-out;
+}
+
+.devHub__logo svg:hover ~ .open__nav {
+  opacity: 1;
+}
+
+/* side menu styles */
+.side__navbar .menu__container {
+  margin-top: 4rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.navbar__link {
+  padding-top: 0.7rem;
+  padding-bottom: 0.7rem;
+  padding-left: 1rem;
+  margin-bottom: 1rem;
+  width: 100%;
+  position: relative;
+  cursor: pointer;
+  color: #fff;
+
+  font-size: 1.2rem;
+  font-weight: 500;
+
+  display: flex;
+  align-items: center;
+}
+
+.navbar__link::after {
+  content: " ";
+  position: absolute;
+  width: 0.25rem;
+  height: 100%;
+  background-color: transparent;
+  left: 0;
+  top: 0;
+
+  transition: all 0.5s ease-in-out;
+}
+
+.navbar__link:hover::after {
+  background-color: #fff;
+}
+
+.navbar__link svg {
+  margin-right: 0.8rem;
+  width: 18px;
+  height: 18px;
+  color: #fff;
+}
+
+.navbar__link:hover {
+  color: #fff;
+}
+
+.navbar__link:hover svg path {
+  fill: var(--primary-clr);
+  fill-opacity: 1;
+}
+
+.navbar__link.active svg path {
+  fill: var(--primary-clr);
+  fill-opacity: 1;
+}
+
+.navbar__link.active {
+  color: var(--primary-clr) !important;
+}
+
+.navbar__link.active .menu__container ul li::after {
+  background-color: #003140;
+}
+
+.navbar__link.active::after {
+  background-color: var(--primary-clr);
+}
+
+@media screen and (min-width: 850px) {
+  .side__navbar {
+    display: block;
+    position: fixed;
+    width: 50px;
+    height: 100vh;
+    z-index: 99;
+    background-color: #003140;
+
+    border-right: 2px solid #003140;
+  }
+
+  .side__navbar.deactive {
+    animation: close-nav 0.5s ease 1 backwards;
+    background-color: #003140;
+    /* overflow: hidden; */
+  }
+
+  @keyframes close-nav {
+    0% {
+      width: 0px;
+    }
+    100% {
+      width: 50px;
+    }
+  }
+
+  .side__navbar.active {
+    position: fixed;
+    z-index: 99;
+    background-color: #003140;
+    transition: width 0.5s ease-in-out;
+    animation: expand-nav 0.5s ease 1 forwards;
+  }
+
+  @keyframes expand-nav {
+    0% {
+      width: 50px;
+    }
+    100% {
+      width: 200px;
+    }
+  }
+
+  .side__navbar.active .toggle__btn__container {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    right: 5%;
+    top: 1.5%;
+  }
+
+  .side__navbar.active .toggle__btn__container svg {
+    cursor: pointer;
+    transition: all 0.5s ease-in-out;
+    position: relative;
+    opacity: 0;
+  }
+
+  .side__navbar.active:hover .toggle__btn__container svg {
+    opacity: 1;
+  }
+
+  .side__navbar.active .toggle__btn__container svg:hover {
+    transform: scale(1.05);
+  }
+
+  .side__navbar.active .toggle__btn__container svg:active {
+    transform: scale(0.8);
+  }
+
+  .side__navbar.active .toggle__btn__container > div {
+    position: relative;
+  }
+
+  .toggle__btn__container div > span {
+    background-color: #000;
+    min-width: 120px;
+    position: absolute;
+    border-radius: var(--rounded-md);
+    color: #fff;
+    z-index: 999;
+    text-align: center;
+    padding: 0.5rem 1rem;
+    font-size: 0.65rem;
+    opacity: 0;
+    pointer-events: none;
+
+    transform: translateX(5%) translateY(-10%);
+    transition: opacity 0.3s ease-in-out;
+  }
+
+  .toggle__btn__container svg:hover ~ span {
+    opacity: 1;
+  }
+
+  .side__navbar.active h1.logo__name {
+    display: block;
+    font-size: 1.2rem;
+    color: #fff;
+  }
+}

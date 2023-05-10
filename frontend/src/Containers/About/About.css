@@ -1,0 +1,157 @@
+:root {
+  --mobileView-width: 90%;
+  --desktopView-width: 80%;
+}
+
+#about {
+  width: 100%;
+  background-image: linear-gradient(
+    141.96deg,
+    rgba(16, 101, 148,1),
+    rgba(14, 128, 211,1)
+  );
+  height: 60vh;
+
+  display: flex;
+}
+
+.about__main__container {
+  width: 100%;
+  height: 100vh;
+}
+
+.about__main__container .down__arrow__container {
+  display: none;
+}
+
+.about__main {
+  width: var(--mobileView-width);
+  margin: 1.5rem auto;
+  padding: 0 0 2rem 0;
+}
+
+.about__header {
+  display: flex;
+  flex-direction: column;
+}
+
+.about__content p {
+  color: #fff;
+}
+
+.about__content p:first-child {
+  font-size: 1.5rem;
+  line-height: 1.5;
+}
+
+.about__content p:first-child span {
+  font-size: 1.8rem;
+  font-weight: 500;
+}
+
+.about__content p ~ p {
+  font-size: 1.3rem;
+  margin-bottom: 3rem;
+}
+.about__img {
+  width: 100%;
+  margin-top: 5rem;
+}
+
+.about__img img {
+  width: 100%;
+}
+
+.about__desc h1 {
+  color: var(--primary-clr);
+  font-size: 1.6rem;
+  margin: 4rem 0;
+}
+
+.about__desc p {
+  font-size: 1.1rem;
+  color: rgb(112, 111, 111);
+  line-height: 1.5rem;
+}
+
+/* sm */
+@media (min-width: 640px) {
+}
+
+/* md */
+@media (min-width: 850px) {
+  .about__main {
+    padding-bottom: 0rem;
+    width: 80%;
+  }
+
+  .about__main__container .down__arrow__container {
+    width: 25px;
+    position: absolute;
+    bottom: 2%;
+    right: 2%;
+    display: block;
+  }
+
+  .about__main.active {
+    margin-left: 220px;
+    animation: slide-effect 0.5s 1 ease forwards;
+  }
+
+  .about__header {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .about__img {
+    width: 50%;
+  }
+
+  .about__img img {
+    width: 100%;
+  }
+
+  .about__desc {
+    height: auto;
+    padding-bottom: 2rem;
+    transform: translateY(-20%);
+  }
+
+  .about__desc h1 {
+    font-size: 1.8rem;
+  }
+  .about__desc p {
+    font-size: 1rem;
+    width: 60%;
+    color: rgb(112, 111, 111);
+  }
+}
+
+/* lg */
+@media (min-width: 1024px) {
+  .about__img {
+    margin-top: 0rem;
+  }
+
+  .about__content p:first-child {
+    font-size: 1.9rem;
+    line-height: 1.2;
+  }
+
+  .about__content p:first-child span {
+    font-size: 2.5rem;
+    font-weight: 500;
+  }
+
+  .about__content p ~ p {
+    font-size: 1.2rem;
+    margin-bottom: 1.2rem;
+  }
+}
+
+/* xl */
+@media (min-width: 1280px) {
+  .about__desc {
+    transform: translateY(-40%);
+  }
+}

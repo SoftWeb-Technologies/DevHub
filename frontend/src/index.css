@@ -1,0 +1,79 @@
+/* Poppins Font */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+@import url("https://css.gg/css");
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* border-radius */
+  --rounded-md: 10px;
+
+  /* colors */
+  --btn-primary-clr: #0E80D3;
+  --btn-secondary-clr: #ffffff;
+  --light-text-clr: rgb(134, 133, 133);
+
+  --bg-linear-gradient: linear-gradient(
+    141.96deg,
+    #106594 129.67%
+    #0E80D3 31.03%,
+  );
+
+  --primary-clr: #106594;
+  --secondary-clr: #0E80D3;
+  --white-clr: #ffffff;
+}
+
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #008cb768;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #008bb7;
+  border-radius: 10px;
+  border: 1.5px solid #fff;
+}
+
+code {
+  font-family: "Poppins", sans-serif;
+}
+
+/* page slide when side navbar is active */
+@keyframes slide-effect {
+  0% {
+    margin-left: 120px;
+  }
+  100% {
+    margin-left: 220px;
+  }
+}
+
+@keyframes slide-effect-contact {
+  0% {
+    margin-left: 120px;
+  }
+  100% {
+    margin-left: 200px;
+  }
+}
