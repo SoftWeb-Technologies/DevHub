@@ -149,6 +149,7 @@
   border-radius: 100%;
   object-fit: contain;
   transform: scale(1);
+  z-index: 99;
 }
 
 .devhub-ai__container::before{
