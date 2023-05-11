@@ -59,12 +59,13 @@ const Profile = () => {
                 inputType="email"
                 value={currentUser?.email || currentUser?.user?.email}
               />
+              <a href="https://twitter.com/@Devhubhq">
               <Button
             customClassName={"pricing__button"}
-            label="Upgrade Plan"
+            label="Follow us on Twitter"
             primary="true"
-            onClick={() => navigate("/pricing")}
           />
+          </a>
             </div>
           </div>
         </div>

@@ -21,6 +21,7 @@
 
 .pricing__button {
   display: flex;
+  left: 53px;
   justify-content: center;
 }
 
