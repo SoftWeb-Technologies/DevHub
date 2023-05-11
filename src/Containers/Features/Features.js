@@ -21,6 +21,8 @@ export default function Features() {
     <div id="features">
       <Title title="Features" />
       <SideNavigation setIsNavActive={setIsNavActive} />
+      <Button label="Dashboard" onClick={() => navigate("/dashboard")}  customStyle={{ left: "85%", top: "10px", background: "#008bb7", color: "#fff" }} />
+
       <div className="feature__container">
         <div className="py-12 md:py-20 border-t border-gray-800">
           {/* Section header */}

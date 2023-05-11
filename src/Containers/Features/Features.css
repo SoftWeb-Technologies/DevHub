@@ -46,7 +46,15 @@
 
 .feature__item__image__container img{
     width: 100%;
+    border-radius: 3.5%;
 }
+
+.feature__item__image__container img:hover{
+    cursor: pointer;
+    box-shadow: 0 5px 15px #7bd7ff;
+}
+
+
 
 .feature__item__content > p{
     color: var(--light-text-clr);
