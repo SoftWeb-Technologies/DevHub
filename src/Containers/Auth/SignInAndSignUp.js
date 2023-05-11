@@ -152,7 +152,7 @@ const SignInForm = ({
     e.preventDefault();
 
     if (!email || !password) {
-      return;
+      return alert("Please entery email and password");
     }
 
     dispatch(loginInitiate(email, password));
