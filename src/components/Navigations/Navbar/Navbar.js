@@ -101,9 +101,9 @@ const NavbarSlider = ({ theme }) => {
                 <p>about</p>
               </li>
             </Link>
-            <Link to="/pricing">
+            <Link to="/features">
               <li className="menuItem">
-                <p>Pricing</p>
+                <p>Features</p>
               </li>
             </Link>
             <Link to="/contact">

@@ -68,6 +68,8 @@ p {
 
 .backedby__text {
   display: flex;
+  justify-content: flex-start;
+  align-items: center;
   bottom: 25%;
   color: #727272;
   font-family: "Inter", sans-serif;
@@ -75,6 +77,10 @@ p {
   font-style: italic;
   font-size: x-small;
   position: relative;
+}
+
+.backedby__text > img{
+  margin-left: 1rem;
 }
 
 .home__img img {

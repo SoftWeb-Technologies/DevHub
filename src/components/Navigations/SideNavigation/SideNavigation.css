@@ -117,11 +117,13 @@ h1.logo__name {
 .navbar__link:hover svg path {
   fill: var(--primary-clr);
   fill-opacity: 1;
+  stroke: var(--primary-clr);
 }
 
 .navbar__link.active svg path {
   fill: var(--primary-clr);
   fill-opacity: 1;
+  stroke: var(--primary-clr);
 }
 
 .navbar__link.active {

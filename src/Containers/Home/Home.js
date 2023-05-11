@@ -4,7 +4,7 @@ import { Button, Navbar, SideNavigation, Title } from "../../components";
 
 //import { HomeImg } from "../../constants/Images";
 import { razorpayrize } from "../../constants/Images";
-import {LandingImage} from "../../constants/Images";
+import { LandingImage } from "../../constants/Images";
 import Lottie from "lottie-react";
 import { DownArrowIcon } from "../../DevHubIcons";
 import { useSelector } from "react-redux";
@@ -40,13 +40,14 @@ const Home = () => {
               <Button label="Get Started" onClick={() => navigate("/auth")} />
             </div>
             <div className="home__img">
-               <Lottie animationData= {LandingImage} />
+              <Lottie animationData={LandingImage} />
             </div>
           </div>
         </div>
 
         <div className="backedby__text">
-          <h1>Backed by:</h1><img src={razorpayrize} alt=""/>
+          <h1>Backed by: </h1>
+          <img src={razorpayrize} alt="razorpay-rize" />
         </div>
 
         <div className="down__arrow__container">
