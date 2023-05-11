@@ -13,7 +13,7 @@ export const fetchTopHeadLinesNews = () => async (dispatch) => {
   } catch (err) {
     dispatch({
       type: types.API_FETCH_TECH_HUNT_FAIL,
-      payload: err.response.data.message,
+      payload: err.response,
     });
   }
 };
@@ -22,13 +22,15 @@ export const fetchNewsAppleData = () => async (dispatch) => {
   try {
     dispatch({ type: types.API_FETCH_NEWS_APPLE_START });
 
-    const { data } = await axios.get("/api/news-apple");
+    const { data } = await axios.get(
+      `${process.env.REACT_APP_SERVER_URL}/news-apple`
+    );
 
     dispatch({ type: types.API_FETCH_NEWS_APPLE_SUCCESS, payload: data });
   } catch (err) {
     dispatch({
       type: types.API_FETCH_NEWS_APPLE_FAIL,
-      payload: err.response.data.message,
+      payload: err.response,
     });
   }
 };
@@ -48,7 +50,7 @@ export const fetchNewsTeslaData = () => async (dispatch) => {
   } catch (err) {
     dispatch({
       type: types.API_FETCH_NEWS_TESLA_FAIL,
-      payload: err.response.data.message,
+      payload: err.response,
     });
   }
 };
@@ -57,13 +59,15 @@ export const fetchNewsKeywordData = () => async (dispatch) => {
   try {
     dispatch({ type: types.API_FETCH_NEWS_KEYWORD_START });
 
-    const { data } = await axios.get("/api/news-keyword");
+    const { data } = await axios.get(
+      `${process.env.REACT_APP_SERVER_URL}/news-keyword`
+    );
 
     dispatch({ type: types.API_FETCH_NEWS_KEYWORD_SUCCESS, payload: data });
   } catch (err) {
     dispatch({
       type: types.API_FETCH_NEWS_KEYWORD_FAIL,
-      payload: err.response.data.message,
+      payload: err.response,
     });
   }
 };
@@ -98,7 +102,7 @@ export const fetchDevToArticlesData = () => async (dispatch) => {
   } catch (err) {
     dispatch({
       type: types.API_FETCH_DEV_TO_ARTICLES_FAIL,
-      payload: err.response.data.message,
+      payload: err.response,
     });
   }
 };
@@ -115,7 +119,7 @@ export const fetchContestData = () => async (dispatch) => {
   } catch (err) {
     dispatch({
       type: types.API_FETCH_CONTEST_FAIL,
-      payload: err.response.data.message,
+      payload: err.response,
     });
   }
 };

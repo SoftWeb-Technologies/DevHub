@@ -38,7 +38,7 @@ export const loginUser = (email, password) => async (dispatch) => {
     };
 
     const { data } = await axios.post(
-      "/api/user/login",
+      `${process.env.REACT_APP_SERVER_URL}/user/login`,
       { email, password },
       config
     );
@@ -54,7 +54,7 @@ export const loginUser = (email, password) => async (dispatch) => {
 // logout user using Mongodb API
 export const logoutUser = () => async (dispatch) => {
   try {
-    await axios.get("/api/user/logout");
+    await axios.get(`${process.env.REACT_APP_SERVER_URL}/user/logout`);
 
     dispatch({ type: types.LOGOUT_USER_SUCCESS });
   } catch (err) {
@@ -67,7 +67,9 @@ export const loadUser = () => async (dispatch) => {
   try {
     dispatch({ type: types.LOAD_USER_START });
 
-    const { data } = await axios.get("/api/user/me");
+    const { data } = await axios.get(
+      `${process.env.REACT_APP_SERVER_URL}/user/me`
+    );
 
     dispatch({ type: types.LOAD_USER_SUCCESS, payload: data });
   } catch (err) {

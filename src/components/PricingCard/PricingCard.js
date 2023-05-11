@@ -27,13 +27,18 @@ const PricingCard = ({ isPopular, plans }) => {
       if (isAuthenticated) {
         const {
           data: { key },
-        } = await axios.get("http://localhost:4000/api/getkey");
+        } = await axios.get(
+          "https://devhub-backend-production.up.railway.app/api/getkey"
+        );
 
         const {
           data: { order },
-        } = await axios.post("http://localhost:4000/api/checkout", {
-          amount,
-        });
+        } = await axios.post(
+          "https://devhub-backend-production.up.railway.app/api/checkout",
+          {
+            amount,
+          }
+        );
 
         const options = {
           key,
@@ -43,7 +48,8 @@ const PricingCard = ({ isPopular, plans }) => {
           description: "We are a team of Creators & Innovators",
           image: "https://app.cal.com/devhubhq/avatar.png",
           order_id: order.id,
-          callback_url: "http://localhost:4000/api/paymentverification",
+          callback_url:
+            "https://devhub-backend-production.up.railway.app/api/paymentverification",
           prefill: {
             name:
               currentUser?.displayName ||
