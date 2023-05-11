@@ -27,7 +27,7 @@ import { useNavigate } from "react-router-dom";
 
 const SignInAndSignUp = () => {
   const navigate = useNavigate();
-  const { isAuthenticated } = useSelector((state) => state.user);
+  const { isAuthenticated, currentUser } = useSelector((state) => state.user);
 
   const [toggle, setToggle] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
@@ -37,7 +37,7 @@ const SignInAndSignUp = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (isAuthenticated) {
+    if (isAuthenticated && currentUser.success) {
       navigate("/dashboard", { replace: true });
     }
   }, [navigate, isAuthenticated]);
@@ -152,7 +152,9 @@ const SignInForm = ({
     e.preventDefault();
 
     if (!email || !password) {
-      return alert("Please entery email and password");
+      return alert(
+        `Please entery email and password ${process.env.REACT_APP_SERVER_URL}`
+      );
     }
 
     dispatch(loginInitiate(email, password));
@@ -270,10 +272,11 @@ const SignUpForm = ({
     e.preventDefault();
 
     if (!username || !password || !email) {
-      return;
+      return alert("Please enter username, email and password");
     }
 
     dispatch(registerInitiate(email, password, username));
+    dispatch(loginInitiate(email, password));
     setUsername("");
     setEmail("");
     setPassword("");

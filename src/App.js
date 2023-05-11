@@ -39,8 +39,13 @@ function App() {
 
   const loadUser = async () => {
     try {
-      const user = await axios.get("/api/user/me");
-      dispatch(setUser(user.data));
+      const user = await axios.get(
+        `${process.env.REACT_APP_SERVER_URL}/user/me`
+      );
+
+      if (user.data.success) {
+        dispatch(setUser(user.data));
+      }
     } catch (err) {
       console.log(err.message);
     }

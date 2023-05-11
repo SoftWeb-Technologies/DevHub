@@ -33,15 +33,22 @@ export const registerInitiate = (email, password, displayName) => {
   return async function (dispatch) {
     dispatch(registerStart());
     try {
-      const user = await axios.post("/api/user/register", {
-        email,
-        password,
-        name: displayName,
-      });
+      const user = await axios.post(
+        `${process.env.REACT_APP_SERVER_URL}/user/register`,
+        {
+          email,
+          password,
+          name: displayName,
+        }
+      );
 
-      dispatch(registerSuccess(user.data));
-      localStorage.setItem("isAuthenticated", true);
-      localStorage.setItem("loginUsing", "emailAndPassword");
+      if (user.data.success) {
+        dispatch(registerSuccess(user.data));
+        localStorage.setItem("isAuthenticated", true);
+        localStorage.setItem("loginUsing", "emailAndPassword");
+      } else {
+        alert(user.data.message);
+      }
     } catch (err) {
       dispatch(registerFail(err));
     }
@@ -68,17 +75,20 @@ export const loginInitiate = (email, password) => {
     dispatch(loginStart());
 
     try {
-      const user = await axios.post("/api/user/login", {
-        email,
-        password,
-      });
+      const user = await axios.post(
+        `${process.env.REACT_APP_SERVER_URL}/user/login`,
+        {
+          email,
+          password,
+        }
+      );
 
       if (user.data.success) {
         dispatch(loginSuccess(user.data));
         localStorage.setItem("isAuthenticated", true);
         localStorage.setItem("loginUsing", "emailAndPassword");
       } else {
-        dispatch(loginFail(user.data));
+        alert(`${user.data.message}, ${email}, ${password}`);
       }
     } catch (err) {
       dispatch(loginFail(err));
@@ -105,7 +115,7 @@ export const logoutInitiate = () => {
     dispatch(logoutStart());
 
     if (localStorage.getItem("loginUsing") === "emailAndPassword") {
-      await axios.get("/api/user/logout");
+      await axios.get(`${process.env.REACT_APP_SERVER_URL}/user/logout`);
       return;
     }
 
@@ -161,17 +171,23 @@ export const googleSignInInitiate = () => {
         localStorage.setItem("isAuthenticated", true);
         localStorage.setItem("loginUsing", "googleOrTwitter");
 
-        const res = await axios.post("/api/user/register", {
-          email: user.email,
-          name: user.displayName,
-          password: user.uid,
-        });
+        const res = await axios.post(
+          `${process.env.REACT_APP_SERVER_URL}/user/register`,
+          {
+            email: user.email,
+            name: user.displayName,
+            password: user.uid,
+          }
+        );
 
         if (res.data.message === "User already exists") {
-          const res = await axios.post("/api/user/login", {
-            email: user.email,
-            password: user.uid,
-          });
+          const res = await axios.post(
+            `${process.env.REACT_APP_SERVER_URL}/user/login`,
+            {
+              email: user.email,
+              password: user.uid,
+            }
+          );
 
           dispatch(googleSignInSuccess(res.data.user));
         } else {
@@ -210,17 +226,23 @@ export const twitterSignInInitiate = () => {
         localStorage.setItem("isAuthenticated", true);
         localStorage.setItem("loginUsing", "googleOrTwitter");
 
-        const res = await axios.post("/api/user/register", {
-          email: user.email,
-          name: user.displayName,
-          password: user.uid,
-        });
+        const res = await axios.post(
+          `${process.env.REACT_APP_SERVER_URL}/user/register`,
+          {
+            email: user.email,
+            name: user.displayName,
+            password: user.uid,
+          }
+        );
 
         if (res.data.message === "User already exists") {
-          const res = await axios.post("/api/user/login", {
-            email: user.email,
-            password: user.uid,
-          });
+          const res = await axios.post(
+            `${process.env.REACT_APP_SERVER_URL}/user/login`,
+            {
+              email: user.email,
+              password: user.uid,
+            }
+          );
 
           dispatch(twitterSignInSuccess(res.data.user));
         } else {
