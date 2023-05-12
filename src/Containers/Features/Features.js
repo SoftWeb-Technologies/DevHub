@@ -16,12 +16,34 @@ export default function Features() {
   const [isNavActive, setIsNavActive] = useState(false);
   const navigate = useNavigate();
 
-  const { currentUser } = useSelector((state) => state.user);
+  const { currentUser, isAuthenticated } = useSelector((state) => state.user);
   return (
     <div id="features">
       <Title title="Features" />
       <SideNavigation setIsNavActive={setIsNavActive} />
-      <Button label="Dashboard" onClick={() => navigate("/dashboard")}  customStyle={{ left: "85%", top: "10px", background: "#008bb7", color: "#fff" }} />
+      {isAuthenticated ? (
+        <Button
+          label="Dashboard"
+          onClick={() => navigate("/dashboard")}
+          customStyle={{
+            left: "85%",
+            top: "10px",
+            background: "#008bb7",
+            color: "#fff",
+          }}
+        />
+      ) : (
+        <Button
+          label="Sign Up"
+          onClick={() => navigate("/auth")}
+          customStyle={{
+            left: "85%",
+            top: "10px",
+            background: "#008bb7",
+            color: "#fff",
+          }}
+        />
+      )}
 
       <div className="feature__container">
         <div className="py-12 md:py-20 border-t border-gray-800">
