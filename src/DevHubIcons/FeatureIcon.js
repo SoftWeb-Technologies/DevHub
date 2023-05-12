@@ -11,7 +11,7 @@ const FeatureIcon = (props) => (
     <path
       d="M8.99999 6H20M3.79999 5.8L4.59999 6.6L6.59999 4.6M3.79999 11.8L4.59999 12.6L6.59999 10.6M3.79999 17.8L4.59999 18.6L6.59999 16.6M8.99999 12H20M8.99999 18H20"
       stroke="white"
-      strokeWidth={1.5}
+      strokeWidth={1.9}
       strokeLinecap="round"
       strokeLinejoin="round"
     />
