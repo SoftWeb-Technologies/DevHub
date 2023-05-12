@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 
 import {
   HomeIcon,
@@ -103,7 +103,7 @@ const SideNavigation = ({ customStyle, ...props }) => {
           />
           <NavMenu
             toggle={toggle}
-            path={"https://idea2business.xyz/"}
+            hrefLink={"https://idea2business.xyz/"}
             menuName="Idea2Biz"
             Icon={RocketIcon}
             location={activeLocation}
@@ -123,20 +123,42 @@ const SideNavigation = ({ customStyle, ...props }) => {
   );
 };
 
-const NavMenu = ({ path, Icon, menuName, toggle, location, setLocation }) => {
+const NavMenu = ({
+  path,
+  hrefLink,
+  Icon,
+  menuName,
+  toggle,
+  location,
+  setLocation,
+}) => {
   return (
-    <NavLink
-      className={
-        location.pathname === path ? "navbar__link active" : "navbar__link"
-      }
-      to={path}
-      onClick={() => {
-        setLocation(path);
-      }}
-    >
-      <Icon />
-      {toggle && menuName}
-    </NavLink>
+    <>
+      {path && (
+        <NavLink
+          className={
+            location.pathname === path ? "navbar__link active" : "navbar__link"
+          }
+          to={path}
+          onClick={() => {
+            setLocation(path);
+          }}
+        >
+          <Icon />
+          {toggle && menuName}
+        </NavLink>
+      )}
+
+      {hrefLink && (
+        <div
+          className={"navbar__link"}
+          onClick={() => window.open(hrefLink, "_blank")}
+        >
+          <Icon />
+          {toggle && menuName}
+        </div>
+      )}
+    </>
   );
 };
 
