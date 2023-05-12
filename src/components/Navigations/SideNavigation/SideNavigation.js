@@ -5,6 +5,7 @@ import {
   HomeIcon,
   AboutIcon,
   FeatureIcon,
+  RocketIcon,
   ContactIcon,
   DevHubLogo,
   CloseNavIcon,
@@ -97,6 +98,14 @@ const SideNavigation = ({ customStyle, ...props }) => {
             path={"/features"}
             menuName="Features"
             Icon={FeatureIcon}
+            location={activeLocation}
+            setLocation={setActiveLocation}
+          />
+          <NavMenu
+            toggle={toggle}
+            path={"https://idea2business.xyz/"}
+            menuName="Idea2Biz"
+            Icon={RocketIcon}
             location={activeLocation}
             setLocation={setActiveLocation}
           />

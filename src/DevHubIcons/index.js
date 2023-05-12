@@ -1,6 +1,7 @@
 import HomeIcon from "./HomeIcon";
 import AboutIcon from "./AboutIcon";
 import FeatureIcon from "./FeatureIcon";
+import RocketIcon from "./RocketIcon";
 import ContactIcon from "./ContactIcon";
 import DevHubLogo from "./DevHubLogo";
 import OpenNavIcon from "./OpenNavIcon";
@@ -51,6 +52,7 @@ export {
   HomeIcon,
   AboutIcon,
   FeatureIcon,
+  RocketIcon,
   ContactIcon,
   DevHubLogo,
   OpenNavIcon,
