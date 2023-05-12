@@ -35,6 +35,7 @@ const Dashboard = () => {
   const { newsTeslaData } = useSelector((state) => state.newsTeslaApi);
 
   const [randomNumber, setRandomNumber] = useState(0);
+  const [randomNumber2, setRandomNumber2] = useState(0);
 
   useEffect(() => {
     dispatch(fetchNewsAppleData());
@@ -43,6 +44,7 @@ const Dashboard = () => {
     dispatch(fetchDevToArticlesData());
 
     setRandomNumber(Math.floor(Math.random() * 5));
+    setRandomNumber2(Math.floor(Math.random() * 5));
   }, [dispatch]);
 
   return (
@@ -119,10 +121,10 @@ const Dashboard = () => {
               }}
             >
               <CardData
-                title={newsTeslaData[randomNumber]?.name}
-                description={newsTeslaData[randomNumber]?.description}
-                url={newsTeslaData[randomNumber]?.url}
-                image={newsTeslaData[randomNumber]?.urlToImage}
+                title={devToArticlesData[randomNumber2]?.title}
+                description={devToArticlesData[randomNumber2]?.description}
+                url={devToArticlesData[randomNumber2]?.url}
+                image={devToArticlesData[randomNumber2]?.social_image}
               />
 
               <CardData
