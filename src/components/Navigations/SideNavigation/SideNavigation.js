@@ -112,7 +112,7 @@ const SideNavigation = ({ customStyle, ...props }) => {
           />
           <NavMenu
             toggle={toggle}
-            path={"https://audionotes.app/"}
+            path={"https://audionotes.app"}
             menuName="AudioNotes"
             Icon={MicIcon}
             location={activeLocation}
