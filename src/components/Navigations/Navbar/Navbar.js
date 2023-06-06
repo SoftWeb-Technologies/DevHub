@@ -106,6 +106,17 @@ const NavbarSlider = ({ theme }) => {
                 <p>Features</p>
               </li>
             </Link>
+
+            <div
+              id="hrefLink"
+              onClick={() => {
+                window.open("https://idea2business.xyz/", "_blank");
+              }}
+            >
+              <li className="menuItem">
+                <p>Idea2Biz</p>
+              </li>
+            </div>
             <Link to="/contact">
               <li className="menuItem">
                 <p>Contact</p>
