@@ -10,6 +10,7 @@ import {
   DevHubLogo,
   CloseNavIcon,
   OpenNavIcon,
+  MicIcon,
 } from "../../../DevHubIcons";
 import "./SideNavigation.css";
 
@@ -106,6 +107,14 @@ const SideNavigation = ({ customStyle, ...props }) => {
             path={"https://idea2business.xyz/"}
             menuName="Idea2Biz"
             Icon={RocketIcon}
+            location={activeLocation}
+            setLocation={setActiveLocation}
+          />
+          <NavMenu
+            toggle={toggle}
+            path={"https://audionotes.app/"}
+            menuName="AudioNotes"
+            Icon={MicIcon}
             location={activeLocation}
             setLocation={setActiveLocation}
           />
